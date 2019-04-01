@@ -43936,18 +43936,17 @@ MonoBehaviour:
   verticalRayCount: 8
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
-  passengerMask:
-    serializedVersion: 2
-    m_Bits: 2048
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 1.28, z: 0}
   isActive: 1
   moveOnce: 1
   cyclic: 0
+  movePassinger: 0
   speed: 5
   EaseAmount: 0.5
   WaitTime: 0
+  percentBetweenWaypoints: 0
   theSwitch: {fileID: 0}
 --- !u!1 &632694075464117704
 GameObject:
@@ -43994,7 +43993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f4046a5bccc2544ac522f60da380c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
+  mode: 3
   direction: 1
   platform: {fileID: 4450960780626602280}
 --- !u!198 &7399344956226274951
@@ -53419,13 +53418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c5bca2de7e31e48967bb99c5ddeb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positive:
-  - {fileID: 2020446605678595195}
-  negative:
-  - {fileID: 700997596398237054}
-  - {fileID: 700997596309292554}
-  interact: {fileID: 0}
-  interactArray: []
 --- !u!114 &700997596260645343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53441,18 +53433,16 @@ MonoBehaviour:
   direction: 3
   jump: 0
   action: 3
-  explosion: {fileID: 0}
-  teleportEffect: {fileID: 4893334729647090660, guid: 601a69683682e364ca7bf6fcb0732384,
-    type: 3}
-  canDestroy: 0
-  isActivated: 0
+  input: 0
+  exploudOnDeath: 0
   ReverseRight: 1
   randomDirection: 0
   jumpDuration: 1
   teleportExit: {fileID: 700997597317129190}
   nextTarget: {fileID: 0}
-  input: 0
   rotateDirection: 0
+  fourWayParticle: []
+  rotationParticles: []
 --- !u!1 &700997596308234836
 GameObject:
   m_ObjectHideFlags: 0
@@ -58280,7 +58270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937ee2e6b060da344a585106ba063aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: {x: 0, y: 0, z: 0}
 --- !u!1 &700997596365865111
 GameObject:
   m_ObjectHideFlags: 0
@@ -81773,7 +81763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937ee2e6b060da344a585106ba063aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: {x: 0, y: 0, z: 0}
 --- !u!1 &700997597317129209
 GameObject:
   m_ObjectHideFlags: 0
@@ -81818,12 +81808,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c5bca2de7e31e48967bb99c5ddeb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positive: []
-  negative:
-  - {fileID: 700997596676877649}
-  - {fileID: 700997596968578894}
-  interact: {fileID: 0}
-  interactArray: []
 --- !u!1 &700997597480640182
 GameObject:
   m_ObjectHideFlags: 0
@@ -86517,7 +86501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f4046a5bccc2544ac522f60da380c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
+  mode: 3
   direction: 3
   platform: {fileID: 2678401819593575400}
 --- !u!198 &6359847437356534300
@@ -91333,18 +91317,17 @@ MonoBehaviour:
   verticalRayCount: 8
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
-  passengerMask:
-    serializedVersion: 2
-    m_Bits: 2048
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: -1.28, z: 0}
   isActive: 1
   moveOnce: 1
   cyclic: 0
+  movePassinger: 0
   speed: 5
   EaseAmount: 0.5
   WaitTime: 0
+  percentBetweenWaypoints: 0
   theSwitch: {fileID: 0}
 --- !u!1 &1742046337067912420
 GameObject:
@@ -91426,18 +91409,17 @@ MonoBehaviour:
   verticalRayCount: 8
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
-  passengerMask:
-    serializedVersion: 2
-    m_Bits: 2048
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 1.28, z: 0}
   isActive: 1
   moveOnce: 1
   cyclic: 0
+  movePassinger: 0
   speed: 5
   EaseAmount: 0.5
   WaitTime: 0
+  percentBetweenWaypoints: 0
   theSwitch: {fileID: 0}
 --- !u!1 &2438179415956450730
 GameObject:
@@ -96407,7 +96389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f4046a5bccc2544ac522f60da380c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
+  mode: 3
   direction: 3
   platform: {fileID: 4384532166787417376}
 --- !u!198 &4116386507793560774
@@ -101188,7 +101170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f4046a5bccc2544ac522f60da380c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 2
+  mode: 3
   direction: 0
   platform: {fileID: 8530748273373558416}
 --- !u!198 &5793636783008238746
@@ -105969,7 +105951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f4046a5bccc2544ac522f60da380c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
+  mode: 3
   direction: 1
   platform: {fileID: 5701863024747235854}
 --- !u!198 &7454449940749071637
@@ -110864,18 +110846,17 @@ MonoBehaviour:
   verticalRayCount: 8
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
-  passengerMask:
-    serializedVersion: 2
-    m_Bits: 2048
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: -1.28, z: 0}
   isActive: 1
   moveOnce: 1
   cyclic: 0
+  movePassinger: 0
   speed: 5
   EaseAmount: 0.5
   WaitTime: 0
+  percentBetweenWaypoints: 0
   theSwitch: {fileID: 0}
 --- !u!1 &6195565711168508565
 GameObject:
@@ -110987,18 +110968,17 @@ MonoBehaviour:
   verticalRayCount: 8
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
-  passengerMask:
-    serializedVersion: 2
-    m_Bits: 2048
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: -1.94, z: 0}
   isActive: 1
   moveOnce: 1
   cyclic: 0
+  movePassinger: 0
   speed: 5
   EaseAmount: 0.5
   WaitTime: 0
+  percentBetweenWaypoints: 0
   theSwitch: {fileID: 0}
 --- !u!1 &6756311565322673726
 GameObject:
@@ -115924,18 +115904,17 @@ MonoBehaviour:
   verticalRayCount: 8
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
-  passengerMask:
-    serializedVersion: 2
-    m_Bits: 2048
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: -1.94, z: 0}
   isActive: 1
   moveOnce: 1
   cyclic: 0
+  movePassinger: 0
   speed: 5
   EaseAmount: 0.5
   WaitTime: 0
+  percentBetweenWaypoints: 0
   theSwitch: {fileID: 0}
 --- !u!1 &7817957178808827838
 GameObject:
@@ -116061,7 +116040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f4046a5bccc2544ac522f60da380c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 2
+  mode: 3
   direction: 2
   platform: {fileID: 8971254215619514700}
 --- !u!198 &6833821526075570082
@@ -125624,7 +125603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937ee2e6b060da344a585106ba063aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: {x: 0, y: 0, z: 0}
 --- !u!1 &9084752442026760944
 GameObject:
   m_ObjectHideFlags: 0
@@ -134949,13 +134928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c5bca2de7e31e48967bb99c5ddeb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positive:
-  - {fileID: 7756296784280393244}
-  negative:
-  - {fileID: 9084752442459713305}
-  - {fileID: 9084752441986997357}
-  interact: {fileID: 0}
-  interactArray: []
 --- !u!114 &9084752442055254968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134971,18 +134943,16 @@ MonoBehaviour:
   direction: 3
   jump: 0
   action: 3
-  explosion: {fileID: 0}
-  teleportEffect: {fileID: 4893334729647090660, guid: 601a69683682e364ca7bf6fcb0732384,
-    type: 3}
-  canDestroy: 0
-  isActivated: 0
+  input: 0
+  exploudOnDeath: 0
   ReverseRight: 1
   randomDirection: 0
   jumpDuration: 1
   teleportExit: {fileID: 9084752443126397313}
   nextTarget: {fileID: 0}
-  input: 0
   rotateDirection: 0
+  fourWayParticle: []
+  rotationParticles: []
 --- !u!1 &9084752442371739104
 GameObject:
   m_ObjectHideFlags: 0
@@ -153839,12 +153809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c5bca2de7e31e48967bb99c5ddeb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positive: []
-  negative:
-  - {fileID: 9084752442755102518}
-  - {fileID: 9084752443029501225}
-  interact: {fileID: 0}
-  interactArray: []
 --- !u!1 &9084752443273405853
 GameObject:
   m_ObjectHideFlags: 0
@@ -153890,7 +153854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937ee2e6b060da344a585106ba063aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: {x: 0, y: 0, z: 0}
 --- !u!1 &9084752443558331601
 GameObject:
   m_ObjectHideFlags: 0
@@ -158594,11 +158558,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 753394029970992543, guid: 5453e9b7601ab754ba7b88db724ec662,
-        type: 3}
-      propertyPath: m_Name
-      value: DropPoint
-      objectReference: {fileID: 0}
     - target: {fileID: 753394029970992540, guid: 5453e9b7601ab754ba7b88db724ec662,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -158653,6 +158612,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753394029970992543, guid: 5453e9b7601ab754ba7b88db724ec662,
+        type: 3}
+      propertyPath: m_Name
+      value: DropPoint
       objectReference: {fileID: 0}
     - target: {fileID: 753394030263760915, guid: 5453e9b7601ab754ba7b88db724ec662,
         type: 3}
@@ -158759,11 +158723,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 624}
     m_Modifications:
-    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile Manager (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 3382605485791182294, guid: 067d6c0b0693cd9438eb6ed658d0e198,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -158818,6 +158777,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile Manager (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d6c0b0693cd9438eb6ed658d0e198, type: 3}
@@ -159397,11 +159361,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 6223431649633876345, guid: 3692bf8b5cf1fd34e9283f480a7f4742,
-        type: 3}
-      propertyPath: m_Name
-      value: GravityPadDown
-      objectReference: {fileID: 0}
     - target: {fileID: 6223431649633876350, guid: 3692bf8b5cf1fd34e9283f480a7f4742,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -159456,6 +159415,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223431649633876345, guid: 3692bf8b5cf1fd34e9283f480a7f4742,
+        type: 3}
+      propertyPath: m_Name
+      value: GravityPadDown
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3692bf8b5cf1fd34e9283f480a7f4742, type: 3}
@@ -159627,11 +159591,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 6223431649633876345, guid: 3692bf8b5cf1fd34e9283f480a7f4742,
-        type: 3}
-      propertyPath: m_Name
-      value: GravityPadDown (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 6223431649633876350, guid: 3692bf8b5cf1fd34e9283f480a7f4742,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -159686,6 +159645,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223431649633876345, guid: 3692bf8b5cf1fd34e9283f480a7f4742,
+        type: 3}
+      propertyPath: m_Name
+      value: GravityPadDown (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3692bf8b5cf1fd34e9283f480a7f4742, type: 3}
@@ -160041,11 +160005,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 624}
     m_Modifications:
-    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile Manager (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 3382605485791182294, guid: 067d6c0b0693cd9438eb6ed658d0e198,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -160100,6 +160059,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile Manager (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d6c0b0693cd9438eb6ed658d0e198, type: 3}
@@ -160449,11 +160413,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 624}
     m_Modifications:
-    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile Manager (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 3382605485791182294, guid: 067d6c0b0693cd9438eb6ed658d0e198,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -160508,6 +160467,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile Manager (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d6c0b0693cd9438eb6ed658d0e198, type: 3}
@@ -160599,11 +160563,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5928235059129481161}
     m_Modifications:
-    - target: {fileID: 3980917855205011922, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
-        type: 3}
-      propertyPath: m_Name
-      value: ExitEffect
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -160659,6 +160618,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
+        type: 3}
+      propertyPath: m_Name
+      value: ExitEffect
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f62028f1456a1146b9dfe893cbb5ec4, type: 3}
 --- !u!4 &176216197857741475 stripped
@@ -160674,11 +160638,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 753394029970992543, guid: 5453e9b7601ab754ba7b88db724ec662,
-        type: 3}
-      propertyPath: m_Name
-      value: DropPoint (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 753394029970992540, guid: 5453e9b7601ab754ba7b88db724ec662,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -160734,6 +160693,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 753394029970992543, guid: 5453e9b7601ab754ba7b88db724ec662,
+        type: 3}
+      propertyPath: m_Name
+      value: DropPoint (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 753394030263760915, guid: 5453e9b7601ab754ba7b88db724ec662,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -160759,11 +160723,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 624}
     m_Modifications:
-    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile Manager (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 3382605485791182294, guid: 067d6c0b0693cd9438eb6ed658d0e198,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -160818,6 +160777,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile Manager (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d6c0b0693cd9438eb6ed658d0e198, type: 3}
@@ -161179,11 +161143,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 624}
     m_Modifications:
-    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile Manager (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 3382605485791182294, guid: 067d6c0b0693cd9438eb6ed658d0e198,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -161238,6 +161197,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile Manager (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d6c0b0693cd9438eb6ed658d0e198, type: 3}
@@ -161334,11 +161298,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 6223431649633876345, guid: 34c33898aabb2634592aac41d5b28e0d,
-        type: 3}
-      propertyPath: m_Name
-      value: GravityPadUP (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 6223431649633876350, guid: 34c33898aabb2634592aac41d5b28e0d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -161394,6 +161353,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6223431649633876345, guid: 34c33898aabb2634592aac41d5b28e0d,
+        type: 3}
+      propertyPath: m_Name
+      value: GravityPadUP (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34c33898aabb2634592aac41d5b28e0d, type: 3}
 --- !u!4 &2214394297054913274 stripped
@@ -161409,11 +161373,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 6223431649633876345, guid: 3692bf8b5cf1fd34e9283f480a7f4742,
-        type: 3}
-      propertyPath: m_Name
-      value: GravityPadDown (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 6223431649633876350, guid: 3692bf8b5cf1fd34e9283f480a7f4742,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -161468,6 +161427,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223431649633876345, guid: 3692bf8b5cf1fd34e9283f480a7f4742,
+        type: 3}
+      propertyPath: m_Name
+      value: GravityPadDown (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3692bf8b5cf1fd34e9283f480a7f4742, type: 3}
@@ -161908,16 +161872,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 624}
     m_Modifications:
-    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile Manager (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3382605485791182294, guid: 067d6c0b0693cd9438eb6ed658d0e198,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -161973,6 +161927,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile Manager (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d6c0b0693cd9438eb6ed658d0e198, type: 3}
 --- !u!4 &8387218260571514096 stripped
@@ -161988,11 +161952,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 6223431649633876345, guid: 34c33898aabb2634592aac41d5b28e0d,
-        type: 3}
-      propertyPath: m_Name
-      value: GravityPadUP
-      objectReference: {fileID: 0}
     - target: {fileID: 6223431649633876350, guid: 34c33898aabb2634592aac41d5b28e0d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -162047,6 +162006,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223431649633876345, guid: 34c33898aabb2634592aac41d5b28e0d,
+        type: 3}
+      propertyPath: m_Name
+      value: GravityPadUP
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34c33898aabb2634592aac41d5b28e0d, type: 3}
@@ -162152,11 +162116,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 624}
     m_Modifications:
-    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile Manager
-      objectReference: {fileID: 0}
     - target: {fileID: 3382605485791182294, guid: 067d6c0b0693cd9438eb6ed658d0e198,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -162211,6 +162170,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d6c0b0693cd9438eb6ed658d0e198, type: 3}
@@ -162560,11 +162524,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 753394029970992543, guid: 5453e9b7601ab754ba7b88db724ec662,
-        type: 3}
-      propertyPath: m_Name
-      value: DropPoint (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 753394029970992540, guid: 5453e9b7601ab754ba7b88db724ec662,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -162620,6 +162579,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 753394029970992543, guid: 5453e9b7601ab754ba7b88db724ec662,
+        type: 3}
+      propertyPath: m_Name
+      value: DropPoint (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 753394030263760915, guid: 5453e9b7601ab754ba7b88db724ec662,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -162645,11 +162609,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 624}
     m_Modifications:
-    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile Manager (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 3382605485791182294, guid: 067d6c0b0693cd9438eb6ed658d0e198,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -162704,6 +162663,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile Manager (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d6c0b0693cd9438eb6ed658d0e198, type: 3}
@@ -162815,11 +162779,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 9203704975580486447, guid: f2c9915372482bb48a7e30dccc054f9a,
-        type: 3}
-      propertyPath: m_Name
-      value: Reverse(Right)
-      objectReference: {fileID: 0}
     - target: {fileID: 9203704975580486437, guid: f2c9915372482bb48a7e30dccc054f9a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -162874,6 +162833,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203704975580486447, guid: f2c9915372482bb48a7e30dccc054f9a,
+        type: 3}
+      propertyPath: m_Name
+      value: Reverse(Right)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c9915372482bb48a7e30dccc054f9a, type: 3}
@@ -163064,11 +163028,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 6223431649633876345, guid: 34c33898aabb2634592aac41d5b28e0d,
-        type: 3}
-      propertyPath: m_Name
-      value: GravityPadUP (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 6223431649633876350, guid: 34c33898aabb2634592aac41d5b28e0d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -163123,6 +163082,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223431649633876345, guid: 34c33898aabb2634592aac41d5b28e0d,
+        type: 3}
+      propertyPath: m_Name
+      value: GravityPadUP (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34c33898aabb2634592aac41d5b28e0d, type: 3}

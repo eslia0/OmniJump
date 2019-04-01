@@ -54,7 +54,7 @@ public class GooglePlayManager : MonoBehaviour
         if (score >= 100)
         {
 #if UNITY_ANDROID
-            PlayGamesPlatform.instance.ReportProgress(GPGSIds.achievement_100, 100f, null);
+            PlayGamesPlatform.instance.ReportProgress(GPGSIds.achievement_100_score, 100f, null);
 #elif UNITY_IOS
             Social.ReportProgress("Score_100", 100f, null);
 #endif

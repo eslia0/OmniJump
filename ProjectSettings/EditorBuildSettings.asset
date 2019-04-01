@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MapTest.unity
-    guid: 06e119b0dc7a335489801b021b1981bd
+    path: Assets/Scenes/GooglePlayTest.unity
+    guid: e1205ed7fb26bdf438e92875147b2424
   m_configObjects: {}

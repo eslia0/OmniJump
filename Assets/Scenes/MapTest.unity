@@ -147,7 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e771d78dee89cb44f8cc44b79b754789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleRotation: {fileID: 0}
   testing: 1
   testPlatform: {fileID: 1625220819}
   platforms: []
@@ -745,7 +744,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1368763057}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10f0f912316d6f6419b858d485e7e0e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0acfcf18c70309f4e9accef3bc936d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   showAds: 1
@@ -1004,10 +1003,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1756759957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fe2ba71949f98544bf7835149fa99f9, type: 3}
+  m_Script: {fileID: 11500000, guid: d1b124cb812cdbb4fbc7f12c990cb012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  m_text: {fileID: 0}
   m_animation: {fileID: 0}
 --- !u!1001 &1856867069
 PrefabInstance:
@@ -1016,6 +1015,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 62302608}
     m_Modifications:
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_Name
+      value: CircleEffect4
+      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1080,11 +1084,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_Name
-      value: CircleEffect4
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
