@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool isJump = false;
     [HideInInspector] public bool isTargetJump = false;
     [HideInInspector] public bool revertGravity = false;
-    private bool delegateJump = false;
+    [SerializeField] private bool delegateJump = false;
     private float gravity;
     private float jumpVelocity;
 
@@ -196,6 +196,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            Debug.Log("jump called");
             if (delegateJump)
             {
                 movementController -= jumpFun.JumpMove;
@@ -226,7 +227,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.tag == "Ground")
         {
-            isTargetJump = isJump = false;
+            isTargetJump = isJump = delegateJump = false;
         }
     }
 }

@@ -9534,14 +9534,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f050ca78569fa024488eb8ae6e97ca29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 753394029970992543, guid: dd2afb6ec0fabbd44b9deb292461bcbb,
-    type: 3}
-  canDestroy: 1
   direction: 0
   jump: 0
   action: 1
+  input: 1
+  exploudOnDeath: 1
   ReverseRight: 0
+  randomDirection: 0
   jumpDuration: 0.65
+  teleportExit: {fileID: 0}
   nextTarget: {fileID: 0}
   rotateDirection: 1
-  boostSpeed: 0

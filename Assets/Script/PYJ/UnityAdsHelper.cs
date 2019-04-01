@@ -49,7 +49,7 @@ public class UnityAdsHelper : MonoBehaviour
 #elif UNITY_IPHONE
             string appId = "ca-app-pub-3940256099942544~1458002511";
 #else
-            string appId = "unexpected_platform";
+        string appId = "unexpected_platform";
 #endif
 
         // Initialize the Google Mobile Ads SDK.
@@ -128,7 +128,7 @@ public class UnityAdsHelper : MonoBehaviour
 #elif UNITY_IPHONE
             string adUnitId = "ca-app-pub-3940256099942544/2934735716";
 #else
-            string adUnitId = "unexpected_platform";
+        string adUnitId = "unexpected_platform";
 #endif
 
         // Create a 320x50 banner at the top of the screen.

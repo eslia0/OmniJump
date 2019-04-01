@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class MovingPlatform : RayCastController
 {
-    public LayerMask passengerMask;
-    
     public Vector3[] globalWaypoints;
 
     [Header("동작 변수")]
     public bool isActive = true;
     public bool moveOnce;
     public bool cyclic; // 움직임 반복 확인
+    public bool movePassinger = false;
     public float speed;
     [Range(0, 3)] public float EaseAmount; 
     public float WaitTime;
+    [HideInInspector] public float percentBetweenWaypoints; // 두 점 사이의 간격 퍼센트 (0~1)
 
     [SerializeField] private MovingSwitch theSwitch;
     private int fromWaypointIndex; // 멀어져야할 이전 원점
-    private float percentBetweenWaypoints; // 두 점 사이의 간격 퍼센트 (0~1)
     private float nextMoveTime;
 
     private PlayerController player;
@@ -51,11 +50,17 @@ public class MovingPlatform : RayCastController
 
         Vector3 velocity = CalculatePlatformMovement();
 
-        CalculatePassengerMovement(velocity);
+        if (movePassinger)
+        {
+            CalculatePassengerMovement(velocity);
 
-        //MovePassengers(true);
-        transform.Translate(velocity);
-        //MovePassengers(false);
+            MovePassengers(true);
+            transform.Translate(velocity);
+            MovePassengers(false);
+        } else
+        {
+            transform.Translate(velocity);
+        }
     }
 
     private float Ease(float x)
@@ -82,7 +87,6 @@ public class MovingPlatform : RayCastController
 
         if (percentBetweenWaypoints >= 1) // 다음 웨이포인트에 도달시
         {
-
             if (moveOnce &&  toWaypointIndex == globalWaypoints.Length - 1)
             {
                 enabled = false;
@@ -142,7 +146,7 @@ public class MovingPlatform : RayCastController
             {
                 Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.BottomLeft : raycastOrigins.TopLeft;
                 rayOrigin += Vector2.right * (verticalRaySpacing * i);
-                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, passengerMask);
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, Creater.Instance.playerLayer);
 
                 Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.red);
 
@@ -175,7 +179,7 @@ public class MovingPlatform : RayCastController
             {
                 Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.BottomLeft : raycastOrigins.BottomRight;
                 rayOrigin += Vector2.up * (horiaontalRaySpacing * i);
-                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, passengerMask);
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, Creater.Instance.playerLayer);
 
                 if (hit)
                 {
@@ -201,7 +205,7 @@ public class MovingPlatform : RayCastController
             for (int i = 0; i < verticalRayCount; i++)
             {
                 Vector2 rayOrigin = raycastOrigins.TopLeft + Vector2.right * (verticalRaySpacing * i);
-                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up, rayLength, passengerMask);
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up, rayLength, Creater.Instance.playerLayer);
 
                 if (hit)
                 {

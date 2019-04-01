@@ -52,7 +52,7 @@ public class Creater : GameVariables
             }
         }
     }
-    
+
     [SerializeField] private int maxLevel;
     private int level;
     [SerializeField] private int score;
@@ -105,15 +105,15 @@ public class Creater : GameVariables
     public void InitStage(Scene scene, LoadSceneMode mode)
     {
         int num = Random.Range(0, 3);
-        
+
         nowPlatform = Instantiate(platforms[(level - 1) * 3 + num]);
         Debug.Log(nowPlatform);
 
-        Platform platform = nowPlatform.GetComponent<Platform>();        
+        Platform platform = nowPlatform.GetComponent<Platform>();
     }
 
     // 스테이지 로딩
-    public void NextStage (int nextLevel)
+    public void NextStage(int nextLevel)
     {
         if (nextLevel == -1)
         {

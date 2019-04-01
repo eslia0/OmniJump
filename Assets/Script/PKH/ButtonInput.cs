@@ -6,14 +6,11 @@ using UnityEngine.UI;
 public class ButtonInput : MonoBehaviour
 {
     [SerializeField] private Button[] buttons;
-    private PlayerController player;
     // [SerializeField] Sprite[] sprites;
     // [SerializeField] Image image;
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-
         buttons[0].onClick.RemoveAllListeners();
         buttons[0].onClick.AddListener(delegate () { Creater.Instance.NextStage(-1); });
         buttons[0].onClick.AddListener(delegate () { SetUIButton(false); });

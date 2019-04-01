@@ -29,12 +29,15 @@ public class ExitPortal : MonoBehaviour
         {
             if (endPoint.x < cam.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x - 0.16f)
             {
-                follow.enabled = false;
+                follow.follow = false;
+            }
+            else
+            {
+                follow.follow = true;
             }
 
             if (transform.position.x <= player.position.x)
             {
-                Debug.Log("Pass End");
                 player.GetComponent<Animator>().enabled = true;
                 player.GetComponent<Animator>().SetTrigger("Exit");
                 break;

@@ -5,22 +5,13 @@ public class FixedJoystick : Joystick
 {
     Vector2 joystickPosition = Vector2.zero;
     private Camera cam = new Camera();
-    private PlayerController player;
 
     [Header("Face Sprite")]
     public Transform face;
 
-    private bool press = false;
-
     void Start()
     {
         joystickPosition = RectTransformUtility.WorldToScreenPoint(cam, background.position);
-        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-    }
-
-    void Update()
-    {
-        player.onClick = press;
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -34,35 +25,35 @@ public class FixedJoystick : Joystick
 
         if (angle < 90) // 우
         {
-            player.faceDirection = 0;
+            Creater.Instance.player.faceDirection = 0;
             face.localEulerAngles = new Vector3(0, 0, 0);
         }
         else if(angle < 180) // 하
         {
-            player.faceDirection = 3;
+            Creater.Instance.player.faceDirection = 3;
             face.localEulerAngles = new Vector3(0, 0, 270);
         }
         else if(angle < 270) // 좌
         {
-            player.faceDirection = 2;
+            Creater.Instance.player.faceDirection = 2;
             face.localEulerAngles = new Vector3(0, 0, 180);
         }
         else // 상
         {
-            player.faceDirection = 1;
+            Creater.Instance.player.faceDirection = 1;
             face.localEulerAngles = new Vector3(0, 0, 90);
         }
     }
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        press = true;
+        Creater.Instance.player.onClick = true;
         OnDrag(eventData);
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        press = false;
+        Creater.Instance.player.onClick = false;
         inputVector = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
     }

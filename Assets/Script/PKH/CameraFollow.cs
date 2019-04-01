@@ -13,17 +13,16 @@ public class CameraFollow : MonoBehaviour
 
     public Vector3 screenSize;
 
+    public bool follow = true;
     private float SpacingX;
     [SerializeField] private float SpacingY;
     private Vector2 velocity = new Vector2(0, 0);
-    private Transform player;
     //private PlayerController controller;
     public static Camera mainCam;
 
     void Awake()
     {
         mainCam = Camera.main;
-        player = GameObject.FindWithTag("Player").transform;
         //controller = player.GetComponent<PlayerController>();
 
         screenSize = mainCam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)) - mainCam.ScreenToWorldPoint(new Vector3(0, 0, 0));
@@ -33,22 +32,31 @@ public class CameraFollow : MonoBehaviour
 	
 	void LateUpdate ()
     {
-        float xPos = 0;
-
-        if (player.GetComponent<PlayerController>().moveRight)
+        if (follow)
         {
-            xPos = Mathf.Clamp(transform.position.x, player.position.x + SpacingX, player.position.x + SpacingX * 1.5f);
+            float xPos = 0;
+
+            if (Creater.Instance.player.moveRight)
+            {
+                xPos = Mathf.Clamp(transform.position.x,
+                    Creater.Instance.player.transform.position.x + SpacingX,
+                    Creater.Instance.player.transform.position.x + SpacingX * 1.5f);
+            }
+            else
+            {
+                xPos = Mathf.Clamp(transform.position.x,
+                    Creater.Instance.player.transform.position.x - SpacingX * 1.5f,
+                    Creater.Instance.player.transform.position.x - SpacingX);
+            }
+
+            xPos = Mathf.SmoothDamp(transform.position.x, xPos, ref velocity.x, smoothTimeX);
+
+            yPos = Mathf.Clamp(transform.position.y,
+                Creater.Instance.player.transform.position.y - SpacingY,
+                Creater.Instance.player.transform.position.y - SpacingY * 0.3f);
+            yPos = Mathf.SmoothDamp(transform.position.y, yPos, ref velocity.y, smoothTimeY);
+
+            transform.position = new Vector3(xPos, yPos, -100);
         }
-        else
-        {
-            xPos = Mathf.Clamp(transform.position.x, player.position.x - SpacingX * 1.5f, player.position.x - SpacingX);
-        }
-
-        xPos = Mathf.SmoothDamp(transform.position.x, xPos, ref velocity.x, smoothTimeX);
-
-        yPos = Mathf.Clamp(transform.position.y, player.position.y - SpacingY, player.position.y - SpacingY* 0.3f);
-        yPos = Mathf.SmoothDamp(transform.position.y, yPos, ref velocity.y, smoothTimeY);
-
-        transform.position = new Vector3(xPos, yPos, -100);
     }
 }
