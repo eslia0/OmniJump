@@ -28,18 +28,18 @@ namespace GooglePlayGames.Editor
 
     public class GPGSProjectSettings
     {
-        private static GPGSProjectSettings sInstance = null;
+        private static GPGSProjectSettings sinstance = null;
 
-        public static GPGSProjectSettings Instance
+        public static GPGSProjectSettings instance
         {
             get
             {
-                if (sInstance == null)
+                if (sinstance == null)
                 {
-                    sInstance = new GPGSProjectSettings();
+                    sinstance = new GPGSProjectSettings();
                 }
 
-                return sInstance;
+                return sinstance;
             }
         }
 
@@ -190,7 +190,7 @@ namespace GooglePlayGames.Editor
 
         public static void Reload ()
         {
-            sInstance = new GPGSProjectSettings();
+            sinstance = new GPGSProjectSettings();
         }
     }
 }

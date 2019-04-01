@@ -200,15 +200,15 @@ namespace Com.Google.Android.Gms.Common
         }
         public ConnectionResult(int arg_int_1, object arg_object_2, string arg_string_3)
         {
-            base.CreateInstance(CLASS_NAME,  arg_int_1,  arg_object_2,  arg_string_3);
+            base.Createinstance(CLASS_NAME,  arg_int_1,  arg_object_2,  arg_string_3);
         }
         public ConnectionResult(int arg_int_1, object arg_object_2)
         {
-            base.CreateInstance(CLASS_NAME,  arg_int_1,  arg_object_2);
+            base.Createinstance(CLASS_NAME,  arg_int_1,  arg_object_2);
         }
         public ConnectionResult(int arg_int_1)
         {
-            base.CreateInstance(CLASS_NAME,  arg_int_1);
+            base.Createinstance(CLASS_NAME,  arg_int_1);
         }
         public bool equals(object arg_object_1)
         {

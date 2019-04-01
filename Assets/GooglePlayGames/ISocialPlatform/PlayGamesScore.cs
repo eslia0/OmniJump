@@ -49,7 +49,7 @@ namespace GooglePlayGames
         /// </summary>
         public void ReportScore(Action<bool> callback)
         {
-            PlayGamesPlatform.Instance.ReportScore(mValue, mLbId, mMetadata, callback);
+            PlayGamesPlatform.instance.ReportScore(mValue, mLbId, mMetadata, callback);
         }
 
         /// <summary>

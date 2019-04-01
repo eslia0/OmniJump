@@ -92,7 +92,7 @@ namespace Google.Developers
         /// </summary>
         /// <param name="clazzName">Clazz name.</param>
         /// <param name="args">Arguments.</param>
-        public void CreateInstance(string clazzName, params object[]  args)
+        public void Createinstance(string clazzName, params object[]  args)
         {
             // Can't create an instance if there is already a pointer.
             if (raw != IntPtr.Zero)

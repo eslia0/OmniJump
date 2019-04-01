@@ -50,7 +50,7 @@ namespace GooglePlayGames
 
         public void LoadScores(System.Action<bool> callback)
         {
-            PlayGamesPlatform.Instance.LoadScores(this, callback);
+            PlayGamesPlatform.instance.LoadScores(this, callback);
         }
 
         public bool loading

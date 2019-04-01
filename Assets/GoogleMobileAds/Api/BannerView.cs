@@ -27,7 +27,7 @@ namespace GoogleMobileAds.Api
         public BannerView(string adUnitId, AdSize adSize, AdPosition position)
         {
             Type googleMobileAdsClientFactory = Type.GetType(
-                "GoogleMobileAds.GoogleMobileAdsClientFactory,Assembly-CSharp");
+                "GoogleMobileAds.GoogleMobileAdsClientFactory,Assembly-CSharp-firstpass");
             MethodInfo method = googleMobileAdsClientFactory.GetMethod(
                 "BuildBannerClient",
                 BindingFlags.Static | BindingFlags.Public);
@@ -41,7 +41,7 @@ namespace GoogleMobileAds.Api
         public BannerView(string adUnitId, AdSize adSize, int x, int y)
         {
             Type googleMobileAdsClientFactory = Type.GetType(
-                "GoogleMobileAds.GoogleMobileAdsClientFactory,Assembly-CSharp");
+                "GoogleMobileAds.GoogleMobileAdsClientFactory,Assembly-CSharp-firstpass");
             MethodInfo method = googleMobileAdsClientFactory.GetMethod(
                 "BuildBannerClient",
                 BindingFlags.Static | BindingFlags.Public);

@@ -176,7 +176,7 @@ namespace Com.Google.Android.Gms.Games
 
         public Games_BaseGamesApiMethodImpl(GoogleApiClient arg_GoogleApiClient_1)
         {
-            base.CreateInstance(CLASS_NAME,  arg_GoogleApiClient_1);
+            base.Createinstance(CLASS_NAME,  arg_GoogleApiClient_1);
         }
     }
 }

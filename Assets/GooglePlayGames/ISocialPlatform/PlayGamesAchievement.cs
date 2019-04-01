@@ -55,7 +55,7 @@ namespace GooglePlayGames
         private ulong mPoints = 0;
 
         internal PlayGamesAchievement()
-            : this(PlayGamesPlatform.Instance.ReportProgress)
+            : this(PlayGamesPlatform.instance.ReportProgress)
         {
         }
 

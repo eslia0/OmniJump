@@ -22,7 +22,7 @@ namespace GoogleMobileAds.Common
 {
     public class MobileAdsEventExecutor : MonoBehaviour
     {
-        public static MobileAdsEventExecutor instance = null;
+        private static MobileAdsEventExecutor instance = null;
 
         private static List<Action> adEventsQueue = new List<Action>();
 
