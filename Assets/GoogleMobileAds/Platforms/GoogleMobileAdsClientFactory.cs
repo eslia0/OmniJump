@@ -64,21 +64,6 @@ namespace GoogleMobileAds
             #endif
         }
 
-        public static IRewardedAdClient BuildRewardedAdClient()
-        {
-            #if UNITY_EDITOR
-                // Testing UNITY_EDITOR first because the editor also responds to the currently
-                // selected platform.
-                return new GoogleMobileAds.Common.RewardedAdDummyClient();
-            #elif UNITY_ANDROID
-                return new GoogleMobileAds.Android.RewardedAdClient();
-            #elif (UNITY_5 && UNITY_IOS) || UNITY_IPHONE
-                return new GoogleMobileAds.iOS.RewardedAdClient();
-            #else
-                return new GoogleMobileAds.Common.RewardedAdDummyClient();
-            #endif
-        }
-
         public static IAdLoaderClient BuildAdLoaderClient(AdLoader adLoader)
         {
             #if UNITY_EDITOR
@@ -94,16 +79,16 @@ namespace GoogleMobileAds
             #endif
         }
 
-        public static IMobileAdsClient MobileAdsInstance()
+        public static IMobileAdsClient MobileAdsinstance()
         {
             #if UNITY_EDITOR
                 // Testing UNITY_EDITOR first because the editor also responds to the currently
                 // selected platform.
                 return new GoogleMobileAds.Common.DummyClient();
             #elif UNITY_ANDROID
-                return GoogleMobileAds.Android.MobileAdsClient.Instance;
+                return GoogleMobileAds.Android.MobileAdsClient.instance;
             #elif (UNITY_5 && UNITY_IOS) || UNITY_IPHONE
-                return GoogleMobileAds.iOS.MobileAdsClient.Instance;
+                return GoogleMobileAds.iOS.MobileAdsClient.instance;
             #else
                 return new GoogleMobileAds.Common.DummyClient();
             #endif

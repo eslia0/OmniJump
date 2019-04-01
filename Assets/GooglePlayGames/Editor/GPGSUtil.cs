@@ -368,7 +368,7 @@ namespace GooglePlayGames.Editor
         {
             bool doneSetup = true;
             #if UNITY_ANDROID
-            doneSetup = GPGSProjectSettings.Instance.GetBool(ANDROIDSETUPDONEKEY, false);
+            doneSetup = GPGSProjectSettings.instance.GetBool(ANDROIDSETUPDONEKEY, false);
             // check gameinfo
             if (File.Exists(GameInfoPath))
             {
@@ -513,7 +513,7 @@ namespace GooglePlayGames.Editor
             Dictionary<string, string> overrideValues =
                 new Dictionary<string, string>();
 
-            if (!string.IsNullOrEmpty (GPGSProjectSettings.Instance.Get (SERVICEIDKEY)))
+            if (!string.IsNullOrEmpty (GPGSProjectSettings.instance.Get (SERVICEIDKEY)))
             {
                 overrideValues [NEARBY_PERMISSIONS_PLACEHOLDER] =
                     "        <!-- Required for Nearby Connections -->\n" +
@@ -536,7 +536,7 @@ namespace GooglePlayGames.Editor
             foreach (KeyValuePair<string, string> ent in replacements)
             {
                 string value =
-                    GPGSProjectSettings.Instance.Get(ent.Value, overrideValues);
+                    GPGSProjectSettings.instance.Get(ent.Value, overrideValues);
                 manifestBody = manifestBody.Replace(ent.Key, value);
             }
 
@@ -620,7 +620,7 @@ namespace GooglePlayGames.Editor
             foreach (KeyValuePair<string, string> ent in replacements)
             {
                 string value =
-                    GPGSProjectSettings.Instance.Get(ent.Value);
+                    GPGSProjectSettings.instance.Get(ent.Value);
                 fileBody = fileBody.Replace(ent.Key, value);
             }
 

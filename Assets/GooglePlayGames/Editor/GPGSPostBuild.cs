@@ -28,7 +28,7 @@ namespace GooglePlayGames.Editor
         [PostProcessBuild (99999)]
         public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
         {
-            if (!GPGSProjectSettings.Instance.GetBool(GPGSUtil.ANDROIDSETUPDONEKEY, false))
+            if (!GPGSProjectSettings.instance.GetBool(GPGSUtil.ANDROIDSETUPDONEKEY, false))
             {
                 EditorUtility.DisplayDialog("Google Play Games not configured!",
                     "Warning!!  Google Play Games was not configured, Game Services will not work correctly.",

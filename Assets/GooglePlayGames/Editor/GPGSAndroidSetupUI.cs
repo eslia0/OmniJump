@@ -97,15 +97,15 @@ namespace GooglePlayGames.Editor
             {
                 return PerformSetup(
                     clientId,
-                    GPGSProjectSettings.Instance.Get(GPGSUtil.APPIDKEY),
+                    GPGSProjectSettings.instance.Get(GPGSUtil.APPIDKEY),
                     nearbySvcId);
             }
 
             if (ParseResources(classDirectory, className, resourceXmlData))
             {
-                GPGSProjectSettings.Instance.Set(GPGSUtil.CLASSDIRECTORYKEY, classDirectory);
-                GPGSProjectSettings.Instance.Set(GPGSUtil.CLASSNAMEKEY, className);
-                GPGSProjectSettings.Instance.Set(GPGSUtil.ANDROIDRESOURCEKEY, resourceXmlData);
+                GPGSProjectSettings.instance.Set(GPGSUtil.CLASSDIRECTORYKEY, classDirectory);
+                GPGSProjectSettings.instance.Set(GPGSUtil.CLASSNAMEKEY, className);
+                GPGSProjectSettings.instance.Set(GPGSUtil.ANDROIDRESOURCEKEY, resourceXmlData);
 
                 // check the bundle id and set it if needed.
                 CheckBundleId();
@@ -127,7 +127,7 @@ namespace GooglePlayGames.Editor
 
                 return PerformSetup(
                     clientId,
-                    GPGSProjectSettings.Instance.Get(GPGSUtil.APPIDKEY),
+                    GPGSProjectSettings.instance.Get(GPGSUtil.APPIDKEY),
                     nearbySvcId);
             }
 
@@ -177,9 +177,9 @@ namespace GooglePlayGames.Editor
 #endif
             }
 
-            GPGSProjectSettings.Instance.Set(GPGSUtil.APPIDKEY, appId);
-            GPGSProjectSettings.Instance.Set(GPGSUtil.WEBCLIENTIDKEY, webClientId);
-            GPGSProjectSettings.Instance.Save();
+            GPGSProjectSettings.instance.Set(GPGSUtil.APPIDKEY, appId);
+            GPGSProjectSettings.instance.Set(GPGSUtil.WEBCLIENTIDKEY, webClientId);
+            GPGSProjectSettings.instance.Save();
             GPGSUtil.UpdateGameInfo();
 
             // check that Android SDK is there
@@ -198,8 +198,8 @@ namespace GooglePlayGames.Editor
 
             // refresh assets, and we're done
             AssetDatabase.Refresh();
-            GPGSProjectSettings.Instance.Set(GPGSUtil.ANDROIDSETUPDONEKEY, true);
-            GPGSProjectSettings.Instance.Save();
+            GPGSProjectSettings.instance.Set(GPGSUtil.ANDROIDSETUPDONEKEY, true);
+            GPGSProjectSettings.instance.Save();
 
             return true;
         }
@@ -209,7 +209,7 @@ namespace GooglePlayGames.Editor
         /// </summary>
         public void OnEnable()
         {
-            GPGSProjectSettings settings = GPGSProjectSettings.Instance;
+            GPGSProjectSettings settings = GPGSProjectSettings.instance;
             mConstantDirectory = settings.Get(GPGSUtil.CLASSDIRECTORYKEY, mConstantDirectory);
             mClassName = settings.Get(GPGSUtil.CLASSNAMEKEY, mClassName);
             mConfigData = settings.Get(GPGSUtil.ANDROIDRESOURCEKEY);
@@ -327,7 +327,7 @@ namespace GooglePlayGames.Editor
                     GPGSStrings.AndroidSetup.SetupComplete,
                     GPGSStrings.Ok);
 
-                GPGSProjectSettings.Instance.Set(GPGSUtil.ANDROIDSETUPDONEKEY, true);
+                GPGSProjectSettings.instance.Set(GPGSUtil.ANDROIDSETUPDONEKEY, true);
                 Close();
             }
             else
@@ -350,7 +350,7 @@ namespace GooglePlayGames.Editor
         /// </remarks>
         public static void CheckBundleId()
         {
-            string packageName = GPGSProjectSettings.Instance.Get(
+            string packageName = GPGSProjectSettings.instance.Get(
                 GPGSUtil.ANDROIDBUNDLEIDKEY, string.Empty);
             string currentId;
 #if UNITY_5_6_OR_NEWER
@@ -430,11 +430,11 @@ namespace GooglePlayGames.Editor
                         if (lastProp == "app_id")
                         {
                             appId = reader.Value;
-                            GPGSProjectSettings.Instance.Set(GPGSUtil.APPIDKEY, appId);
+                            GPGSProjectSettings.instance.Set(GPGSUtil.APPIDKEY, appId);
                         }
                         else if (lastProp == "package_name")
                         {
-                            GPGSProjectSettings.Instance.Set(GPGSUtil.ANDROIDBUNDLEIDKEY, reader.Value);
+                            GPGSProjectSettings.instance.Set(GPGSUtil.ANDROIDBUNDLEIDKEY, reader.Value);
                         }
                         else
                         {

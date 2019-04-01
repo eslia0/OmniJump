@@ -41,7 +41,7 @@ namespace GooglePlayGames
     public class PlayGamesPlatform : ISocialPlatform
     {
         /// <summary>Singleton instance</summary>
-        private static volatile PlayGamesPlatform sInstance = null;
+        private static volatile PlayGamesPlatform sinstance = null;
 
         /// <summary>status of nearby connection initialization.</summary>
         private static volatile bool sNearbyInitializePending;
@@ -113,18 +113,18 @@ namespace GooglePlayGames
         /// <returns>
         /// The instance.
         /// </returns>
-        public static PlayGamesPlatform Instance
+        public static PlayGamesPlatform instance
         {
             get
             {
-                if (sInstance == null)
+                if (sinstance == null)
                 {
                     GooglePlayGames.OurUtils.Logger.d(
-                        "Instance was not initialized, using default configuration.");
-                    InitializeInstance(PlayGamesClientConfiguration.DefaultConfiguration);
+                        "instance was not initialized, using default configuration.");
+                    Initializeinstance(PlayGamesClientConfiguration.DefaultConfiguration);
                 }
 
-                return sInstance;
+                return sinstance;
             }
         }
 
@@ -217,16 +217,16 @@ namespace GooglePlayGames
         /// Multiple calls to this method are ignored.
         /// </remarks>
         /// <param name="configuration">Configuration to use when initializing.</param>
-        public static void InitializeInstance(PlayGamesClientConfiguration configuration)
+        public static void Initializeinstance(PlayGamesClientConfiguration configuration)
         {
-            if (sInstance != null)
+            if (sinstance != null)
             {
                 GooglePlayGames.OurUtils.Logger.w(
                     "PlayGamesPlatform already initialized. Ignoring this call.");
                 return;
             }
 
-            sInstance = new PlayGamesPlatform(configuration);
+            sinstance = new PlayGamesPlatform(configuration);
         }
 
         /// <summary>
@@ -282,10 +282,10 @@ namespace GooglePlayGames
         public static PlayGamesPlatform Activate()
         {
             GooglePlayGames.OurUtils.Logger.d("Activating PlayGamesPlatform.");
-            Social.Active = PlayGamesPlatform.Instance;
+            Social.Active = PlayGamesPlatform.instance;
             GooglePlayGames.OurUtils.Logger.d(
                 "PlayGamesPlatform activated: " + Social.Active);
-            return PlayGamesPlatform.Instance;
+            return PlayGamesPlatform.instance;
         }
 
         /// <summary>Gets pointer to the Google API client.</summary>

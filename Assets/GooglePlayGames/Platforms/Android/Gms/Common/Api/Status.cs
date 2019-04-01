@@ -60,15 +60,15 @@ namespace Com.Google.Android.Gms.Common.Api
         }
         public Status(int arg_int_1, string arg_string_2, object arg_object_3)
         {
-            base.CreateInstance(CLASS_NAME,  arg_int_1,  arg_string_2,  arg_object_3);
+            base.Createinstance(CLASS_NAME,  arg_int_1,  arg_string_2,  arg_object_3);
         }
         public Status(int arg_int_1, string arg_string_2)
         {
-            base.CreateInstance(CLASS_NAME,  arg_int_1,  arg_string_2);
+            base.Createinstance(CLASS_NAME,  arg_int_1,  arg_string_2);
         }
         public Status(int arg_int_1)
         {
-            base.CreateInstance(CLASS_NAME,  arg_int_1);
+            base.Createinstance(CLASS_NAME,  arg_int_1);
         }
         public bool equals(object arg_object_1)
         {

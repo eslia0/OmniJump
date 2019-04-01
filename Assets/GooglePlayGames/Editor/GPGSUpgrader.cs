@@ -32,7 +32,7 @@ namespace GooglePlayGames.Editor
         /// </summary>
         static GPGSUpgrader()
         {
-            string prevVer = GPGSProjectSettings.Instance.Get(GPGSUtil.LASTUPGRADEKEY, "00000");
+            string prevVer = GPGSProjectSettings.instance.Get(GPGSUtil.LASTUPGRADEKEY, "00000");
             if (!prevVer.Equals(PluginVersion.VersionKey))
             {
                 // if this is a really old version, upgrade to 911 first, then 915
@@ -71,10 +71,10 @@ namespace GooglePlayGames.Editor
                 EditorUtility.DisplayDialog(GPGSStrings.PostInstall.Title, msg, "OK");
             }
 
-            GPGSProjectSettings.Instance.Set(GPGSUtil.LASTUPGRADEKEY, prevVer);
-            GPGSProjectSettings.Instance.Set(GPGSUtil.PLUGINVERSIONKEY,
+            GPGSProjectSettings.instance.Set(GPGSUtil.LASTUPGRADEKEY, prevVer);
+            GPGSProjectSettings.instance.Set(GPGSUtil.PLUGINVERSIONKEY,
                 PluginVersion.VersionString);
-            GPGSProjectSettings.Instance.Save();
+            GPGSProjectSettings.instance.Save();
 
             // clean up duplicate scripts if Unity 5+
             int ver = GPGSUtil.GetUnityMajorVersion();

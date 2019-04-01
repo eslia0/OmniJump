@@ -22,7 +22,7 @@ namespace GooglePlayGames.BasicApi.SavedGame
     /// <summary>
     /// A struct representing the mutation of saved game metadata. Fields can either have a new value
     /// or be untouched (in which case the corresponding field in the saved game metadata will be
-    /// untouched). Instances must be built using <see cref="SavedGameMetadataUpdate.Builder"/>
+    /// untouched). instances must be built using <see cref="SavedGameMetadataUpdate.Builder"/>
     /// and once created, these instances are immutable and threadsafe.
     /// </summary>
     public struct SavedGameMetadataUpdate

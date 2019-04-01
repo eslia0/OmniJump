@@ -43,7 +43,7 @@ namespace GooglePlayGames.Editor
 
         public void OnEnable()
         {
-            mNearbyServiceId = GPGSProjectSettings.Instance.Get(GPGSUtil.SERVICEIDKEY);
+            mNearbyServiceId = GPGSProjectSettings.instance.Get(GPGSUtil.SERVICEIDKEY);
         }
 
         public void OnGUI()
@@ -104,8 +104,8 @@ namespace GooglePlayGames.Editor
                     "Yes",
                     "No"))
                 {
-                    GPGSProjectSettings.Instance.Set(GPGSUtil.SERVICEIDKEY, null);
-                    GPGSProjectSettings.Instance.Save();
+                    GPGSProjectSettings.instance.Set(GPGSUtil.SERVICEIDKEY, null);
+                    GPGSProjectSettings.instance.Save();
                 }
                 else
                 {
@@ -115,8 +115,8 @@ namespace GooglePlayGames.Editor
              }
              else
              {
-                 GPGSProjectSettings.Instance.Set(GPGSUtil.SERVICEIDKEY, nearbyServiceId);
-                 GPGSProjectSettings.Instance.Save();
+                 GPGSProjectSettings.instance.Set(GPGSUtil.SERVICEIDKEY, nearbyServiceId);
+                 GPGSProjectSettings.instance.Save();
              }
 
             if (androidBuild)
@@ -128,8 +128,8 @@ namespace GooglePlayGames.Editor
                 // Generate AndroidManifest.xml
                 GPGSUtil.GenerateAndroidManifest();
 
-                GPGSProjectSettings.Instance.Set(GPGSUtil.NEARBYSETUPDONEKEY, true);
-                GPGSProjectSettings.Instance.Save();
+                GPGSProjectSettings.instance.Set(GPGSUtil.NEARBYSETUPDONEKEY, true);
+                GPGSProjectSettings.instance.Save();
 
                 // Resolve the dependencies
                 Google.VersionHandler.VerboseLoggingEnabled = true;
