@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    PlayerController player;
-
-    public float movePeriod = 1.0f;
+    private float movePeriod = 1.0f;
 
     private Transform target;
     private Transform height;
@@ -19,10 +17,6 @@ public class Jump : MonoBehaviour
     private float startTime;
     private float gravity;
 
-    private void Start()
-    {
-        player = GetComponent<PlayerController>();
-    }
 
     public void SetJump(Vector2 target, Vector2 height, float time)
     {
@@ -31,7 +25,7 @@ public class Jump : MonoBehaviour
         float h1 = 0;
         float h2 = 0;
         // 각자의 높이
-        if (!player.revertGravity)
+        if (!Creater.Instance.player.revertGravity)
         {
             h1 = height.y - transform.position.y; // 최대 높이 - 현재 높이 = 플레이어 높이
             h2 = height.y - target.y; // 최대 높이 - 목표 높이 = 목표 높이
@@ -45,18 +39,19 @@ public class Jump : MonoBehaviour
         // x축 전체 이동 길이
         float dis = (target.x - transform.position.x); // 두 점의 거리
         moveSpeed = dis; // 이동 속도 = 거리
-        
-        upSpeed = (((1.0f + Mathf.Sqrt(h2 / h1)) * 2.0f) * h1) * ((player.revertGravity) ? -1 : 1);
-        gravity = ((Mathf.Pow(upSpeed, 2) * -0.5f) / h1) * ((player.revertGravity) ? -1 : 1);
+
+        upSpeed = (((1.0f + Mathf.Sqrt(h2 / h1)) * 2.0f) * h1) * ((Creater.Instance.player.revertGravity) ? -1 : 1);
+        gravity = ((Mathf.Pow(upSpeed, 2) / -2.0f) / h1) * ((Creater.Instance.player.revertGravity) ? -1 : 1);
 
         startTime = 0.0f;
-        
-        player.SetJump(false);
+
+        Creater.Instance.player.SetJump(false);
     }
 
     public void JumpMove()
     {
-        player.velocity = Vector3.zero;
+        Debug.Log("jump Move");
+        Creater.Instance.player.velocity = Vector3.zero;
 
         transform.Translate(new Vector3(moveSpeed, upSpeed) * Time.deltaTime / movePeriod);
         
@@ -66,8 +61,8 @@ public class Jump : MonoBehaviour
 
         if (startTime >= movePeriod) // 일반 점프가 되지 않을때, 지면과 충돌치 않을때 발동
         {
-            player.isTargetJump = false;
-            player.movementController -= player.jumpFun.JumpMove;
+            Creater.Instance.player.isTargetJump = false;
+            Creater.Instance.player.movementController -= Creater.Instance.player.jumpFun.JumpMove;
         }
     }
 }

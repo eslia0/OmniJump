@@ -6,8 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Controller : RayCastController { // Extends RayCastController script
 
-    PlayerController player;
-
     public struct CollisionInfo
     {
         public bool above, below, left, right;
@@ -37,7 +35,6 @@ public class Controller : RayCastController { // Extends RayCastController scrip
     {
         // call RayCastController's Start method first; continue the Start method
         base.Start();
-        player = GetComponent<PlayerController>();
     }
 
     public void Move(Vector3 velocity, bool isOnPlatform = false)
@@ -93,7 +90,7 @@ public class Controller : RayCastController { // Extends RayCastController scrip
                     continue;
                 }
 
-                player.Dead();
+                Creater.Instance.player.Dead();
                 break;
             }
         }

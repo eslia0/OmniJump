@@ -101,7 +101,8 @@ public class Missile : MonoBehaviour
             }
             else
             {
-                Destroy(Instantiate(explosion, transform.position, transform.rotation), 1.5f);
+                Creater.Instance.GetMissilePopPrefab(transform);
+
                 Destroy(gameObject);
             }
         }
@@ -123,7 +124,8 @@ public class Missile : MonoBehaviour
             }
 
             Creater.Instance.AddScore(15);
-            Destroy(Instantiate(explosion, transform.position, transform.rotation), 1.5f);
+            Creater.Instance.GetMissilePopPrefab(transform);
+
             Destroy(gameObject);
         }
     }

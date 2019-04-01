@@ -4626,7 +4626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2072585565359337057}
-  - component: {fileID: 3586785549770456909}
+  - component: {fileID: 2182871224819085098}
   m_Layer: 0
   m_Name: Teleport(Exit)
   m_TagString: Untagged
@@ -4649,7 +4649,7 @@ Transform:
   m_Father: {fileID: 2072585566206006038}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3586785549770456909
+--- !u!114 &2182871224819085098
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4658,15 +4658,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 2072585565359337086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c5bca2de7e31e48967bb99c5ddeb82, type: 3}
+  m_Script: {fileID: 11500000, guid: f050ca78569fa024488eb8ae6e97ca29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positive: []
-  negative:
+  direction: 0
+  jump: 0
+  action: 0
+  input: 1
+  exploudOnDeath: 0
+  ReverseRight: 0
+  randomDirection: 0
+  jumpDuration: 1
+  teleportExit: {fileID: 0}
+  nextTarget: {fileID: 0}
+  rotateDirection: 0
+  fourWayParticle: []
+  rotationParticles:
   - {fileID: 2072585566065975510}
   - {fileID: 2072585565765886665}
-  interact: {fileID: 0}
-  interactArray: []
 --- !u!1 &2072585565472895613
 GameObject:
   m_ObjectHideFlags: 0
@@ -33030,7 +33039,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2072585566404326489}
   - component: {fileID: 2072585566404326490}
-  - component: {fileID: 6959383290857243002}
   - component: {fileID: 2072585566404326488}
   m_Layer: 0
   m_Name: Teleport(Enterince)
@@ -33080,25 +33088,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &6959383290857243002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072585566404326486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c5bca2de7e31e48967bb99c5ddeb82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  positive:
-  - {fileID: 680937950652449276}
-  negative:
-  - {fileID: 2072585566269815033}
-  - {fileID: 2072585566365289357}
-  interact: {fileID: 0}
-  interactArray: []
 --- !u!114 &2072585566404326488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33114,17 +33103,19 @@ MonoBehaviour:
   direction: 3
   jump: 0
   action: 3
-  explosion: {fileID: 0}
-  teleportEffect: {fileID: 4893334729647090660, guid: 601a69683682e364ca7bf6fcb0732384,
-    type: 3}
-  canDestroy: 0
-  isActivated: 0
+  input: 1
+  exploudOnDeath: 0
   ReverseRight: 1
+  randomDirection: 0
   jumpDuration: 1
   teleportExit: {fileID: 2072585565359337057}
   nextTarget: {fileID: 0}
   rotateDirection: 0
-  input: 0
+  fourWayParticle:
+  - {fileID: 680937950652449276}
+  rotationParticles:
+  - {fileID: 2072585566269815033}
+  - {fileID: 2072585566365289357}
 --- !u!1 &2072585566430966054
 GameObject:
   m_ObjectHideFlags: 0

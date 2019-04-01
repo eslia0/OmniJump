@@ -15,7 +15,7 @@ public class GooglePlayManager : MonoBehaviour
 #if UNITY_ANDROID
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
 
-        PlayGamesPlatform.InitializeInstance(config);
+        PlayGamesPlatform.Initializeinstance(config);
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
 
@@ -45,7 +45,7 @@ public class GooglePlayManager : MonoBehaviour
 
     public void SignOut()
     {
-        PlayGamesPlatform.Instance.SignOut();
+        PlayGamesPlatform.instance.SignOut();
         logText.text = "로그아웃";
     }
 
@@ -54,7 +54,7 @@ public class GooglePlayManager : MonoBehaviour
         if (score >= 100)
         {
 #if UNITY_ANDROID
-            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_100_score, 100f, null);
+            PlayGamesPlatform.instance.ReportProgress(GPGSIds.achievement_100, 100f, null);
 #elif UNITY_IOS
             Social.ReportProgress("Score_100", 100f, null);
 #endif
@@ -91,7 +91,7 @@ public class GooglePlayManager : MonoBehaviour
     {
 #if UNITY_ANDROID
 
-        PlayGamesPlatform.Instance.ReportScore(score, "achivmentId", (bool success) =>
+        PlayGamesPlatform.instance.ReportScore(score, "achivmentId", (bool success) =>
         {
             if (success)
             {
@@ -149,7 +149,7 @@ public class GooglePlayManager : MonoBehaviour
         }
 
 #if UNITY_ANDROID
-        PlayGamesPlatform.Instance.ShowLeaderboardUI();
+        PlayGamesPlatform.instance.ShowLeaderboardUI();
 #elif UNITY_IOS
         GameCenterPlatform.ShowLeaderboardUI("Leaderboard_ID", UnityEngine.SocialPlatforms.TimeScope.AllTime);
 #endif

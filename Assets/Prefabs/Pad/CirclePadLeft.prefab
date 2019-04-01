@@ -9461,12 +9461,8 @@ MonoBehaviour:
   direction: 3
   jump: 1
   action: 2
-  explosion: {fileID: 753394029970992543, guid: dd2afb6ec0fabbd44b9deb292461bcbb,
-    type: 3}
-  teleportEffect: {fileID: 0}
-  canDestroy: 1
-  isActivated: 0
   input: 1
+  exploudOnDeath: 1
   ReverseRight: 0
   randomDirection: 0
   jumpDuration: 0.65
