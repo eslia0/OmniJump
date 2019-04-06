@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GooglePlayTest.unity
     guid: e1205ed7fb26bdf438e92875147b2424
   - enabled: 1
+    path: Assets/Scenes/MapTest.unity
+    guid: 06e119b0dc7a335489801b021b1981bd
+  - enabled: 1
     path: Assets/Scenes/PYJTestScene.unity
     guid: 91b15c5eb158abd45bff9d15af2b7fdd
   m_configObjects: {}
