@@ -100,7 +100,7 @@ public class MovingSwitch : MonoBehaviour
     {
         while (true)
         {
-            if (Vector3.Distance(Creater.Instance.player.transform.position, transform.position) < 0.32f)
+            if (Vector3.Distance(Creater.Instance.player.transform.position, transform.position) < 0.16f)
             {
                 platform.isActive = true;
                 break;

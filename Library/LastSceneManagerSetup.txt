@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/GooglePlayTest.unity
+- path: Assets/Scenes/PYJTestScene.unity
   isLoaded: 1
   isActive: 1

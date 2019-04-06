@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 2028736118}
   - component: {fileID: 2028736117}
   - component: {fileID: 2028736116}
-  - component: {fileID: 2028736115}
+  - component: {fileID: 380064669500916745}
   m_Layer: 0
   m_Name: ScoreText
   m_TagString: Untagged
@@ -491,7 +491,7 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &2028736115
+--- !u!114 &380064669500916745
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -500,11 +500,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2028736113}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 016118f0853816b4ab0dde49468895ee, type: 3}
+  m_Script: {fileID: 11500000, guid: d1b124cb812cdbb4fbc7f12c990cb012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  m_animation: {fileID: 0}
+  m_text: {fileID: 2028736117}
+  m_animation: {fileID: 2028736116}
 --- !u!1 &1068866174368977748
 GameObject:
   m_ObjectHideFlags: 0
