@@ -58,7 +58,20 @@ public class Creater : GameVariables
     [SerializeField] private int score;
     private float scoreMultiply;
 
-    private ScoreText scoreText;
+    private ScoreText m_scoreText;
+    private ScoreText scoreText {
+        set { m_scoreText = value; }
+        get {
+            if(m_scoreText == null)
+            {
+                m_scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
+                SetScoreMultiply(1f);
+            }
+
+            return m_scoreText;
+        }
+    }
+
 
     void Start()
     {
@@ -66,12 +79,10 @@ public class Creater : GameVariables
         {
             score = 0;
             level = 1;
-            SetScoreMultiply(1f);
+
+            scoreText.SetText(score.ToString());
 
             SetPopParticles();
-            scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
-            scoreText.Init();
-            scoreText.SetText(score.ToString());
         }
     }
 
@@ -86,7 +97,7 @@ public class Creater : GameVariables
         InitPlatforms();
 
         SceneManager.sceneLoaded += InitStage;
-
+        
         GameVariablesInit();
     }
 
@@ -110,6 +121,8 @@ public class Creater : GameVariables
         Debug.Log(nowPlatform);
 
         Platform platform = nowPlatform.GetComponent<Platform>();
+
+        scoreText.SetText(score.ToString());
     }
 
     // 스테이지 로딩

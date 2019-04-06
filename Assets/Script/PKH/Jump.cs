@@ -50,7 +50,6 @@ public class Jump : MonoBehaviour
 
     public void JumpMove()
     {
-        Debug.Log("jump Move");
         Creater.Instance.player.velocity = Vector3.zero;
 
         transform.Translate(new Vector3(moveSpeed, upSpeed) * Time.deltaTime / movePeriod);
