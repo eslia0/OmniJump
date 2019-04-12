@@ -155,7 +155,7 @@ public class Creater : GameVariables
         if (score <= 100 && score > 0)
         {
             this.score += (int)(score * scoreMultiply);
-
+            
             scoreText.SetText(this.score.ToString());
         }
     }
