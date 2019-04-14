@@ -23,7 +23,13 @@ public class MissileManager : MonoBehaviour
             Destroy(gameObject);
         else
         {
-            if (Creater.Instance.player.transform.position.x > transform.position.x && !isLunched)
+            //if (Creater.Instance.player.transform.position.x > transform.position.x && !isLunched)
+            //{
+            //    isLunched = true;
+            //    StartCoroutine(LunchMissiles());
+            //}
+
+            if (Vector3.Distance(Creater.Instance.player.transform.position, transform.position) <= 1f && !isLunched)
             {
                 isLunched = true;
                 StartCoroutine(LunchMissiles());

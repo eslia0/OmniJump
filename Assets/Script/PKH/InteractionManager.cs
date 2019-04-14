@@ -203,6 +203,8 @@ public class InteractionManager : MonoBehaviour
             }
             else if (action == ActionETC.gravityReverse)
             {
+                Debug.Log("grav");
+
                 if (Creater.Instance.player.onClick)
                 {
                     Creater.Instance.player.onClick = false;
@@ -216,15 +218,15 @@ public class InteractionManager : MonoBehaviour
                         Creater.Instance.AddScore(15);
                     }
                 }
-                if ((Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && FaceCompare())
-                {
-                    playerIsOn = false;
+                //if ((Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && FaceCompare())
+                //{
+                //    playerIsOn = false;
 
-                    Creater.Instance.player.isJump = true;
-                    Creater.Instance.player.velocity.y += (Creater.Instance.player.revertGravity) ? -3 : 3;
-                    Creater.Instance.player.revertGravity = !Creater.Instance.player.revertGravity;
-                    Creater.Instance.AddScore(15);
-                }
+                //    Creater.Instance.player.isJump = true;
+                //    Creater.Instance.player.velocity.y += (Creater.Instance.player.revertGravity) ? -3 : 3;
+                //    Creater.Instance.player.revertGravity = !Creater.Instance.player.revertGravity;
+                //    Creater.Instance.AddScore(15);
+                //}
             }
             else if (action == ActionETC.teleportEnter)
             {

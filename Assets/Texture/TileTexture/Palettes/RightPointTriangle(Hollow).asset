@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: RightPointTriangle(Hollow)
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: c3a8e9f46f8a2e54c845859d200634ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 234f9be4566c0634b8bbcbad3a868bb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

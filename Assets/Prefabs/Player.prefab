@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5535358337785252775}
   - component: {fileID: 5535358337785252761}
   - component: {fileID: 5535358337785252773}
-  - component: {fileID: 4967776452618035210}
+  - component: {fileID: 546290905}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -110,11 +110,12 @@ MonoBehaviour:
   isJump: 0
   isTargetJump: 0
   revertGravity: 0
-  delegateJump: 0
   moveSpeed: 3
   onClick: 0
   moveRight: 1
   velocity: {x: 0, y: 0, z: 0}
+  ani: {fileID: 0}
+  aniOn: 0
 --- !u!114 &5535358337785252761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46fa7828f81d6444cbd55cfa86a1ad53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &4967776452618035210
+--- !u!95 &546290905
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

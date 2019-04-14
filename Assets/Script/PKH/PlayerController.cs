@@ -112,8 +112,10 @@ public class PlayerController : MonoBehaviour
         ani.enabled = false;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        timer = Time.time;
+
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
             int i = ((Input.GetAxisRaw("Horizontal") == 1) ? 0 : 2);
@@ -125,16 +127,10 @@ public class PlayerController : MonoBehaviour
             int i = ((Input.GetAxisRaw("Vertical") == 1) ? 1 : 3);
             faceDirection = i % 4;
             onClick = true;
-        }
-        else
+        } else
         {
             onClick = false;
         }
-    }
-
-    private void Update()
-    {
-        timer = Time.time;
 
         if ((controller.collisioninfo.above || controller.collisioninfo.below) && !isJump)
         {

@@ -21,6 +21,7 @@ public class Jump : MonoBehaviour
     public void SetJump(Vector2 target, Vector2 height, float time)
     {
         movePeriod = time;
+        Debug.Log(movePeriod);
 
         float h1 = 0;
         float h2 = 0;
