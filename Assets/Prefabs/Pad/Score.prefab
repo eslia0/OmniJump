@@ -50,7 +50,7 @@ MonoBehaviour:
   jump: 0
   action: 6
   input: 1
-  exploudOnDeath: 0
+  exploudOnDeath: 1
   ReverseRight: 0
   randomDirection: 0
   jumpDuration: 1

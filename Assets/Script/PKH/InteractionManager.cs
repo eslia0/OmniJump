@@ -56,10 +56,7 @@ public class InteractionManager : MonoBehaviour
         {
             direction = Creater.Instance.randomizer.RandomizeDirection();
         }
-    }
 
-    private void Start()
-    {
         if (fourWayParticle != null)
         {
             Creater.Instance.particleRotation.SetParticlesFourWayDirection(direction, fourWayParticle);
@@ -69,7 +66,10 @@ public class InteractionManager : MonoBehaviour
         {
             Creater.Instance.particleRotation.SetParticlesRotation(transform.eulerAngles.z, rotationParticles);
         }
+    }
 
+    private void Start()
+    {
         if(action == ActionETC.None && jump == ActionJump.None)
         {
             enabled = false;
@@ -77,11 +77,6 @@ public class InteractionManager : MonoBehaviour
         } else if(input == 0)
         {
             input = 1;
-        }
-
-        if (rotateDirection == 0)
-        {
-            rotateDirection = 1;
         }
 
         if (nextTarget != null)
@@ -145,12 +140,6 @@ public class InteractionManager : MonoBehaviour
                     }
 
                 }
-                if ((Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && FaceCompare())
-                {
-                    tmp = false;
-                    Creater.Instance.player.SetJump(true);
-                    Creater.Instance.AddScore(10);
-                }
             }
             else if(jump == ActionJump.targetInputJump)
             {
@@ -164,12 +153,6 @@ public class InteractionManager : MonoBehaviour
                         Creater.Instance.player.jumpFun.SetJump(nextTarget.position, jumpHeight.position, jumpDuration);
                         Creater.Instance.AddScore(10);
                     }
-                }
-                if ((Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && FaceCompare())
-                {
-                    tmp = false;
-                    Creater.Instance.player.jumpFun.SetJump(nextTarget.position, jumpHeight.position, jumpDuration);
-                    Creater.Instance.AddScore(10);
                 }
             }
 
@@ -203,8 +186,6 @@ public class InteractionManager : MonoBehaviour
             }
             else if (action == ActionETC.gravityReverse)
             {
-                Debug.Log("grav");
-
                 if (Creater.Instance.player.onClick)
                 {
                     Creater.Instance.player.onClick = false;
@@ -212,21 +193,11 @@ public class InteractionManager : MonoBehaviour
                     if (FaceCompare())
                     {
                         playerIsOn = false;
-                        Creater.Instance.player.isJump = true;
                         Creater.Instance.player.velocity.y += (Creater.Instance.player.revertGravity) ? -3 : 3;
                         Creater.Instance.player.revertGravity = !Creater.Instance.player.revertGravity;
                         Creater.Instance.AddScore(15);
                     }
                 }
-                //if ((Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && FaceCompare())
-                //{
-                //    playerIsOn = false;
-
-                //    Creater.Instance.player.isJump = true;
-                //    Creater.Instance.player.velocity.y += (Creater.Instance.player.revertGravity) ? -3 : 3;
-                //    Creater.Instance.player.revertGravity = !Creater.Instance.player.revertGravity;
-                //    Creater.Instance.AddScore(15);
-                //}
             }
             else if (action == ActionETC.teleportEnter)
             {
@@ -246,31 +217,12 @@ public class InteractionManager : MonoBehaviour
                             Creater.Instance.player.velocity = Vector3.zero;
                             Creater.Instance.player.gameObject.transform.position = teleportExit.position;
                             Creater.Instance.player.moveRight = ReverseRight;
+
                             Creater.Instance.AddScore(20);
                         }
                     }
-                    if ((Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && FaceCompare())
-                    {
-                        playerIsOn = false;
-
-                        // 텔레포트 이동 파티클 생성
-                        Creater.Instance.GetPoofPrefab(transform);
-
-                        Creater.Instance.player.velocity = Vector3.zero;
-                        Creater.Instance.player.gameObject.transform.position = teleportExit.position;
-                        Creater.Instance.player.moveRight = ReverseRight;
-                        Creater.Instance.AddScore(20);
-                    }
                 }
-            } else if(action == ActionETC.score)
-            {
-                Creater.Instance.AddScore(50);
             }
-        }
-
-        if (!playerIsOn)
-        {
-            input--;
         }
     }
 
@@ -278,30 +230,31 @@ public class InteractionManager : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            if (action == ActionETC.score)
+            {
+                Creater.Instance.AddScore(50);
+                Dead();
+                return;
+            }
+
             playerIsOn = true;
             Creater.Instance.player.onClick = false;
-
-            if (FaceCompare())
-            {
-                Jump();
-                ETC();
-                
-                if (input <= 0)
-                {
-                    Dead();
-                }
-            }
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag == "Player" && FaceCompare() && playerIsOn)
+        if(collision.tag == "Player" && FaceCompare() && playerIsOn && input > 0)
         {
             Jump();
             ETC();
-            
-            if (input <= 0)
+
+            if (!playerIsOn)
+            {
+                input--;
+            }
+
+            if (input < 1)
             {
                 Dead();
             }

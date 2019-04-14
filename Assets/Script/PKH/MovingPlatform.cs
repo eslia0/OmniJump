@@ -6,8 +6,8 @@ public class MovingPlatform : RayCastController
 {
     public Vector3[] globalWaypoints;
 
+    [HideInInspector] public bool isActive = true;
     [Header("동작 변수")]
-    public bool isActive = true;
     public bool moveOnce;
     public bool cyclic; // 움직임 반복 확인
     public bool movePassinger = false;
@@ -15,8 +15,7 @@ public class MovingPlatform : RayCastController
     [Range(0, 3)] public float EaseAmount; 
     public float WaitTime;
     [HideInInspector] public float percentBetweenWaypoints; // 두 점 사이의 간격 퍼센트 (0~1)
-
-    [SerializeField] private MovingSwitch theSwitch;
+    
     private int fromWaypointIndex; // 멀어져야할 이전 원점
     private float nextMoveTime;
 
@@ -57,7 +56,8 @@ public class MovingPlatform : RayCastController
             MovePassengers(true);
             transform.Translate(velocity);
             MovePassengers(false);
-        } else
+        }
+        else
         {
             transform.Translate(velocity);
         }
@@ -120,6 +120,7 @@ public class MovingPlatform : RayCastController
 
             if (passenger.moveBeforePlatform == beforMovePlatform)
             {
+                // Debug.Log("Velocity out : " + passenger.velocity.x + ", " + passenger.velocity.y);
                 passengerDictionary[passenger.transform].Move(passenger.velocity, passenger.standingOnPlatform);
             }
         }
@@ -133,11 +134,11 @@ public class MovingPlatform : RayCastController
         float directionX = Mathf.Sign(velocity.x);
         float directionY = Mathf.Sign(velocity.y);
 
-        // Vertically moving platform
-        //When platform is moving up or down with player on it
-        //if its goes up player must move first and platform follows
-        //if its goes down platform must move first and player comes next
-        //if platfrom is moving up ray cast up, if it's moving down ray cast downward
+        /// Vertically moving platform
+        /// When platform is moving up or down with player on it
+        /// if its goes up player must move first and platform follows
+        /// if its goes down platform must move first and player comes next
+        /// if platfrom is moving up ray cast up, if it's moving down ray cast downward
         if (velocity.y != 0)//when platform is moving up or down
         {
             float rayLength = Mathf.Abs(velocity.y) + skinWitdth;
@@ -148,7 +149,7 @@ public class MovingPlatform : RayCastController
                 rayOrigin += Vector2.right * (verticalRaySpacing * i);
                 RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, Creater.Instance.playerLayer);
 
-                Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.red);
+                Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
 
                 if (hit)
                 {                    
@@ -158,12 +159,12 @@ public class MovingPlatform : RayCastController
                     {
                         movedPassengers.Add(hit.transform);
 
-                        float pushX = (directionY == 1) ? velocity.x : 0;
                         //this line only runs when platform has velocity to x axis, witch means if it goes diagonally
                         //When player is on the platform velocity x does effect player, but if player is below the platform it doesn't
-                        float pushY = velocity.y - (hit.distance - skinWitdth) * directionY;
+                        float pushX = (directionY == 1) ? velocity.x - (Creater.Instance.player.velocity.x * Time.deltaTime) : 0;
                         //hit distance between player and platform
-
+                        float pushY = velocity.y - (hit.distance - skinWitdth) * directionY;
+                        
                         passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), directionY == 1, true));
                     }
                 }
@@ -181,6 +182,8 @@ public class MovingPlatform : RayCastController
                 rayOrigin += Vector2.up * (horiaontalRaySpacing * i);
                 RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, Creater.Instance.playerLayer);
 
+                Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.green);
+
                 if (hit)
                 {
                     if (!movedPassengers.Contains(hit.transform))
@@ -189,32 +192,36 @@ public class MovingPlatform : RayCastController
                         float pushX = velocity.x - (hit.distance - skinWitdth) * directionX;
                         float pushY = -skinWitdth;
 
-                        passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), false, true));
                         //if platform moves vertically and hit passenger, it's impossible that passenger is on a platform.
                         //So, third value of passengerMovement is false, also forth is "true" because we want to move passenger before platform is moving
+                        passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), false, true));
                     }
                 }
             }
         }
 
-        //When objects are on top of a horizontally or downward moving platform
+        // When objects are on top of a horizontally or downward moving platform
         if (directionY == -1 || velocity.y == 0 && velocity.x != 0)
         {
-            float rayLength = skinWitdth * 2;
+            float rayLength = skinWitdth*3;
 
             for (int i = 0; i < verticalRayCount; i++)
             {
                 Vector2 rayOrigin = raycastOrigins.TopLeft + Vector2.right * (verticalRaySpacing * i);
-                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up, rayLength, Creater.Instance.playerLayer);
+                rayOrigin -= new Vector2(0, rayLength);
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up, 1.2f, Creater.Instance.playerLayer);
 
                 if (hit)
                 {
+                    Debug.DrawRay(rayOrigin, hit.point - new Vector2(transform.position.x, transform.position.y), Color.blue);
+
                     if (!movedPassengers.Contains(hit.transform))
                     {
                         movedPassengers.Add(hit.transform);
-                        float pushX = velocity.x;
-                        float pushY = velocity.y;
-
+                        
+                        float pushX = velocity.x - (Creater.Instance.player.velocity.x * Time.deltaTime);
+                        float pushY = velocity.y*2;
+                        
                         passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), true, false));
                     }
                 }
@@ -243,7 +250,10 @@ public class MovingPlatform : RayCastController
         if (globalWaypoints != null)
         {
             Gizmos.color = Color.cyan;
-            Gizmos.DrawLine(globalWaypoints[0] + transform.position, globalWaypoints[1] + transform.position);
+            for(int i = 0; i < globalWaypoints.Length-1; i++)
+            {
+                Gizmos.DrawLine(globalWaypoints[i] + transform.position, globalWaypoints[i+1] + transform.position);
+            }
 
             Gizmos.color = Color.red;
             float size = .3f;

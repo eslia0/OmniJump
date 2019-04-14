@@ -5,35 +5,22 @@ using UnityEngine;
 public class MissileManager : MonoBehaviour
 {
     private Missile[] missiles;
-    private GameObject player;
 
     bool isLunched = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
         missiles = transform.GetComponentsInChildren<Missile>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player == null)
-            Destroy(gameObject);
-        else
+        if (Creater.Instance.player.transform.position.x > transform.position.x && !isLunched)
         {
-            //if (Creater.Instance.player.transform.position.x > transform.position.x && !isLunched)
-            //{
-            //    isLunched = true;
-            //    StartCoroutine(LunchMissiles());
-            //}
-
-            if (Vector3.Distance(Creater.Instance.player.transform.position, transform.position) <= 1f && !isLunched)
-            {
-                isLunched = true;
-                StartCoroutine(LunchMissiles());
-            }
+            isLunched = true;
+            StartCoroutine(LunchMissiles());
         }
     }
 
@@ -52,6 +39,6 @@ public class MissileManager : MonoBehaviour
             }
         }
 
-        enabled = false;
+        Destroy(gameObject);
     }
 }

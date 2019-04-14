@@ -21,7 +21,8 @@ public class MovingSwitch : MonoBehaviour
         }
         else if(mode == PlatformMode.Passive)
         {
-            if(GetComponent<ParticleSystem>())
+            platform.enabled = true;
+            if (GetComponent<ParticleSystem>())
                 GetComponent<ParticleSystem>().Stop();
             Destroy(gameObject);
         }
@@ -51,6 +52,7 @@ public class MovingSwitch : MonoBehaviour
             if (mode == PlatformMode.Active)
             {
                 platform.isActive = false;
+                platform.enabled = false;
                 StartCoroutine(ActiveUpdate());
             }
         }
@@ -64,9 +66,11 @@ public class MovingSwitch : MonoBehaviour
         {
             check = Physics2D.OverlapBox(transform.position, new Vector2(0.32f, 0.32f), 0f, Creater.Instance.playerLayer);
             
-            if (check && Creater.Instance.player.interactionDirection == direction
+            if (check 
+                && Creater.Instance.player.interactionDirection == direction
                 && Creater.Instance.player.onClick)
             {
+                platform.enabled = true;
                 platform.isActive = true;
                 Creater.Instance.GetTriggerBlowParticles(direction, transform);
                 break;
@@ -85,6 +89,7 @@ public class MovingSwitch : MonoBehaviour
         {
             if (Creater.Instance.player.transform.position.x > transform.position.x)
             {
+                platform.enabled = true;
                 platform.isActive = true;
                 break;
             }
@@ -102,6 +107,7 @@ public class MovingSwitch : MonoBehaviour
         {
             if (Vector3.Distance(Creater.Instance.player.transform.position, transform.position) < 0.16f)
             {
+                platform.enabled = true;
                 platform.isActive = true;
                 break;
             }

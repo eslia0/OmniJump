@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(BoxCollider2D))]
 public class RayCastController : MonoBehaviour {
     
     public LayerMask grounds;
 
     public RaycastOrigins raycastOrigins;
-    [HideInInspector]
-    public BoxCollider2D boxCollider;
+    [HideInInspector] public BoxCollider2D boxCollider;
 
     public const float skinWitdth = 0.015f;
     public int horizontalRayCount;
@@ -23,7 +21,8 @@ public class RayCastController : MonoBehaviour {
 
     public virtual void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
+        if(GetComponent<BoxCollider2D>())
+            boxCollider = GetComponent<BoxCollider2D>();
         CalculateRaySpacing();
     }
 

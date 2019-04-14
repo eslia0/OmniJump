@@ -43004,18 +43004,17 @@ MonoBehaviour:
   verticalRayCount: 8
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
-  passengerMask:
-    serializedVersion: 2
-    m_Bits: 2048
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0.8, z: 0}
   isActive: 1
   moveOnce: 1
   cyclic: 0
+  movePassinger: 0
   speed: 5
   EaseAmount: 0.5
   WaitTime: 0
+  percentBetweenWaypoints: 0
   theSwitch: {fileID: 0}
 --- !u!1 &1477809615896701797
 GameObject:
@@ -52687,7 +52686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937ee2e6b060da344a585106ba063aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: {x: 0, y: 0, z: 0}
 --- !u!1 &3986397744379923653
 GameObject:
   m_ObjectHideFlags: 0
@@ -52732,12 +52731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c5bca2de7e31e48967bb99c5ddeb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positive: []
-  negative:
-  - {fileID: 3986397744746037869}
-  - {fileID: 3986397745012572274}
-  interact: {fileID: 0}
-  interactArray: []
 --- !u!1 &3986397744484725130
 GameObject:
   m_ObjectHideFlags: 0
@@ -76066,7 +76059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937ee2e6b060da344a585106ba063aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: {x: 0, y: 0, z: 0}
 --- !u!1 &3986397745384033640
 GameObject:
   m_ObjectHideFlags: 0
@@ -80921,13 +80914,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c5bca2de7e31e48967bb99c5ddeb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positive:
-  - {fileID: 2513825816107787079}
-  negative:
-  - {fileID: 3986397745583381058}
-  - {fileID: 3986397745387235638}
-  interact: {fileID: 0}
-  interactArray: []
 --- !u!114 &3986397745447884515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80943,18 +80929,16 @@ MonoBehaviour:
   direction: 3
   jump: 0
   action: 3
-  explosion: {fileID: 0}
-  teleportEffect: {fileID: 4893334729647090660, guid: 601a69683682e364ca7bf6fcb0732384,
-    type: 3}
-  canDestroy: 0
-  isActivated: 0
+  input: 0
+  exploudOnDeath: 0
   ReverseRight: 1
   randomDirection: 0
   jumpDuration: 1
   teleportExit: {fileID: 3986397744379923674}
   nextTarget: {fileID: 0}
-  input: 0
   rotateDirection: 0
+  fourWayParticle: []
+  rotationParticles: []
 --- !u!1 &3986397745455780765
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,12 +42,7 @@ public class Controller : RayCastController { // Extends RayCastController scrip
         UpdateRaycastOrigins();
         collisioninfo.Reset();
         collisioninfo.velocityOld = velocity;
-
-        if (velocity.y < 0)
-        {
-            DescendSlope(ref velocity);
-        }
-
+        
         if (velocity.x != 0)
         {
             HorizontalCollision(ref velocity);
@@ -58,7 +53,7 @@ public class Controller : RayCastController { // Extends RayCastController scrip
             VerticalCollision(ref velocity);
         }
 
-        transform.Translate(velocity);
+        transform.position += velocity;
 
         if (isOnPlatform)
         {
@@ -113,80 +108,10 @@ public class Controller : RayCastController { // Extends RayCastController scrip
             {
                 velocity.y = (hit.distance - skinWitdth) * directionY;
                 rayLength = hit.distance;
-
-                if (collisioninfo.ClimbingSlope)
-                {
-                    //While climbing a slope if player hit's objects above him
-                    velocity.x = velocity.y / Mathf.Tan(collisioninfo.SlopAngle * Mathf.Deg2Rad) * Mathf.Sign(velocity.x);
-                }
-
+                
                 //if directionY equals -1 or 1, bool values turns ture
                 collisioninfo.below = directionY == -1;
                 collisioninfo.above = directionY == 1;
-            }
-        }
-
-        if (collisioninfo.ClimbingSlope)
-        {
-            float directionX = Mathf.Sign(velocity.x);
-            rayLength = Mathf.Abs(velocity.x)+skinWitdth;
-
-            Vector2 rayOrigin = ((directionX == -1) ? raycastOrigins.BottomLeft : raycastOrigins.BottomRight) + Vector2.up * velocity.y;
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, grounds);
-
-            if (hit)
-            {
-                float slopAngle = Vector2.Angle(hit.normal, Vector2.up);
-                if(slopAngle != collisioninfo.SlopAngle)
-                {
-                    velocity.x = (hit.distance - skinWitdth) * directionX;
-                    collisioninfo.SlopAngle = slopAngle;
-                }
-            }
-        }
-    }
-
-    void ClimbSlops(ref Vector3 velocity, float slopAngle) // use trigonometry to find X and Y's velocity
-    {
-        float ClimeBelocityY = Mathf.Sin(slopAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x); // y = sin(theta) * deltaMove
-
-        if(velocity.y <= ClimeBelocityY)
-        {
-            velocity.y = ClimeBelocityY;
-            //x = cos(theta) * deltaMove * direction
-            velocity.x = Mathf.Cos(slopAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x) * Mathf.Sign(velocity.x);
-
-            collisioninfo.below = true;
-            collisioninfo.ClimbingSlope = true;
-            collisioninfo.SlopAngle = slopAngle;
-        }
-    }
-
-    void DescendSlope(ref Vector3 velocity)
-    {
-        float directionX = Mathf.Sign(velocity.x);
-        Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.BottomRight : raycastOrigins.BottomLeft;
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, Mathf.Infinity, grounds);
-
-        if (hit)
-        {
-            float slopAngle = Vector2.Angle(hit.normal, Vector2.up);
-            if(slopAngle != 0 && slopAngle <= MaxDescendAngle)
-            {
-                if (Mathf.Sign(hit.normal.x) == directionX)
-                {
-                    if(hit.distance - skinWitdth <= Mathf.Tan(slopAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x))
-                    {
-                        float moveDistance = Mathf.Abs(velocity.x);
-                        float DescendVelocityY = Mathf.Sin(slopAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x); // y = sin(theta) * deltaMove
-                        velocity.x = Mathf.Cos(slopAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x) * Mathf.Sign(velocity.x);
-                        velocity.y -= DescendVelocityY;
-
-                        collisioninfo.SlopAngle = slopAngle;
-                        collisioninfo.descendingSlope = true;
-                        collisioninfo.below = true;
-                    }
-                }
             }
         }
     }

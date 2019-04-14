@@ -59021,13 +59021,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c5bca2de7e31e48967bb99c5ddeb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positive:
-  - {fileID: 1660136724260940759}
-  negative:
-  - {fileID: 196361146662556370}
-  - {fileID: 196361146877452710}
-  interact: {fileID: 0}
-  interactArray: []
 --- !u!114 &196361146800676467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59043,18 +59036,16 @@ MonoBehaviour:
   direction: 1
   jump: 0
   action: 3
-  explosion: {fileID: 0}
-  teleportEffect: {fileID: 4893334729647090660, guid: 601a69683682e364ca7bf6fcb0732384,
-    type: 3}
-  canDestroy: 0
-  isActivated: 0
+  input: 0
+  exploudOnDeath: 0
   ReverseRight: 1
   randomDirection: 0
   jumpDuration: 1
   teleportExit: {fileID: 196361147883439178}
   nextTarget: {fileID: 0}
-  input: 0
   rotateDirection: 0
+  fourWayParticle: []
+  rotationParticles: []
 --- !u!1 &196361146807589645
 GameObject:
   m_ObjectHideFlags: 0
@@ -63717,7 +63708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937ee2e6b060da344a585106ba063aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: {x: 0, y: 0, z: 0}
 --- !u!1 &196361146837559099
 GameObject:
   m_ObjectHideFlags: 0
@@ -77796,12 +77787,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c5bca2de7e31e48967bb99c5ddeb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positive: []
-  negative:
-  - {fileID: 196361146375686909}
-  - {fileID: 196361146092767458}
-  interact: {fileID: 0}
-  interactArray: []
 --- !u!1 &196361147996346454
 GameObject:
   m_ObjectHideFlags: 0
@@ -77847,7 +77832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937ee2e6b060da344a585106ba063aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: {x: 0, y: 0, z: 0}
 --- !u!1 &786967120204427248
 GameObject:
   m_ObjectHideFlags: 0

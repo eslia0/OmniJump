@@ -65,7 +65,6 @@ public class Creater : GameVariables
             if(m_scoreText == null)
             {
                 m_scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
-                SetScoreMultiply(1f);
             }
 
             return m_scoreText;
@@ -83,6 +82,8 @@ public class Creater : GameVariables
             scoreText.SetText(score.ToString());
 
             SetPopParticles();
+
+            GameVariablesInit();
         }
     }
 
@@ -122,6 +123,7 @@ public class Creater : GameVariables
 
         Platform platform = nowPlatform.GetComponent<Platform>();
 
+        SetScoreMultiply(1f);
         scoreText.SetText(score.ToString());
     }
 
