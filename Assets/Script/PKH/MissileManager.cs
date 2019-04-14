@@ -4,41 +4,70 @@ using UnityEngine;
 
 public class MissileManager : MonoBehaviour
 {
+    public enum MissileState
+    {
+        distance,
+        positionX,
+    }
+    public MissileState state;
+
     private Missile[] missiles;
-
-    bool isLunched = false;
-
+    
     // Start is called before the first frame update
     void Start()
     {
         missiles = transform.GetComponentsInChildren<Missile>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Creater.Instance.player.transform.position.x > transform.position.x && !isLunched)
+        if (state == MissileState.distance)
         {
-            isLunched = true;
-            StartCoroutine(LunchMissiles());
+            StartCoroutine(DistanceUpdate());
+        } else
+        {
+            StartCoroutine(PositionUpdate());
         }
     }
 
-    IEnumerator LunchMissiles()
+    IEnumerator DistanceUpdate()
     {
+        while (true)
+        {
+            if (Vector2.Distance(Creater.Instance.player.transform.position, transform.position) < 0.16f)
+            {
+                LunchMissiles();
+                break;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return null;
+    }
+
+    IEnumerator PositionUpdate()
+    {
+        while (true)
+        {
+            if (Creater.Instance.player.transform.position.x > transform.position.x)
+            {
+                LunchMissiles();
+                break;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return null;
+    }
+
+    void LunchMissiles()
+    {
+        float delay = 0;
         for (int i = 0; i < missiles.Length; i++)
         {
             if (missiles[i] != null)
             {
-                if (missiles[i].lunchDelay > 0)
-                {
-                    yield return new WaitForSeconds(missiles[i].lunchDelay);
-                }
-
-                missiles[i].SetState(true);
+                delay += missiles[i].lunchDelay;
+                missiles[i].InvokeLunch(delay);
             }
-        }
-
-        Destroy(gameObject);
+        }        
     }
 }

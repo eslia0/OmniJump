@@ -11,23 +11,15 @@ public class Missile : MonoBehaviour
     public float distance;
     public float time;
     public float lunchDelay;
-    public GameObject appearance;
-    public GameObject explosion;
-    public GameObject missileWarning;
 
+    [SerializeField] private GameObject missileWarning;
+    [SerializeField] private ParticleSystem arrow;
+    [SerializeField] private SpriteRenderer body;
     private GameObject clone;
-    private ParticleSystem arrow;
-    private SpriteRenderer body;
-    private PlayerController player;
-    private Transform playerTran;
     private float lifeTime = 0;
 
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        body = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        arrow = transform.GetChild(1).GetComponent<ParticleSystem>();
-
         angle = ((int)transform.localEulerAngles.z + 360) % 360;
         arrow.startRotation = (360 - angle) * Mathf.Deg2Rad;
         switch (angle)
@@ -47,13 +39,18 @@ public class Missile : MonoBehaviour
                 break;
         }
 
-        SetState(false);
+        isActive = body.enabled = false;
     }
 
-    public void SetState(bool isLunching)
+    public void InvokeLunch(float delay)
     {
-        isActive = body.enabled = isLunching;
-        if(isLunching) arrow.gameObject.SetActive(false);
+        Invoke("Lunch", delay);
+    }
+
+    private void Lunch()
+    {
+        isActive = body.enabled = true;
+        arrow.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -63,9 +60,9 @@ public class Missile : MonoBehaviour
         {
             if (!isChecked)
             {
-                if (direction == Direction.right && player.moveRight)
+                if (direction == Direction.right && Creater.Instance.player.moveRight)
                 {
-                    float xPos = CameraFollow.mainCam.GetComponent<CameraFollow>().screenSize.x + player.transform.position.x;
+                    float xPos = CameraFollow.mainCam.GetComponent<CameraFollow>().screenSize.x + Creater.Instance.player.transform.position.x;
 
                     if (transform.position.x <= xPos)
                     {
@@ -77,9 +74,9 @@ public class Missile : MonoBehaviour
                         isChecked = true;
                     }
                 }
-                else if (direction == Direction.left && !player.moveRight)
+                else if (direction == Direction.left && !Creater.Instance.player.moveRight)
                 {
-                    float xPos = player.transform.position.x - CameraFollow.mainCam.GetComponent<CameraFollow>().screenSize.x;
+                    float xPos = Creater.Instance.player.transform.position.x - CameraFollow.mainCam.GetComponent<CameraFollow>().screenSize.x;
 
                     if (transform.position.x >= xPos)
                     {
@@ -114,11 +111,11 @@ public class Missile : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + (transform.up * distance));
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D (Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            if (player.interactionDirection != direction && isActive)
+            if (Creater.Instance.player.interactionDirection != direction && isActive)
             {
                 collision.GetComponent<PlayerController>().Dead();
             }
