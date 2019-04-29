@@ -52,7 +52,7 @@ public class CameraFollow : MonoBehaviour
             xPos = Mathf.SmoothDamp(transform.position.x, xPos, ref velocity.x, smoothTimeX);
 
             yPos = Mathf.Clamp(transform.position.y,
-                Creater.Instance.player.transform.position.y - SpacingY,
+                Creater.Instance.player.transform.position.y - SpacingY * 0.8f,
                 Creater.Instance.player.transform.position.y - SpacingY * 0.3f);
             yPos = Mathf.SmoothDamp(transform.position.y, yPos, ref velocity.y, smoothTimeY);
 

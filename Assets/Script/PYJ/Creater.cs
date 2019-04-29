@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Creater : GameVariables
@@ -35,10 +34,9 @@ public class Creater : GameVariables
     [SerializeField] private GameObject testPlatform;
 
     // 생성될 수 있는 플랫폼의 리스트
-    // 레벨마다 6개의 플랫폼이 있다.
+    // 레벨마다 3개의 플랫폼이 있다.
     public GameObject[] platforms;
-
-    // 총 4개의 플랫폼을 저장
+    
     private GameObject nowPlatform;
     public Platform NowPlatform {
         get {
@@ -65,12 +63,12 @@ public class Creater : GameVariables
             if(m_scoreText == null)
             {
                 m_scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
+                SetScoreMultiply(1f);
             }
 
             return m_scoreText;
         }
     }
-
 
     void Start()
     {
@@ -93,7 +91,7 @@ public class Creater : GameVariables
         score = 0;
         level = 1;
 
-        maxLevel = 2;
+        maxLevel = 6;
 
         InitPlatforms();
 
@@ -122,8 +120,7 @@ public class Creater : GameVariables
         Debug.Log(nowPlatform);
 
         Platform platform = nowPlatform.GetComponent<Platform>();
-
-        SetScoreMultiply(1f);
+        
         scoreText.SetText(score.ToString());
     }
 

@@ -72,7 +72,10 @@ UPURStore UPURStoreFromNSString(NSString *store) {
             builder.receipt = [dictionary valueForKey:@"receipt"];
             builder.price = [dictionary valueForKey:@"price"];
             builder.currency = [dictionary valueForKey:@"currency"];
-            builder.extras = [dictionary valueForKey:@"extras"];
+            id extras = [dictionary valueForKey:@"extras"];
+            if (![extras isKindOfClass:[NSNull class]]) {
+                builder.extras = extras;
+            }
         }];
     } else {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
@@ -97,7 +100,10 @@ UPURStore UPURStoreFromNSString(NSString *store) {
             builder.exceptionMessage = [dictionary valueForKey:@"exceptionMessage"];
             builder.store = UPURStoreFromNSString([dictionary valueForKey:@"store"]);
             builder.storeSpecificErrorCode = [dictionary valueForKey:@"storeSpecificErrorCode"];
-            builder.extras = [dictionary valueForKey:@"extras"];
+            id extras = [dictionary valueForKey:@"extras"];
+            if (![extras isKindOfClass:[NSNull class]]) {
+                builder.extras = extras;
+            }
         }];
     } else {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];

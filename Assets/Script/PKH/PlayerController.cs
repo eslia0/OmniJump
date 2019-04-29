@@ -206,6 +206,6 @@ public class PlayerController : MonoBehaviour
         controller.enabled = false;
         enabled = false;
 
-        CameraFollow.mainCam.transform.GetComponentInChildren<ButtonInput>().SetUIButton(true);
+        CameraFollow.mainCam.transform.GetComponentInChildren<ButtonInput>().SetResultPanel();
     }    
 }
