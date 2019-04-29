@@ -30,6 +30,7 @@ public class Controller : RayCastController { // Extends RayCastController scrip
     [Range(0, 90f)] public float MaxDescendAngle;
     public CollisionInfo collisioninfo;
 
+    private Vector3 velocityDummy = new Vector3(skinWitdth, 0, 0);
 
     public override void Start()
     {
@@ -46,6 +47,11 @@ public class Controller : RayCastController { // Extends RayCastController scrip
         if (velocity.x != 0)
         {
             HorizontalCollision(ref velocity);
+        }
+        else
+        {
+            Vector3 tmp = velocityDummy * (Creater.Instance.player.moveRight ? 1 : -1);
+            HorizontalCollision(ref tmp);
         }
 
         if (velocity.y != 0)
@@ -80,11 +86,6 @@ public class Controller : RayCastController { // Extends RayCastController scrip
 
             if (hit)
             {
-                if(hit.distance == 0)
-                {
-                    continue;
-                }
-
                 Creater.Instance.player.Dead();
                 break;
             }

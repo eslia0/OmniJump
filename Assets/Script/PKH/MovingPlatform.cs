@@ -18,8 +18,7 @@ public class MovingPlatform : RayCastController
     
     private int fromWaypointIndex; // 멀어져야할 이전 원점
     private float nextMoveTime;
-
-    private PlayerController player;
+    
     private List<PassengerMovement> passengerMovement;
     private Dictionary<Transform, Controller> passengerDictionary = new Dictionary<Transform, Controller>();
 
@@ -48,7 +47,9 @@ public class MovingPlatform : RayCastController
         UpdateRaycastOrigins();
 
         Vector3 velocity = CalculatePlatformMovement();
-
+        
+        transform.Translate(velocity);
+        /*
         if (movePassinger)
         {
             CalculatePassengerMovement(velocity);
@@ -61,6 +62,7 @@ public class MovingPlatform : RayCastController
         {
             transform.Translate(velocity);
         }
+        */
     }
 
     private float Ease(float x)
@@ -87,9 +89,18 @@ public class MovingPlatform : RayCastController
 
         if (percentBetweenWaypoints >= 1) // 다음 웨이포인트에 도달시
         {
-            if (moveOnce &&  toWaypointIndex == globalWaypoints.Length - 1)
+            if(toWaypointIndex == globalWaypoints.Length - 1)
             {
-                enabled = false;
+                if (movePassinger && Creater.Instance.player.transform.IsChildOf(transform))
+                {
+                    Creater.Instance.player.moveSpeed = 3;
+                    Creater.Instance.player.transform.parent = null;
+                }
+
+                if (moveOnce)
+                {
+                    enabled = false;
+                }
             }
 
             percentBetweenWaypoints = 0;
@@ -209,22 +220,39 @@ public class MovingPlatform : RayCastController
             {
                 Vector2 rayOrigin = raycastOrigins.TopLeft + Vector2.right * (verticalRaySpacing * i);
                 rayOrigin -= new Vector2(0, rayLength);
-                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up, 1.2f, Creater.Instance.playerLayer);
-
-                if (hit)
+                RaycastHit2D hitUp = Physics2D.Raycast(rayOrigin, Vector2.up, 1.2f, Creater.Instance.playerLayer);
+                RaycastHit2D hitDown = Physics2D.Raycast(rayOrigin, Vector2.down, 1.2f, Creater.Instance.playerLayer);
+                
+                if (hitUp)
                 {
-                    Debug.DrawRay(rayOrigin, hit.point - new Vector2(transform.position.x, transform.position.y), Color.blue);
+                    Debug.DrawRay(rayOrigin, hitUp.point - new Vector2(transform.position.x, transform.position.y), Color.blue);
 
-                    if (!movedPassengers.Contains(hit.transform))
+                    if (!movedPassengers.Contains(hitUp.transform))
                     {
-                        movedPassengers.Add(hit.transform);
+                        movedPassengers.Add(hitUp.transform);
                         
                         float pushX = velocity.x - (Creater.Instance.player.velocity.x * Time.deltaTime);
-                        float pushY = velocity.y*2;
+                        float pushY = velocity.y;
                         
-                        passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), true, false));
+                        passengerMovement.Add(new PassengerMovement(hitUp.transform, new Vector3(pushX, pushY), true, false));
                     }
                 }
+
+                if (hitDown)
+                {
+                    Debug.DrawRay(rayOrigin, hitDown.point - new Vector2(transform.position.x, transform.position.y), Color.blue);
+
+                    if (!movedPassengers.Contains(hitDown.transform))
+                    {
+                        movedPassengers.Add(hitDown.transform);
+
+                        float pushX = velocity.x - (Creater.Instance.player.velocity.x * Time.deltaTime);
+                        float pushY = -velocity.y;
+
+                        passengerMovement.Add(new PassengerMovement(hitDown.transform, new Vector3(pushX, pushY), true, false));
+                    }
+                }
+
             }
         }
     }
@@ -242,6 +270,30 @@ public class MovingPlatform : RayCastController
             velocity = _velocity;
             standingOnPlatform = _standingOnPlatform;
             moveBeforePlatform = _moveBeforePlatform;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            if(movePassinger && isActive)
+            {
+                Creater.Instance.player.moveSpeed = 0;
+                Creater.Instance.player.transform.parent = transform;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            if (movePassinger && isActive)
+            {
+                Creater.Instance.player.moveSpeed = 3;
+                Creater.Instance.player.transform.parent = null;
+            }
         }
     }
 
