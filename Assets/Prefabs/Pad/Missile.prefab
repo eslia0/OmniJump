@@ -4796,8 +4796,7 @@ MonoBehaviour:
   distance: 2
   time: 1
   lunchDelay: 0
-  missileWarning: {fileID: 15249887612776587, guid: b6e9242c4e3e8034383f5f0064ecda96,
-    type: 3}
+  missileWarning: {fileID: 0}
   arrow: {fileID: 2459265188508011890}
   body: {fileID: 2898932284064493064}
 --- !u!68 &6222389010843646610
@@ -4921,6 +4920,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7159084712481982576}
     m_Modifications:
+    - target: {fileID: 8184764051075407318, guid: 84948e17365b12c4bbce4e0e6f8877bf,
+        type: 3}
+      propertyPath: m_Name
+      value: TargetMark(Arrow)
+      objectReference: {fileID: 0}
     - target: {fileID: 4387613515945329500, guid: 84948e17365b12c4bbce4e0e6f8877bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4975,11 +4979,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8184764051075407318, guid: 84948e17365b12c4bbce4e0e6f8877bf,
-        type: 3}
-      propertyPath: m_Name
-      value: TargetMark(Arrow)
       objectReference: {fileID: 0}
     - target: {fileID: 2995189702609321575, guid: 84948e17365b12c4bbce4e0e6f8877bf,
         type: 3}

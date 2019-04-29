@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Advertisements;
 using GoogleMobileAds.Api;
 using System;
@@ -58,7 +59,7 @@ public class UnityAdsHelper : MonoBehaviour
 
     public void ShowRewardedAd()
     {
-        if (Advertisement.IsReady(rewarded_video_id) && showAds)
+        if (Advertisement.IsReady(rewarded_video_id))
         {
             var options = new ShowOptions { resultCallback = HandleShowResult };
 
@@ -78,7 +79,6 @@ public class UnityAdsHelper : MonoBehaviour
             case ShowResult.Finished:
                 {
                     Debug.Log("The ad was successfully shown.");
-
                     if (Application.isPlaying)
                     {
                         Creater.Instance.NextStage(0);

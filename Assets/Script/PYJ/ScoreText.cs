@@ -18,6 +18,7 @@ public class ScoreText : MonoBehaviour
     public void SetText(string text)
     {
         m_text.text = text;
-        m_animation.Play();
+        if (text != "0")
+            m_animation.Play("ScoreAnimation");
     }
 }

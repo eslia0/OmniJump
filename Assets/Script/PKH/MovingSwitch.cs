@@ -73,6 +73,7 @@ public class MovingSwitch : MonoBehaviour
                 platform.enabled = true;
                 platform.isActive = true;
                 Creater.Instance.GetTriggerBlowParticles(direction, transform);
+                Creater.Instance.AddScore(20);
                 break;
             }
 

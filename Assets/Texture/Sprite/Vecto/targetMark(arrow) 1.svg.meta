@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: de938e7faeb17b1429d4285059efdd0a
+guid: 10c105c521e9ae8469b3a56a605dbde2
 ScriptedImporter:
   fileIDToRecycleName:
     100000: gameObject/targetMark(arrow) 1
@@ -51,5 +51,5 @@ ScriptedImporter:
         y: 0
         width: 0
         height: 0
-      spriteID: 2933ea2ee700eab4f9b2a78469b84a74
+      spriteID: 3ce5b3cbb24e90143aeeb6e120d7af52
     PhysicsOutlines: []

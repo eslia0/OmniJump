@@ -31,10 +31,6 @@ public class ExitPortal : MonoBehaviour
             {
                 follow.follow = false;
             }
-            else
-            {
-                follow.follow = true;
-            }
 
             if (transform.position.x <= player.position.x)
             {

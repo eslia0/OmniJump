@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
+  KeyBoardControll: 1
   body: {fileID: 5535358338492442517}
   deathParticle: {fileID: 753394029970992543, guid: ffae7141119bf9742a9d128bd5bb29a1,
     type: 3}
@@ -105,17 +106,14 @@ MonoBehaviour:
   face: {fileID: 5535358339021082514}
   timeOfJumpApex: 0.3
   jumpHeight: 1.2
-  maxGravity: 7
   jumpFun: {fileID: 5535358337785252773}
-  isJump: 0
   isTargetJump: 0
   revertGravity: 0
   moveSpeed: 3
   onClick: 0
   moveRight: 1
+  slowVelocity: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
-  ani: {fileID: 0}
-  aniOn: 0
 --- !u!114 &5535358337785252761
 MonoBehaviour:
   m_ObjectHideFlags: 0
