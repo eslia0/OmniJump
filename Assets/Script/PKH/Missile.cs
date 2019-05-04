@@ -6,20 +6,26 @@ public class Missile : MonoBehaviour
 {
     [HideInInspector] public Direction direction;
     [HideInInspector] public int angle;
-    public bool isActive = false;
     public bool isChecked = false;
     public float distance;
     public float time;
     public float lunchDelay;
-
-    [SerializeField] private GameObject missileWarning;
+    
     [SerializeField] private ParticleSystem arrow;
     [SerializeField] private SpriteRenderer body;
+    [SerializeField] private EdgeCollider2D collider2D;
+    private LineRenderer lr;
     private GameObject clone;
     private float lifeTime = 0;
 
+
     private void Awake()
     {
+        lr = GetComponent<LineRenderer>();
+        lr.SetPosition(1, new Vector3(0, distance, 0));
+
+        collider2D = GetComponent<EdgeCollider2D>();
+
         angle = ((int)transform.localEulerAngles.z + 360) % 360;
         arrow.startRotation = (360 - angle) * Mathf.Deg2Rad;
         switch (angle)
@@ -39,69 +45,31 @@ public class Missile : MonoBehaviour
                 break;
         }
 
-        isActive = body.enabled = false;
+        collider2D.enabled = body.enabled = false;
     }
-
-    public void InvokeLunch(float delay)
+    
+    public Missile Lunch()
     {
-        Invoke("Lunch", delay);
-    }
-
-    private void Lunch()
-    {
-        isActive = body.enabled = true;
+        // isActive = body.enabled = true;
+        collider2D.enabled = body.enabled = true;
+        lr.enabled = false;
         arrow.gameObject.SetActive(false);
+
+        return this;
     }
 
     // Update is called once per frame
-    void Update()
+    public void Updating()
     {
-        if (isActive)
+        if (time > lifeTime)
         {
-            if (!isChecked)
-            {
-                if (direction == Direction.right && Creater.Instance.player.moveRight)
-                {
-                    float xPos = CameraFollow.mainCam.GetComponent<CameraFollow>().screenSize.x + Creater.Instance.player.transform.position.x;
-
-                    if (transform.position.x <= xPos)
-                    {
-                        float cloneX = CameraFollow.mainCam.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
-
-                        clone = Instantiate(missileWarning, CameraFollow.mainCam.transform);
-                        clone.transform.position = new Vector2(cloneX, transform.position.y);
-                        Destroy(clone, 1.0f);
-                        isChecked = true;
-                    }
-                }
-                else if (direction == Direction.left && !Creater.Instance.player.moveRight)
-                {
-                    float xPos = Creater.Instance.player.transform.position.x - CameraFollow.mainCam.GetComponent<CameraFollow>().screenSize.x;
-
-                    if (transform.position.x >= xPos)
-                    {
-                        float cloneX = CameraFollow.mainCam.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
-
-                        clone = Instantiate(missileWarning, CameraFollow.mainCam.transform);
-                        clone.transform.position = new Vector2(cloneX, transform.position.y);
-                        clone.transform.rotation = Quaternion.Euler(0, 0, 90);
-                        Destroy(clone, 1.0f);
-                        isChecked = true;
-                    }
-                }
-            }
-
-            if (time > lifeTime)
-            {
-                lifeTime += Time.deltaTime;
-                transform.position += transform.up * ((distance / time) * Time.deltaTime);
-            }
-            else
-            {
-                Creater.Instance.GetMissilePopPrefab(transform);
-
-                Destroy(gameObject);
-            }
+            lifeTime += Time.deltaTime;
+            transform.position += transform.up * ((distance / time) * Time.deltaTime);
+        }
+        else
+        {
+            Creater.Instance.GetMissilePopPrefab(transform);
+            Destroy(gameObject);
         }
     }
 
@@ -115,7 +83,7 @@ public class Missile : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            if (Creater.Instance.player.interactionDirection != direction && isActive)
+            if (Creater.Instance.player.interactionDirection != direction)
             {
                 collision.GetComponent<PlayerController>().Dead();
             }

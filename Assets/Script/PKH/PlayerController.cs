@@ -90,12 +90,14 @@ public class PlayerController : MonoBehaviour
         jumpFun = GetComponent<Jump>();
         controller = GetComponent<Controller>();
         ani = GetComponent<Animator>();
-    }
 
-    private void OnEnable()
-    {
         transform.position = returnPoint.transform.position;
 
+        MovementReset();
+    }
+
+    private void MovementReset()
+    {
         GetComponent<BoxCollider2D>().enabled = true;
         body.gameObject.SetActive(true);
         controller.enabled = true;
@@ -104,7 +106,7 @@ public class PlayerController : MonoBehaviour
         velocity = Vector2.zero;
         revertGravity = false;
         moveRight = true;
-        faceDirection = 0;  
+        faceDirection = 0;
         rotationZ = 0;
     }
 
@@ -207,5 +209,15 @@ public class PlayerController : MonoBehaviour
         enabled = false;
 
         CameraFollow.mainCam.transform.GetComponentInChildren<ButtonInput>().SetResultPanel();
-    }    
+    }
+
+    public IEnumerator HoldPlayer(float time)
+    {
+        enabled = false;
+        body.gameObject.SetActive(false);
+        yield return new WaitForSeconds(time);
+        enabled = true;
+        body.gameObject.SetActive(true);
+        Creater.Instance.GetPoofPrefab(transform);
+    }
 }

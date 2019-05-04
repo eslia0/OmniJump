@@ -26,8 +26,6 @@ public class Controller : RayCastController { // Extends RayCastController scrip
         }
     }
     
-    [Range(0,90f)] public float MaxClimbing;
-    [Range(0, 90f)] public float MaxDescendAngle;
     public CollisionInfo collisioninfo;
 
     private Vector3 velocityDummy = new Vector3(skinWitdth, 0, 0);

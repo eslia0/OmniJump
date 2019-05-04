@@ -4,9 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class Creater : GameVariables
 {
+    // 크리에이터 반환형 인스턴스
     private static Creater instance;
     public static Creater Instance {
         get {
+            // 인스턴스 존재여부 확인 후 생성 후 반환 혹은 그냥 반환
             if (instance == null)
             {
                 instance = FindObjectOfType<Creater>();
