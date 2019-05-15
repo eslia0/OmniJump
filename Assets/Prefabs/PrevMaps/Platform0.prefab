@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4440013325718615180}
   - component: {fileID: 9142423235110700556}
-  - component: {fileID: 6631373767229030423}
   m_Layer: 0
   m_Name: Platform0
   m_TagString: Platform
@@ -51,22 +50,6 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &6631373767229030423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842179528056987710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4b3b9319220b3b4fbe03c2c43e1713c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: {x: 0, y: 0}
-  highPoint: {fileID: 0}
-  lowPoint: {fileID: 0}
-  endPoint: {fileID: 0}
 --- !u!1 &4497144107692021529
 GameObject:
   m_ObjectHideFlags: 0
@@ -5870,11 +5853,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5488141219129854719}
     m_Modifications:
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_Name
-      value: CircleEffect4
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5939,6 +5917,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_Name
+      value: CircleEffect4
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}

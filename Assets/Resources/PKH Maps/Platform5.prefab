@@ -12348,7 +12348,6 @@ MonoBehaviour:
   EaseAmount: 0.5
   WaitTime: 0
   percentBetweenWaypoints: 0
-  theSwitch: {fileID: 0}
 --- !u!1 &659472798354249097
 GameObject:
   m_ObjectHideFlags: 0
@@ -22141,7 +22140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937ee2e6b060da344a585106ba063aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: {x: 0, y: 0, z: 0}
 --- !u!1 &1581820982555882814
 GameObject:
   m_ObjectHideFlags: 0
@@ -50571,7 +50570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937ee2e6b060da344a585106ba063aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: {x: 0, y: 0, z: 0}
 --- !u!1 &1581820984071548295
 GameObject:
   m_ObjectHideFlags: 0
@@ -59895,7 +59894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937ee2e6b060da344a585106ba063aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: {x: 0, y: 0, z: 0}
 --- !u!1 &1805592634461672511
 GameObject:
   m_ObjectHideFlags: 0
@@ -78784,7 +78783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937ee2e6b060da344a585106ba063aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: {x: 0, y: 0, z: 0}
 --- !u!1 &1805592635235126282
 GameObject:
   m_ObjectHideFlags: 0
@@ -93008,7 +93007,6 @@ MonoBehaviour:
   EaseAmount: 0.5
   WaitTime: 0
   percentBetweenWaypoints: 0
-  theSwitch: {fileID: 0}
 --- !u!1 &2849765536007451683
 GameObject:
   m_ObjectHideFlags: 0
@@ -112498,7 +112496,6 @@ MonoBehaviour:
   EaseAmount: 0.5
   WaitTime: 0
   percentBetweenWaypoints: 0
-  theSwitch: {fileID: 0}
 --- !u!1 &5209556089623476001
 GameObject:
   m_ObjectHideFlags: 0
@@ -112591,7 +112588,6 @@ MonoBehaviour:
   EaseAmount: 0.5
   WaitTime: 0
   percentBetweenWaypoints: 0
-  theSwitch: {fileID: 0}
 --- !u!1 &6195565711168508565
 GameObject:
   m_ObjectHideFlags: 0
@@ -112715,7 +112711,6 @@ MonoBehaviour:
   EaseAmount: 0.5
   WaitTime: 0
   percentBetweenWaypoints: 0
-  theSwitch: {fileID: 0}
 --- !u!1 &7813470845220670148
 GameObject:
   m_ObjectHideFlags: 0
@@ -123289,16 +123284,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1581820982559068516}
     m_Modifications:
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_Name
-      value: CircleEffect4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -123359,6 +123344,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_Name
+      value: CircleEffect4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -123399,16 +123394,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1581820982842221749}
     m_Modifications:
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_Name
-      value: CircleEffect4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -123468,6 +123453,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_Name
+      value: CircleEffect4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
@@ -123589,16 +123584,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1805592635045337881}
     m_Modifications:
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_Name
-      value: CircleEffect4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -123659,6 +123644,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_Name
+      value: CircleEffect4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -123704,16 +123699,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1805592635294936776}
     m_Modifications:
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_Name
-      value: CircleEffect4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -123774,6 +123759,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_Name
+      value: CircleEffect4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -123814,11 +123809,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9034805440718039124}
     m_Modifications:
-    - target: {fileID: 7159084712481982591, guid: 2b86a835a11db2a4f9453c2f086002e0,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 7159084712481982576, guid: 2b86a835a11db2a4f9453c2f086002e0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -123883,6 +123873,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159084712481982591, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7159084712481982590, guid: 2b86a835a11db2a4f9453c2f086002e0,
         type: 3}
@@ -123973,11 +123968,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9034805440718039124}
     m_Modifications:
-    - target: {fileID: 7159084712481982591, guid: 2b86a835a11db2a4f9453c2f086002e0,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile
-      objectReference: {fileID: 0}
     - target: {fileID: 7159084712481982576, guid: 2b86a835a11db2a4f9453c2f086002e0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -124042,6 +124032,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159084712481982591, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile
       objectReference: {fileID: 0}
     - target: {fileID: 7159084712481982590, guid: 2b86a835a11db2a4f9453c2f086002e0,
         type: 3}
@@ -124357,11 +124352,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile Manager
-      objectReference: {fileID: 0}
     - target: {fileID: 3382605485791182294, guid: 067d6c0b0693cd9438eb6ed658d0e198,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -124416,6 +124406,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d6c0b0693cd9438eb6ed658d0e198, type: 3}
