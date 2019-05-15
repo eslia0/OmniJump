@@ -68,7 +68,7 @@ public class UnityAdsHelper : MonoBehaviour
         else
         {
             if (Application.isPlaying)
-                Creater.Instance.NextStage(-1);
+                EndlessManager.Instance.NextStage(-1);
         }
     }
 
@@ -81,7 +81,7 @@ public class UnityAdsHelper : MonoBehaviour
                     Debug.Log("The ad was successfully shown.");
                     if (Application.isPlaying)
                     {
-                        Creater.Instance.NextStage(0);
+                        EndlessManager.Instance.NextStage(0);
                     }
                     // to do ...
                     // 광고 시청이 완료되었을 때 처리
@@ -94,7 +94,7 @@ public class UnityAdsHelper : MonoBehaviour
 
                     if (Application.isPlaying)
                     {
-                        Creater.Instance.NextStage(-1);
+                        EndlessManager.Instance.NextStage(-1);
                     }
 
                     // to do ...
@@ -108,7 +108,7 @@ public class UnityAdsHelper : MonoBehaviour
 
                     if (Application.isPlaying)
                     {
-                        Creater.Instance.NextStage(-1);
+                        EndlessManager.Instance.NextStage(-1);
                     }
 
                     // to do ...

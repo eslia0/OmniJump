@@ -48,7 +48,7 @@ public class Controller : RayCastController { // Extends RayCastController scrip
         }
         else
         {
-            Vector3 tmp = velocityDummy * (Creater.Instance.player.moveRight ? 1 : -1);
+            Vector3 tmp = velocityDummy * (EndlessManager.Instance.player.moveRight ? 1 : -1);
             HorizontalCollision(ref tmp);
         }
 
@@ -84,7 +84,7 @@ public class Controller : RayCastController { // Extends RayCastController scrip
 
             if (hit)
             {
-                Creater.Instance.player.Dead();
+                EndlessManager.Instance.player.Dead();
                 break;
             }
         }

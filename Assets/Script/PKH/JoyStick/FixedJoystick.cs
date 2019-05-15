@@ -17,8 +17,8 @@ public class FixedJoystick : Joystick
 
     private void FixedUpdate()
     {
-        if(!Creater.Instance.player.KeyBoardControll)
-            Creater.Instance.player.onClick = isClick;
+        if(!EndlessManager.Instance.player.KeyBoardControll)
+            EndlessManager.Instance.player.onClick = isClick;
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -34,22 +34,22 @@ public class FixedJoystick : Joystick
 
         if (angle < 90) // 우
         {
-            Creater.Instance.player.faceDirection = 0;
+            EndlessManager.Instance.player.faceDirection = 0;
             face.localEulerAngles = new Vector3(0, 0, 0);
         }
         else if(angle < 180) // 하
         {
-            Creater.Instance.player.faceDirection = 3;
+            EndlessManager.Instance.player.faceDirection = 3;
             face.localEulerAngles = new Vector3(0, 0, 270);
         }
         else if(angle < 270) // 좌
         {
-            Creater.Instance.player.faceDirection = 2;
+            EndlessManager.Instance.player.faceDirection = 2;
             face.localEulerAngles = new Vector3(0, 0, 180);
         }
         else // 상
         {
-            Creater.Instance.player.faceDirection = 1;
+            EndlessManager.Instance.player.faceDirection = 1;
             face.localEulerAngles = new Vector3(0, 0, 90);
         }
     }
@@ -57,7 +57,7 @@ public class FixedJoystick : Joystick
     public override void OnPointerDown(PointerEventData eventData)
     {
         isClick = true;
-        Creater.Instance.player.KeyBoardControll = false;
+        EndlessManager.Instance.player.KeyBoardControll = false;
         OnDrag(eventData);
     }
 

@@ -38,6 +38,14 @@ public class InteractionManager : MonoBehaviour
     // 플레이어가 해당 오브젝트를 사용할 수 있는 횟수 변수
     [Header("동작 가능 횟수")]
     [SerializeField] private uint input = 1;
+    public uint Input {
+        get {
+            return input;
+        }
+        private set {
+            input = value;
+        }
+    }
 
     [Header("동작 변수")]
     [SerializeField] private bool exploudOnDeath;               // 사용 횟수가 0이되면 폭발하며 소멸할지 여부 확인   
@@ -63,20 +71,20 @@ public class InteractionManager : MonoBehaviour
         // 방향을 랜덤하게 생성할때 호출
         if (randomDirection)
         {
-            direction = Creater.Instance.randomizer.RandomizeDirection();
+            direction = EndlessManager.Instance.randomizer.RandomizeDirection();
         }
 
         /// 4방향 중 하나로 회전을 해야하는 파티클이 존재하는 경우,
         /// 해당 파티클을 회전시키기위한 함수를 호출
         if (fourWayParticle != null)
         {
-            Creater.Instance.particleRotation.SetParticlesFourWayDirection(direction, fourWayParticle);
+            EndlessManager.Instance.particleRotation.SetParticlesFourWayDirection(direction, fourWayParticle);
         }
 
         /// 현재 오브젝트의 회전 값을 통해 해당 리스트의 오브젝트 또한 회전시키는 함수 호출
         if (rotationParticles != null)
         {
-            Creater.Instance.particleRotation.SetParticlesRotation(transform.eulerAngles.z, rotationParticles);
+            EndlessManager.Instance.particleRotation.SetParticlesRotation(transform.eulerAngles.z, rotationParticles);
         }
     }
 
@@ -111,14 +119,14 @@ public class InteractionManager : MonoBehaviour
     // 플레이어가 바라보는 방향과 요구하는 방향의 일치를 확인하는 함수
     private bool FaceCompare()
     {
-        return (direction == (Direction)((Creater.Instance.player.rotationZ + Creater.Instance.player.faceDirection + 4) % 4));
+        return (direction == (Direction)((EndlessManager.Instance.player.rotationZ + EndlessManager.Instance.player.faceDirection + 4) % 4));
     }
 
     private void Dead()
     {
         if (exploudOnDeath)
         {
-            Creater.Instance.GetPopPrefab(transform);
+            EndlessManager.Instance.GetPopPrefab(transform);
             Destroy(gameObject);
         }
         enabled = false;
@@ -132,42 +140,42 @@ public class InteractionManager : MonoBehaviour
 
             if (jump == ActionJump.jump) // 점프
             {
-                Creater.Instance.player.SetJump(true);
-                Creater.Instance.AddScore(10);
+                EndlessManager.Instance.player.SetJump(true);
+                EndlessManager.Instance.AddScore(10);
                 tmp = false;
             }
             else if (jump == ActionJump.targetJump) // 타겟 점프
             {
-                Creater.Instance.player.jumpFun.SetJump(nextTarget.position, jumpHeight.position, jumpDuration);
-                Creater.Instance.AddScore(10);
+                EndlessManager.Instance.player.jumpFun.SetJump(nextTarget.position, jumpHeight.position, jumpDuration);
+                EndlessManager.Instance.AddScore(10);
                 tmp = false;
             }
             else if(jump == ActionJump.inputJump) // 키입력 점프
             {
-                if (Creater.Instance.player.onClick)
+                if (EndlessManager.Instance.player.onClick)
                 {
-                    Creater.Instance.player.onClick = false;
+                    EndlessManager.Instance.player.onClick = false;
 
                     if (FaceCompare())
                     {
                         tmp = false;
-                        Creater.Instance.player.SetJump(true);
-                        Creater.Instance.AddScore(10);
+                        EndlessManager.Instance.player.SetJump(true);
+                        EndlessManager.Instance.AddScore(10);
                     }
 
                 }
             }
             else if(jump == ActionJump.targetInputJump) // 키입력 타겟 점프
             {
-                if (Creater.Instance.player.onClick)
+                if (EndlessManager.Instance.player.onClick)
                 {
-                    Creater.Instance.player.onClick = false;
+                    EndlessManager.Instance.player.onClick = false;
 
                     if (FaceCompare())
                     {
                         tmp = false;
-                        Creater.Instance.player.jumpFun.SetJump(nextTarget.position, jumpHeight.position, jumpDuration);
-                        Creater.Instance.AddScore(10);
+                        EndlessManager.Instance.player.jumpFun.SetJump(nextTarget.position, jumpHeight.position, jumpDuration);
+                        EndlessManager.Instance.AddScore(10);
                     }
                 }
             }
@@ -187,33 +195,33 @@ public class InteractionManager : MonoBehaviour
             if (action == ActionETC.rotate) // 회전
             {
                 playerIsOn = false;
-                Creater.Instance.player.rotationZ += rotateDirection;
+                EndlessManager.Instance.player.rotationZ += rotateDirection;
             }
             else if (action == ActionETC.reverse) // 방향 전환
             {
                 playerIsOn = false;
-                Creater.Instance.player.moveRight = ReverseRight;
-                Creater.Instance.AddScore(15);
+                EndlessManager.Instance.player.moveRight = ReverseRight;
+                EndlessManager.Instance.AddScore(15);
             }
             else if (action == ActionETC.reverseRotate) // 회전 & 방향 전환
             {
                 playerIsOn = false;
-                Creater.Instance.player.moveRight = ReverseRight;
-                Creater.Instance.player.rotationZ += rotateDirection;
+                EndlessManager.Instance.player.moveRight = ReverseRight;
+                EndlessManager.Instance.player.rotationZ += rotateDirection;
             }
             else if (action == ActionETC.gravityReverse) // 중력패드
             {
-                if (Creater.Instance.player.onClick)
+                if (EndlessManager.Instance.player.onClick)
                 {
-                    Creater.Instance.player.onClick = false;
+                    EndlessManager.Instance.player.onClick = false;
 
                     if (FaceCompare())
                     {
                         playerIsOn = false;
                         // 중력패드 사용 직후 3의 속도를 추가한 만큼 y축 이동을 시킨다.
-                        Creater.Instance.player.velocity.y += (Creater.Instance.player.revertGravity) ? -3 : 3;
-                        Creater.Instance.player.revertGravity = !Creater.Instance.player.revertGravity;
-                        Creater.Instance.AddScore(15);
+                        EndlessManager.Instance.player.velocity.y += (EndlessManager.Instance.player.revertGravity) ? -3 : 3;
+                        EndlessManager.Instance.player.revertGravity = !EndlessManager.Instance.player.revertGravity;
+                        EndlessManager.Instance.AddScore(15);
                     }
                 }
             }
@@ -221,24 +229,24 @@ public class InteractionManager : MonoBehaviour
             {
                 if (teleportExit)
                 {
-                    if (Creater.Instance.player.onClick)
+                    if (EndlessManager.Instance.player.onClick)
                     {
-                        Creater.Instance.player.onClick = false;
+                        EndlessManager.Instance.player.onClick = false;
 
                         if (FaceCompare())
                         {
                             playerIsOn = false;
 
                             // 텔레포트 이동 파티클 생성
-                            Creater.Instance.GetPoofPrefab(transform);
+                            EndlessManager.Instance.GetPoofPrefab(transform);
                             
-                            Creater.Instance.player.velocity = Vector3.zero;
-                            Creater.Instance.player.gameObject.transform.position = teleportExit.position;
-                            Creater.Instance.player.moveRight = ReverseRight; // 텔로포터 사용 후 플레이어 방향 설정
+                            EndlessManager.Instance.player.velocity = Vector3.zero;
+                            EndlessManager.Instance.player.gameObject.transform.position = teleportExit.position;
+                            EndlessManager.Instance.player.moveRight = ReverseRight; // 텔로포터 사용 후 플레이어 방향 설정
                            
-                            StartCoroutine(Creater.Instance.player.HoldPlayer(0.8f)); // 텔레포터 딜레이
+                            StartCoroutine(EndlessManager.Instance.player.HoldPlayer(0.8f)); // 텔레포터 딜레이
 
-                            Creater.Instance.AddScore(20);
+                            EndlessManager.Instance.AddScore(20);
                         }
                     }
                 }
@@ -252,13 +260,13 @@ public class InteractionManager : MonoBehaviour
         {
             if (action == ActionETC.score)
             {
-                Creater.Instance.AddScore(50);
+                EndlessManager.Instance.AddScore(50);
                 Dead();
                 return;
             }
 
             playerIsOn = true;
-            Creater.Instance.player.onClick = false;
+            EndlessManager.Instance.player.onClick = false;
         }
     }
 

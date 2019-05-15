@@ -7,7 +7,7 @@ public class DeadZone : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Creater.Instance.player.Dead();
+            EndlessManager.Instance.player.Dead();
         }
     }
 }

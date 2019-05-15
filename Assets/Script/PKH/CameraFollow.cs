@@ -26,7 +26,7 @@ public class CameraFollow : MonoBehaviour
         //controller = player.GetComponent<PlayerController>();
 
         screenSize = mainCam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)) - mainCam.ScreenToWorldPoint(new Vector3(0, 0, 0));
-        SpacingX = screenSize.x * 0.2f;
+        SpacingX = screenSize.x * 0.3f;
         SpacingY = screenSize.y * 0.3f;
     }
 	
@@ -36,24 +36,24 @@ public class CameraFollow : MonoBehaviour
         {
             float xPos = 0;
 
-            if (Creater.Instance.player.moveRight)
+            if (EndlessManager.Instance.player.moveRight)
             {
                 xPos = Mathf.Clamp(transform.position.x,
-                    Creater.Instance.player.transform.position.x + SpacingX,
-                    Creater.Instance.player.transform.position.x + SpacingX * 1.5f);
+                    EndlessManager.Instance.player.transform.position.x + SpacingX,
+                    EndlessManager.Instance.player.transform.position.x + SpacingX * 1.3f);
             }
             else
             {
                 xPos = Mathf.Clamp(transform.position.x,
-                    Creater.Instance.player.transform.position.x - SpacingX * 1.5f,
-                    Creater.Instance.player.transform.position.x - SpacingX);
+                    EndlessManager.Instance.player.transform.position.x - SpacingX,
+                    EndlessManager.Instance.player.transform.position.x);
             }
 
             xPos = Mathf.SmoothDamp(transform.position.x, xPos, ref velocity.x, smoothTimeX);
 
             yPos = Mathf.Clamp(transform.position.y,
-                Creater.Instance.player.transform.position.y - SpacingY * 0.8f,
-                Creater.Instance.player.transform.position.y - SpacingY * 0.3f);
+                EndlessManager.Instance.player.transform.position.y - SpacingY * 0.6f,
+                EndlessManager.Instance.player.transform.position.y - SpacingY * 0.3f);
             yPos = Mathf.SmoothDamp(transform.position.y, yPos, ref velocity.y, smoothTimeY);
 
             transform.position = new Vector3(xPos, yPos, -100);

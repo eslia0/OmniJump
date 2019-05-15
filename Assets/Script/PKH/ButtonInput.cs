@@ -16,7 +16,7 @@ public class ButtonInput : MonoBehaviour
     private void Start()
     {
         buttons[0].onClick.RemoveAllListeners();
-        buttons[0].onClick.AddListener(delegate () { Creater.Instance.NextStage(-1); });
+        buttons[0].onClick.AddListener(delegate () { EndlessManager.Instance.NextStage(-1); });
 
         buttons[1].onClick.RemoveAllListeners();
         buttons[1].onClick.AddListener(delegate () { UnityAdsHelper.Instance.ShowRewardedAd(); });
@@ -31,13 +31,13 @@ public class ButtonInput : MonoBehaviour
     {
         resultPanel.SetActive(true);
 
-        resultScore.StartCoroutine(resultScore.SetResultScore(Creater.Instance.Score));
+        resultScore.StartCoroutine(resultScore.SetResultScore(EndlessManager.Instance.Score));
     }
 
     private void ToTitle()
     {
-        Creater.Instance.Disable();
-        SceneManager.sceneLoaded -= Creater.Instance.InitStage;
+        EndlessManager.Instance.Disable();
+        SceneManager.sceneLoaded -= EndlessManager.Instance.InitStage;
 
         SceneManagement.Instance.LoadScene("TitleScene");
     }

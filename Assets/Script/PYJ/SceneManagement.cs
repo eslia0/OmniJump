@@ -18,14 +18,14 @@ public class SceneManagement : MonoBehaviour
         }
     }
 
-    Creater creater;
+    EndlessManager creater;
     [SerializeField] bool isTesting;
 
     void Awake()
     {
         if (isTesting)
         {
-            creater = Creater.Instance;
+            creater = EndlessManager.Instance;
             creater.TestInit();
         }
         else
@@ -44,7 +44,7 @@ public class SceneManagement : MonoBehaviour
         {
             if (creater == null)
             {
-                creater = Creater.Instance;
+                creater = EndlessManager.Instance;
                 creater.Init();
             }
         }

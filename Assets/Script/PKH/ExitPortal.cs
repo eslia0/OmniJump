@@ -19,7 +19,7 @@ public class ExitPortal : MonoBehaviour
         cam = Camera.main;
         follow = cam.GetComponent<CameraFollow>();
         player = GameObject.FindWithTag("Player").transform;
-        endPoint = Creater.Instance.NowPlatform.EndPoint.position;
+        endPoint = EndlessManager.Instance.NowPlatform.EndPoint.position;
 
         if (endPoint == Vector3.zero || endPoint == null)
         {
@@ -33,8 +33,10 @@ public class ExitPortal : MonoBehaviour
     {
         while (true)
         {
-            if (endPoint.x < cam.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x - 0.16f && Mathf.Abs(transform.position.y - player.position.y) <= 0.96f)
+            if (endPoint.x < player.transform.position.x + follow.screenSize.x
+                && Mathf.Abs(transform.position.y - player.position.y) <= 0.96f)
             {
+                Debug.Log(Mathf.Abs(transform.position.y - player.position.y));
                 follow.follow = false;
             }
 
@@ -51,6 +53,6 @@ public class ExitPortal : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        Creater.Instance.NextStage(1);
+        EndlessManager.Instance.NextStage(1);
     }
 }
