@@ -152,24 +152,7 @@ public class PlayerController : MonoBehaviour
             || transform.position.y <= Creater.Instance.NowPlatform.lowPoint.position.y - 1.28f)
             Dead();
     }
-
-    /*
-    if (!revertGravity)
-    {
-        if(velocity.y > -maxGravity)
-        {
-            velocity.y += gravity * Time.deltaTime;
-        }
-    }
-    else
-    {
-        if(velocity.y < maxGravity)
-        {
-            velocity.y -= gravity * Time.deltaTime;
-        }
-    }
-    */
-
+    
     private void RotationZ()
     {
         if (currentAngle != targetAngle)
