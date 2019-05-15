@@ -4,23 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class Creater : GameVariables
 {
-    // 크리에이터 반환형 인스턴스
     private static Creater instance;
     public static Creater Instance {
         get {
-            // 인스턴스 존재여부 확인 후 생성 후 반환 혹은 그냥 반환
             if (instance == null)
             {
-                instance = FindObjectOfType<Creater>();
-
-                if (instance == null)
-                {
-                    GameObject creater = new GameObject();
-                    creater.name = "Creater";
-                    instance = creater.AddComponent<Creater>();
-                    DontDestroyOnLoad(creater);
-                    instance.Init();
-                }
+                instance = new Creater();
             }
 
             return instance;
@@ -28,12 +17,12 @@ public class Creater : GameVariables
     }
 
     // 테스트용
-    [SerializeField] private bool testing;
+    private bool testing;
     public bool Testing {
         get { return testing; }
         private set { testing = value; }
     }
-    [SerializeField] private GameObject testPlatform;
+    private GameObject testPlatform;
 
     // 생성될 수 있는 플랫폼의 리스트
     // 레벨마다 3개의 플랫폼이 있다.
@@ -56,13 +45,21 @@ public class Creater : GameVariables
     [SerializeField] private int maxLevel;
     private int level;
     [SerializeField] private int score;
+    public int Score {
+        get {
+            return score;
+        }
+        private set {
+            score = value;
+        }
+    }
     private float scoreMultiply;
 
     private ScoreText m_scoreText;
     private ScoreText scoreText {
         set { m_scoreText = value; }
         get {
-            if(m_scoreText == null)
+            if (m_scoreText == null)
             {
                 m_scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
                 SetScoreMultiply(1f);
@@ -72,19 +69,14 @@ public class Creater : GameVariables
         }
     }
 
-    void Start()
+    public Creater()
     {
-        if (testing)
-        {
-            score = 0;
-            level = 1;
 
-            scoreText.SetText(score.ToString());
+    }
 
-            SetPopParticles();
-
-            GameVariablesInit();
-        }
+    ~Creater()
+    {
+        platforms = null;
     }
 
     // 시작시 플랫폼밑 점수 초기화
@@ -94,12 +86,22 @@ public class Creater : GameVariables
         level = 1;
 
         maxLevel = 6;
-
         InitPlatforms();
 
         SceneManager.sceneLoaded += InitStage;
-        
         GameVariablesInit();
+    }
+    
+    // 테스트용 초기화
+    public void TestInit()
+    {
+        testing = true;
+
+        testPlatform = Object.FindObjectOfType<Platform>().gameObject;
+        GameVariablesInit();
+
+        ExitPortal exitPortal = Object.FindObjectOfType<ExitPortal>();
+        exitPortal.Init();
     }
 
     private void InitPlatforms()
@@ -113,17 +115,22 @@ public class Creater : GameVariables
         }
     }
 
+    public override void Disable()
+    {
+        base.Disable();
+        platforms = null;
+    }
+
     // 스테이지 시작시 생성
     public void InitStage(Scene scene, LoadSceneMode mode)
     {
         int num = Random.Range(0, 3);
 
-        nowPlatform = Instantiate(platforms[(level - 1) * 3 + num]);
-        Debug.Log(nowPlatform);
+        nowPlatform = Object.Instantiate(platforms[(level - 1) * 3 + num]);
 
-        Platform platform = nowPlatform.GetComponent<Platform>();
-        
-        scoreText.SetText(score.ToString());
+        scoreText.SetText(score);
+        ExitPortal exitPortal = Object.FindObjectOfType<ExitPortal>();
+        exitPortal.Init();
     }
 
     // 스테이지 로딩
@@ -133,12 +140,11 @@ public class Creater : GameVariables
         {
             score = 0;
             level = 1;
+            scoreText.SetText(score);
         }
         else if (nextLevel == 1 && level < maxLevel)
         {
             level++;
-
-            score += nowPlatform.GetComponent<Platform>().score;
         }
 
         if (testing)
@@ -157,7 +163,7 @@ public class Creater : GameVariables
         {
             this.score += (int)(score * scoreMultiply);
 
-            scoreText.SetText(this.score.ToString());
+            scoreText.SetText(this.score);
         }
     }
 
