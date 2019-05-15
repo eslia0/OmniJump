@@ -34,7 +34,7 @@ public class UnityAdsHelper : MonoBehaviour
     void Start()
     {
         Initialize();
-        // RequestBanner();
+        RequestBanner();
     }
 
     private void Initialize()
@@ -45,16 +45,16 @@ public class UnityAdsHelper : MonoBehaviour
         Advertisement.Initialize(ios_game_id);
 #endif
 
-        //#if UNITY_ANDROID
-        //        string appId = "ca-app-pub-4092634290096513~6395512416";
-        //#elif UNITY_IPHONE
-        //            string appId = "ca-app-pub-3940256099942544~1458002511";
-        //#else
-        //        string appId = "unexpected_platform";
-        //#endif
+#if UNITY_ANDROID
+        string appId = "ca-app-pub-4092634290096513~6395512416";
+#elif UNITY_IPHONE
+            string appId = "ca-app-pub-3940256099942544~1458002511";
+#else
+        string appId = "unexpected_platform";
+#endif
 
-        //        // Initialize the Google Mobile Ads SDK.
-        //        MobileAds.Initialize(appId);
+        // Initialize the Google Mobile Ads SDK.
+        MobileAds.Initialize(appId);
     }
 
     public void ShowRewardedAd()
@@ -185,8 +185,8 @@ public class UnityAdsHelper : MonoBehaviour
         MonoBehaviour.print("HandleAdLeavingApplication event received");
     }
 
-    //void OnDisable()
-    //{
-    //    bannerView.Destroy();
-    //}
+    void OnDisable()
+    {
+        bannerView.Destroy();
+    }
 }

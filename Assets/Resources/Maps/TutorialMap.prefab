@@ -43015,6 +43015,7 @@ MonoBehaviour:
   EaseAmount: 0.5
   WaitTime: 0
   percentBetweenWaypoints: 0
+  theSwitch: {fileID: 0}
 --- !u!1 &1477809615896701797
 GameObject:
   m_ObjectHideFlags: 0

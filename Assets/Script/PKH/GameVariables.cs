@@ -19,7 +19,7 @@ public enum PlatformMode
     ParticleRotate
 }
 
-public class GameVariables
+public class GameVariables : MonoBehaviour
 {
     // 파티클 회전 클래스 객체
     private ParticleRotation m_pr;
@@ -82,18 +82,6 @@ public class GameVariables
         SetTriggerBlowParticles();
     }
 
-    public virtual void Disable()
-    {
-        Object.Destroy(circlePopParticles[0].transform.parent.gameObject);
-        Object.Destroy(missilePopParticles[0].transform.parent.gameObject);
-        Object.Destroy(poofParticles);
-        Object.Destroy(triggerBlowParticle);
-
-        circlePopParticles = null;
-        missilePopParticles = null;
-        poofParticles = null;
-        triggerBlowParticle = null;
-    }
 
     protected void SetPopParticles()
     {
@@ -101,13 +89,13 @@ public class GameVariables
         {
             circlePopParticles = new GameObject[3];
             GameObject popGroup = new GameObject("PopGroup");
-            Object.DontDestroyOnLoad(popGroup);
+            DontDestroyOnLoad(popGroup);
 
             GameObject prefab = Resources.Load("Effects/PopExplosion3") as GameObject;
             for (int i = 0; i < 3; i++)
             {
-                circlePopParticles[i] = Object.Instantiate(prefab);
-                Object.DontDestroyOnLoad(circlePopParticles[i]);
+                circlePopParticles[i] = Instantiate(prefab);
+                DontDestroyOnLoad(circlePopParticles[i]);
 
                 circlePopParticles[i].SetActive(false);
                 circlePopParticles[i].transform.parent = popGroup.transform;
@@ -143,13 +131,13 @@ public class GameVariables
         {
             missilePopParticles = new GameObject[8];
             GameObject popGroup = new GameObject("MissilePopGroup");
-            Object.DontDestroyOnLoad(popGroup);
+            DontDestroyOnLoad(popGroup);
 
             GameObject prefab = Resources.Load("Effects/GlowExplosion 1") as GameObject;
             for (int i = 0; i < 8; i++)
             {
-                missilePopParticles[i] = Object.Instantiate(prefab);
-                Object.DontDestroyOnLoad(missilePopParticles[i]);
+                missilePopParticles[i] = Instantiate(prefab);
+                DontDestroyOnLoad(missilePopParticles[i]);
 
                 missilePopParticles[i].SetActive(false);
                 missilePopParticles[i].transform.parent = popGroup.transform;
@@ -183,8 +171,8 @@ public class GameVariables
     {
         if (poofParticles == null)
         {
-            poofParticles = Object.Instantiate(Resources.Load("Effects/Poof 1") as GameObject);
-            Object.DontDestroyOnLoad(poofParticles);
+            poofParticles = Instantiate(Resources.Load("Effects/Poof 1") as GameObject);
+            DontDestroyOnLoad(poofParticles);
             poofParticles.SetActive(false);
         }
     }
@@ -206,8 +194,8 @@ public class GameVariables
     {
         if (triggerBlowParticle == null)
         {
-            triggerBlowParticle = Object.Instantiate(Resources.Load("Effects/TriggerBlow") as GameObject);
-            Object.DontDestroyOnLoad(triggerBlowParticle);
+            triggerBlowParticle = Instantiate(Resources.Load("Effects/TriggerBlow") as GameObject);
+            DontDestroyOnLoad(triggerBlowParticle);
             triggerBlowParticle.SetActive(false);
         }
     }
