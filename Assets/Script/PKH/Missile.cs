@@ -68,7 +68,7 @@ public class Missile : MonoBehaviour
         }
         else
         {
-            EndlessManager.Instance.GetMissilePopPrefab(transform);
+            Creater.Instance.GetMissilePopPrefab(transform);
             Destroy(gameObject);
         }
     }
@@ -83,13 +83,13 @@ public class Missile : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            if (EndlessManager.Instance.player.interactionDirection != direction)
+            if (Creater.Instance.player.interactionDirection != direction)
             {
                 collision.GetComponent<PlayerController>().Dead();
             }
 
-            EndlessManager.Instance.AddScore(15);
-            EndlessManager.Instance.GetMissilePopPrefab(transform);
+            Creater.Instance.AddScore(15);
+            Creater.Instance.GetMissilePopPrefab(transform);
 
             Destroy(gameObject);
         }

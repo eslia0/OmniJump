@@ -18,20 +18,26 @@ public class SceneManagement : MonoBehaviour
         }
     }
 
-    EndlessManager creater;
-    [SerializeField] bool isTesting;
+    Creater creater;
+    [SerializeField]private bool isTesting;
+    private int selectedStage;
 
     void Awake()
     {
         if (isTesting)
         {
-            creater = EndlessManager.Instance;
+            creater = Creater.Instance;
             creater.TestInit();
         }
         else
         {
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    public void SelectStage(int stageNum)
+    {
+        selectedStage = stageNum;
     }
 
     public void LoadScene(string name)
@@ -44,8 +50,18 @@ public class SceneManagement : MonoBehaviour
         {
             if (creater == null)
             {
-                creater = EndlessManager.Instance;
+                creater = Creater.Instance;
                 creater.Init();
+                creater.InitPlatforms();
+            }
+        }
+        else if (name == "StageScene")
+        {
+            if (creater == null)
+            {
+                creater = Creater.Instance;
+                creater.Init();
+                creater.InitStagePlatforms(selectedStage);
             }
         }
 

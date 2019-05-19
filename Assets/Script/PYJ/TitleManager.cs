@@ -28,11 +28,14 @@ public class TitleManager : MonoBehaviour
         buttons[1].onClick.RemoveAllListeners();
         buttons[1].onClick.AddListener(delegate () { ToEndlessPanel(); });
         buttons[2].onClick.RemoveAllListeners();
-        buttons[2].onClick.AddListener(delegate () { ToTitlePanel(); });
+        buttons[2].onClick.AddListener(delegate () { SceneManagement.Instance.SelectStage(1); });
+        buttons[2].onClick.AddListener(delegate () { StartStage(); });
         buttons[3].onClick.RemoveAllListeners();
-        buttons[3].onClick.AddListener(delegate () { StartEndless(); });
+        buttons[3].onClick.AddListener(delegate () { ToTitlePanel(); });
         buttons[4].onClick.RemoveAllListeners();
-        buttons[4].onClick.AddListener(delegate () { ToTitlePanel(); });
+        buttons[4].onClick.AddListener(delegate () { StartEndless(); });
+        buttons[5].onClick.RemoveAllListeners();
+        buttons[5].onClick.AddListener(delegate () { ToTitlePanel(); });
 
         stagePanel.SetActive(false);
         endlessPanel.SetActive(false);
@@ -57,6 +60,11 @@ public class TitleManager : MonoBehaviour
         titlePanel.SetActive(false);
         stagePanel.SetActive(false);
         endlessPanel.SetActive(true);
+    }
+
+    private void StartStage()
+    {
+        SceneManagement.Instance.LoadScene("StageScene");
     }
 
     private void StartEndless()

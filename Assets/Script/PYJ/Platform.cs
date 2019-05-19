@@ -13,6 +13,9 @@ public class Platform : MonoBehaviour {
         }
     }
 
+    [TextArea]
+    public string stageText;
+
     void Awake()
     {
         highPoint = transform.GetChild(2);

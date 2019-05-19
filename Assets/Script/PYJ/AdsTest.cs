@@ -39,7 +39,7 @@ public class AdsTest : MonoBehaviour
             debugText.text = "IsReady false";
 
             //if (Application.isPlaying)
-            //    EndlessManager.Instance.NextStage(-1);
+            //    Creater.Instance.NextStage(-1);
         }
     }
 
@@ -54,7 +54,7 @@ public class AdsTest : MonoBehaviour
 
                     if (Application.isPlaying)
                     {
-                        // EndlessManager.Instance.NextStage(0);
+                        // Creater.Instance.NextStage(0);
                     }
                     // to do ...
                     // 광고 시청이 완료되었을 때 처리
@@ -68,7 +68,7 @@ public class AdsTest : MonoBehaviour
 
                     if (Application.isPlaying)
                     {
-                        // EndlessManager.Instance.NextStage(-1);
+                        // Creater.Instance.NextStage(-1);
                     }
 
                     // to do ...
@@ -83,7 +83,7 @@ public class AdsTest : MonoBehaviour
 
                     if (Application.isPlaying)
                     {
-                        // EndlessManager.Instance.NextStage(-1);
+                        // Creater.Instance.NextStage(-1);
                     }
 
                     // to do ...

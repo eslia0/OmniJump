@@ -32,7 +32,7 @@ public class MissileManager : MonoBehaviour
     {
         while (true)
         {
-            if (Vector2.Distance(EndlessManager.Instance.player.transform.position, transform.position) < 0.16f)
+            if (Vector2.Distance(Creater.Instance.player.transform.position, transform.position) < 0.16f)
             {
                 StartCoroutine(MissileUpdating());
                 break;
@@ -47,7 +47,7 @@ public class MissileManager : MonoBehaviour
     {
         while (true)
         {
-            if (EndlessManager.Instance.player.transform.position.x > transform.position.x)
+            if (Creater.Instance.player.transform.position.x > transform.position.x)
             {
                 StartCoroutine(MissileUpdating());
                 break;

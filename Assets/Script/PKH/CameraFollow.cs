@@ -36,24 +36,24 @@ public class CameraFollow : MonoBehaviour
         {
             float xPos = 0;
 
-            if (EndlessManager.Instance.player.moveRight)
+            if (Creater.Instance.player.moveRight)
             {
                 xPos = Mathf.Clamp(transform.position.x,
-                    EndlessManager.Instance.player.transform.position.x + SpacingX,
-                    EndlessManager.Instance.player.transform.position.x + SpacingX * 1.3f);
+                    Creater.Instance.player.transform.position.x + SpacingX,
+                    Creater.Instance.player.transform.position.x + SpacingX * 1.3f);
             }
             else
             {
                 xPos = Mathf.Clamp(transform.position.x,
-                    EndlessManager.Instance.player.transform.position.x - SpacingX,
-                    EndlessManager.Instance.player.transform.position.x);
+                    Creater.Instance.player.transform.position.x - SpacingX,
+                    Creater.Instance.player.transform.position.x);
             }
 
             xPos = Mathf.SmoothDamp(transform.position.x, xPos, ref velocity.x, smoothTimeX);
 
             yPos = Mathf.Clamp(transform.position.y,
-                EndlessManager.Instance.player.transform.position.y - SpacingY * 0.6f,
-                EndlessManager.Instance.player.transform.position.y - SpacingY * 0.3f);
+                Creater.Instance.player.transform.position.y - SpacingY * 0.6f,
+                Creater.Instance.player.transform.position.y - SpacingY * 0.3f);
             yPos = Mathf.SmoothDamp(transform.position.y, yPos, ref velocity.y, smoothTimeY);
 
             transform.position = new Vector3(xPos, yPos, -100);
