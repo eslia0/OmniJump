@@ -195,7 +195,7 @@ public class InteractionManager : MonoBehaviour
             if (action == ActionETC.rotate) // 회전
             {
                 playerIsOn = false;
-                EndlessManager.Instance.player.rotationZ += rotateDirection;
+                EndlessManager.Instance.player.rotationZ = rotateDirection;
             }
             else if (action == ActionETC.reverse) // 방향 전환
             {
@@ -207,7 +207,7 @@ public class InteractionManager : MonoBehaviour
             {
                 playerIsOn = false;
                 EndlessManager.Instance.player.moveRight = ReverseRight;
-                EndlessManager.Instance.player.rotationZ += rotateDirection;
+                EndlessManager.Instance.player.rotationZ = rotateDirection;
             }
             else if (action == ActionETC.gravityReverse) // 중력패드
             {

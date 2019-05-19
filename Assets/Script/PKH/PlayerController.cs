@@ -55,8 +55,7 @@ public class PlayerController : MonoBehaviour
     private float velocityXSmoothing;
 
     // 회전
-    private bool delegateRotate = false;
-    private int zAxis = 0;
+    [SerializeField] private int zAxis = 0;
     public int rotationZ 
     {
         get { return (zAxis % 4); }
@@ -65,14 +64,10 @@ public class PlayerController : MonoBehaviour
 
             faceDirection = faceDirection;
             targetAngle = zAxis * 90;
-            currentAngle = ((int)body.eulerAngles.z / 10) * 10;
             increaseAmount = ((value == 1) ? 10 : -10);
 
-            if (!delegateRotate)
-            {
-                delegateRotate = true;
-                movementController += RotationZ;
-            }
+            movementController -= RotationZ;
+            movementController += RotationZ;
         }
     }
     private int targetAngle = 0;
@@ -93,11 +88,6 @@ public class PlayerController : MonoBehaviour
 
         transform.position = returnPoint.transform.position;
 
-        MovementReset();
-    }
-
-    private void MovementReset()
-    {
         GetComponent<BoxCollider2D>().enabled = true;
         body.gameObject.SetActive(true);
         controller.enabled = true;
@@ -109,7 +99,7 @@ public class PlayerController : MonoBehaviour
         faceDirection = 0;
         rotationZ = 0;
     }
-
+    
     private void Start()
     {
         ani.enabled = false;
@@ -153,23 +143,6 @@ public class PlayerController : MonoBehaviour
             Dead();
     }
 
-    /*
-    if (!revertGravity)
-    {
-        if(velocity.y > -maxGravity)
-        {
-            velocity.y += gravity * Time.deltaTime;
-        }
-    }
-    else
-    {
-        if(velocity.y < maxGravity)
-        {
-            velocity.y -= gravity * Time.deltaTime;
-        }
-    }
-    */
-
     private void RotationZ()
     {
         if (currentAngle != targetAngle)
@@ -179,19 +152,18 @@ public class PlayerController : MonoBehaviour
         } else
         {
             body.localRotation = Quaternion.Euler(0, 0, targetAngle);
-            delegateRotate = false;
             movementController -= RotationZ;
         }
     }
 
     public void SetJump(bool jump)
     {
-        if (jump)
+        if (jump) // 일반 점프
         {
             movementController -= jumpFun.JumpMove;
             velocity.y = jumpVelocity * ((revertGravity) ? -1 : 1);
         }
-        else
+        else // 타겟 점프
         {
             velocity = Vector3.zero;
             movementController -= jumpFun.JumpMove;
@@ -213,8 +185,8 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator HoldPlayer(float time)
     {
-        enabled = false;
-        body.gameObject.SetActive(false);
+        enabled = false; // 캐릭터 움직임 봉쇄
+        body.gameObject.SetActive(false); // 캐릭터 스프라이트 제거
         yield return new WaitForSeconds(time);
         enabled = true;
         body.gameObject.SetActive(true);

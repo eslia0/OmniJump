@@ -22,6 +22,7 @@ public class MovingPlatform : RayCastController
     private List<PassengerMovement> passengerMovement;
     private Dictionary<Transform, Controller> passengerDictionary = new Dictionary<Transform, Controller>();
 
+
     private void Awake()
     {
         GetComponent<BoxCollider2D>().size = transform.GetChild(0).GetComponent<SpriteRenderer>().size * transform.GetChild(0).transform.localScale;
@@ -277,7 +278,7 @@ public class MovingPlatform : RayCastController
     {
         if (collision.tag == "Player")
         {
-            if(movePassinger && isActive)
+            if (movePassinger && isActive)
             {
                 EndlessManager.Instance.player.moveSpeed = 0;
                 EndlessManager.Instance.player.transform.parent = transform;
@@ -287,13 +288,10 @@ public class MovingPlatform : RayCastController
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if(movePassinger && collision.tag == "Player")
         {
-            if (movePassinger && isActive)
-            {
-                EndlessManager.Instance.player.moveSpeed = 3;
-                EndlessManager.Instance.player.transform.parent = null;
-            }
+            EndlessManager.Instance.player.moveSpeed = 3;
+            EndlessManager.Instance.player.transform.parent = null;
         }
     }
 

@@ -8,11 +8,7 @@ public class ExitPortal : MonoBehaviour
     private Transform player;
     private Camera cam;
     private CameraFollow follow;
-
-    private void Start()
-    {
-
-    }
+    
 
     public void Init()
     {
@@ -36,7 +32,7 @@ public class ExitPortal : MonoBehaviour
             if (endPoint.x < player.transform.position.x + follow.screenSize.x
                 && Mathf.Abs(transform.position.y - player.position.y) <= 0.96f)
             {
-                Debug.Log(Mathf.Abs(transform.position.y - player.position.y));
+                //Debug.Log(Mathf.Abs(transform.position.y - player.position.y));
                 follow.follow = false;
             }
 
