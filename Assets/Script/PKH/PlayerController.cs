@@ -138,8 +138,8 @@ public class PlayerController : MonoBehaviour
             velocity.y = 0;
         }
 
-        if (transform.position.y >= EndlessManager.Instance.NowPlatform.highPoint.position.y 
-            || transform.position.y <= EndlessManager.Instance.NowPlatform.lowPoint.position.y - 1.28f)
+        if (transform.position.y >= Creater.Instance.NowPlatform.highPoint.position.y 
+            || transform.position.y <= Creater.Instance.NowPlatform.lowPoint.position.y - 1.28f)
             Dead();
     }
 
@@ -190,6 +190,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(time);
         enabled = true;
         body.gameObject.SetActive(true);
-        EndlessManager.Instance.GetPoofPrefab(transform);
+        Creater.Instance.GetPoofPrefab(transform);
     }
 }

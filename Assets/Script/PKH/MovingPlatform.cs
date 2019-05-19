@@ -92,10 +92,10 @@ public class MovingPlatform : RayCastController
         {
             if(toWaypointIndex == globalWaypoints.Length - 1)
             {
-                if (movePassinger && EndlessManager.Instance.player.transform.IsChildOf(transform))
+                if (movePassinger && Creater.Instance.player.transform.IsChildOf(transform))
                 {
-                    EndlessManager.Instance.player.moveSpeed = 3;
-                    EndlessManager.Instance.player.transform.parent = null;
+                    Creater.Instance.player.moveSpeed = 3;
+                    Creater.Instance.player.transform.parent = null;
                 }
 
                 if (moveOnce)
@@ -159,7 +159,7 @@ public class MovingPlatform : RayCastController
             {
                 Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.BottomLeft : raycastOrigins.TopLeft;
                 rayOrigin += Vector2.right * (verticalRaySpacing * i);
-                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, EndlessManager.Instance.playerLayer);
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, Creater.Instance.playerLayer);
 
                 Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
 
@@ -173,7 +173,7 @@ public class MovingPlatform : RayCastController
 
                         //this line only runs when platform has velocity to x axis, witch means if it goes diagonally
                         //When player is on the platform velocity x does effect player, but if player is below the platform it doesn't
-                        float pushX = (directionY == 1) ? velocity.x - (EndlessManager.Instance.player.velocity.x * Time.deltaTime) : 0;
+                        float pushX = (directionY == 1) ? velocity.x - (Creater.Instance.player.velocity.x * Time.deltaTime) : 0;
                         //hit distance between player and platform
                         float pushY = velocity.y - (hit.distance - skinWitdth) * directionY;
                         
@@ -192,7 +192,7 @@ public class MovingPlatform : RayCastController
             {
                 Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.BottomLeft : raycastOrigins.BottomRight;
                 rayOrigin += Vector2.up * (horiaontalRaySpacing * i);
-                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, EndlessManager.Instance.playerLayer);
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, Creater.Instance.playerLayer);
 
                 Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.green);
 
@@ -221,8 +221,8 @@ public class MovingPlatform : RayCastController
             {
                 Vector2 rayOrigin = raycastOrigins.TopLeft + Vector2.right * (verticalRaySpacing * i);
                 rayOrigin -= new Vector2(0, rayLength);
-                RaycastHit2D hitUp = Physics2D.Raycast(rayOrigin, Vector2.up, 1.2f, EndlessManager.Instance.playerLayer);
-                RaycastHit2D hitDown = Physics2D.Raycast(rayOrigin, Vector2.down, 1.2f, EndlessManager.Instance.playerLayer);
+                RaycastHit2D hitUp = Physics2D.Raycast(rayOrigin, Vector2.up, 1.2f, Creater.Instance.playerLayer);
+                RaycastHit2D hitDown = Physics2D.Raycast(rayOrigin, Vector2.down, 1.2f, Creater.Instance.playerLayer);
                 
                 if (hitUp)
                 {
@@ -232,7 +232,7 @@ public class MovingPlatform : RayCastController
                     {
                         movedPassengers.Add(hitUp.transform);
                         
-                        float pushX = velocity.x - (EndlessManager.Instance.player.velocity.x * Time.deltaTime);
+                        float pushX = velocity.x - (Creater.Instance.player.velocity.x * Time.deltaTime);
                         float pushY = velocity.y;
                         
                         passengerMovement.Add(new PassengerMovement(hitUp.transform, new Vector3(pushX, pushY), true, false));
@@ -247,7 +247,7 @@ public class MovingPlatform : RayCastController
                     {
                         movedPassengers.Add(hitDown.transform);
 
-                        float pushX = velocity.x - (EndlessManager.Instance.player.velocity.x * Time.deltaTime);
+                        float pushX = velocity.x - (Creater.Instance.player.velocity.x * Time.deltaTime);
                         float pushY = -velocity.y;
 
                         passengerMovement.Add(new PassengerMovement(hitDown.transform, new Vector3(pushX, pushY), true, false));
@@ -280,8 +280,8 @@ public class MovingPlatform : RayCastController
         {
             if (movePassinger && isActive)
             {
-                EndlessManager.Instance.player.moveSpeed = 0;
-                EndlessManager.Instance.player.transform.parent = transform;
+                Creater.Instance.player.moveSpeed = 0;
+                Creater.Instance.player.transform.parent = transform;
             }
         }
     }
@@ -290,8 +290,8 @@ public class MovingPlatform : RayCastController
     {
         if(movePassinger && collision.tag == "Player")
         {
-            EndlessManager.Instance.player.moveSpeed = 3;
-            EndlessManager.Instance.player.transform.parent = null;
+            Creater.Instance.player.moveSpeed = 3;
+            Creater.Instance.player.transform.parent = null;
         }
     }
 
