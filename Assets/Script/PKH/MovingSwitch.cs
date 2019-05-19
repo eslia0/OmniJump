@@ -64,19 +64,19 @@ public class MovingSwitch : MonoBehaviour
 
         while (true)
         {
-            check = Physics2D.OverlapBox(transform.position, new Vector2(0.32f, 0.32f), 0f, EndlessManager.Instance.playerLayer);
+            check = Physics2D.OverlapBox(transform.position, new Vector2(0.32f, 0.32f), 0f, Creater.Instance.playerLayer);
             
             if (check 
-                && EndlessManager.Instance.player.interactionDirection == direction
-                && EndlessManager.Instance.player.onClick)
+                && Creater.Instance.player.interactionDirection == direction
+                && Creater.Instance.player.onClick)
             {
                 platform.enabled = true;
                 platform.isActive = true;
-                EndlessManager.Instance.GetTriggerBlowParticles(direction, transform);
+                Creater.Instance.GetTriggerBlowParticles(direction, transform);
                 if (platform.movePassinger)
                 {
-                    EndlessManager.Instance.player.moveSpeed = 0;
-                    EndlessManager.Instance.player.transform.parent = platform.transform;
+                    Creater.Instance.player.moveSpeed = 0;
+                    Creater.Instance.player.transform.parent = platform.transform;
                 }
                 break;
             }
@@ -92,14 +92,14 @@ public class MovingSwitch : MonoBehaviour
     {
         while (true)
         {
-            if (EndlessManager.Instance.player.transform.position.x > transform.position.x)
+            if (Creater.Instance.player.transform.position.x > transform.position.x)
             {
                 platform.enabled = true;
                 platform.isActive = true;
                 if (platform.movePassinger)
                 {
-                    EndlessManager.Instance.player.moveSpeed = 0;
-                    EndlessManager.Instance.player.transform.parent = platform.transform;
+                    Creater.Instance.player.moveSpeed = 0;
+                    Creater.Instance.player.transform.parent = platform.transform;
                 }
                 break;
             }
@@ -115,14 +115,14 @@ public class MovingSwitch : MonoBehaviour
     {
         while (true)
         {
-            if (Vector3.Distance(EndlessManager.Instance.player.transform.position, transform.position) < 0.16f)
+            if (Vector3.Distance(Creater.Instance.player.transform.position, transform.position) < 0.16f)
             {
                 platform.enabled = true;
                 platform.isActive = true;
                 if (platform.movePassinger)
                 {
-                    EndlessManager.Instance.player.moveSpeed = 0;
-                    EndlessManager.Instance.player.transform.parent = platform.transform;
+                    Creater.Instance.player.moveSpeed = 0;
+                    Creater.Instance.player.transform.parent = platform.transform;
                 }
                 break;
             }

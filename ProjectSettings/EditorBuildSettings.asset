@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TitleScene.unity
+    guid: 6a98c1349eb8bed42a472531b3b305c9
+  - enabled: 1
     path: Assets/Scenes/PYJTestScene.unity
     guid: 91b15c5eb158abd45bff9d15af2b7fdd
+  - enabled: 1
+    path: Assets/Scenes/StageScene.unity
+    guid: ec2f387bff66b3648bc45ae76863a79a
   m_configObjects: {}

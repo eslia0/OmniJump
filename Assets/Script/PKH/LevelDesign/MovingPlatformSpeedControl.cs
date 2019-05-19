@@ -24,11 +24,11 @@ public class MovingPlatformSpeedControl : MonoBehaviour
         {
             if (checkBoxes[i] != null)
             {
-                Collider2D check = Physics2D.OverlapBox(checkBoxes[i].transform.position, new Vector2(0.32f, 0.32f), 0f, EndlessManager.Instance.playerLayer);
+                Collider2D check = Physics2D.OverlapBox(checkBoxes[i].transform.position, new Vector2(0.32f, 0.32f), 0f, Creater.Instance.playerLayer);
 
                 if (check 
-                    && EndlessManager.Instance.player.interactionDirection == checkBoxes[i].direction 
-                    && EndlessManager.Instance.player.onClick)
+                    && Creater.Instance.player.interactionDirection == checkBoxes[i].direction 
+                    && Creater.Instance.player.onClick)
                 {
                     Destroy(checkBoxes[i].gameObject);
                     checkBoxes.Remove(checkBoxes[i]);

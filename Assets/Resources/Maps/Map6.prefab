@@ -2574,10 +2574,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b3b9319220b3b4fbe03c2c43e1713c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 0, y: 0}
   highPoint: {fileID: 0}
   lowPoint: {fileID: 0}
-  endPoint: {fileID: 0}
+  stageText: 
 --- !u!1 &109
 GameObject:
   m_ObjectHideFlags: 0

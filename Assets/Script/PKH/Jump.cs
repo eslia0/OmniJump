@@ -25,7 +25,7 @@ public class Jump : MonoBehaviour
         float h1 = 0;
         float h2 = 0;
         // 각자의 높이
-        if (!EndlessManager.Instance.player.revertGravity)
+        if (!Creater.Instance.player.revertGravity)
         {
             h1 = height.y - transform.position.y; // 최대 높이 - 현재 높이 = 플레이어 높이
             h2 = height.y - target.y; // 최대 높이 - 목표 높이 = 목표 높이
@@ -40,17 +40,17 @@ public class Jump : MonoBehaviour
         float dis = (target.x - transform.position.x); // 두 점의 거리
         moveSpeed = dis; // 이동 속도 = 거리
 
-        upSpeed = (((1.0f + Mathf.Sqrt(h2 / h1)) * 2.0f) * h1) * ((EndlessManager.Instance.player.revertGravity) ? -1 : 1);
-        gravity = ((Mathf.Pow(upSpeed, 2) / -2.0f) / h1) * ((EndlessManager.Instance.player.revertGravity) ? -1 : 1);
+        upSpeed = (((1.0f + Mathf.Sqrt(h2 / h1)) * 2.0f) * h1) * ((Creater.Instance.player.revertGravity) ? -1 : 1);
+        gravity = ((Mathf.Pow(upSpeed, 2) / -2.0f) / h1) * ((Creater.Instance.player.revertGravity) ? -1 : 1);
 
         startTime = 0.0f;
 
-        EndlessManager.Instance.player.SetJump(false);
+        Creater.Instance.player.SetJump(false);
     }
 
     public void JumpMove()
     {
-        EndlessManager.Instance.player.velocity = Vector3.zero;
+        Creater.Instance.player.velocity = Vector3.zero;
 
         transform.Translate(new Vector3(moveSpeed, upSpeed) * Time.deltaTime / movePeriod);
         
@@ -60,8 +60,8 @@ public class Jump : MonoBehaviour
 
         if (startTime >= movePeriod) // 일반 점프가 되지 않을때, 지면과 충돌치 않을때 발동
         {
-            EndlessManager.Instance.player.isTargetJump = false;
-            EndlessManager.Instance.player.movementController -= EndlessManager.Instance.player.jumpFun.JumpMove;
+            Creater.Instance.player.isTargetJump = false;
+            Creater.Instance.player.movementController -= Creater.Instance.player.jumpFun.JumpMove;
         }
     }
 }
