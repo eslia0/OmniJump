@@ -178,7 +178,14 @@ public class PlayerController : MonoBehaviour
         controller.enabled = false;
         enabled = false;
 
-        CameraFollow.mainCam.transform.GetComponentInChildren<ButtonInput>().SetResultPanel();
+        if (SceneManagement.Instance.currentScene == "StageScene")
+        {
+            CameraFollow.mainCam.transform.GetComponentInChildren<StageButtonInput>().SetResultPanel();
+        }
+        else if(SceneManagement.Instance.currentScene == "PYJTestScene")
+        {
+            CameraFollow.mainCam.transform.GetComponentInChildren<ButtonInput>().SetResultPanel();
+        }
     }
 
     public IEnumerator HoldPlayer(float time)

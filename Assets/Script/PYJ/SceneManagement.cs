@@ -10,8 +10,13 @@ public class SceneManagement : MonoBehaviour
         get {
             if (instance == null)
             {
-                GameObject managment = new GameObject("SceneManagement");
-                instance = managment.AddComponent<SceneManagement>();
+                instance = GameObject.FindObjectOfType<SceneManagement>();
+
+                if (instance == null)
+                {
+                    GameObject managment = new GameObject("SceneManagement");
+                    instance = managment.AddComponent<SceneManagement>();
+                }
             }
 
             return instance;
@@ -19,8 +24,9 @@ public class SceneManagement : MonoBehaviour
     }
 
     Creater creater;
-    [SerializeField]private bool isTesting;
+    [SerializeField] private bool isTesting;
     private int selectedStage;
+    public string currentScene;
 
     void Awake()
     {
@@ -42,6 +48,8 @@ public class SceneManagement : MonoBehaviour
 
     public void LoadScene(string name)
     {
+        currentScene = name;
+
         if (name == "TitleScene")
         {
             creater = null;
@@ -51,8 +59,7 @@ public class SceneManagement : MonoBehaviour
             if (creater == null)
             {
                 creater = Creater.Instance;
-                creater.Init();
-                creater.InitPlatforms();
+                creater.InitEndless();
             }
         }
         else if (name == "StageScene")
@@ -60,11 +67,10 @@ public class SceneManagement : MonoBehaviour
             if (creater == null)
             {
                 creater = Creater.Instance;
-                creater.Init();
-                creater.InitStagePlatforms(selectedStage);
+                creater.InitStage(selectedStage);
             }
         }
-
+        
         SceneManager.LoadScene(name);
     }
 }

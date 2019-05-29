@@ -16,5 +16,12 @@ public class StageText : MonoBehaviour
     {
         m_text.text = text;
         m_animation.Play("PanelIn");
+
+        Invoke("OutText", 3.0f);
+    }
+
+    public void OutText()
+    {
+        m_animation.Play("PanelOut");
     }
 }

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class Creater : GameVariables
@@ -41,8 +41,8 @@ public class Creater : GameVariables
             }
         }
     }
-
-    [SerializeField] private int maxLevel;
+    
+    // 현제 레벨
     private int level;
     [SerializeField] private int score;
     public int Score {
@@ -70,7 +70,7 @@ public class Creater : GameVariables
     }
 
     private StageText m_stageText;
-    private StageText stageText {
+    public StageText stageText {
         set { m_stageText = value; }
         get {
             if (m_stageText == null)
@@ -82,29 +82,7 @@ public class Creater : GameVariables
         }
     }
 
-    const int maxPlatform = 1;
-    public int currentStage;
-
-    public Creater()
-    {
-
-    }
-
-    ~Creater()
-    {
-        platforms = null;
-    }
-
-    public void Init()
-    {
-        score = 0;
-        level = 1;
-
-        maxLevel = 6;
-        
-        SceneManager.sceneLoaded += InitStage;
-        GameVariablesInit();
-    }
+    private int maxPlatform;
     
     // 테스트용 초기화
     public void TestInit()
@@ -118,9 +96,16 @@ public class Creater : GameVariables
         exitPortal.Init();
     }
 
-    public void InitPlatforms()
+    public void InitEndless()
     {
-        int length = 3 * maxLevel;
+        score = 0;
+        level = 1;
+        maxPlatform = 6;
+
+        SceneManager.sceneLoaded += StartStage;
+        GameVariablesInit();
+
+        int length = 3 * maxPlatform;
         platforms = new GameObject[length];
 
         for (int i = 0; i < length; i++)
@@ -129,15 +114,20 @@ public class Creater : GameVariables
         }
     }
 
-    public void InitStagePlatforms(int stageNum)
+    public void InitStage(int stageNum)
     {
-        currentStage = stageNum;
+        score = 0;
+        maxPlatform = 30;
+        SceneManager.sceneLoaded += StartStage;
+        GameVariablesInit();
+
+        level = stageNum;
         int length = maxPlatform;
         platforms = new GameObject[length];
 
         for (int i = 0; i < length; i++)
         {
-            platforms[i] = Resources.Load<GameObject>("Maps/Stages/Map" + (i+1).ToString());
+            platforms[i] = Resources.Load<GameObject>("Maps/Stages/Map" + (i + 1).ToString());
         }
     }
 
@@ -148,25 +138,26 @@ public class Creater : GameVariables
     }
 
     // 스테이지 시작시 생성
-    public void InitStage(Scene scene, LoadSceneMode mode)
+    public void StartStage(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "PYJTestScene")
+        if (SceneManagement.Instance.currentScene == "PYJTestScene")
         {
             int num = Random.Range(0, 3);
 
             nowPlatform = Object.Instantiate(platforms[(level - 1) * 3 + num]);
 
             scoreText.SetText(score);
-            ExitPortal exitPortal = Object.FindObjectOfType<ExitPortal>();
-            exitPortal.Init();
         }
-        else if (scene.name == "StageScene")
+        else if (SceneManagement.Instance.currentScene == "StageScene")
         {
-            nowPlatform = Object.Instantiate(platforms[currentStage - 1]);
+            nowPlatform = Object.Instantiate(platforms[level - 1]);
 
             stageText.Init();
             stageText.SetText(NowPlatform.stageText);
         }
+
+        ExitPortal exitPortal = Object.FindObjectOfType<ExitPortal>();
+        exitPortal.Init();
     }
 
     // 스테이지 로딩
@@ -178,24 +169,31 @@ public class Creater : GameVariables
             level = 1;
             scoreText.SetText(score);
         }
-        else if (nextLevel == 1 && level < maxLevel)
+        else if (nextLevel == 1 && level < maxPlatform)
         {
             level++;
         }
 
-        if (testing)
+        if (SceneManagement.Instance.currentScene == "StageScene")
         {
-            SceneManager.LoadScene("MapTest");
+            SceneManager.LoadScene("StageScene");
         }
-        else
+        else if (SceneManagement.Instance.currentScene == "PYJTestScene")
         {
-            SceneManager.LoadScene("PYJTestScene");
+            if (testing)
+            {
+                SceneManager.LoadScene("MapTest");
+            }
+            else
+            {
+                SceneManager.LoadScene("PYJTestScene");
+            }
         }
     }
 
     public void AddScore(int score)
     {
-        if (score <= 100 && score > 0)
+        if (SceneManagement.Instance.currentScene == "PYJTestScene" && score <= 100 && score > 0)
         {
             this.score += (int)(score * scoreMultiply);
 
