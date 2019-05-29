@@ -73,11 +73,6 @@ public class MovingSwitch : MonoBehaviour
                 platform.enabled = true;
                 platform.isActive = true;
                 Creater.Instance.GetTriggerBlowParticles(direction, transform);
-                if (platform.movePassinger)
-                {
-                    Creater.Instance.player.moveSpeed = 0;
-                    Creater.Instance.player.transform.parent = platform.transform;
-                }
                 break;
             }
 
@@ -96,11 +91,6 @@ public class MovingSwitch : MonoBehaviour
             {
                 platform.enabled = true;
                 platform.isActive = true;
-                if (platform.movePassinger)
-                {
-                    Creater.Instance.player.moveSpeed = 0;
-                    Creater.Instance.player.transform.parent = platform.transform;
-                }
                 break;
             }
 
@@ -119,11 +109,6 @@ public class MovingSwitch : MonoBehaviour
             {
                 platform.enabled = true;
                 platform.isActive = true;
-                if (platform.movePassinger)
-                {
-                    Creater.Instance.player.moveSpeed = 0;
-                    Creater.Instance.player.transform.parent = platform.transform;
-                }
                 break;
             }
 
