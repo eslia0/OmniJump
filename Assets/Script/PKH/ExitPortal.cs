@@ -6,15 +6,12 @@ public class ExitPortal : MonoBehaviour
 {
     private Vector3 endPoint;
     private Transform player;
-    private Camera cam;
     private CameraFollow follow;
     
-
     public void Init()
     {
-        cam = Camera.main;
-        follow = cam.GetComponent<CameraFollow>();
-        player = GameObject.FindWithTag("Player").transform;
+        follow = CameraFollow.mainCam.GetComponent<CameraFollow>();
+        player = Creater.Instance.player.transform;
         endPoint = Creater.Instance.NowPlatform.EndPoint.position;
 
         if (endPoint == Vector3.zero || endPoint == null)
@@ -29,18 +26,28 @@ public class ExitPortal : MonoBehaviour
     {
         while (true)
         {
-            if (endPoint.x < player.transform.position.x + follow.screenSize.x
+            if (endPoint.x < player.transform.position.x + follow.screenSize.x * 0.7f - 0.32f
                 && Mathf.Abs(transform.position.y - player.position.y) <= 0.96f)
             {
-                //Debug.Log(Mathf.Abs(transform.position.y - player.position.y));
                 follow.follow = false;
             }
 
-            if (transform.position.x <= player.position.x)
+            if (Vector3.Distance(transform.position, player.position) <= 0.65f)
             {
-                player.position = transform.position - Vector3.up * 0.64f;
                 player.GetComponent<Animator>().enabled = true;
+
+                if (Creater.Instance.player.revertGravity)
+                {
+                    player.position = transform.position + Vector3.up * 0.64f;
+                    player.GetComponent<Animator>().SetBool("upsidedown", true);
+                }
+                else
+                {
+                    player.position = transform.position - Vector3.up * 0.64f;
+                    player.GetComponent<Animator>().SetBool("upsidedown", false);
+                }
                 player.GetComponent<Animator>().SetTrigger("Exit");
+
                 break;
             }
 
@@ -49,6 +56,13 @@ public class ExitPortal : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        Creater.Instance.NextStage(1);
+        if (SceneManagement.Instance.currentScene == "StageScene")
+        {
+            CameraFollow.mainCam.GetComponentInChildren<StageButtonInput>().SetResultPanel();
+        }
+        else if (SceneManagement.Instance.currentScene == "PYJTestScene")
+        {
+            Creater.Instance.NextStage(1);
+        }
     }
 }

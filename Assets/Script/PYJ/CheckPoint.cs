@@ -53,8 +53,14 @@ public class CheckPoint : MonoBehaviour
             {
                 if (Vector3.Distance(m_player.transform.position, transform.position) < 0.16f)
                 {
-                    yield return new WaitForSeconds(0.5f);
                     m_player.transform.position = returnPoint.position;
+                    m_player.enabled = false;
+                    yield return new WaitForSeconds(0.5f);
+                    m_player.enabled = true;
+                }
+                else
+                {
+                    yield return null;
                 }
             }
         }
@@ -76,7 +82,6 @@ public class CheckPoint : MonoBehaviour
                 yield return null;
             }
 
-            m_player.enabled = false;
 
             while (interactObject.Input != 0)
             {
@@ -89,8 +94,14 @@ public class CheckPoint : MonoBehaviour
             {
                 if (Vector3.Distance(m_player.transform.position, transform.position) < 0.32f)
                 {
-                    yield return new WaitForSeconds(0.5f);
                     m_player.transform.position = returnPoint.position;
+                    m_player.enabled = false;
+                    yield return new WaitForSeconds(0.5f);
+                    m_player.enabled = true;
+                }
+                else
+                {
+                    yield return null;
                 }
             }
         }

@@ -37,7 +37,7 @@ public class ButtonInput : MonoBehaviour
     private void ToTitle()
     {
         Creater.Instance.Disable();
-        SceneManager.sceneLoaded -= Creater.Instance.InitStage;
+        SceneManager.sceneLoaded -= Creater.Instance.StartStage;
 
         SceneManagement.Instance.LoadScene("TitleScene");
     }
