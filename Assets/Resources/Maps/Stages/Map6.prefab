@@ -854,7 +854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highPoint: {fileID: 0}
   lowPoint: {fileID: 0}
-  stageText: JumpPad and Circle is similar, but different.
+  stageText: JumpPad and Circle looks similar.
 --- !u!1001 &1802197613687382142
 PrefabInstance:
   m_ObjectHideFlags: 0

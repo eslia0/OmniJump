@@ -685,7 +685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highPoint: {fileID: 0}
   lowPoint: {fileID: 0}
-  stageText: Use joystick to spin your character.
+  stageText: Use joystick to spin.
 --- !u!1001 &955732250779056698
 PrefabInstance:
   m_ObjectHideFlags: 0

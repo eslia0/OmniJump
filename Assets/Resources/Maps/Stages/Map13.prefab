@@ -682,7 +682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highPoint: {fileID: 0}
   lowPoint: {fileID: 0}
-  stageText: Beware of missiles fly from behind. They are faster than others.
+  stageText: Beware of missiles fly from behind.
 --- !u!1001 &1793624073152717808
 PrefabInstance:
   m_ObjectHideFlags: 0
