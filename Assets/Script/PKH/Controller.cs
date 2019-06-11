@@ -84,6 +84,7 @@ public class Controller : RayCastController { // Extends RayCastController scrip
 
             if (hit)
             {
+                Debug.Log("Horizontal Collision Death");
                 Creater.Instance.player.Dead();
                 break;
             }

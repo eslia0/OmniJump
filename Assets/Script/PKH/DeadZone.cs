@@ -7,6 +7,7 @@ public class DeadZone : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            Debug.Log("DeadZone Collision Death");
             Creater.Instance.player.Dead();
         }
     }

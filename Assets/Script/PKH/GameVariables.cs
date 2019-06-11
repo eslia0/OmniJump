@@ -10,16 +10,9 @@ public enum Direction
     left,
     down
 }
-public enum PlatformMode
-{
-    Active,
-    Passive,
-    Trigger,
-    Distance,
-    ParticleRotate
-}
 
-public class GameVariables
+
+public class GameVariables : MonoBehaviour
 {
     // 파티클 회전 클래스 객체
     private ParticleRotation m_pr;
@@ -73,12 +66,16 @@ public class GameVariables
     // MovePlatform의 Trigger 효과
     private GameObject triggerBlowParticle;
     private int triggerBlowpCount = 0;
+    
+    public delegate void ObjectUpdate();
+    private ObjectUpdate UpdateDelegate;
 
-    public void GameVariablesInit()
+
+    protected virtual void GameVariablesInit()
     {
+        SetPoofPrefab();
         SetPopParticles();
         SetMissilePopParticles();
-        SetPoofPrefab();
         SetTriggerBlowParticles();
     }
 
@@ -236,4 +233,38 @@ public class GameVariables
 
         triggerBlowParticle.SetActive(true);
     }
+
+    public void UpdateDelegateAdd(ObjectUpdate objectUpdate)
+    {
+        if (UpdateDelegate == null)
+        {
+            UpdateDelegate = new ObjectUpdate(objectUpdate);
+            StartCoroutine(Updating());
+        }
+        else
+        {
+            UpdateDelegate += objectUpdate;
+        }
+    }
+    public void UpdateDelegateRemove(ObjectUpdate objectUpdate)
+    {
+        UpdateDelegate -= objectUpdate;
+    }
+
+    public IEnumerator Updating()
+    {
+        while (true)
+        {
+            if (UpdateDelegate == null)
+            {
+                break;
+            }
+            UpdateDelegate();
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return null;
+    }
+
 }
