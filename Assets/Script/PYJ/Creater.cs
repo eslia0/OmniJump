@@ -131,7 +131,7 @@ public class Creater : GameVariables
     public void InitStage(int stageNum)
     {
         score = 0;
-        maxPlatform = 30;
+        maxPlatform = 40;
         SceneManager.sceneLoaded += StartStage;
         GameVariablesInit();
 
@@ -186,6 +186,7 @@ public class Creater : GameVariables
         else if (nextLevel == 1 && level < maxPlatform)
         {
             level++;
+            SceneManagement.Instance.selectedStage++;
         }
 
         if (SceneManagement.Instance.currentScene == "StageScene")

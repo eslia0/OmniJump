@@ -1124,7 +1124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highPoint: {fileID: 0}
   lowPoint: {fileID: 0}
-  stageText: You die when hit the wall, going too low or high.
+  stageText: You die when hit the wall.
 --- !u!1001 &1889671269964383383
 PrefabInstance:
   m_ObjectHideFlags: 0

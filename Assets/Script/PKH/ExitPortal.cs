@@ -58,6 +58,12 @@ public class ExitPortal : MonoBehaviour
 
         if (SceneManagement.Instance.currentScene == "StageScene")
         {
+            // 클리어 했을 때 데이터를 수정
+            if (SceneManagement.Instance.selectedStage >= SceneManagement.Instance.ClearStage)
+            {
+                SceneManagement.Instance.WriteData();
+            }
+
             CameraFollow.mainCam.GetComponentInChildren<StageButtonInput>().SetResultPanel();
         }
         else if (SceneManagement.Instance.currentScene == "PYJTestScene")

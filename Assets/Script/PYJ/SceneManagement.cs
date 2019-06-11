@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,11 +24,22 @@ public class SceneManagement : MonoBehaviour
 
     Creater creater;
     [SerializeField] private bool isTesting;
-    private int selectedStage;
+    public int selectedStage;
     public string currentScene;
+    public string prevScene;
+
+    private int clearStage;
+    public int ClearStage { get => clearStage; private set => clearStage = value; }
 
     void Awake()
     {
+        instance = FindObjectOfType<SceneManagement>();
+
+        if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
         if (isTesting)
         {
             creater = Creater.Instance;
@@ -38,7 +48,33 @@ public class SceneManagement : MonoBehaviour
         else
         {
             DontDestroyOnLoad(gameObject);
+            LoadData();
         }
+    }
+
+    public void LoadData()
+    {
+        string path = Application.persistentDataPath + "/data0.txt";
+
+        if (File.Exists(path))
+        {
+            string data = File.ReadAllText(path);
+            ClearStage = int.Parse(data);
+        }
+        else
+        {
+            File.Open(path, FileMode.OpenOrCreate).Dispose();
+            File.WriteAllText(path, "0");
+        }
+    }
+
+    public void WriteData()
+    {
+        string path = Application.persistentDataPath + "/data0.txt";
+        clearStage = selectedStage;
+
+        File.Open(path, FileMode.OpenOrCreate).Dispose();
+        File.WriteAllText(path, clearStage.ToString());
     }
 
     public void SelectStage(int stageNum)
@@ -48,8 +84,6 @@ public class SceneManagement : MonoBehaviour
 
     public void LoadScene(string name)
     {
-        currentScene = name;
-
         if (name == "TitleScene")
         {
             creater = null;
@@ -70,7 +104,11 @@ public class SceneManagement : MonoBehaviour
                 creater.InitStage(selectedStage);
             }
         }
-        
+
+        prevScene = currentScene;
+        currentScene = name;
+
+
         SceneManager.LoadScene(name);
     }
 }

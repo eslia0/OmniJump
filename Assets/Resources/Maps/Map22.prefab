@@ -14194,7 +14194,7 @@ MonoBehaviour:
   isActive: 1
   moveOnce: 1
   cyclic: 0
-  movePassinger: 1
+  movePassinger: 0
   speed: 4
   EaseAmount: 0
   WaitTime: 0
