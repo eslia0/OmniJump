@@ -94,8 +94,6 @@ public class PlayerController : MonoBehaviour
 
         movementController = null;
         velocity = Vector2.zero;
-        revertGravity = false;
-        moveRight = true;
         faceDirection = 0;
         rotationZ = 0;
     }
