@@ -2,33 +2,78 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : RayCastController
+public class Lift : RayCastController
 {
+    enum PlatformMode
+    {
+        Active, // 플레이어와 충돌 후 요구 방향을 입력 시 동작
+        Passive, // 생성과 동시에 동작
+        Trigger, // 플레이어의 X 위치가 더 높을 경우 동작
+        Distance, // 플레이어와 직선 거리를 검토하여 동작
+    }
+
+    [SerializeField] private PlatformMode mode;
+    [SerializeField] private Direction direction;
+    [SerializeField] private Transform trigger;
+    [SerializeField] private SpriteRenderer body;
+
     public Vector3[] globalWaypoints;
 
-    [HideInInspector] public bool isActive = true;
     [Header("동작 변수")]
     public bool moveOnce;
     public bool cyclic; // 움직임 반복 확인
     public bool movePassinger = false;
     public bool stopXSpeedOnMovePassinger = false;
 
+    [Header("이동 변수")]
     public float speed;
-    [Range(0, 3)] public float EaseAmount;
     public float WaitTime;
-    [HideInInspector] public float percentBetweenWaypoints; // 두 점 사이의 간격 퍼센트 (0~1)
+    [Range(0, 3)] public float EaseAmount;
 
+    private delegate void TriggerUpdate();
+    private TriggerUpdate triggerUpdate;
+
+    private bool isActive = false;
     private bool playerIsOn = false;
     private int fromWaypointIndex; // 멀어져야할 이전 원점
     private float nextMoveTime;
-
+    private float percentBetweenWaypoints; // 두 점 사이의 간격 퍼센트 (0~1)
+    
     private Vector3 velocity;
-    private List<PassengerMovement> passengerMovement;
-    private Dictionary<Transform, Controller> passengerDictionary = new Dictionary<Transform, Controller>();
+
 
     private void Awake()
     {
-        GetComponent<BoxCollider2D>().size = transform.GetChild(0).GetComponent<SpriteRenderer>().size * transform.GetChild(0).transform.localScale;
+        GetComponent<BoxCollider2D>().size = body.size * body.transform.localScale;
+
+        ParticleSystem particle = trigger.GetComponent<ParticleSystem>();
+
+        switch (mode)
+        {
+            case PlatformMode.Active:
+                switch (direction)
+                {
+                    case Direction.right:
+                        particle.startRotation = 90 * Mathf.Deg2Rad;
+                        break;
+                    case Direction.left:
+                        particle.startRotation = 270 * Mathf.Deg2Rad;
+                        break;
+                    case Direction.down:
+                        particle.startRotation = 180 * Mathf.Deg2Rad;
+                        break;
+                }
+                break;
+            case PlatformMode.Distance:
+            case PlatformMode.Trigger:
+                particle.Stop();
+                break;
+            case PlatformMode.Passive:
+                isActive = true;
+                particle.Stop();
+                Destroy(trigger.gameObject);
+                break;
+        }
     }
 
     public override void Start()
@@ -45,6 +90,7 @@ public class MovingPlatform : RayCastController
     {
         if (!isActive)
         {
+            SwitchUpdate();
             return;
         }
 
@@ -58,6 +104,41 @@ public class MovingPlatform : RayCastController
         }
 
         transform.Translate(velocity);
+    }
+
+    private void SwitchUpdate()
+    {
+        switch (mode)
+        {
+            case PlatformMode.Passive:
+                break;
+            case PlatformMode.Active:
+                Collider2D check = Physics2D.OverlapBox(trigger.position, new Vector2(0.32f, 0.32f), 0f, Creater.Instance.playerLayer);
+
+                if (check
+                && Creater.Instance.player.interactionDirection == direction
+                && Creater.Instance.player.onClick)
+                {
+                    isActive = true;
+                    Creater.Instance.GetTriggerBlowParticles(direction, trigger);
+                    Destroy(trigger.gameObject);
+                }
+                break;
+            case PlatformMode.Distance:
+                if (Vector3.Distance(Creater.Instance.player.transform.position, trigger.position) < 0.16f)
+                {
+                    isActive = true;
+                    Destroy(trigger.gameObject);
+                }
+                break;
+            case PlatformMode.Trigger:
+                if (Creater.Instance.player.transform.position.x > trigger.position.x)
+                {
+                    isActive = true;
+                    Destroy(trigger.gameObject);
+                }
+                break;
+        }
     }
 
     private float Ease(float x)
@@ -95,11 +176,12 @@ public class MovingPlatform : RayCastController
                     System.Array.Reverse(globalWaypoints); // 배열 반전
                 }
             }
+
             nextMoveTime = Time.time + WaitTime;
 
             if (toWaypointIndex == globalWaypoints.Length - 1)
             {
-                if (stopXSpeedOnMovePassinger && playerIsOn)
+                if (Creater.Instance.player.moveSpeed == 0 && playerIsOn)
                 {
                     Creater.Instance.player.moveSpeed = 3;
                 }
@@ -118,7 +200,7 @@ public class MovingPlatform : RayCastController
     {
         // When objects are on top of a horizontally or downward moving platform
         float rayLength = skinWitdth * 3;
-        float distance = speed * 0.03f;
+        float distance = speed * 0.08f;
 
         for (int i = 0; i < verticalRayCount; i++)
         {
@@ -127,37 +209,33 @@ public class MovingPlatform : RayCastController
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin,
                 ((Creater.Instance.player.revertGravity) ? Vector2.down : Vector2.up), distance, Creater.Instance.playerLayer);
 
-            //Debug.DrawRay(rayOrigin, hit.point, Color.blue);
+            Debug.DrawRay(rayOrigin,hit.point, Color.blue);
 
             if (hit)
             {
-                if (stopXSpeedOnMovePassinger && !playerIsOn)
+                if (!playerIsOn)
                 {
                     playerIsOn = true;
-                    Creater.Instance.player.moveSpeed = 0;
+                    Creater.Instance.player.moveSpeed = (stopXSpeedOnMovePassinger) ? 0 : 3f;
                 }
-                Creater.Instance.player.transform.Translate(new Vector2(0, velocity.y));
+
+                Creater.Instance.player.transform.Translate
+                    (new Vector2((stopXSpeedOnMovePassinger)?velocity.x : 0, velocity.y));
                 break;
             }
         }
     }
 
-    struct PassengerMovement//all value of passenger on platform
+    private void OnTriggerExit(Collider other)
     {
-        public Transform transform;//transform of passenger
-        public Vector3 velocity;//velocity of passenger
-        public bool standingOnPlatform;//weather or not player is on platform
-        public bool moveBeforePlatform;//weather or not we move the passenger before platform move(Line 62~65)
-
-        public PassengerMovement(Transform _transform, Vector3 _velocity, bool _standingOnPlatform, bool _moveBeforePlatform)
+        if(other.tag == "Player")
         {
-            transform = _transform;
-            velocity = _velocity;
-            standingOnPlatform = _standingOnPlatform;
-            moveBeforePlatform = _moveBeforePlatform;
+            playerIsOn = false;
+            if (Creater.Instance.player.moveSpeed != 3)
+                Creater.Instance.player.moveSpeed = 3;
         }
     }
-    
+
     private void OnDrawGizmos()
     {
         if (globalWaypoints != null)

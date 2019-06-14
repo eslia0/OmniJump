@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class MovingSwitch : MonoBehaviour
 {
-    public PlatformMode mode;
+    enum SwitchmMode
+    {
+        Active,
+        Passive,
+        Trigger,
+        Distance,
+        ParticleRotate
+    }
+
+    [SerializeField] private SwitchmMode mode;
 
     public Direction direction;
     public MovingPlatform platform;
@@ -12,21 +21,21 @@ public class MovingSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (mode == PlatformMode.Trigger)
+        if (mode == SwitchmMode.Trigger)
         {
             platform.isActive = false;
             if (GetComponent<ParticleSystem>())
                 GetComponent<ParticleSystem>().Stop();
             StartCoroutine(TriggerUpdate());
         }
-        else if(mode == PlatformMode.Passive)
+        else if(mode == SwitchmMode.Passive)
         {
             platform.enabled = true;
             if (GetComponent<ParticleSystem>())
                 GetComponent<ParticleSystem>().Stop();
             Destroy(gameObject);
         }
-        else if(mode == PlatformMode.Distance)
+        else if(mode == SwitchmMode.Distance)
         {
             platform.isActive = false;
             if (GetComponent<ParticleSystem>())
@@ -49,7 +58,7 @@ public class MovingSwitch : MonoBehaviour
                         break;
                 }
 
-            if (mode == PlatformMode.Active)
+            if (mode == SwitchmMode.Active)
             {
                 platform.isActive = false;
                 platform.enabled = false;

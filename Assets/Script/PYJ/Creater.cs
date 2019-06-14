@@ -9,7 +9,12 @@ public class Creater : GameVariables
         get {
             if (instance == null)
             {
-                instance = new Creater();
+                instance = FindObjectOfType<Creater>();
+
+                if (instance == null) {
+                    GameObject creater = new GameObject("Creater");
+                    instance = creater.AddComponent<Creater>();
+                }
             }
 
             return instance;
@@ -83,7 +88,16 @@ public class Creater : GameVariables
     }
 
     private int maxPlatform;
-    
+
+    public void Awake()
+    {
+        instance = FindObjectOfType<Creater>();
+        if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // 테스트용 초기화
     public void TestInit()
     {

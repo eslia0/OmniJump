@@ -17,10 +17,12 @@ public class ParallaxBG : MonoBehaviour
     {
         cam = Camera.main.transform;
         startPos = transform.position.x;
+
         if(length == 0)
         {
             length = GetComponent<SpriteRenderer>().bounds.size.x;
-        } else
+        }
+        else
         {
             length *= transform.localScale.x;
         }
@@ -31,8 +33,8 @@ public class ParallaxBG : MonoBehaviour
         float par = (cam.position.x * (1 - parallaxSpeed));
         float dist = (cam.position.x * parallaxSpeed);
         
-        transform.position = new Vector3(startPos + dist,
-            cam.position.y + yOffset, transform.position.z);
+        transform.position = new Vector2(startPos + dist,
+            cam.position.y + yOffset);
 
         if (par > startPos + length)
         {
