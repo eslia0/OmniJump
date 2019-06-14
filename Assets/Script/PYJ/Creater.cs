@@ -27,23 +27,15 @@ public class Creater : GameVariables
         get { return testing; }
         private set { testing = value; }
     }
-    private GameObject testPlatform;
 
     // 생성될 수 있는 플랫폼의 리스트
     // 레벨마다 3개의 플랫폼이 있다.
     public GameObject[] platforms;
     
-    private GameObject nowPlatform;
+    public GameObject nowPlatform;
     public Platform NowPlatform {
         get {
-            if (testing)
-            {
-                return testPlatform.GetComponent<Platform>();
-            }
-            else
-            {
-                return nowPlatform.GetComponent<Platform>();
-            }
+            return nowPlatform.GetComponent<Platform>();
         }
     }
     
@@ -89,13 +81,42 @@ public class Creater : GameVariables
 
     private int maxPlatform;
 
-    public void Awake()
+    private void Awake()
     {
         instance = FindObjectOfType<Creater>();
         if (instance != this)
         {
             Destroy(gameObject);
+            return;
         }
+    }
+
+    private void Start()
+    {
+        if (SceneManagement.Instance.currentScene == "PYJTestScene")
+        {
+            InitEndless();
+            int num = Random.Range(0, 3);
+
+            nowPlatform = Instantiate(platforms[(level - 1) * 3 + num]);
+
+            scoreText.SetText(score);
+        }
+        else if (SceneManagement.Instance.currentScene == "StageScene")
+        {
+            InitStage(SceneManagement.Instance.selectedStage);
+            nowPlatform = Instantiate(platforms[level - 1]);
+
+            stageText.Init();
+            stageText.SetText(NowPlatform.stageText);
+        }
+        else
+        {
+            TestInit();
+        }
+
+        ExitPortal exitPortal = FindObjectOfType<ExitPortal>();
+        exitPortal.Init();
     }
 
     // 테스트용 초기화
@@ -103,7 +124,7 @@ public class Creater : GameVariables
     {
         testing = true;
 
-        testPlatform = Object.FindObjectOfType<Platform>().gameObject;
+        nowPlatform = FindObjectOfType<Platform>().gameObject;
         GameVariablesInit();
 
         ExitPortal exitPortal = Object.FindObjectOfType<ExitPortal>();
@@ -158,13 +179,13 @@ public class Creater : GameVariables
         {
             int num = Random.Range(0, 3);
 
-            nowPlatform = Object.Instantiate(platforms[(level - 1) * 3 + num]);
+            nowPlatform = Instantiate(platforms[(level - 1) * 3 + num]);
 
             scoreText.SetText(score);
         }
         else if (SceneManagement.Instance.currentScene == "StageScene")
         {
-            nowPlatform = Object.Instantiate(platforms[level - 1]);
+            nowPlatform = Instantiate(platforms[level - 1]);
 
             stageText.Init();
             stageText.SetText(NowPlatform.stageText);

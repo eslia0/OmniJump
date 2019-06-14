@@ -21,8 +21,7 @@ public class SceneManagement : MonoBehaviour
             return instance;
         }
     }
-
-    Creater creater;
+   
     [SerializeField] private bool isTesting;
     public int selectedStage;
     public string currentScene;
@@ -39,17 +38,9 @@ public class SceneManagement : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (isTesting)
-        {
-            creater = Creater.Instance;
-            creater.TestInit();
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-            LoadData();
-        }
+        
+        DontDestroyOnLoad(gameObject);
+        LoadData();
     }
 
     public void LoadData()
@@ -86,30 +77,8 @@ public class SceneManagement : MonoBehaviour
 
     public void LoadScene(string name)
     {
-        if (name == "TitleScene")
-        {
-            creater = null;
-        }
-        else if (name == "PYJTestScene")
-        {
-            if (creater == null)
-            {
-                creater = Creater.Instance;
-                creater.InitEndless();
-            }
-        }
-        else if (name == "StageScene")
-        {
-            if (creater == null)
-            {
-                creater = Creater.Instance;
-                creater.InitStage(selectedStage);
-            }
-        }
-
         prevScene = currentScene;
         currentScene = name;
-
 
         SceneManager.LoadScene(name);
     }
