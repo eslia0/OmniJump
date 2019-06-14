@@ -66,6 +66,8 @@ public class SceneManagement : MonoBehaviour
             File.Open(path, FileMode.OpenOrCreate).Dispose();
             File.WriteAllText(path, "0");
         }
+
+        ClearStage = 40;
     }
 
     public void WriteData()

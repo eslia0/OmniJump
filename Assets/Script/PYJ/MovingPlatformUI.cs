@@ -25,6 +25,12 @@ public class MovingPlatformUI : MonoBehaviour
             globalWaypoints[i] += transform.position;
         }
     }
+
+    public void Init()
+    {
+        currentPercent = 0;
+        transform.position = globalWaypoints[0];
+    }
     
     public Vector3 CalculatePlatformMovement()
     {

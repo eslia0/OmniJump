@@ -126,12 +126,12 @@ public class PlayerUIController : MonoBehaviour
         {
             transform.position = action[0].exit.transform.position;
             moveSpeed = 0f;
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.2f);
             moveSpeed = 3.2f;
         }
         else if (action[0].action == InteractionUI.UIInteraction.Moving)
         {
-            while (Vector3.Distance(transform.position, action[0].transform.position) >= 0.16f)
+            while (Vector3.Distance(transform.position, action[0].transform.position) >= 0.32f)
             {
                 yield return null;
             }
