@@ -12,6 +12,7 @@ public class MovingPlatform : RayCastController
     public bool cyclic; // 움직임 반복 확인
     public bool movePassinger = false;
     public bool stopXSpeedOnMovePassinger = false;
+    public bool disabledAfterMove = false;
 
     public float speed;
     [Range(0, 3)] public float EaseAmount;
@@ -107,6 +108,11 @@ public class MovingPlatform : RayCastController
                 if (moveOnce)
                 {
                     enabled = false;
+
+                    if (disabledAfterMove)
+                    {
+                        gameObject.SetActive(false);
+                    }
                 }
             }
         }

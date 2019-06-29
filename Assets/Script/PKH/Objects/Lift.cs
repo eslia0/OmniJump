@@ -24,6 +24,7 @@ public class Lift : RayCastController
     public bool cyclic; // 움직임 반복 확인
     public bool movePassinger = false;
     public bool stopXSpeedOnMovePassinger = false;
+    public bool disabledAfterMove = false;
 
     [Header("이동 변수")]
     public float speed;
@@ -189,6 +190,11 @@ public class Lift : RayCastController
                 if (moveOnce)
                 {
                     enabled = false;
+
+                    if (disabledAfterMove)
+                    {
+                        gameObject.SetActive(false);
+                    }
                 }
             }
         }
