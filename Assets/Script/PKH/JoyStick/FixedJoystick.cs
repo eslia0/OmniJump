@@ -15,10 +15,15 @@ public class FixedJoystick : Joystick
         joystickPosition = RectTransformUtility.WorldToScreenPoint(cam, background.position);
     }
 
+    private void FixedUpdate()
+    {
+        if(!Creater.Instance.player.KeyBoardControll)
+            Creater.Instance.player.onClick = isClick;
+    }
+
     public override void OnDrag(PointerEventData eventData)
     {
-        if (!Creater.Instance.player.KeyBoardControll)
-            Creater.Instance.player.onClick = true;
+        isClick = true;
 
         Vector2 direction = eventData.position - joystickPosition;
         inputVector = (direction.magnitude > background.sizeDelta.x / 2f) ? direction.normalized : direction / (background.sizeDelta.x / 2f);
@@ -51,16 +56,14 @@ public class FixedJoystick : Joystick
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        if (!Creater.Instance.player.KeyBoardControll)
-            Creater.Instance.player.onClick = true;
+        isClick = true;
         Creater.Instance.player.KeyBoardControll = false;
         OnDrag(eventData);
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        if (!Creater.Instance.player.KeyBoardControll)
-            Creater.Instance.player.onClick = false;
+        isClick = false;
         handle.anchoredPosition = inputVector = Vector2.zero;
     }
 }

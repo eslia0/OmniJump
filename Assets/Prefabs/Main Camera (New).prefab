@@ -1353,6 +1353,7 @@ GameObject:
   - component: {fileID: 6547583435572547984}
   - component: {fileID: 6547583435572547986}
   - component: {fileID: 6547583435572547985}
+  - component: {fileID: 4965178644353801661}
   m_Layer: 0
   m_Name: Main Camera (New)
   m_TagString: MainCamera
@@ -1447,6 +1448,34 @@ MonoBehaviour:
   screenSize: {x: 0, y: 0, z: 0}
   follow: 1
   SpacingY: 0
+--- !u!114 &4965178644353801661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6547583435572547987}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87e4989c5e703e428df4339d59e2c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showMainBehavior: 1
+  showInnerGlowBehavior: 1
+  rtFormat: 22
+  blurShader: {fileID: 4800000, guid: 1855d9636fad3914bacc4a543165c974, type: 3}
+  compositeShader: {fileID: 4800000, guid: e384de4389ba527479054baf0ddb1d3e, type: 3}
+  selectiveRenderShader: {fileID: 4800000, guid: c04b7cae8accdfb4e9c2648823ff39d7,
+    type: 3}
+  glowLayer:
+    serializedVersion: 2
+    m_Bits: 1281
+  glowType: 0
+  glowTint: {r: 1, g: 1, b: 1, a: 0}
+  blurSpreadInner: 0.42
+  blurIterations: 4
+  glowIntensityInner: 0.32
+  samples: 2
 --- !u!1 &6986121969501149179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,7 +1593,6 @@ MonoBehaviour:
   buttons:
   - {fileID: 1738424729}
   - {fileID: 1747617921}
-  - {fileID: 1728955599930533037}
   resultPanel: {fileID: 374601246113519301}
   resultScore: {fileID: 433824670}
 --- !u!1001 &6455557076290639708
@@ -1752,15 +1780,15 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce5089f3caa5bb042a4d4c23a427bc82, type: 3}
---- !u!224 &6524041754601495408 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224251571662654508, guid: ce5089f3caa5bb042a4d4c23a427bc82,
-    type: 3}
-  m_PrefabInstance: {fileID: 6455557076290639708}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6524220977689587666 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224070147403872398, guid: ce5089f3caa5bb042a4d4c23a427bc82,
+    type: 3}
+  m_PrefabInstance: {fileID: 6455557076290639708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &6524041754601495408 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224251571662654508, guid: ce5089f3caa5bb042a4d4c23a427bc82,
     type: 3}
   m_PrefabInstance: {fileID: 6455557076290639708}
   m_PrefabAsset: {fileID: 0}
