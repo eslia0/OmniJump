@@ -135,6 +135,14 @@ public class TitleManager : MonoBehaviour
         // 캐릭터 위치 설정
         playerUI.transform.position = stages[selected].GetChild(1).position;
         actions = stages[selected].GetComponentsInChildren<InteractionUI>();
+
+        for (int i =0; i<actions.Length;i++)
+        {
+            if(actions[i].action == InteractionUI.UIInteraction.Moving)
+            {
+                actions[i].GetComponent<MovingPlatformUI>().Init();
+            }
+        }
     }
 
     // 스테이지 내 레벨 버튼 설정
@@ -678,14 +686,6 @@ public class TitleManager : MonoBehaviour
             yield return null;
         }
 
-        // float mov = 5.6f * selected - mainCam.transform.position.x;
-
-        //while (mainCam.transform.position.x < 5.6f * selected)
-        //{
-        //    mainCam.transform.position += mov * Vector3.right * Time.deltaTime;
-        //    yield return null;
-        //}
-
         mainCam.transform.position = new Vector3(5.6f * selected, 0, -100);
         levelPanel[selected].SetActive(true);
 
@@ -693,6 +693,7 @@ public class TitleManager : MonoBehaviour
         GameObject effect = Instantiate(Resources.Load<GameObject>("Effects/Poof 1"), playerUI.transform.position, Quaternion.identity);
         Destroy(effect, 1.0f);
 
+        playerUI.revertGravity = false;
         playerUI.moveRight = true;
         playerUI.action.Add(actions[0]);
 

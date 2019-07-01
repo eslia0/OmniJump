@@ -5542,7 +5542,7 @@ Tilemap:
   - first: {x: 54, y: 8, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -5551,7 +5551,7 @@ Tilemap:
   - first: {x: 55, y: 8, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -5560,7 +5560,7 @@ Tilemap:
   - first: {x: 56, y: 8, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -5573,10 +5573,10 @@ Tilemap:
   - m_RefCount: 54
     m_Data: {fileID: 11400000, guid: 8e31b50f3911eaf41ac66fd1bceceb8c, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 3
-    m_Data: {fileID: 21300000, guid: cce795406df9c0745961115bc2e9631a, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 3
+    m_Data: {fileID: 21300000, guid: a8227cff07c78bc4a9fec4aeb603742e, type: 3}
   - m_RefCount: 54
     m_Data: {fileID: 21300000, guid: 690f4e5ed88acc642836ca155f25f7c3, type: 3}
   m_TileMatrixArray:
@@ -5836,7 +5836,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5915,7 +5915,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6043,6 +6043,7 @@ MonoBehaviour:
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 5
   EaseAmount: 0
   WaitTime: 0
@@ -10915,6 +10916,7 @@ MonoBehaviour:
   moveOnce: 0
   cyclic: 1
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 3
   EaseAmount: 0
   WaitTime: 0
@@ -25331,7 +25333,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -25428,6 +25430,7 @@ MonoBehaviour:
   moveOnce: 0
   cyclic: 1
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 3
   EaseAmount: 0
   WaitTime: 0
@@ -25501,7 +25504,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -25598,6 +25601,7 @@ MonoBehaviour:
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 5
   EaseAmount: 0
   WaitTime: 0
@@ -55030,7 +55034,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -55109,7 +55113,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -55206,6 +55210,7 @@ MonoBehaviour:
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 5
   EaseAmount: 0
   WaitTime: 0
@@ -55297,6 +55302,7 @@ MonoBehaviour:
   moveOnce: 0
   cyclic: 1
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 3
   EaseAmount: 0
   WaitTime: 0
@@ -60181,7 +60187,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -60278,6 +60284,7 @@ MonoBehaviour:
   moveOnce: 0
   cyclic: 1
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 3
   EaseAmount: 0
   WaitTime: 0
@@ -60369,6 +60376,7 @@ MonoBehaviour:
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 5
   EaseAmount: 0
   WaitTime: 0
@@ -60442,7 +60450,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -70631,6 +70639,21 @@ PrefabInstance:
       propertyPath: lunchDelay
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b86a835a11db2a4f9453c2f086002e0, type: 3}
 --- !u!1001 &2501900160256703772
@@ -70794,6 +70817,21 @@ PrefabInstance:
         type: 3}
       propertyPath: time
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b86a835a11db2a4f9453c2f086002e0, type: 3}
@@ -71188,6 +71226,21 @@ PrefabInstance:
         type: 3}
       propertyPath: lunchDelay
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b86a835a11db2a4f9453c2f086002e0, type: 3}
@@ -72108,6 +72161,21 @@ PrefabInstance:
       propertyPath: lunchDelay
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b86a835a11db2a4f9453c2f086002e0, type: 3}
 --- !u!1001 &6844524135011873332
@@ -72577,6 +72645,21 @@ PrefabInstance:
       propertyPath: lunchDelay
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b86a835a11db2a4f9453c2f086002e0, type: 3}
 --- !u!1001 &7444626517943652286
@@ -72891,6 +72974,21 @@ PrefabInstance:
       propertyPath: time
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b86a835a11db2a4f9453c2f086002e0, type: 3}
 --- !u!1001 &8365274089156748799
@@ -73059,6 +73157,21 @@ PrefabInstance:
         type: 3}
       propertyPath: lunchDelay
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898932284064493064, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b86a835a11db2a4f9453c2f086002e0, type: 3}

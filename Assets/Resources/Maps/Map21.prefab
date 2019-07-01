@@ -3871,7 +3871,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8983,7 +8983,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9080,6 +9080,7 @@ MonoBehaviour:
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 5
   EaseAmount: 0
   WaitTime: 0
@@ -13934,7 +13935,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -23774,7 +23775,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -61633,7 +61634,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -61888,6 +61889,7 @@ MonoBehaviour:
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 10
   EaseAmount: 0
   WaitTime: 0
@@ -61979,6 +61981,7 @@ MonoBehaviour:
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 10
   EaseAmount: 0
   WaitTime: 0
@@ -62179,6 +62182,7 @@ MonoBehaviour:
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 10
   EaseAmount: 0
   WaitTime: 0
@@ -62270,6 +62274,7 @@ MonoBehaviour:
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 5
   EaseAmount: 0
   WaitTime: 0
@@ -62343,7 +62348,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -76941,6 +76946,7 @@ MonoBehaviour:
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
   speed: 5
   EaseAmount: 0
   WaitTime: 0
