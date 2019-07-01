@@ -269,7 +269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7456349627926523553}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.16, y: 0.32, z: 0}
+  m_LocalPosition: {x: -0.8, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1020384881809440193}
@@ -313,11 +313,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5488141219129854719}
     m_Modifications:
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_Name
-      value: CircleEffect4
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -383,15 +378,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_Name
+      value: CircleEffect4
+      objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}

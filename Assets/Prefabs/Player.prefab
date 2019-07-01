@@ -114,6 +114,7 @@ MonoBehaviour:
   moveRight: 1
   slowVelocity: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  zAxis: 0
 --- !u!114 &5535358337785252761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,8 +135,6 @@ MonoBehaviour:
   verticalRayCount: 8
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
-  MaxClimbing: 45
-  MaxDescendAngle: 45
 --- !u!114 &5535358337785252773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +266,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 1
   m_Materials:
-  - {fileID: 2100000, guid: b274db5ce54339f4c92a263ff9705a46, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

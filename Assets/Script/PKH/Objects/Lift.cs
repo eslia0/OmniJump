@@ -12,23 +12,24 @@ public class Lift : RayCastController
         Distance, // 플레이어와 직선 거리를 검토하여 동작
     }
 
+    [Space(10), Header("플렛폼 모드")]
     [SerializeField] private PlatformMode mode;
     [SerializeField] private Direction direction;
-    [SerializeField] private Transform trigger;
-    [SerializeField] private SpriteRenderer body;
+    private Transform trigger;
+    private SpriteRenderer body;
 
     public Vector3[] globalWaypoints;
 
-    [Header("동작 변수")]
-    public bool moveOnce;
-    public bool cyclic; // 움직임 반복 확인
-    public bool movePassinger = false;
-    public bool stopXSpeedOnMovePassinger = false;
+    [Space(10), Header("동작 변수")]
+    [SerializeField] private bool moveOnce;
+    [SerializeField] private bool cyclic; // 움직임 반복 확인
+    [SerializeField] private bool movePassinger = false;
+    [SerializeField] private bool stopXSpeedOnMovePassinger = false;
 
-    [Header("이동 변수")]
-    public float speed;
-    public float WaitTime;
-    [Range(0, 3)] public float EaseAmount;
+    [Space(10),Header("이동 변수")]
+    [SerializeField] private float speed;
+    [SerializeField] private float WaitTime;
+    [Range(0, 3), SerializeField] public float EaseAmount;
 
     private delegate void TriggerUpdate();
     private TriggerUpdate triggerUpdate;
@@ -44,6 +45,8 @@ public class Lift : RayCastController
 
     private void Awake()
     {
+        trigger = transform.FindChild("Trigger");
+        body = transform.FindChild("Body").GetComponent<SpriteRenderer>();
         GetComponent<BoxCollider2D>().size = body.size * body.transform.localScale;
 
         ParticleSystem particle = trigger.GetComponent<ParticleSystem>();
@@ -63,14 +66,10 @@ public class Lift : RayCastController
                         particle.startRotation = 180 * Mathf.Deg2Rad;
                         break;
                 }
-                break;
-            case PlatformMode.Distance:
-            case PlatformMode.Trigger:
-                particle.Stop();
-                break;
+                particle.Play();
+                break; 
             case PlatformMode.Passive:
                 isActive = true;
-                particle.Stop();
                 Destroy(trigger.gameObject);
                 break;
         }
@@ -110,10 +109,8 @@ public class Lift : RayCastController
     {
         switch (mode)
         {
-            case PlatformMode.Passive:
-                break;
             case PlatformMode.Active:
-                Collider2D check = Physics2D.OverlapBox(trigger.position, new Vector2(0.32f, 0.32f), 0f, Creater.Instance.playerLayer);
+                Collider2D check = Physics2D.OverlapBox(trigger.position, new Vector2(0.16f, 0.32f), 0f, Creater.Instance.playerLayer);
 
                 if (check
                 && Creater.Instance.player.interactionDirection == direction
@@ -189,6 +186,8 @@ public class Lift : RayCastController
                 if (moveOnce)
                 {
                     enabled = false;
+                    gameObject.SetActive(false);
+                    // Destroy(gameObject);
                 }
             }
         }
