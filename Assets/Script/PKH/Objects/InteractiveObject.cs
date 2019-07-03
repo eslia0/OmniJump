@@ -33,7 +33,7 @@ public abstract class InteractiveObject : MonoBehaviour
         return (direction == (Direction)((Creater.Instance.player.rotationZ + Creater.Instance.player.faceDirection + 4) % 4));
     }
 
-    protected void Dispose()
+    protected virtual void Dispose()
     {
         if (destroyExplosion)
         {

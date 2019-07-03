@@ -96,6 +96,7 @@ public class MovingPlatform : RayCastController
                     System.Array.Reverse(globalWaypoints); // 배열 반전
                 }
             }
+
             nextMoveTime = Time.time + WaitTime;
 
             if (toWaypointIndex == globalWaypoints.Length - 1)

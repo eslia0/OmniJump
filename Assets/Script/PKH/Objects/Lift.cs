@@ -12,10 +12,11 @@ public class Lift : RayCastController
         Distance, // 플레이어와 직선 거리를 검토하여 동작
     }
 
+    [Space(10), Header("플렛폼 모드")]
     [SerializeField] private PlatformMode mode;
     [SerializeField] private Direction direction;
-    [SerializeField] private Transform trigger;
-    [SerializeField] private SpriteRenderer body;
+    private Transform trigger;
+    private SpriteRenderer body;
 
     public Vector3[] globalWaypoints;
 
@@ -45,6 +46,8 @@ public class Lift : RayCastController
 
     private void Awake()
     {
+        trigger = transform.FindChild("Trigger");
+        body = transform.FindChild("Body").GetComponent<SpriteRenderer>();
         GetComponent<BoxCollider2D>().size = body.size * body.transform.localScale;
 
         ParticleSystem particle = trigger.GetComponent<ParticleSystem>();
@@ -64,14 +67,10 @@ public class Lift : RayCastController
                         particle.startRotation = 180 * Mathf.Deg2Rad;
                         break;
                 }
-                break;
-            case PlatformMode.Distance:
-            case PlatformMode.Trigger:
-                particle.Stop();
+                particle.Play();
                 break;
             case PlatformMode.Passive:
                 isActive = true;
-                particle.Stop();
                 Destroy(trigger.gameObject);
                 break;
         }
@@ -111,10 +110,8 @@ public class Lift : RayCastController
     {
         switch (mode)
         {
-            case PlatformMode.Passive:
-                break;
             case PlatformMode.Active:
-                Collider2D check = Physics2D.OverlapBox(trigger.position, new Vector2(0.32f, 0.32f), 0f, Creater.Instance.playerLayer);
+                Collider2D check = Physics2D.OverlapBox(trigger.position, new Vector2(0.16f, 0.32f), 0f, Creater.Instance.playerLayer);
 
                 if (check
                 && Creater.Instance.player.interactionDirection == direction
@@ -190,6 +187,8 @@ public class Lift : RayCastController
                 if (moveOnce)
                 {
                     enabled = false;
+                    gameObject.SetActive(false);
+                    // Destroy(gameObject);
 
                     if (disabledAfterMove)
                     {
@@ -215,7 +214,7 @@ public class Lift : RayCastController
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin,
                 ((Creater.Instance.player.revertGravity) ? Vector2.down : Vector2.up), distance, Creater.Instance.playerLayer);
 
-            Debug.DrawRay(rayOrigin,hit.point, Color.blue);
+            Debug.DrawRay(rayOrigin, hit.point, Color.blue);
 
             if (hit)
             {
@@ -226,7 +225,7 @@ public class Lift : RayCastController
                 }
 
                 Creater.Instance.player.transform.Translate
-                    (new Vector2((stopXSpeedOnMovePassinger)?velocity.x : 0, velocity.y));
+                    (new Vector2((stopXSpeedOnMovePassinger) ? velocity.x : 0, velocity.y));
                 break;
             }
         }
@@ -234,7 +233,7 @@ public class Lift : RayCastController
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
             playerIsOn = false;
             if (Creater.Instance.player.moveSpeed != 3)
