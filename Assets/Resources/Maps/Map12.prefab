@@ -10653,6 +10653,7 @@ MonoBehaviour:
   cyclic: 0
   movePassinger: 0
   stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 5
   EaseAmount: 0
   WaitTime: 0
@@ -10824,6 +10825,7 @@ MonoBehaviour:
   cyclic: 0
   movePassinger: 0
   stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 5
   EaseAmount: 0
   WaitTime: 0
@@ -58574,6 +58576,7 @@ MonoBehaviour:
   cyclic: 0
   movePassinger: 0
   stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 3
   EaseAmount: 0
   WaitTime: 0
@@ -97078,6 +97081,7 @@ MonoBehaviour:
   cyclic: 0
   movePassinger: 0
   stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 5
   EaseAmount: 0
   WaitTime: 0
@@ -97170,6 +97174,7 @@ MonoBehaviour:
   cyclic: 0
   movePassinger: 0
   stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 3
   EaseAmount: 0
   WaitTime: 0
@@ -159672,6 +159677,7 @@ MonoBehaviour:
   cyclic: 0
   movePassinger: 0
   stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 5
   EaseAmount: 0
   WaitTime: 0

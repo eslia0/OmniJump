@@ -30,7 +30,7 @@ public class Teleport : InteractiveObject
         Creater.Instance.player.gameObject.transform.position = teleportExit.position;
         Creater.Instance.player.moveRight = moveRight; // 텔로포터 사용 후 플레이어 방향 설정
 
-        StartCoroutine(Creater.Instance.player.HoldPlayer(0.8f)); // 텔레포터 딜레이
+        Creater.Instance.player.StartCoroutine(Creater.Instance.player.HoldPlayer(0.8f)); // 텔레포터 딜레이
 
         Creater.Instance.AddScore(20);
 
