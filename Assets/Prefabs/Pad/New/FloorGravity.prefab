@@ -48,7 +48,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4665,7 +4665,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -9395,7 +9395,7 @@ GameObject:
   - component: {fileID: 4889862497598296053}
   - component: {fileID: 4889862497598296047}
   m_Layer: 10
-  m_Name: GravityFloor
+  m_Name: FloorGravity
   m_TagString: Pad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9503,6 +9503,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedee8902706ef4428519e04504c366c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles:
+  - {fileID: 2389583619905912761}
+  - {fileID: 4037368672486052024}
   direction: 3
   actionCount: 1
   destroyExplosion: 0

@@ -48,7 +48,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4665,7 +4665,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -9395,7 +9395,7 @@ GameObject:
   - component: {fileID: 8056903632796377392}
   - component: {fileID: 8056903632796377396}
   m_Layer: 10
-  m_Name: GravityCeilling
+  m_Name: CeillingGravity
   m_TagString: Pad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9503,6 +9503,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedee8902706ef4428519e04504c366c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles:
+  - {fileID: 953099037369520508}
+  - {fileID: 6810918160253374133}
   direction: 1
   actionCount: 1
   destroyExplosion: 0

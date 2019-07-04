@@ -48,7 +48,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4676,7 +4676,7 @@ GameObject:
   - component: {fileID: 8780170529077401012}
   - component: {fileID: 8780170529077401013}
   m_Layer: 9
-  m_Name: CirclePadRight
+  m_Name: RotateRight
   m_TagString: Pad
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -4729,7 +4729,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -9396,6 +9396,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c3161497ecbea4994dea7c4a824556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles:
+  - {fileID: 8780170529077401014}
+  - {fileID: 7874938940690238869}
   direction: 3
   actionCount: 1
   destroyExplosion: 1

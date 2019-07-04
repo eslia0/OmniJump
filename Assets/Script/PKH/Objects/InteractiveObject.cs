@@ -6,6 +6,9 @@ using UnityEngine;
 [System.Serializable]
 public abstract class InteractiveObject : MonoBehaviour
 {
+    [Header("파티클")]
+    [SerializeField] private ParticleSystem[] particles;
+
     /// 플레이어가 해당 오브젝트와 상호작용할 때,
     /// 오브젝트가 플레이어에게 요구하는 바라보는 방향
     [Header("탐지 방향")]
@@ -46,5 +49,26 @@ public abstract class InteractiveObject : MonoBehaviour
     private void Start()
     {
         Init();
+    }
+
+    public void SetParticle(bool set)
+    {
+        if(particles.Length > 0)
+        {
+            if (set)
+            {
+                foreach (ParticleSystem particle in particles)
+                {
+                    particle.Play();
+                }
+            }
+            else
+            {
+                foreach (ParticleSystem particle in particles)
+                {
+                    particle.Stop();
+                }
+            }
+        }
     }
 }

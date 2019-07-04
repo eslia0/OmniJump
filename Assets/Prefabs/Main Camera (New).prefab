@@ -1353,7 +1353,8 @@ GameObject:
   - component: {fileID: 6547583435572547984}
   - component: {fileID: 6547583435572547986}
   - component: {fileID: 6547583435572547985}
-  - component: {fileID: 4965178644353801661}
+  - component: {fileID: 997318047811660119}
+  - component: {fileID: 5018706058763783611}
   m_Layer: 0
   m_Name: Main Camera (New)
   m_TagString: MainCamera
@@ -1447,35 +1448,53 @@ MonoBehaviour:
   smoothZoomOut: 3
   screenSize: {x: 0, y: 0, z: 0}
   follow: 1
-  SpacingY: 0
---- !u!114 &4965178644353801661
-MonoBehaviour:
+--- !u!61 &997318047811660119
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6547583435572547987}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f87e4989c5e703e428df4339d59e2c72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showMainBehavior: 1
-  showInnerGlowBehavior: 1
-  rtFormat: 22
-  blurShader: {fileID: 4800000, guid: 1855d9636fad3914bacc4a543165c974, type: 3}
-  compositeShader: {fileID: 4800000, guid: e384de4389ba527479054baf0ddb1d3e, type: 3}
-  selectiveRenderShader: {fileID: 4800000, guid: c04b7cae8accdfb4e9c2648823ff39d7,
-    type: 3}
-  glowLayer:
-    serializedVersion: 2
-    m_Bits: 1281
-  glowType: 0
-  glowTint: {r: 1, g: 1, b: 1, a: 0}
-  blurSpreadInner: 0.42
-  blurIterations: 4
-  glowIntensityInner: 0.32
-  samples: 2
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!50 &5018706058763783611
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6547583435572547987}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6986121969501149179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,6 +1612,7 @@ MonoBehaviour:
   buttons:
   - {fileID: 1738424729}
   - {fileID: 1747617921}
+  - {fileID: 1728955599930533037}
   resultPanel: {fileID: 374601246113519301}
   resultScore: {fileID: 433824670}
 --- !u!1001 &6455557076290639708
