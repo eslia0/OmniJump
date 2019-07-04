@@ -258,7 +258,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
-  m_Color: {r: 0.07058824, g: 0.015686274, b: 0.016750593, a: 1}
+  m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -316,7 +316,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0
@@ -5045,7 +5045,7 @@ GameObject:
   - component: {fileID: 3921804144949637464}
   - component: {fileID: 3727566245130111535}
   m_Layer: 8
-  m_Name: Platform
+  m_Name: MovingPad
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5116,8 +5116,6 @@ MonoBehaviour:
   verticalRaySpacing: 0
   mode: 0
   direction: 0
-  trigger: {fileID: 4167651542340430824}
-  body: {fileID: 3746083490359576921}
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
@@ -5125,6 +5123,7 @@ MonoBehaviour:
   cyclic: 0
   movePassinger: 0
   stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 3
   WaitTime: 0
   EaseAmount: 0.1
