@@ -39,7 +39,7 @@ public class CameraFollow : MonoBehaviour
             if (Creater.Instance.player.moveRight)
             {
                 xPos = Mathf.Clamp(transform.position.x,
-                    Creater.Instance.player.transform.position.x + (SpacingX * 0.8f),
+                    Creater.Instance.player.transform.position.x + (SpacingX * 0.3f),
                     Creater.Instance.player.transform.position.x + SpacingX);
             }
             else

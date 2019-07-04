@@ -14,7 +14,8 @@ public class MissileManager : MonoBehaviour
     private Missile[] missiles;
     private List<Missile> missileList = new List<Missile>();
 
-    void OnEnable()
+
+    void Start()
     {
         missiles = transform.GetComponentsInChildren<Missile>();
         
@@ -51,7 +52,7 @@ public class MissileManager : MonoBehaviour
                 StartCoroutine(MissileUpdating());
                 break;
             }
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
 
         yield return null;
