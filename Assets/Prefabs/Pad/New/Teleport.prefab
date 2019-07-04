@@ -48,7 +48,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4746,7 +4746,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -9444,7 +9444,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -14079,7 +14079,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -18907,7 +18907,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -23507,7 +23507,7 @@ GameObject:
   - component: {fileID: 5613004356580876267}
   m_Layer: 0
   m_Name: Teleport
-  m_TagString: Untagged
+  m_TagString: Pad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23519,7 +23519,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5613004356580876052}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.009, y: 0.019, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -23538,7 +23538,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -23566,6 +23566,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e3143b2653e2c4fb2833db73c5dee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles:
+  - {fileID: 8852504617041193603}
+  - {fileID: 5613004356551435863}
+  - {fileID: 5613004356587657833}
+  - {fileID: 5613004356524089551}
+  - {fileID: 5613004356711715771}
+  - {fileID: 8852504616619163818}
+  - {fileID: 5613004356242767460}
+  - {fileID: 5613004357827164272}
+  - {fileID: 5613004355955215252}
+  - {fileID: 5613004356208773515}
   direction: 3
   actionCount: 1
   destroyExplosion: 0
@@ -23625,7 +23636,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -28242,7 +28253,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -33100,7 +33111,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -42446,11 +42457,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CircleEffect4
       objectReference: {fileID: 0}
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -42513,8 +42519,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
+      propertyPath: InitialModule.startLifetime.scalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.32549024
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
@@ -42523,29 +42534,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.32549024
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d4d225234981ea41b7a47f10ddf57ef, type: 3}
 --- !u!4 &8852504616638577958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 5613004357319186862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8852504616619163818 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
     type: 3}
   m_PrefabInstance: {fileID: 5613004357319186862}
   m_PrefabAsset: {fileID: 0}
@@ -42560,11 +42572,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CircleEffect4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
@@ -42628,6 +42635,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0.3254717
       objectReference: {fileID: 0}
@@ -42638,21 +42650,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 1.2
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d4d225234981ea41b7a47f10ddf57ef, type: 3}
+--- !u!198 &8852504617041193603 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 5613004357467599751}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8852504617021789967 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,

@@ -120,6 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12437cf116f1f2c419ab6410200dcda4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles:
+  - {fileID: 8905963775668222577}
   direction: 3
   actionCount: 1
   destroyExplosion: 0
@@ -173,7 +175,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
