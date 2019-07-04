@@ -15,19 +15,23 @@ public class CameraFollow : MonoBehaviour
 
     public bool follow = true;
     private float SpacingX;
-    [SerializeField] private float SpacingY;
+    private float SpacingY;
     private Vector2 velocity = new Vector2(0, 0);
-    //private PlayerController controller;
+
     public static Camera mainCam;
+    private BoxCollider2D b2d;
 
     void Awake()
     {
         mainCam = Camera.main;
-        //controller = player.GetComponent<PlayerController>();
+        b2d = GetComponent<BoxCollider2D>();
 
         screenSize = mainCam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)) - mainCam.ScreenToWorldPoint(new Vector3(0, 0, 0));
         SpacingX = screenSize.x * 0.3f;
         SpacingY = screenSize.y * 0.3f;
+
+        b2d.size = new Vector2(mainCam.orthographicSize + 1.5f,
+            (mainCam.orthographicSize * 2) + 1.5f);
     }
 	
 	void LateUpdate ()
@@ -39,7 +43,7 @@ public class CameraFollow : MonoBehaviour
             if (Creater.Instance.player.moveRight)
             {
                 xPos = Mathf.Clamp(transform.position.x,
-                    Creater.Instance.player.transform.position.x + (SpacingX * 0.3f),
+                    Creater.Instance.player.transform.position.x + (SpacingX * 0.8f),
                     Creater.Instance.player.transform.position.x + SpacingX);
             }
             else
@@ -57,6 +61,22 @@ public class CameraFollow : MonoBehaviour
             yPos = Mathf.SmoothDamp(transform.position.y, yPos, ref velocity.y, smoothTimeY);
 
             transform.position = new Vector3(xPos, yPos, -100);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Pad")
+        {
+            collision.GetComponent<InteractiveObject>().SetParticle(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Pad")
+        {
+            collision.GetComponent<InteractiveObject>().SetParticle(false);
         }
     }
 }
