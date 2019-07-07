@@ -15,7 +15,7 @@ public class Lift : RayCastController
     [Space(10), Header("플렛폼 모드")]
     [SerializeField] private PlatformMode mode;
     [SerializeField] private Direction direction;
-    [SerializeField] private Transform trigger;
+    private Transform trigger;
     private SpriteRenderer body;
 
     public Vector3[] globalWaypoints;
@@ -46,8 +46,10 @@ public class Lift : RayCastController
 
     private void Awake()
     {
-        if(trigger == null)
-            trigger = transform.FindChild("Trigger");
+        trigger = transform.FindChild("Trigger");
+        body = transform.FindChild("Body").GetComponent<SpriteRenderer>();
+        GetComponent<BoxCollider2D>().size = body.size * body.transform.localScale;
+
         ParticleSystem particle = trigger.GetComponent<ParticleSystem>();
 
         switch (mode)
@@ -72,11 +74,6 @@ public class Lift : RayCastController
                 Destroy(trigger.gameObject);
                 break;
         }
-
-        body = transform.FindChild("Body").GetComponent<SpriteRenderer>();
-
-        if (body != null)
-            GetComponent<BoxCollider2D>().size = body.size * body.transform.localScale;
     }
 
     public override void Start()

@@ -20,10 +20,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 17ab4347c9fa47746b413e06f5f727fc, type: 3}
-        m_Scale: {x: 1, y: 10}
+        m_Texture: {fileID: 2800000, guid: b170f094df41d4a40a4ab12994228ede, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _InvFade: 3
     m_Colors:
-    - _TintColor: {r: 0.9339623, g: 0.118948035, b: 0.118948035, a: 0.5}
+    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
