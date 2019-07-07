@@ -11,8 +11,8 @@ public class MissileManager : MonoBehaviour
     }
     public MissileState state;
 
-    private Missile[] missiles;
-    private List<Missile> missileList = new List<Missile>();
+    [SerializeField] private Missile[] missiles;
+    [SerializeField] private List<Missile> missileList = new List<Missile>();
 
 
     void Start()
@@ -37,7 +37,12 @@ public class MissileManager : MonoBehaviour
                 StartCoroutine(MissileUpdating());
                 break;
             }
-            yield return new WaitForEndOfFrame();
+
+            foreach (Missile missile in missiles)
+            {
+                missile.OffsetUp();
+            }
+            yield return null;
         }
 
         yield return null;
@@ -52,7 +57,12 @@ public class MissileManager : MonoBehaviour
                 StartCoroutine(MissileUpdating());
                 break;
             }
-            yield return new WaitForEndOfFrame();
+
+            foreach (Missile missile in missiles)
+            {
+                missile.OffsetUp();
+            }
+            yield return null;
         }
 
         yield return null;
@@ -100,7 +110,7 @@ public class MissileManager : MonoBehaviour
                 }
             }
 
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
         
         Destroy(gameObject);

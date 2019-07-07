@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: b170f094df41d4a40a4ab12994228ede
+guid: 850cd361faa44d64da59cc886da79a3c
 TextureImporter:
   fileIDToRecycleName:
-    21300000: arrow_stack_0
+    21300000: arrow_blur(vertica_shortl)_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -32,7 +32,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 0
@@ -107,13 +107,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arrow_stack_0
+      name: arrow_blur(vertica_shortl)_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 16
-        width: 52
-        height: 32
+        x: 13
+        y: 17
+        width: 39
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,7 +121,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39d8b37210f9ed842b54811e7df38d81
+      spriteID: c4847c369ed43554fabe2b9978fe9a49
       vertices: []
       indices: 
       edges: []
@@ -129,7 +129,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 99c3da41b7915744ba60c70dafb7296a
+    spriteID: ba58eee4087173546936747a28ce2cf6
     vertices: []
     indices: 
     edges: []
