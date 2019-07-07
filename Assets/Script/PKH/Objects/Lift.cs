@@ -44,12 +44,9 @@ public class Lift : RayCastController
     private Vector3 velocity;
 
 
-    private void Awake()
+    private void OnEnable()
     {
-        trigger = transform.FindChild("Trigger");
-        body = transform.FindChild("Body").GetComponent<SpriteRenderer>();
-        GetComponent<BoxCollider2D>().size = body.size * body.transform.localScale;
-
+        trigger = transform.Find("Trigger");
         ParticleSystem particle = trigger.GetComponent<ParticleSystem>();
 
         switch (mode)
@@ -79,10 +76,19 @@ public class Lift : RayCastController
     public override void Start()
     {
         base.Start();
+        body = transform.Find("Body").GetComponent<SpriteRenderer>();
+
+        if (body)
+        {
+            if (body.transform.localScale.x > 0 && body.transform.localScale.y > 0)
+            {
+                boxCollider.size = body.size * body.transform.localScale;
+            }
+        }
 
         for (int i = 0; i < globalWaypoints.Length; i++)
         {
-            globalWaypoints[i] += transform.position;
+            globalWaypoints[i] += transform.localPosition;
         }
     }
 
@@ -111,7 +117,7 @@ public class Lift : RayCastController
         switch (mode)
         {
             case PlatformMode.Active:
-                Collider2D check = Physics2D.OverlapBox(trigger.position, new Vector2(0.16f, 0.32f), 0f, Creater.Instance.playerLayer);
+                Collider2D check = Physics2D.OverlapBox(trigger.position, new Vector2(0.16f, 0.16f), 0f, Creater.Instance.playerLayer);
 
                 if (check
                 && Creater.Instance.player.interactionDirection == direction
@@ -187,8 +193,6 @@ public class Lift : RayCastController
                 if (moveOnce)
                 {
                     enabled = false;
-                    gameObject.SetActive(false);
-                    // Destroy(gameObject);
 
                     if (disabledAfterMove)
                     {
@@ -198,7 +202,7 @@ public class Lift : RayCastController
             }
         }
 
-        return newPos - transform.position;
+        return newPos - transform.localPosition;
     }
 
     private void CalculatePassengerMovement()

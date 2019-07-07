@@ -11,10 +11,10 @@ public class Creater : GameVariables
             {
                 instance = FindObjectOfType<Creater>();
 
-                if (instance == null) {
-                    GameObject creater = new GameObject("Creater");
-                    instance = creater.AddComponent<Creater>();
-                }
+                //if (instance == null) {
+                //    GameObject creater = new GameObject("Creater");
+                //    instance = creater.AddComponent<Creater>();
+                //}
             }
 
             return instance;
@@ -83,12 +83,16 @@ public class Creater : GameVariables
 
     private void Awake()
     {
+        Debug.Log("Init");
         instance = FindObjectOfType<Creater>();
+        
         if (instance != this)
         {
             Destroy(gameObject);
             return;
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -170,6 +174,7 @@ public class Creater : GameVariables
     {
         base.Disable();
         platforms = null;
+        Destroy(gameObject);
     }
 
     // 스테이지 시작시 생성

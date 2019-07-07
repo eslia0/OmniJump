@@ -5688,6 +5688,8 @@ MonoBehaviour:
   moveOnce: 1
   cyclic: 0
   movePassinger: 1
+  stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 3
   EaseAmount: 0
   WaitTime: 0

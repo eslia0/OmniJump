@@ -14,8 +14,7 @@ public class MissileManager : MonoBehaviour
     private Missile[] missiles;
     private List<Missile> missileList = new List<Missile>();
 
-
-    void Start()
+    void OnEnable()
     {
         missiles = transform.GetComponentsInChildren<Missile>();
         

@@ -172,7 +172,8 @@ public class PlayerController : MonoBehaviour
     public void Dead()
     {
         Destroy(Instantiate(deathParticle, transform.position, Quaternion.identity), 1.5f);
-
+        
+        CameraFollow.mainCam.GetComponent<CameraFollow>().follow = false;
         GetComponent<BoxCollider2D>().enabled = false;
         body.gameObject.SetActive(false);
         controller.enabled = false;
@@ -188,11 +189,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public IEnumerator HoldPlayer(float time)
+    public IEnumerator HoldPlayer(Transform exit, float time)
     {
         enabled = false; // 캐릭터 움직임 봉쇄
         body.gameObject.SetActive(false); // 캐릭터 스프라이트 제거
-        yield return new WaitForSeconds(time);
+
+        float check = 0.0f;
+        while (check < time)
+        {
+            check += Time.deltaTime;
+            transform.position = exit.position;
+            yield return null;
+        }
+
         enabled = true;
         body.gameObject.SetActive(true);
         Creater.Instance.GetPoofPrefab(transform);
