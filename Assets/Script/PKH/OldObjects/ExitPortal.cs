@@ -70,6 +70,7 @@ public class ExitPortal : MonoBehaviour
             }
 
             CameraFollow.mainCam.GetComponentInChildren<StageButtonInput>().SetResultPanel();
+            CameraFollow.mainCam.GetComponent<CameraFollow>().follow = false;
         }
         else if (SceneManagement.Instance.currentScene == "PYJTestScene")
         {

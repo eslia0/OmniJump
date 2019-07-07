@@ -44,12 +44,9 @@ public class Lift : RayCastController
     private Vector3 velocity;
 
 
-    private void Awake()
+    private void OnEnable()
     {
         trigger = transform.Find("Trigger");
-        body = transform.Find("Body").GetComponent<SpriteRenderer>();
-        GetComponent<BoxCollider2D>().size = body.size * body.transform.localScale;
-
         ParticleSystem particle = trigger.GetComponent<ParticleSystem>();
 
         switch (mode)
@@ -79,6 +76,15 @@ public class Lift : RayCastController
     public override void Start()
     {
         base.Start();
+        body = transform.Find("Body").GetComponent<SpriteRenderer>();
+
+        if (body)
+        {
+            if (body.transform.localScale.x > 0 && body.transform.localScale.y > 0)
+            {
+                boxCollider.size = body.size * body.transform.localScale;
+            }
+        }
 
         for (int i = 0; i < globalWaypoints.Length; i++)
         {

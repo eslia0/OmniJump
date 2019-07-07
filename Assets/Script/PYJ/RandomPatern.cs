@@ -7,6 +7,7 @@ public class RandomPatern : MonoBehaviour
     [SerializeField] GameObject bossObject;
     
     [SerializeField] List<GameObject> pads;
+    [SerializeField] float delay;
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +37,13 @@ public class RandomPatern : MonoBehaviour
             GameObject pad = pads[index];
             pad.SetActive(true);
 
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(delay);
 
             pads.Remove(pad);
             pad.transform.SetParent(null);
             Destroy(pad, 2.0f);
         }
+        
+        bossObject.transform.GetChild(1).GetComponent<Lift>().enabled = false;
     }
 }
