@@ -83,7 +83,6 @@ public class Creater : GameVariables
 
     private void Awake()
     {
-        Debug.Log("Init");
         instance = FindObjectOfType<Creater>();
         
         if (instance != this)
