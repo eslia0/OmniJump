@@ -13,18 +13,25 @@ public class Missile : MonoBehaviour
     
     [SerializeField] private ParticleSystem arrow;
     [SerializeField] private SpriteRenderer body;
-    [SerializeField] private EdgeCollider2D collider2D;
-    private LineRenderer lr;
-    private GameObject clone;
+    [SerializeField] private GameObject path;
+    private EdgeCollider2D collider2D;
+    [SerializeField] private Material mat;
     private float lifeTime = 0;
 
 
     private void Awake()
     {
-        lr = GetComponent<LineRenderer>();
-        lr.SetPosition(1, new Vector3(0, distance, 0));
+        //lr = GetComponent<LineRenderer>();
+        //lr.SetPosition(1, new Vector3(0, distance, 0));
 
         collider2D = GetComponent<EdgeCollider2D>();
+        collider2D.enabled = body.enabled = false;
+
+        mat = path.GetComponent<MeshRenderer>().material;
+        mat.mainTextureScale = new Vector2(1, (distance / 2) * 10);
+
+        path.transform.localScale = new Vector3(0.25f, distance, 1);
+        path.transform.localPosition = new Vector3(0, (distance / 2), 1);
 
         angle = ((int)transform.localEulerAngles.z + 360) % 360;
         arrow.startRotation = (360 - angle) * Mathf.Deg2Rad;
@@ -44,15 +51,14 @@ public class Missile : MonoBehaviour
                 direction = Direction.left;
                 break;
         }
-
-        collider2D.enabled = body.enabled = false;
     }
     
     public Missile Lunch()
     {
         // isActive = body.enabled = true;
         collider2D.enabled = body.enabled = true;
-        lr.enabled = false;
+        //lr.enabled = false;
+        path.SetActive(false);
         arrow.gameObject.SetActive(false);
 
         return this;
@@ -71,6 +77,11 @@ public class Missile : MonoBehaviour
             Creater.Instance.GetMissilePopPrefab(transform);
             Destroy(gameObject);
         }
+    }
+
+    public void OffsetUp()
+    {
+        mat.mainTextureOffset -= new Vector2(0, 3 * Time.deltaTime);
     }
 
     private void OnDrawGizmos()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pause : InteractiveObject
 {
+    private int spainge = 1;
+
     private bool playerHold = false;
     private bool playerRelease = false;
     private uint realCount;
@@ -11,6 +13,7 @@ public class Pause : InteractiveObject
     private float t = 0;
     private float timeToReachTarget = 0.5f;
     private Vector2 playerV2;
+    private Vector2 targetPos;
 
     [Space(5)]
     [Header("랜덤 방향")]
@@ -39,6 +42,8 @@ public class Pause : InteractiveObject
         {
             /// 현재 오브젝트의 회전 값을 통해 해당 리스트의 오브젝트 또한 회전시키는 함수 호출
             Creater.Instance.particleRotation.SetParticlesFourWayDirection(direction, rotationParticle);
+
+            rotationParticle[1].startRotation = 0;
         }
     }
 
@@ -58,12 +63,12 @@ public class Pause : InteractiveObject
             Creater.Instance.AddScore(20);
         } else
         {
-            Creater.Instance.player.moveSpeed = speed; // 플레이어 속도 제거
+            Creater.Instance.player.moveSpeed = speed; // 플레이어 속도 재정의
         }
 
         StartCoroutine(PlayerHolding());
 
-        if ((realCount % 2) == 0)
+        if ((realCount % 2) == 0 && realCount > 0)
         {
             direction = Creater.Instance.randomizer.RandomizeDirection();
             Creater.Instance.particleRotation.SetParticlesFourWayDirection(direction, rotationParticle);
@@ -75,20 +80,24 @@ public class Pause : InteractiveObject
     {
         while (playerHold)
         {
-            if (Vector2.Distance(transform.position, Creater.Instance.player.transform.position) > 0.01f)
+            targetPos = transform.position + new Vector3(0, 0.16f * spainge, 0);
+
+            if (Vector2.Distance(targetPos, Creater.Instance.player.transform.position) > 0.01f)
             {
                 t += Time.deltaTime / timeToReachTarget;
-                Creater.Instance.player.transform.position = Vector2.Lerp(playerV2, transform.position, t);
+                Creater.Instance.player.transform.position = 
+                    Vector2.Lerp(playerV2, targetPos, t);
             }
             else
             {
-                Creater.Instance.player.transform.position = transform.position;
+                // Debug.Log(Vector2.Distance(targetPos, Creater.Instance.player.transform.position));
+                Creater.Instance.player.transform.position = targetPos;
                 playerRelease = true;
             }
 
             if (playerRelease &&
                 FaceCompare() &&
-                actionCount > 0 &&
+                realCount > 0 &&
                 Creater.Instance.player.onClick)
             {
                 playerRelease = playerIsOn = false;
@@ -96,7 +105,7 @@ public class Pause : InteractiveObject
                 update();
             }
 
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
 
         yield return null;

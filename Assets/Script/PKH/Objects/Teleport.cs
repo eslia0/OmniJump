@@ -62,4 +62,9 @@ public class Teleport : InteractiveObject
             playerIsOn = false;
         }
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, teleportExit.position);
+    }
 }
