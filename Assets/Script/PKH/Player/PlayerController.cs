@@ -137,8 +137,14 @@ public class PlayerController : MonoBehaviour
         }
 
         if (transform.position.y >= Creater.Instance.NowPlatform.highPoint.position.y 
-            || transform.position.y <= Creater.Instance.NowPlatform.lowPoint.position.y - 1.28f)
+            || transform.position.y <= Creater.Instance.NowPlatform.lowPoint.position.y)
             Dead();
+        
+        if (isTargetJump && controller.collisioninfo.below)
+        {
+            isTargetJump = false;
+            movementController -= jumpFun.JumpMove;
+        }
     }
 
     private void RotationZ()
@@ -164,6 +170,7 @@ public class PlayerController : MonoBehaviour
         else // 타겟 점프
         {
             velocity = Vector3.zero;
+            isTargetJump = true;
             movementController -= jumpFun.JumpMove;
             movementController += jumpFun.JumpMove;
         }

@@ -130,8 +130,7 @@ public class Creater : GameVariables
         nowPlatform = FindObjectOfType<Platform>().gameObject;
         GameVariablesInit();
 
-        ExitPortal exitPortal = Object.FindObjectOfType<ExitPortal>();
-        exitPortal.Init();
+        StartCoroutine(StartTimer());
     }
 
     public void InitEndless()
@@ -239,10 +238,25 @@ public class Creater : GameVariables
 
             scoreText.SetText(this.score);
         }
+        else
+        {
+            this.score += (int)(score * scoreMultiply);
+
+            scoreText.SetText(this.score);
+        }
     }
 
     public void SetScoreMultiply(float multiply)
     {
         scoreMultiply = multiply;
+    }
+
+    IEnumerator StartTimer()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            AddScore(10);
+        }
     }
 }

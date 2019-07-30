@@ -234,7 +234,7 @@ public class Lift : RayCastController
                     playerIsOn = true;
                     Creater.Instance.player.moveSpeed = (stopXSpeedOnMovePassinger) ? 0 : 3f;
                 }
-
+                
                 Creater.Instance.player.transform.Translate
                     (new Vector2((stopXSpeedOnMovePassinger) ? velocity.x : 0, velocity.y));
                 break;

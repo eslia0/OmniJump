@@ -50,18 +50,14 @@ public class Jump : MonoBehaviour
 
     public void JumpMove()
     {
-        Creater.Instance.player.velocity = Vector3.zero;
+        // Creater.Instance.player.velocity = Vector3.zero;
 
-        transform.Translate(new Vector3(moveSpeed, upSpeed) * Time.deltaTime / movePeriod);
-        
+        // transform.Translate(new Vector3(moveSpeed, upSpeed) * Time.deltaTime / movePeriod);
+
+        Creater.Instance.player.velocity = new Vector3(moveSpeed, upSpeed) / movePeriod;
+
         upSpeed += gravity * Time.deltaTime / movePeriod;
 
         startTime += Time.deltaTime;
-
-        if (startTime >= movePeriod) // 일반 점프가 되지 않을때, 지면과 충돌치 않을때 발동
-        {
-            Creater.Instance.player.isTargetJump = false;
-            Creater.Instance.player.movementController -= Creater.Instance.player.jumpFun.JumpMove;
-        }
     }
 }
