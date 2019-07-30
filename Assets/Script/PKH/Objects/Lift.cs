@@ -15,7 +15,7 @@ public class Lift : RayCastController
     [Space(10), Header("플렛폼 모드")]
     [SerializeField] private PlatformMode mode;
     [SerializeField] private Direction direction;
-    private Transform trigger;
+    [SerializeField] private Transform trigger;
     private SpriteRenderer body;
 
     public Vector3[] globalWaypoints;
@@ -40,13 +40,14 @@ public class Lift : RayCastController
     private int fromWaypointIndex; // 멀어져야할 이전 원점
     private float nextMoveTime;
     private float percentBetweenWaypoints; // 두 점 사이의 간격 퍼센트 (0~1)
-    
+
     private Vector3 velocity;
 
 
     private void OnEnable()
     {
-        trigger = transform.Find("Trigger");
+        if (trigger == null)
+            trigger = transform.Find("Trigger");
         ParticleSystem particle = trigger.GetComponent<ParticleSystem>();
 
         switch (mode)
@@ -71,11 +72,17 @@ public class Lift : RayCastController
                 Destroy(trigger.gameObject);
                 break;
         }
+
+        body = transform.Find("Body").GetComponent<SpriteRenderer>();
+
+        if (body != null)
+            GetComponent<BoxCollider2D>().size = body.size * body.transform.localScale;
     }
 
     public override void Start()
     {
         base.Start();
+
         body = transform.Find("Body").GetComponent<SpriteRenderer>();
 
         if (body)
@@ -227,7 +234,7 @@ public class Lift : RayCastController
                     playerIsOn = true;
                     Creater.Instance.player.moveSpeed = (stopXSpeedOnMovePassinger) ? 0 : 3f;
                 }
-
+                
                 Creater.Instance.player.transform.Translate
                     (new Vector2((stopXSpeedOnMovePassinger) ? velocity.x : 0, velocity.y));
                 break;
