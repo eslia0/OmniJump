@@ -21,9 +21,6 @@ public class Missile : MonoBehaviour
 
     private void Awake()
     {
-        //lr = GetComponent<LineRenderer>();
-        //lr.SetPosition(1, new Vector3(0, distance, 0));
-
         collider2D = GetComponent<EdgeCollider2D>();
         collider2D.enabled = body.enabled = false;
 
@@ -55,9 +52,7 @@ public class Missile : MonoBehaviour
     
     public Missile Lunch()
     {
-        // isActive = body.enabled = true;
         collider2D.enabled = body.enabled = true;
-        //lr.enabled = false;
         path.SetActive(false);
         arrow.gameObject.SetActive(false);
 

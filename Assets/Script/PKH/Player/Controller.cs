@@ -28,7 +28,6 @@ public class Controller : RayCastController { // Extends RayCastController scrip
     
     public CollisionInfo collisioninfo;
 
-    private Vector3 velocityDummy = new Vector3(skinWitdth, 0, 0);
 
     public override void Start()
     {
@@ -48,7 +47,8 @@ public class Controller : RayCastController { // Extends RayCastController scrip
         }
         else
         {
-            Vector3 tmp = velocityDummy * (Creater.Instance.player.moveRight ? 1 : -1);
+            // 리프트 이용 중 정지 상태에서 x축 확인 길이
+            Vector3 tmp = new Vector3(0.0001f, 0, 0) * (Creater.Instance.player.moveRight ? 1 : -1);
             HorizontalCollision(ref tmp);
         }
 
