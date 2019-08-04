@@ -16,7 +16,6 @@ public class Rotation : InteractiveObject
 
     protected override void update()
     {
-        Creater.Instance.player.SetJump(true);
         Creater.Instance.player.rotationZ = rotateDirection;
 
         base.update();

@@ -197,11 +197,6 @@ public class Lift : RayCastController
                 if (moveOnce)
                 {
                     enabled = false;
-
-                    if (disabledAfterMove)
-                    {
-                        gameObject.SetActive(false);
-                    }
                 }
             }
         }
@@ -214,6 +209,11 @@ public class Lift : RayCastController
         yield return new WaitForEndOfFrame();
 
         Creater.Instance.player.moveSpeed = 3;
+        
+        if (disabledAfterMove)
+        {
+            gameObject.SetActive(false);
+        }
 
         yield return null;
     }
