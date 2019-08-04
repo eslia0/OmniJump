@@ -73,7 +73,9 @@ public class CameraFollow : MonoBehaviour
     {
         if (collision.tag == "Pad")
         {
-            collision.GetComponent<InteractiveObject>().SetParticle(true);
+            InteractiveObject tmp = collision.GetComponent<InteractiveObject>();
+            if (tmp != null)
+                tmp.SetParticle(true);
         }
     }
 
@@ -81,7 +83,9 @@ public class CameraFollow : MonoBehaviour
     {
         if (collision.tag == "Pad")
         {
-            collision.GetComponent<InteractiveObject>().SetParticle(false);
+            InteractiveObject tmp = collision.GetComponent<InteractiveObject>();
+            if (tmp != null)
+                tmp.SetParticle(false);
         }
     }
 }

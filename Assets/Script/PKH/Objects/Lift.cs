@@ -85,12 +85,9 @@ public class Lift : RayCastController
 
         body = transform.Find("Body").GetComponent<SpriteRenderer>();
 
-        if (body)
+        if (body && body.transform.localScale.x > 0 && body.transform.localScale.y > 0)
         {
-            if (body.transform.localScale.x > 0 && body.transform.localScale.y > 0)
-            {
-                boxCollider.size = body.size * body.transform.localScale;
-            }
+            boxCollider.size = body.size * body.transform.localScale;
         }
 
         for (int i = 0; i < globalWaypoints.Length; i++)
@@ -194,7 +191,7 @@ public class Lift : RayCastController
             {
                 if (Creater.Instance.player.moveSpeed == 0 && playerIsOn)
                 {
-                    Creater.Instance.player.moveSpeed = 3;
+                    StartCoroutine(SetPlayerAtTheEndOfFrame());
                 }
 
                 if (moveOnce)
@@ -210,6 +207,15 @@ public class Lift : RayCastController
         }
 
         return newPos - transform.localPosition;
+    }
+
+    private IEnumerator SetPlayerAtTheEndOfFrame()
+    {
+        yield return new WaitForEndOfFrame();
+
+        Creater.Instance.player.moveSpeed = 3;
+
+        yield return null;
     }
 
     private void CalculatePassengerMovement()
@@ -235,8 +241,7 @@ public class Lift : RayCastController
                     Creater.Instance.player.moveSpeed = (stopXSpeedOnMovePassinger) ? 0 : 3f;
                 }
                 
-                Creater.Instance.player.transform.Translate
-                    (new Vector2((stopXSpeedOnMovePassinger) ? velocity.x : 0, velocity.y));
+                Creater.Instance.player.transform.Translate(new Vector2((stopXSpeedOnMovePassinger) ? velocity.x : 0, velocity.y));
                 break;
             }
         }

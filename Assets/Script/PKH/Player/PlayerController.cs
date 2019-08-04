@@ -105,6 +105,13 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (transform.position.y >= Creater.Instance.NowPlatform.highPoint.position.y
+            || transform.position.y <= Creater.Instance.NowPlatform.lowPoint.position.y)
+        {
+            Dead();
+            return;
+        }
+
         //timer = Time.time;
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
@@ -135,10 +142,6 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = 0;
         }
-
-        if (transform.position.y >= Creater.Instance.NowPlatform.highPoint.position.y 
-            || transform.position.y <= Creater.Instance.NowPlatform.lowPoint.position.y)
-            Dead();
         
         if (isTargetJump && controller.collisioninfo.below)
         {
