@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,49 +47,55 @@ public class Lift : RayCastController
 
     private void OnEnable()
     {
-        if (trigger == null)
-            trigger = transform.Find("Trigger");
-        ParticleSystem particle = trigger.GetComponent<ParticleSystem>();
-
-        switch (mode)
+        try
         {
-            case PlatformMode.Active:
-                switch (direction)
-                {
-                    case Direction.right:
-                        particle.startRotation = 90 * Mathf.Deg2Rad;
-                        break;
-                    case Direction.left:
-                        particle.startRotation = 270 * Mathf.Deg2Rad;
-                        break;
-                    case Direction.down:
-                        particle.startRotation = 180 * Mathf.Deg2Rad;
-                        break;
-                }
-                particle.Play();
-                break;
-            case PlatformMode.Passive:
-                isActive = true;
-                Destroy(trigger.gameObject);
-                break;
-        }
+            if(trigger == null)
+            {
+                trigger = transform.FindChild("Trigger");
+            }
+            ParticleSystem particle = trigger.GetComponent<ParticleSystem>();
 
-        body = transform.Find("Body").GetComponent<SpriteRenderer>();
+            switch (mode)
+            {
+                case PlatformMode.Active:
+                    switch (direction)
+                    {
+                        case Direction.right:
+                            particle.startRotation = 90 * Mathf.Deg2Rad;
+                            break;
+                        case Direction.left:
+                            particle.startRotation = 270 * Mathf.Deg2Rad;
+                            break;
+                        case Direction.down:
+                            particle.startRotation = 180 * Mathf.Deg2Rad;
+                            break;
+                    }
+                    particle.Play();
+                    break;
+                case PlatformMode.Passive:
+                    isActive = true;
+                    Destroy(trigger.gameObject);
+                    break;
+            }
 
-        if (body != null)
+            if (body == null)
+                body = transform.FindChild("Body").GetComponent<SpriteRenderer>();
+
             GetComponent<BoxCollider2D>().size = body.size * body.transform.localScale;
+
+            if (body && body.transform.localScale.x > 0 && body.transform.localScale.y > 0)
+            {
+                boxCollider.size = body.size * body.transform.localScale;
+            }
+        } catch(Exception e)
+        {
+
+        }
     }
 
     public override void Start()
     {
         base.Start();
-
-        body = transform.Find("Body").GetComponent<SpriteRenderer>();
-
-        if (body && body.transform.localScale.x > 0 && body.transform.localScale.y > 0)
-        {
-            boxCollider.size = body.size * body.transform.localScale;
-        }
 
         for (int i = 0; i < globalWaypoints.Length; i++)
         {
@@ -187,6 +194,7 @@ public class Lift : RayCastController
 
             nextMoveTime = Time.time + WaitTime;
 
+            // 최종 웨이포인트 도달
             if (toWaypointIndex == globalWaypoints.Length - 1)
             {
                 if (Creater.Instance.player.moveSpeed == 0 && playerIsOn)
@@ -226,12 +234,11 @@ public class Lift : RayCastController
 
         for (int i = 0; i < verticalRayCount; i++)
         {
-            Vector2 rayOrigin = (((Creater.Instance.player.revertGravity) ? raycastOrigins.BottomLeft : raycastOrigins.TopLeft)
-                + Vector2.right * (verticalRaySpacing * i)) - new Vector2(0, rayLength);
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin,
-                ((Creater.Instance.player.revertGravity) ? Vector2.down : Vector2.up), distance, Creater.Instance.playerLayer);
+            Vector2 rayOrigin = (((Creater.Instance.player.revertGravity) ? raycastOrigins.BottomLeft : raycastOrigins.TopLeft) + Vector2.right * (verticalRaySpacing * i)) - new Vector2(0, rayLength);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, ((Creater.Instance.player.revertGravity) ? Vector2.down : Vector2.up), distance, Creater.Instance.playerLayer);
 
-            Debug.DrawRay(rayOrigin, hit.point, Color.blue);
+            Debug.DrawLine(rayOrigin, 
+                rayOrigin + (((Creater.Instance.player.revertGravity)? Vector2.down : Vector2.up) * distance), Color.blue);
 
             if (hit)
             {
