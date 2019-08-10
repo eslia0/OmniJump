@@ -934,7 +934,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3198058016977974453}
-  - component: {fileID: 3705529791539759520}
   - component: {fileID: 6007722745138463875}
   - component: {fileID: 8305867561001852555}
   m_Layer: 8
@@ -958,21 +957,6 @@ Transform:
   m_Father: {fileID: 5526848375251014496}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3705529791539759520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874653796095192175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f4046a5bccc2544ac522f60da380c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 0
-  direction: 1
-  platform: {fileID: 2282804346312455667}
 --- !u!198 &6007722745138463875
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -989,7 +973,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0
@@ -5715,7 +5699,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8191814989631425514}
-  - component: {fileID: 9217610542216714661}
   - component: {fileID: 8573824181755870788}
   - component: {fileID: 8341141147883926594}
   m_Layer: 8
@@ -5739,21 +5722,6 @@ Transform:
   m_Father: {fileID: 3850336166666071495}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9217610542216714661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2011929021318728297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f4046a5bccc2544ac522f60da380c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 0
-  direction: 3
-  platform: {fileID: 626020707357347840}
 --- !u!198 &8573824181755870788
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5770,7 +5738,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0
@@ -10576,7 +10544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3850336166666071495}
   - component: {fileID: 8877981501186231257}
-  - component: {fileID: 626020707357347840}
+  - component: {fileID: 6881813614091629347}
   m_Layer: 8
   m_Name: MovingPlatform (1)
   m_TagString: Ground
@@ -10626,37 +10594,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
---- !u!114 &626020707357347840
+--- !u!114 &6881813614091629347
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2266003603542440863}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72f77564468c2b41be479ed398b4718, type: 3}
+  m_Script: {fileID: 11500000, guid: 848cd9811efdf7f47978e193f49b8288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grounds:
     serializedVersion: 2
     m_Bits: 256
   boxCollider: {fileID: 0}
-  horizontalRayCount: 4
-  verticalRayCount: 8
+  horizontalRayCount: 6
+  verticalRayCount: 6
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
+  mode: 0
+  direction: 3
+  trigger: {fileID: 0}
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: -1.6, z: 0}
-  isActive: 1
+  - {x: 0, y: -1.28, z: 0}
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 7
-  EaseAmount: 0
   WaitTime: 0
-  percentBetweenWaypoints: 0
+  EaseAmount: 0
 --- !u!1 &3046334100980485864
 GameObject:
   m_ObjectHideFlags: 0
@@ -10867,7 +10838,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5193135545422687226}
   - component: {fileID: 6332423599966705638}
-  - component: {fileID: 7616767271786921640}
+  - component: {fileID: 142437407269147712}
   m_Layer: 8
   m_Name: MovingPlatform
   m_TagString: Ground
@@ -10917,37 +10888,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
---- !u!114 &7616767271786921640
+--- !u!114 &142437407269147712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5733033615111257830}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72f77564468c2b41be479ed398b4718, type: 3}
+  m_Script: {fileID: 11500000, guid: 848cd9811efdf7f47978e193f49b8288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grounds:
     serializedVersion: 2
     m_Bits: 256
   boxCollider: {fileID: 0}
-  horizontalRayCount: 4
-  verticalRayCount: 8
+  horizontalRayCount: 6
+  verticalRayCount: 6
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
+  mode: 0
+  direction: 1
+  trigger: {fileID: 0}
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 1.6, z: 0}
-  isActive: 1
+  - {x: 0, y: 1.28, z: 0}
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 7
-  EaseAmount: 0
   WaitTime: 0
-  percentBetweenWaypoints: 0
+  EaseAmount: 0
 --- !u!1 &5794206852110290174
 GameObject:
   m_ObjectHideFlags: 0
@@ -11037,7 +11011,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5526848375251014496}
   - component: {fileID: 8225902942712052172}
-  - component: {fileID: 2282804346312455667}
+  - component: {fileID: 1701185814496880283}
   m_Layer: 8
   m_Name: MovingPlatform (2)
   m_TagString: Ground
@@ -11087,37 +11061,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
---- !u!114 &2282804346312455667
+--- !u!114 &1701185814496880283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5861076814389127807}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72f77564468c2b41be479ed398b4718, type: 3}
+  m_Script: {fileID: 11500000, guid: 848cd9811efdf7f47978e193f49b8288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grounds:
     serializedVersion: 2
     m_Bits: 256
   boxCollider: {fileID: 0}
-  horizontalRayCount: 4
-  verticalRayCount: 8
+  horizontalRayCount: 6
+  verticalRayCount: 6
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
+  mode: 0
+  direction: 1
+  trigger: {fileID: 0}
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 1.6, z: 0}
-  isActive: 1
+  - {x: 0, y: 1.28, z: 0}
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 7
-  EaseAmount: 0
   WaitTime: 0
-  percentBetweenWaypoints: 0
+  EaseAmount: 0
 --- !u!1 &6923017053808271244
 GameObject:
   m_ObjectHideFlags: 0
@@ -11387,7 +11364,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2949312917257539843}
-  - component: {fileID: 1320800921036524011}
   - component: {fileID: 5571417762871698703}
   - component: {fileID: 8847936072677874457}
   m_Layer: 8
@@ -11411,21 +11387,6 @@ Transform:
   m_Father: {fileID: 1458155881312861638}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1320800921036524011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8554331058907107584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f4046a5bccc2544ac522f60da380c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 0
-  direction: 3
-  platform: {fileID: 8002678698944535370}
 --- !u!198 &5571417762871698703
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -11442,7 +11403,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0
@@ -16247,7 +16208,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6366468500700990806}
-  - component: {fileID: 3129246966386024637}
   - component: {fileID: 5468180492181493830}
   - component: {fileID: 4187399547528919393}
   m_Layer: 8
@@ -16271,21 +16231,6 @@ Transform:
   m_Father: {fileID: 5193135545422687226}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3129246966386024637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8831533394400951892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f4046a5bccc2544ac522f60da380c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 0
-  direction: 1
-  platform: {fileID: 7616767271786921640}
 --- !u!198 &5468180492181493830
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -16302,7 +16247,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0
@@ -21029,7 +20974,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1458155881312861638}
   - component: {fileID: 3675837109166163940}
-  - component: {fileID: 8002678698944535370}
+  - component: {fileID: 9023946926676206212}
   m_Layer: 8
   m_Name: MovingPlatform (3)
   m_TagString: Ground
@@ -21079,37 +21024,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
---- !u!114 &8002678698944535370
+--- !u!114 &9023946926676206212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8846683357252017955}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72f77564468c2b41be479ed398b4718, type: 3}
+  m_Script: {fileID: 11500000, guid: 848cd9811efdf7f47978e193f49b8288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grounds:
     serializedVersion: 2
     m_Bits: 256
   boxCollider: {fileID: 0}
-  horizontalRayCount: 4
-  verticalRayCount: 8
+  horizontalRayCount: 6
+  verticalRayCount: 6
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
+  mode: 0
+  direction: 3
+  trigger: {fileID: 0}
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: -1.6, z: 0}
-  isActive: 1
+  - {x: 0, y: -1.28, z: 0}
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 7
-  EaseAmount: 0
   WaitTime: 0
-  percentBetweenWaypoints: 0
+  EaseAmount: 0
 --- !u!1001 &8430788132290637474
 PrefabInstance:
   m_ObjectHideFlags: 0
