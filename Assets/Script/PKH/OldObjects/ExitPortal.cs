@@ -64,7 +64,7 @@ public class ExitPortal : MonoBehaviour
             CameraFollow.mainCam.GetComponentInChildren<StageButtonInput>().SetResultPanel();
             CameraFollow.mainCam.GetComponent<CameraFollow>().follow = false;
         }
-        else if (SceneManagement.Instance.currentScene == "PYJTestScene")
+        else if (SceneManagement.Instance.currentScene == "EndlessScene")
         {
             Creater.Instance.NextStage(1);
         }

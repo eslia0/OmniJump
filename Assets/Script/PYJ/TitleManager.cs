@@ -236,7 +236,7 @@ public class TitleManager : MonoBehaviour
     // 엔드리스 시작
     private void StartEndless()
     {
-        SceneManagement.Instance.LoadScene("PYJTestScene");
+        SceneManagement.Instance.LoadScene("EndlessScene");
     }
 
     // 각 레벨 선택으로 이동

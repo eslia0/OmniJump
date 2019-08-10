@@ -98,7 +98,7 @@ public class Creater : GameVariables
 
     private void Start()
     {
-        if (SceneManagement.Instance.currentScene == "PYJTestScene")
+        if (SceneManagement.Instance.currentScene == "EndlessScene")
         {
             InitEndless();
             int num = Random.Range(0, 3);
@@ -182,7 +182,7 @@ public class Creater : GameVariables
     // 스테이지 시작시 생성
     public void StartStage(Scene scene, LoadSceneMode mode)
     {
-        if (SceneManagement.Instance.currentScene == "PYJTestScene")
+        if (SceneManagement.Instance.currentScene == "EndlessScene")
         {
             if(level == 4 || level == 9 || level == 15|| level == 25)
             {
@@ -228,22 +228,15 @@ public class Creater : GameVariables
         {
             SceneManager.LoadScene("StageScene");
         }
-        else if (SceneManagement.Instance.currentScene == "PYJTestScene")
+        else if (SceneManagement.Instance.currentScene == "EndlessScene")
         {
-            if (testing)
-            {
-                SceneManager.LoadScene("MapTest");
-            }
-            else
-            {
-                SceneManager.LoadScene("PYJTestScene");
-            }
+            SceneManager.LoadScene("EndlessScene");
         }
     }
 
     public void AddScore(int score)
     {
-        if (SceneManagement.Instance.currentScene == "PYJTestScene" && score <= 100 && score > 0)
+        if (SceneManagement.Instance.currentScene == "EndlessScene" && score <= 100 && score > 0)
         {
             this.score += (int)(score * scoreMultiply);
 
