@@ -35,6 +35,9 @@ public class Creater : GameVariables
     public GameObject nowPlatform;
     public Platform NowPlatform {
         get {
+            if (!nowPlatform)
+                nowPlatform = FindObjectOfType<Platform>().gameObject;
+
             return nowPlatform.GetComponent<Platform>();
         }
     }
@@ -59,7 +62,6 @@ public class Creater : GameVariables
             if (m_scoreText == null)
             {
                 m_scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
-                SetScoreMultiply(1f);
             }
 
             return m_scoreText;
@@ -104,6 +106,7 @@ public class Creater : GameVariables
             nowPlatform = Instantiate(platforms[(level - 1) * 3 + num]);
 
             scoreText.SetText(score);
+            SetScoreMultiply(1f);
         }
         else if (SceneManagement.Instance.currentScene == "StageScene")
         {
@@ -130,6 +133,7 @@ public class Creater : GameVariables
         nowPlatform = FindObjectOfType<Platform>().gameObject;
         GameVariablesInit();
 
+        SetScoreMultiply(0f);
         StartCoroutine(StartTimer());
     }
 
@@ -154,7 +158,7 @@ public class Creater : GameVariables
     public void InitStage(int stageNum)
     {
         score = 0;
-        maxPlatform = 40;
+        maxPlatform = 39;
         SceneManager.sceneLoaded += StartStage;
         GameVariablesInit();
 
@@ -180,9 +184,16 @@ public class Creater : GameVariables
     {
         if (SceneManagement.Instance.currentScene == "PYJTestScene")
         {
-            int num = Random.Range(0, 3);
+            if(level == 4 || level == 9 || level == 15|| level == 25)
+            {
+                nowPlatform = Instantiate(platforms[(level - 1) * 3]);
+            }
+            else
+            {
+                int num = Random.Range(0, 3);
 
-            nowPlatform = Instantiate(platforms[(level - 1) * 3 + num]);
+                nowPlatform = Instantiate(platforms[(level - 1) * 3 + num]);
+            }
 
             scoreText.SetText(score);
         }
@@ -256,7 +267,8 @@ public class Creater : GameVariables
         while (true)
         {
             yield return new WaitForSeconds(1.0f);
-            AddScore(10);
+            score += 10;
+            scoreText.SetText(this.score);
         }
     }
 }

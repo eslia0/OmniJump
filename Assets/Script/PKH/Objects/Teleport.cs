@@ -64,7 +64,10 @@ public class Teleport : InteractiveObject
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, teleportExit.position);
+        if (teleportExit)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, teleportExit.position);
+        }
     }
 }

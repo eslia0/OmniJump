@@ -1367,7 +1367,7 @@ GameObject:
   - component: {fileID: 1750}
   - component: {fileID: 1937}
   m_Layer: 0
-  m_Name: Map26
+  m_Name: Map14
   m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1758,6 +1758,7 @@ MonoBehaviour:
   cyclic: 0
   movePassinger: 1
   stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 3
   EaseAmount: 0
   WaitTime: 0
@@ -1934,8 +1935,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839291529516516248}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 55.04, y: -3.2, z: -0.96}
-  m_LocalScale: {x: 18, y: 12, z: 1}
+  m_LocalPosition: {x: 56.32, y: -2.88, z: -0.96}
+  m_LocalScale: {x: 26, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 5768089967425974784}
   m_RootOrder: 6
@@ -2313,6 +2314,7 @@ MonoBehaviour:
   cyclic: 0
   movePassinger: 1
   stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 3
   EaseAmount: 0
   WaitTime: 0

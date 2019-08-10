@@ -44,6 +44,6 @@ public class RandomPatern : MonoBehaviour
             Destroy(pad, 2.0f);
         }
         
-        bossObject.transform.GetChild(1).GetComponent<Lift>().enabled = false;
+        bossObject.transform.Find("BossPad").GetComponent<Lift>().enabled = false;
     }
 }

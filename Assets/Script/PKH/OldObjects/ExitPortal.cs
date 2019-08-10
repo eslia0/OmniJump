@@ -41,16 +41,8 @@ public class ExitPortal : MonoBehaviour
 
                 player.GetComponent<Animator>().enabled = true;
 
-                if (Creater.Instance.player.revertGravity)
-                {
-                    player.position = transform.position + Vector3.up * 0.64f;
-                    player.GetComponent<Animator>().SetBool("upsidedown", true);
-                }
-                else
-                {
-                    player.position = transform.position - Vector3.up * 0.64f;
-                    player.GetComponent<Animator>().SetBool("upsidedown", false);
-                }
+                player.position = transform.position + Vector3.up * 0.64f * (Creater.Instance.player.revertGravity ? 1 : -1);
+                player.GetComponent<Animator>().SetBool("upsidedown", Creater.Instance.player.revertGravity);
                 player.GetComponent<Animator>().SetTrigger("Exit");
 
                 break;
