@@ -4676,7 +4676,7 @@ GameObject:
   - component: {fileID: 8780170529077401012}
   - component: {fileID: 8780170529077401013}
   m_Layer: 9
-  m_Name: RotateRight
+  m_Name: RotatePad(Right)
   m_TagString: Pad
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -9403,6 +9403,9 @@ MonoBehaviour:
   actionCount: 1
   destroyExplosion: 1
   rotateDirection: 1
+  canJump: 0
+  nextTarget: {fileID: 0}
+  jumpDuration: 1
 --- !u!199 &8780170529077401013
 ParticleSystemRenderer:
   serializedVersion: 6

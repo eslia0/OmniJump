@@ -4676,7 +4676,7 @@ GameObject:
   - component: {fileID: 3224036366468950098}
   - component: {fileID: 3224036366468950101}
   m_Layer: 9
-  m_Name: RotLeft
+  m_Name: RotatePad(Left)
   m_TagString: Pad
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

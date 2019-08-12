@@ -5116,6 +5116,7 @@ MonoBehaviour:
   verticalRaySpacing: 0
   mode: 0
   direction: 0
+  trigger: {fileID: 4167651542340430824}
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}

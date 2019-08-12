@@ -47,9 +47,9 @@ public class PlayerController : MonoBehaviour
 
     // 이동
     [Header("이동"), Space(10)]
+    public bool moveRight = true;
     public float moveSpeed = 3.2f;
     [HideInInspector] public bool onClick;
-    [HideInInspector] public bool moveRight = true;
     [HideInInspector] public Vector3 slowVelocity;
     public Vector3 velocity;
     private float velocityXSmoothing;
