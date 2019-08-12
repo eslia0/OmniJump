@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
         {
             CameraFollow.mainCam.transform.GetComponentInChildren<StageButtonInput>().SetResultPanel();
         }
-        else if(SceneManagement.Instance.currentScene == "PYJTestScene")
+        else if(SceneManagement.Instance.currentScene == "EndlessScene")
         {
             CameraFollow.mainCam.transform.GetComponentInChildren<ButtonInput>().SetResultPanel();
         }

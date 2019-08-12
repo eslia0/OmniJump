@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 970788190146566812}
   - component: {fileID: 1335350558832977536}
-  - component: {fileID: 3232852870900813774}
+  - component: {fileID: 3209459353532416193}
   m_Layer: 8
   m_Name: MovingPlatform
   m_TagString: Ground
@@ -90,37 +90,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
---- !u!114 &3232852870900813774
+--- !u!114 &3209459353532416193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785460621282856832}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72f77564468c2b41be479ed398b4718, type: 3}
+  m_Script: {fileID: 11500000, guid: 848cd9811efdf7f47978e193f49b8288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grounds:
     serializedVersion: 2
     m_Bits: 256
   boxCollider: {fileID: 0}
-  horizontalRayCount: 4
+  horizontalRayCount: 8
   verticalRayCount: 8
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
+  mode: 2
+  direction: 0
+  trigger: {fileID: 0}
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: -1.92, z: 0}
-  isActive: 1
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 7
-  EaseAmount: 0
   WaitTime: 0
-  percentBetweenWaypoints: 0
+  EaseAmount: 0
 --- !u!1 &1834526960687609150
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,7 +830,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2104142731024809008}
-  - component: {fileID: 7927468381834531291}
   - component: {fileID: 1048132390724692256}
   - component: {fileID: 9184517801331427335}
   m_Layer: 8
@@ -851,21 +853,6 @@ Transform:
   m_Father: {fileID: 970788190146566812}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7927468381834531291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4604577813692911410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f4046a5bccc2544ac522f60da380c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 3
-  direction: 0
-  platform: {fileID: 3232852870900813774}
 --- !u!198 &1048132390724692256
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -882,7 +869,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0
@@ -5958,7 +5945,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4882063045525517979}
-  - component: {fileID: 5240771721884212635}
   - component: {fileID: 8666635707758987839}
   - component: {fileID: 4153966932396353152}
   m_Layer: 8
@@ -5982,21 +5968,6 @@ Transform:
   m_Father: {fileID: 5686271749540338899}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5240771721884212635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7467546952443399676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f4046a5bccc2544ac522f60da380c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 3
-  direction: 0
-  platform: {fileID: 7831792857690083613}
 --- !u!198 &8666635707758987839
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -6013,7 +5984,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0
@@ -10740,7 +10711,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5686271749540338899}
   - component: {fileID: 2849702854934589544}
-  - component: {fileID: 7831792857690083613}
+  - component: {fileID: 5599032116055105614}
   m_Layer: 8
   m_Name: MovingPlatform (1)
   m_TagString: Ground
@@ -10790,37 +10761,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
---- !u!114 &7831792857690083613
+--- !u!114 &5599032116055105614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7941191981272993643}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72f77564468c2b41be479ed398b4718, type: 3}
+  m_Script: {fileID: 11500000, guid: 848cd9811efdf7f47978e193f49b8288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grounds:
     serializedVersion: 2
     m_Bits: 256
   boxCollider: {fileID: 0}
-  horizontalRayCount: 4
+  horizontalRayCount: 8
   verticalRayCount: 8
   horiaontalRaySpacing: 0
   verticalRaySpacing: 0
+  mode: 2
+  direction: 0
+  trigger: {fileID: 0}
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 1.92, z: 0}
-  isActive: 1
   moveOnce: 1
   cyclic: 0
   movePassinger: 0
+  stopXSpeedOnMovePassinger: 0
+  disabledAfterMove: 0
   speed: 7
-  EaseAmount: 0
   WaitTime: 0
-  percentBetweenWaypoints: 0
+  EaseAmount: 0
 --- !u!1 &8058056956525353034
 GameObject:
   m_ObjectHideFlags: 0

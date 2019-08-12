@@ -32,6 +32,7 @@ public class Missile : MonoBehaviour
 
         angle = ((int)transform.localEulerAngles.z + 360) % 360;
         arrow.startRotation = (360 - angle) * Mathf.Deg2Rad;
+        
         switch (angle)
         {
             case 0:
@@ -76,7 +77,10 @@ public class Missile : MonoBehaviour
 
     public void OffsetUp()
     {
-        mat.mainTextureOffset -= new Vector2(0, 3 * Time.deltaTime);
+        if (mat)
+        {
+            mat.mainTextureOffset -= new Vector2(0, 3 * Time.deltaTime);
+        }
     }
 
     private void OnDrawGizmos()

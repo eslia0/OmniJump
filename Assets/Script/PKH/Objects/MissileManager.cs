@@ -39,7 +39,10 @@ public class MissileManager : MonoBehaviour
 
             foreach (Missile missile in missiles)
             {
-                missile.OffsetUp();
+                if (missile)
+                {
+                    missile.OffsetUp();
+                }
             }
             yield return null;
         }

@@ -41,16 +41,8 @@ public class ExitPortal : MonoBehaviour
 
                 player.GetComponent<Animator>().enabled = true;
 
-                if (Creater.Instance.player.revertGravity)
-                {
-                    player.position = transform.position + Vector3.up * 0.64f;
-                    player.GetComponent<Animator>().SetBool("upsidedown", true);
-                }
-                else
-                {
-                    player.position = transform.position - Vector3.up * 0.64f;
-                    player.GetComponent<Animator>().SetBool("upsidedown", false);
-                }
+                player.position = transform.position + Vector3.up * 0.64f * (Creater.Instance.player.revertGravity ? 1 : -1);
+                player.GetComponent<Animator>().SetBool("upsidedown", Creater.Instance.player.revertGravity);
                 player.GetComponent<Animator>().SetTrigger("Exit");
 
                 break;
@@ -72,7 +64,7 @@ public class ExitPortal : MonoBehaviour
             CameraFollow.mainCam.GetComponentInChildren<StageButtonInput>().SetResultPanel();
             CameraFollow.mainCam.GetComponent<CameraFollow>().follow = false;
         }
-        else if (SceneManagement.Instance.currentScene == "PYJTestScene")
+        else if (SceneManagement.Instance.currentScene == "EndlessScene")
         {
             Creater.Instance.NextStage(1);
         }

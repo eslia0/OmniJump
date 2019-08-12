@@ -51,7 +51,7 @@ public class Lift : RayCastController
         {
             if(trigger == null)
             {
-                trigger = transform.FindChild("Trigger");
+                trigger = transform.Find("Trigger");
             }
             ParticleSystem particle = trigger.GetComponent<ParticleSystem>();
 
@@ -79,7 +79,7 @@ public class Lift : RayCastController
             }
 
             if (body == null)
-                body = transform.FindChild("Body").GetComponent<SpriteRenderer>();
+                body = transform.Find("Body").GetComponent<SpriteRenderer>();
 
             GetComponent<BoxCollider2D>().size = body.size * body.transform.localScale;
 
@@ -205,6 +205,11 @@ public class Lift : RayCastController
                 if (moveOnce)
                 {
                     enabled = false;
+                }
+
+                if (disabledAfterMove)
+                {
+                    gameObject.SetActive(false);
                 }
             }
         }
