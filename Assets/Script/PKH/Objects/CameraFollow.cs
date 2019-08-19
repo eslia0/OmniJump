@@ -38,7 +38,7 @@ public class CameraFollow : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.R))
         {
-            SceneManagement.Instance.LoadScene("MapTest_new");
+            SceneManagement.Instance.LoadScene("MapTest");
         }
         
         if (follow)

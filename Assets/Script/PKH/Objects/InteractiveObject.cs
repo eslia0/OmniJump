@@ -15,7 +15,7 @@ public abstract class InteractiveObject : MonoBehaviour
     [SerializeField] protected Direction direction;
 
     [Header("동작 가능 횟수")]
-    [SerializeField] protected uint actionCount = 1;
+    [SerializeField] public uint actionCount = 1;
     [SerializeField] private bool destroyExplosion;
     
     protected bool playerIsOn;

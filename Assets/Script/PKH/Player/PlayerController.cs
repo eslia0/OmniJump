@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
     private int currentAngle = 0;
     private int increaseAmount = 0;
 
+    private bool isDead = false;
     private Animator ani;
 
 
@@ -182,7 +183,8 @@ public class PlayerController : MonoBehaviour
     public void Dead()
     {
         Destroy(Instantiate(deathParticle, transform.position, Quaternion.identity), 1.5f);
-        
+
+        isDead = true;
         CameraFollow.mainCam.GetComponent<CameraFollow>().follow = false;
         GetComponent<BoxCollider2D>().enabled = false;
         body.gameObject.SetActive(false);
@@ -212,8 +214,11 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        enabled = true;
-        body.gameObject.SetActive(true);
-        Creater.Instance.GetPoofPrefab(transform);
+        if (!isDead)
+        {
+            enabled = true;
+            body.gameObject.SetActive(true);
+            Creater.Instance.GetPoofPrefab(transform);
+        }
     }
 }

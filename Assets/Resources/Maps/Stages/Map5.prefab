@@ -20264,7 +20264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highPoint: {fileID: 0}
   lowPoint: {fileID: 0}
-  stageText: You die when hit the spike.
+  stageText: You'll die when hit the spike.
 --- !u!1 &8653468740755646290
 GameObject:
   m_ObjectHideFlags: 0
@@ -20311,7 +20311,7 @@ Tilemap:
   - first: {x: 16, y: -1, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -20320,7 +20320,7 @@ Tilemap:
   - first: {x: 26, y: -1, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -20329,7 +20329,7 @@ Tilemap:
   - first: {x: 36, y: -1, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -20338,7 +20338,7 @@ Tilemap:
   - first: {x: 46, y: -1, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -20349,8 +20349,10 @@ Tilemap:
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: 8e31b50f3911eaf41ac66fd1bceceb8c, type: 2}
   m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 4
-    m_Data: {fileID: 21300000, guid: b20654182ab2c8e4c83bdda9a747542b, type: 3}
+    m_Data: {fileID: 21300000, guid: 690f4e5ed88acc642836ca155f25f7c3, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 4
     m_Data:

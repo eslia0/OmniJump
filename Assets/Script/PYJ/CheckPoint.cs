@@ -6,7 +6,7 @@ public class CheckPoint : MonoBehaviour
     [SerializeField] Direction direction;
     bool isChecked;
     PlayerController m_player;
-    [SerializeField] InteractionManager interactObject;
+    [SerializeField] InteractiveObject interactObject;
     [SerializeField] bool checkType;
 
     Transform returnPoint;
@@ -71,7 +71,7 @@ public class CheckPoint : MonoBehaviour
 
     // interactObject : 오브젝트의 사용됨을 판별
     // checkType : 플레이어가 정지된 뒤에 체크하는지 / 플레이어가 이동한 뒤 특정 위치로 돌아오는지
-    public IEnumerator SetPoint(InteractionManager interactObject, bool checkType)
+    public IEnumerator SetPoint(InteractiveObject interactObject, bool checkType)
     {
         isChecked = false;
 
@@ -83,14 +83,14 @@ public class CheckPoint : MonoBehaviour
             }
 
 
-            while (interactObject.Input != 0)
+            while (interactObject.actionCount != 0)
             {
                 yield return null;
             }
         }
         else
         {
-            while (interactObject.Input != 0)
+            while (interactObject.actionCount != 0)
             {
                 if (Vector3.Distance(m_player.transform.position, transform.position) < 0.32f)
                 {

@@ -24668,7 +24668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: []
-  direction: 3
+  direction: 2
   actionCount: 1
   destroyExplosion: 1
   randomDirection: 0
@@ -29651,7 +29651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: []
-  direction: 3
+  direction: 1
   actionCount: 1
   destroyExplosion: 1
   randomDirection: 0
@@ -29725,7 +29725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: []
-  direction: 3
+  direction: 0
   actionCount: 1
   destroyExplosion: 1
   randomDirection: 0
@@ -68135,6 +68135,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5082072637584122040, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
+        type: 3}
+      propertyPath: cameraStopArea.x
+      value: -3.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5082072637584122040, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
+        type: 3}
+      propertyPath: cameraStopArea.y
+      value: -0.13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f62028f1456a1146b9dfe893cbb5ec4, type: 3}

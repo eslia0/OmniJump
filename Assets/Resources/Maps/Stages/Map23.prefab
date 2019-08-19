@@ -5291,7 +5291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: []
-  direction: 3
+  direction: 1
   actionCount: 1
   destroyExplosion: 1
   randomDirection: 0
@@ -14862,7 +14862,7 @@ Tilemap:
   - first: {x: 26, y: 4, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -14871,7 +14871,7 @@ Tilemap:
   - first: {x: 36, y: 4, z: 0}
     second:
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -14882,8 +14882,10 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 4d046895f1266794b80751653fab4912, type: 2}
   m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 2
-    m_Data: {fileID: 21300000, guid: cce795406df9c0745961115bc2e9631a, type: 3}
+    m_Data: {fileID: 21300000, guid: a8227cff07c78bc4a9fec4aeb603742e, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 2
     m_Data:
@@ -39007,7 +39009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: []
-  direction: 3
+  direction: 1
   actionCount: 1
   destroyExplosion: 1
   randomDirection: 0
@@ -39186,6 +39188,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 759124583955645479, guid: 067d6c0b0693cd9438eb6ed658d0e198,
+        type: 3}
+      propertyPath: state
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d6c0b0693cd9438eb6ed658d0e198, type: 3}
 --- !u!4 &2504448764820050324 stripped
@@ -39319,6 +39326,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5082072637584122040, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
+        type: 3}
+      propertyPath: cameraStopArea.y
+      value: 0.49
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f62028f1456a1146b9dfe893cbb5ec4, type: 3}

@@ -197,7 +197,7 @@ public class Lift : RayCastController
             // 최종 웨이포인트 도달
             if (toWaypointIndex == globalWaypoints.Length - 1)
             {
-                if (Creater.Instance.player.moveSpeed == 0 && playerIsOn)
+                if (!cyclic && Creater.Instance.player.moveSpeed == 0 && playerIsOn)
                 {
                     StartCoroutine(SetPlayerAtTheEndOfFrame());
                 }
@@ -255,6 +255,14 @@ public class Lift : RayCastController
                 
                 Creater.Instance.player.transform.Translate(new Vector2((stopXSpeedOnMovePassinger) ? velocity.x : 0, velocity.y));
                 break;
+            }
+            else
+            {
+                if (playerIsOn)
+                {
+                    playerIsOn = false;
+                    StartCoroutine(SetPlayerAtTheEndOfFrame());
+                }
             }
         }
     }

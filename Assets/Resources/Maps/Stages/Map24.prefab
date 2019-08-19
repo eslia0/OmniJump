@@ -15021,7 +15021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: []
-  direction: 3
+  direction: 1
   actionCount: 1
   destroyExplosion: 0
   nextTarget: {fileID: 0}
@@ -15347,7 +15347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: []
-  direction: 3
+  direction: 1
   actionCount: 1
   destroyExplosion: 0
   nextTarget: {fileID: 0}

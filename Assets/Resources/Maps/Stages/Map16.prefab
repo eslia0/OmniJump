@@ -14474,7 +14474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: []
-  direction: 0
+  direction: 2
   actionCount: 1
   destroyExplosion: 1
   moveRight: 1

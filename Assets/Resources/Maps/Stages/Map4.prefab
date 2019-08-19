@@ -20343,21 +20343,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CheckPoint (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
-        type: 3}
-      propertyPath: checkType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
-        type: 3}
-      propertyPath: direction
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
-        type: 3}
-      propertyPath: interactObject
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7292331081770193454, guid: 45ea14105cba1b346bfdc160f912dfa1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20423,6 +20408,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.64
       objectReference: {fileID: 0}
+    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
+        type: 3}
+      propertyPath: checkType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
+        type: 3}
+      propertyPath: direction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
+        type: 3}
+      propertyPath: interactObject
+      value: 
+      objectReference: {fileID: 4007868204758370439}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ea14105cba1b346bfdc160f912dfa1, type: 3}
 --- !u!4 &7525762438812280852 stripped
@@ -20442,16 +20442,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CheckPoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
-        type: 3}
-      propertyPath: interactObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
-        type: 3}
-      propertyPath: checkType
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7292331081770193454, guid: 45ea14105cba1b346bfdc160f912dfa1,
         type: 3}
@@ -20518,6 +20508,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.64
       objectReference: {fileID: 0}
+    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
+        type: 3}
+      propertyPath: interactObject
+      value: 
+      objectReference: {fileID: 3590290662577326927}
+    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
+        type: 3}
+      propertyPath: checkType
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ea14105cba1b346bfdc160f912dfa1, type: 3}
 --- !u!4 &9025692035057556285 stripped
@@ -20537,21 +20537,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CheckPoint (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
-        type: 3}
-      propertyPath: checkType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
-        type: 3}
-      propertyPath: direction
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
-        type: 3}
-      propertyPath: interactObject
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7292331081770193454, guid: 45ea14105cba1b346bfdc160f912dfa1,
         type: 3}
@@ -20618,6 +20603,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.64
       objectReference: {fileID: 0}
+    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
+        type: 3}
+      propertyPath: checkType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
+        type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
+        type: 3}
+      propertyPath: interactObject
+      value: 
+      objectReference: {fileID: 116852253202586316}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ea14105cba1b346bfdc160f912dfa1, type: 3}
 --- !u!4 &8919948383755164580 stripped
@@ -20637,21 +20637,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CheckPoint (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
-        type: 3}
-      propertyPath: checkType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
-        type: 3}
-      propertyPath: direction
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
-        type: 3}
-      propertyPath: interactObject
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7292331081770193454, guid: 45ea14105cba1b346bfdc160f912dfa1,
         type: 3}
@@ -20718,6 +20703,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.64
       objectReference: {fileID: 0}
+    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
+        type: 3}
+      propertyPath: checkType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
+        type: 3}
+      propertyPath: direction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224662808438981681, guid: 45ea14105cba1b346bfdc160f912dfa1,
+        type: 3}
+      propertyPath: interactObject
+      value: 
+      objectReference: {fileID: 3993613976259786381}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ea14105cba1b346bfdc160f912dfa1, type: 3}
 --- !u!4 &4042036085180435342 stripped

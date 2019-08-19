@@ -134,7 +134,7 @@ public class Creater : GameVariables
         GameVariablesInit();
 
         SetScoreMultiply(0f);
-        StartCoroutine(StartTimer());
+        // StartCoroutine(StartTimer());
     }
 
     public void InitEndless()
@@ -236,13 +236,13 @@ public class Creater : GameVariables
 
     public void AddScore(int score)
     {
-        if (SceneManagement.Instance.currentScene == "EndlessScene" && score <= 100 && score > 0)
+        if (SceneManagement.Instance.currentScene == "EndlessScene")
         {
             this.score += (int)(score * scoreMultiply);
 
             scoreText.SetText(this.score);
         }
-        else
+        else if (SceneManagement.Instance.currentScene == "MapTest")
         {
             this.score += (int)(score * scoreMultiply);
 

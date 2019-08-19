@@ -4,18 +4,14 @@ using UnityEngine.Advertisements;
 using GoogleMobileAds.Api;
 using System;
 
-public class UnityAdsHelper : MonoBehaviour
+public class UnityAdsHelper
 {
     private static UnityAdsHelper instance;
     public static UnityAdsHelper Instance {
         get {
-            instance = FindObjectOfType<UnityAdsHelper>();
-
             if (instance == null)
             {
-                GameObject unityAdsHelper = new GameObject();
-                unityAdsHelper.name = "UnityAdsHelper";
-                instance = unityAdsHelper.AddComponent<UnityAdsHelper>();
+                instance = new UnityAdsHelper();
             }
 
             return instance;
@@ -30,9 +26,11 @@ public class UnityAdsHelper : MonoBehaviour
     [SerializeField] private bool showAds = true;
 
     private BannerView bannerView;
+    private TimeSpan lastTime;
 
     void Start()
     {
+        lastTime = DateTime.Now.TimeOfDay - new TimeSpan(0, 15, 0);
         Initialize();
         // RequestBanner();
     }
@@ -61,9 +59,14 @@ public class UnityAdsHelper : MonoBehaviour
     {
         if (Advertisement.IsReady(rewarded_video_id))
         {
-            var options = new ShowOptions { resultCallback = HandleShowResult };
+            Debug.Log(DateTime.Now.TimeOfDay - lastTime);
+            Debug.Log(lastTime);
+            if (DateTime.Now.TimeOfDay - lastTime > new TimeSpan(0, 15, 0))
+            {
+                var options = new ShowOptions { resultCallback = HandleShowResult };
 
-            Advertisement.Show(rewarded_video_id, options);
+                Advertisement.Show(rewarded_video_id, options);
+            }
         }
         else
         {
@@ -83,8 +86,8 @@ public class UnityAdsHelper : MonoBehaviour
                     {
                         Creater.Instance.NextStage(0);
                     }
-                    // to do ...
-                    // 광고 시청이 완료되었을 때 처리
+
+                    lastTime = DateTime.Now.TimeOfDay;
 
                     break;
                 }
