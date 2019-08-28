@@ -80,7 +80,7 @@ public class Pause : InteractiveObject
     {
         while (playerHold)
         {
-            targetPos = transform.position + new Vector3(0, 0.16f * spainge, 0);
+            targetPos = transform.position + new Vector3(0, 0.16f * spainge * ((transform.eulerAngles.z == 180)?-1:1), 0);
 
             if (Vector2.Distance(targetPos, Creater.Instance.player.transform.position) > 0.01f)
             {
@@ -90,7 +90,6 @@ public class Pause : InteractiveObject
             }
             else
             {
-                // Debug.Log(Vector2.Distance(targetPos, Creater.Instance.player.transform.position));
                 Creater.Instance.player.transform.position = targetPos;
                 playerRelease = true;
             }
