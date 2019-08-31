@@ -16,7 +16,7 @@ public class PlayerUIController : MonoBehaviour
 
     // 이동
     [Header("이동"), Space(10)]
-    public float moveSpeed = 3.2f;
+    public float moveSpeed = 3.0f;
     [HideInInspector] public bool moveRight = true;
     public Vector3 velocity;
 
@@ -84,7 +84,7 @@ public class PlayerUIController : MonoBehaviour
         
         if (action[0].action == InteractionUI.UIInteraction.Move)
         {
-            moveSpeed = 3.2f;
+            moveSpeed = 3.0f;
 
             if (moveRight)
             {
@@ -125,9 +125,7 @@ public class PlayerUIController : MonoBehaviour
         else if (action[0].action == InteractionUI.UIInteraction.Teleport)
         {
             transform.position = action[0].exit.transform.position;
-            moveSpeed = 0f;
-            yield return new WaitForSeconds(0.2f);
-            moveSpeed = 3.2f;
+            moveSpeed = 3.0f;
         }
         else if (action[0].action == InteractionUI.UIInteraction.Moving)
         {

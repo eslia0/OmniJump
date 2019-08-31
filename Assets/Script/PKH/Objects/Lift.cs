@@ -209,7 +209,7 @@ public class Lift : RayCastController
 
                 if (disabledAfterMove)
                 {
-                    gameObject.SetActive(false);
+                    Destroy(gameObject);
                 }
             }
         }
@@ -220,13 +220,7 @@ public class Lift : RayCastController
     private IEnumerator SetPlayerAtTheEndOfFrame()
     {
         yield return new WaitForEndOfFrame();
-
         Creater.Instance.player.moveSpeed = 3;
-        
-        if (disabledAfterMove)
-        {
-            gameObject.SetActive(false);
-        }
 
         yield return null;
     }
@@ -244,7 +238,7 @@ public class Lift : RayCastController
 
             Debug.DrawLine(rayOrigin, 
                 rayOrigin + (((Creater.Instance.player.revertGravity)? Vector2.down : Vector2.up) * distance), Color.blue);
-
+            
             if (hit)
             {
                 if (!playerIsOn)
@@ -254,16 +248,14 @@ public class Lift : RayCastController
                 }
                 
                 Creater.Instance.player.transform.Translate(new Vector2((stopXSpeedOnMovePassinger) ? velocity.x : 0, velocity.y));
-                break;
+                return;
             }
-            else
-            {
-                if (playerIsOn)
-                {
-                    playerIsOn = false;
-                    StartCoroutine(SetPlayerAtTheEndOfFrame());
-                }
-            }
+        }
+
+        if (playerIsOn)
+        {
+            playerIsOn = false;
+            StartCoroutine(SetPlayerAtTheEndOfFrame());
         }
     }
 

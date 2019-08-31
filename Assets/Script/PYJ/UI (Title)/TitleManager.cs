@@ -151,7 +151,7 @@ public class TitleManager : MonoBehaviour
         playerUI.transform.position = stages[selected].GetChild(1).position;
         actions = stages[selected].GetComponentsInChildren<InteractionUI>();
 
-        for (int i =0; i<actions.Length;i++)
+        for (int i = 0; i < actions.Length; i++)
         {
             if(actions[i].action == InteractionUI.UIInteraction.Moving)
             {
@@ -257,7 +257,7 @@ public class TitleManager : MonoBehaviour
     // 각 레벨 선택 단계로 이동
     public void ToStageLevel(int level)
     {
-        if (playerUI.isActing)
+        if (playerUI.action.Count > 0)
         {
             return;
         }
@@ -316,6 +316,18 @@ public class TitleManager : MonoBehaviour
                 playerUI.action.Add(actions[13]);
                 playerUI.action.Add(actions[14]);
                 playerUI.action.Add(actions[15]);
+            }
+            else if (level == 71)
+            {
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[3]);
+                playerUI.action.Add(actions[9]);
+                playerUI.action.Add(actions[10]);
+                playerUI.action.Add(actions[13]);
+                playerUI.action.Add(actions[14]);
+                playerUI.action.Add(actions[16]);
+                playerUI.action.Add(actions[17]);
+                playerUI.action.Add(actions[18]);
             }
         }
         else if (selectedLevel == 1 && level == 4)
@@ -471,6 +483,114 @@ public class TitleManager : MonoBehaviour
             StartCoroutine(ToNext(0));
             return;
         }
+        else if (selectedLevel == 51 && level == 54)
+        {
+            playerUI.action.Add(actions[2]);
+            playerUI.action.Add(actions[3]);
+            playerUI.action.Add(actions[4]);
+            playerUI.action.Add(actions[5]);
+            playerUI.action.Add(actions[7]);
+            playerUI.action.Add(actions[8]);
+            playerUI.action.Add(actions[9]);
+            playerUI.action.Add(actions[10]);
+            playerUI.action.Add(actions[11]);
+            playerUI.action.Add(actions[5]);
+            playerUI.action.Add(actions[13]);
+        }
+        else if (selectedLevel == 54 && level == 57)
+        {
+            playerUI.action.Add(actions[1]);
+            playerUI.action.Add(actions[2]);
+            playerUI.action.Add(actions[4]);
+            playerUI.action.Add(actions[5]);
+            playerUI.action.Add(actions[6]);
+            playerUI.action.Add(actions[8]);
+            playerUI.action.Add(actions[13]);
+        }
+        else if (selectedLevel == 57 && level == 60)
+        {
+            playerUI.action.Add(actions[1]);
+            playerUI.action.Add(actions[2]);
+            playerUI.action.Add(actions[4]);
+            playerUI.action.Add(actions[5]);
+            playerUI.action.Add(actions[14]);
+
+            StartCoroutine(ToNext(0));
+            return;
+        }
+        else if (selectedLevel == 61 && level == 64)
+        {
+            playerUI.action.Add(actions[1]);
+            playerUI.action.Add(actions[2]);
+            playerUI.action.Add(actions[3]);
+            playerUI.action.Add(actions[4]);
+            playerUI.action.Add(actions[5]);
+            playerUI.action.Add(actions[7]);
+            playerUI.action.Add(actions[8]);
+            playerUI.action.Add(actions[9]);
+            playerUI.action.Add(actions[10]);
+            playerUI.action.Add(actions[13]);
+        }
+        else if (selectedLevel == 64 && level == 67)
+        {
+            playerUI.action.Add(actions[1]);
+            playerUI.action.Add(actions[2]);
+            playerUI.action.Add(actions[3]);
+            playerUI.action.Add(actions[4]);
+            playerUI.action.Add(actions[5]);
+            playerUI.action.Add(actions[6]);
+            playerUI.action.Add(actions[7]);
+            playerUI.action.Add(actions[8]);
+            playerUI.action.Add(actions[9]);
+            playerUI.action.Add(actions[10]);
+            playerUI.action.Add(actions[11]);
+            playerUI.action.Add(actions[12]);
+            playerUI.action.Add(actions[13]);
+            playerUI.action.Add(actions[14]);
+            playerUI.action.Add(actions[15]);
+            playerUI.action.Add(actions[16]);
+            playerUI.action.Add(actions[17]);
+            playerUI.action.Add(actions[18]);
+            playerUI.action.Add(actions[19]);
+            playerUI.action.Add(actions[20]);
+            playerUI.action.Add(actions[21]);
+            playerUI.action.Add(actions[22]);
+        }
+        else if (selectedLevel == 67 && level == 70)
+        {
+            playerUI.action.Add(actions[22]);
+            playerUI.action.Add(actions[23]);
+            playerUI.action.Add(actions[2]);
+            playerUI.action.Add(actions[6]);
+            playerUI.action.Add(actions[10]);
+            playerUI.action.Add(actions[14]);
+            playerUI.action.Add(actions[18]);
+            playerUI.action.Add(actions[25]);
+            playerUI.action.Add(actions[26]);
+            playerUI.action.Add(actions[3]);
+            playerUI.action.Add(actions[7]);
+            playerUI.action.Add(actions[11]);
+            playerUI.action.Add(actions[15]);
+            playerUI.action.Add(actions[19]);
+            playerUI.action.Add(actions[28]);
+            playerUI.action.Add(actions[29]);
+            playerUI.action.Add(actions[4]);
+            playerUI.action.Add(actions[8]);
+            playerUI.action.Add(actions[12]);
+            playerUI.action.Add(actions[16]);
+            playerUI.action.Add(actions[20]);
+            playerUI.action.Add(actions[31]);
+            playerUI.action.Add(actions[32]);
+            playerUI.action.Add(actions[5]);
+            playerUI.action.Add(actions[9]);
+            playerUI.action.Add(actions[13]);
+            playerUI.action.Add(actions[17]);
+            playerUI.action.Add(actions[21]);
+            playerUI.action.Add(actions[33]);
+
+            StartCoroutine(ToNext(0));
+            return;
+        }
 
         StartCoroutine(ToNext(level));
     }
@@ -478,7 +598,7 @@ public class TitleManager : MonoBehaviour
     // 레벨 입장
     private void ToLevel(int level)
     {
-        if (playerUI.isActing)
+        if (playerUI.action.Count > 0)
         {
             return;
         }
@@ -836,6 +956,220 @@ public class TitleManager : MonoBehaviour
                 playerUI.action.Add(actions[11]);
                 playerUI.action.Add(actions[12]);
                 playerUI.action.Add(actions[13]);
+                break;
+
+            case 51:
+                playerUI.action.Add(actions[1]);
+                break;
+
+            case 52:
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[3]);
+                playerUI.action.Add(actions[4]);
+                playerUI.action.Add(actions[5]);
+                playerUI.action.Add(actions[6]);
+                break;
+
+            case 53:
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[3]);
+                playerUI.action.Add(actions[4]);
+                playerUI.action.Add(actions[5]);
+                playerUI.action.Add(actions[7]);
+                playerUI.action.Add(actions[8]);
+                playerUI.action.Add(actions[9]);
+                playerUI.action.Add(actions[10]);
+                playerUI.action.Add(actions[11]);
+                playerUI.action.Add(actions[5]);
+                playerUI.action.Add(actions[12]);
+                break;
+
+            case 54:
+                playerUI.action.Add(actions[1]);
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[3]);
+                break;
+
+            case 55:
+                playerUI.action.Add(actions[1]);
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[4]);
+                playerUI.action.Add(actions[5]);
+                playerUI.action.Add(actions[9]);
+                break;
+
+            case 56:
+                playerUI.action.Add(actions[1]);
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[4]);
+                playerUI.action.Add(actions[5]);
+                playerUI.action.Add(actions[7]);
+                playerUI.action.Add(actions[8]);
+                playerUI.action.Add(actions[10]);
+                playerUI.action.Add(actions[11]);
+                playerUI.action.Add(actions[12]);
+                break;
+
+            case 57:
+                playerUI.action.Add(actions[1]);
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[3]);
+                break;
+
+            case 58:
+                playerUI.action.Add(actions[6]);
+                playerUI.action.Add(actions[7]);
+                playerUI.action.Add(actions[8]);
+                playerUI.action.Add(actions[9]);
+                break;
+
+            case 59:
+                playerUI.action.Add(actions[1]);
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[4]);
+                playerUI.action.Add(actions[5]);
+                playerUI.action.Add(actions[12]);
+                break;
+
+            case 60:
+                playerUI.action.Add(actions[6]);
+                playerUI.action.Add(actions[7]);
+                playerUI.action.Add(actions[8]);
+                playerUI.action.Add(actions[10]);
+                playerUI.action.Add(actions[11]);
+                playerUI.action.Add(actions[13]);
+                break;
+
+            case 61:
+                playerUI.action.Add(actions[1]);
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[3]);
+                playerUI.action.Add(actions[4]);
+                playerUI.action.Add(actions[5]);
+                playerUI.action.Add(actions[6]);
+                break;
+
+            case 62:
+                playerUI.action.Add(actions[1]);
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[3]);
+                playerUI.action.Add(actions[4]);
+                playerUI.action.Add(actions[5]);
+                playerUI.action.Add(actions[7]);
+                playerUI.action.Add(actions[8]);
+                playerUI.action.Add(actions[9]);
+                playerUI.action.Add(actions[10]);
+                playerUI.action.Add(actions[11]);
+                break;
+
+            case 63:
+                playerUI.action.Add(actions[1]);
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[3]);
+                playerUI.action.Add(actions[4]);
+                playerUI.action.Add(actions[5]);
+                playerUI.action.Add(actions[7]);
+                playerUI.action.Add(actions[8]);
+                playerUI.action.Add(actions[9]);
+                playerUI.action.Add(actions[10]);
+                playerUI.action.Add(actions[12]);
+                break;
+
+            case 64:
+                playerUI.action.Add(actions[1]);
+                break;
+
+            case 65:
+                playerUI.action.Add(actions[1]);
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[3]);
+                playerUI.action.Add(actions[4]);
+                playerUI.action.Add(actions[5]);
+                playerUI.action.Add(actions[6]);
+                playerUI.action.Add(actions[7]);
+                playerUI.action.Add(actions[8]);
+                playerUI.action.Add(actions[9]);
+                playerUI.action.Add(actions[10]);
+                break;
+
+            case 66:
+                playerUI.action.Add(actions[1]);
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[3]);
+                playerUI.action.Add(actions[4]);
+                playerUI.action.Add(actions[5]);
+                playerUI.action.Add(actions[6]);
+                playerUI.action.Add(actions[7]);
+                playerUI.action.Add(actions[8]);
+                playerUI.action.Add(actions[9]);
+                playerUI.action.Add(actions[10]);
+                playerUI.action.Add(actions[11]);
+                playerUI.action.Add(actions[12]);
+                playerUI.action.Add(actions[13]);
+                playerUI.action.Add(actions[14]);
+                playerUI.action.Add(actions[15]);
+                playerUI.action.Add(actions[16]);
+                playerUI.action.Add(actions[17]);
+                playerUI.action.Add(actions[18]);
+                playerUI.action.Add(actions[19]);
+                break;
+
+            case 67:
+                playerUI.action.Add(actions[1]);
+                break;
+
+            case 68:
+                playerUI.action.Add(actions[22]);
+                playerUI.action.Add(actions[23]);
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[6]);
+                playerUI.action.Add(actions[10]);
+                playerUI.action.Add(actions[14]);
+                playerUI.action.Add(actions[18]);
+                playerUI.action.Add(actions[24]);
+                break;
+
+            case 69:
+                playerUI.action.Add(actions[22]);
+                playerUI.action.Add(actions[23]);
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[6]);
+                playerUI.action.Add(actions[10]);
+                playerUI.action.Add(actions[14]);
+                playerUI.action.Add(actions[18]);
+                playerUI.action.Add(actions[25]);
+                playerUI.action.Add(actions[26]);
+                playerUI.action.Add(actions[3]);
+                playerUI.action.Add(actions[7]);
+                playerUI.action.Add(actions[11]);
+                playerUI.action.Add(actions[15]);
+                playerUI.action.Add(actions[19]);
+                playerUI.action.Add(actions[27]);
+                break;
+
+            case 70:
+                playerUI.action.Add(actions[22]);
+                playerUI.action.Add(actions[23]);
+                playerUI.action.Add(actions[2]);
+                playerUI.action.Add(actions[6]);
+                playerUI.action.Add(actions[10]);
+                playerUI.action.Add(actions[14]);
+                playerUI.action.Add(actions[18]);
+                playerUI.action.Add(actions[25]);
+                playerUI.action.Add(actions[26]);
+                playerUI.action.Add(actions[3]);
+                playerUI.action.Add(actions[7]);
+                playerUI.action.Add(actions[11]);
+                playerUI.action.Add(actions[15]);
+                playerUI.action.Add(actions[19]);
+                playerUI.action.Add(actions[28]);
+                playerUI.action.Add(actions[29]);
+                playerUI.action.Add(actions[4]);
+                playerUI.action.Add(actions[8]);
+                playerUI.action.Add(actions[12]);
+                playerUI.action.Add(actions[16]);
+                playerUI.action.Add(actions[20]);
+                playerUI.action.Add(actions[30]);
                 break;
         }
 

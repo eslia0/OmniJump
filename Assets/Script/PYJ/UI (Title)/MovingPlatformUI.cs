@@ -14,12 +14,16 @@ public class MovingPlatformUI : MonoBehaviour
 
     private void Awake()
     {
-        GetComponent<BoxCollider2D>().size = transform.GetChild(0).GetComponent<SpriteRenderer>().size * transform.GetChild(0).transform.localScale;
-        GetComponent<BoxCollider2D>().offset = transform.GetChild(0).localPosition;
-    }
+        if (transform.Find("Body"))
+        {
+            GetComponent<BoxCollider2D>().size = transform.Find("Body").GetComponent<SpriteRenderer>().size * transform.Find("Body").transform.localScale;
+            GetComponent<BoxCollider2D>().offset = transform.Find("Body").localPosition;
+        }
+        else
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
 
-    public void Start()
-    {
         for (int i = 0; i < globalWaypoints.Length; i++)
         {
             globalWaypoints[i] += transform.position;
