@@ -54,7 +54,7 @@ public class SceneManagement : MonoBehaviour
         if (File.Exists(path))
         {
             string data = File.ReadAllText(path);
-            ClearStage = int.Parse(data);
+            clearStage = int.Parse(data);
         }
         else
         {

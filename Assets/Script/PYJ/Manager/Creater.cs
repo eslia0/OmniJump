@@ -158,7 +158,7 @@ public class Creater : GameVariables
     public void InitStage(int stageNum)
     {
         score = 0;
-        maxPlatform = 59;
+        maxPlatform = 70;
         SceneManager.sceneLoaded += StartStage;
         GameVariablesInit();
 
