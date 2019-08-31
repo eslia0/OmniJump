@@ -9,13 +9,11 @@ public class Teleport : InteractiveObject
 
     [Header("회전이 필요한 파티클")]
     [SerializeField] private ParticleSystem[] portalLight;
-    [SerializeField] private ParticleSystem[] exitportalLight;
 
 
     protected override void Init()
     {
         Creater.Instance.particleRotation.SetParticlesRotation(transform.eulerAngles.z, portalLight);
-        Creater.Instance.particleRotation.SetParticlesRotation(teleportExit.eulerAngles.z, exitportalLight);
     }
 
     protected override void update()
