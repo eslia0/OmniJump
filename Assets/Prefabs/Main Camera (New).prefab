@@ -1771,11 +1771,35 @@ PrefabInstance:
       propertyPath: face
       value: 
       objectReference: {fileID: 3714614958505231968}
+    - target: {fileID: 114859346367353968, guid: ce5089f3caa5bb042a4d4c23a427bc82,
+        type: 3}
+      propertyPath: AOArrow2.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 884b9003e149a444581a58d1a857eb39,
+        type: 3}
+    - target: {fileID: 114859346367353968, guid: ce5089f3caa5bb042a4d4c23a427bc82,
+        type: 3}
+      propertyPath: AOArrow2.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: d69d5cd8015e5db42a49df57a621e8b7,
+        type: 3}
+    - target: {fileID: 114859346367353968, guid: ce5089f3caa5bb042a4d4c23a427bc82,
+        type: 3}
+      propertyPath: AOArrow2.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 32bc1bfd535f4954cad3e56839947d03,
+        type: 3}
+    - target: {fileID: 114859346367353968, guid: ce5089f3caa5bb042a4d4c23a427bc82,
+        type: 3}
+      propertyPath: AOArrow2.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2a6ef3be693ac4b4281722de79dad5cf,
+        type: 3}
     - target: {fileID: 114925146479644530, guid: ce5089f3caa5bb042a4d4c23a427bc82,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 48c0d4d6bebaa934384b07aa1e2f8184,
+      objectReference: {fileID: 21300000, guid: d69d5cd8015e5db42a49df57a621e8b7,
         type: 3}
     - target: {fileID: 114789044635501690, guid: ce5089f3caa5bb042a4d4c23a427bc82,
         type: 3}

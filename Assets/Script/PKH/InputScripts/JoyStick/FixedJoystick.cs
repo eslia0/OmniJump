@@ -1,17 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class FixedJoystick : Joystick
 {
     Vector2 joystickPosition = Vector2.zero;
     private Camera cam = new Camera();
     private bool isClick = false;
+    private Image image = null;
 
     [Header("Face Sprite")]
     public Transform face;
 
+    [Header("상하좌우 이미지 (0(상), 1(우), 2(하), 3(좌))")]
+    public Sprite[] AOArrow2 = new Sprite[4]; // 0(상), 1(우), 2(하), 3(좌)
+
     void Start()
     {
+        image = GetComponent<Image>();
         joystickPosition = RectTransformUtility.WorldToScreenPoint(cam, background.position);
     }
 
@@ -31,21 +37,25 @@ public class FixedJoystick : Joystick
         {
             Creater.Instance.player.faceDirection = 0;
             face.localEulerAngles = new Vector3(0, 0, 0);
+            image.sprite = AOArrow2[1];
         }
         else if(angle < 180) // 하
         {
             Creater.Instance.player.faceDirection = 3;
             face.localEulerAngles = new Vector3(0, 0, 270);
+            image.sprite = AOArrow2[2];
         }
         else if(angle < 270) // 좌
         {
             Creater.Instance.player.faceDirection = 2;
             face.localEulerAngles = new Vector3(0, 0, 180);
+            image.sprite = AOArrow2[3];
         }
         else // 상
         {
             Creater.Instance.player.faceDirection = 1;
             face.localEulerAngles = new Vector3(0, 0, 90);
+            image.sprite = AOArrow2[0];
         }
     }
 
