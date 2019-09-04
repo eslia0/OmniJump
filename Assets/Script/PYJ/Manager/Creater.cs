@@ -27,6 +27,12 @@ public class Creater : GameVariables
         get { return testing; }
         private set { testing = value; }
     }
+    
+    private bool isPuased;
+    public bool IsPuased {
+        get { return isPuased; }
+        private set { isPuased = value; }
+    }
 
     // 생성될 수 있는 플랫폼의 리스트
     // 레벨마다 3개의 플랫폼이 있다.
@@ -263,5 +269,10 @@ public class Creater : GameVariables
             score += 10;
             scoreText.SetText(this.score);
         }
+    }
+
+    public void Pause()
+    {
+        isPuased = !isPuased;
     }
 }

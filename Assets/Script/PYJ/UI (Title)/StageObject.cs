@@ -12,7 +12,7 @@ public class StageObject : MonoBehaviour
     {
         sceneManagement = SceneManagement.Instance;
 
-        if (stageNum < sceneManagement.ClearStage)
+        if (stageNum <= sceneManagement.ClearStage)
         {
             stageImage.GetComponent<SpriteRenderer>().color = new Color(0.68f, 0.95f, 0.93f, 0.78f);
         }
