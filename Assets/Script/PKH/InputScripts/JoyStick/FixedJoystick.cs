@@ -12,11 +12,10 @@ public class FixedJoystick : Joystick
     private Image image = null;
     private Coroutine coroutine;
 
-    [Header("Face Sprite")]
-    public Transform face;
-
     [Header("상하좌우 이미지 (0(상), 1(우), 2(하), 3(좌))")]
-    public Sprite[] AOArrow2 = new Sprite[4]; // 0(상), 1(우), 2(하), 3(좌)
+    public Sprite AOArrow2 = null;
+    public Sprite[] AOArrow2Press = new Sprite[4]; // 0(상), 1(우), 2(하), 3(좌)
+    private int selectedFace = 1;
 
     void Start()
     {
@@ -49,28 +48,26 @@ public class FixedJoystick : Joystick
 
         if (angle < 90) // 우
         {
+            selectedFace = 1;
             Creater.Instance.player.faceDirection = 0;
-            face.localEulerAngles = new Vector3(0, 0, 0);
-            image.sprite = AOArrow2[1];
         }
         else if(angle < 180) // 하
         {
+            selectedFace = 2;
             Creater.Instance.player.faceDirection = 3;
-            face.localEulerAngles = new Vector3(0, 0, 270);
-            image.sprite = AOArrow2[2];
         }
         else if(angle < 270) // 좌
         {
+            selectedFace = 3;
             Creater.Instance.player.faceDirection = 2;
-            face.localEulerAngles = new Vector3(0, 0, 180);
-            image.sprite = AOArrow2[3];
         }
         else // 상
         {
+            selectedFace = 0;
             Creater.Instance.player.faceDirection = 1;
-            face.localEulerAngles = new Vector3(0, 0, 90);
-            image.sprite = AOArrow2[0];
         }
+
+        image.sprite = AOArrow2Press[selectedFace];
     }
 
     public override void OnPointerDown(PointerEventData eventData)
@@ -90,6 +87,7 @@ public class FixedJoystick : Joystick
 #endif
 
         StopCoroutine(coroutine);
+        image.sprite = AOArrow2;
         Creater.Instance.player.onClick = false;
         handle.anchoredPosition = inputVector = Vector2.zero;
     }
