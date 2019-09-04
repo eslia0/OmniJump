@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
+using System.Collections;
 
 public class FixedJoystick : Joystick
 {
@@ -8,6 +10,7 @@ public class FixedJoystick : Joystick
     private Camera cam = new Camera();
     private bool isClick = false;
     private Image image = null;
+    private Coroutine coroutine;
 
     [Header("Face Sprite")]
     public Transform face;
@@ -20,11 +23,22 @@ public class FixedJoystick : Joystick
         image = GetComponent<Image>();
         joystickPosition = RectTransformUtility.WorldToScreenPoint(cam, background.position);
     }
+    
+    IEnumerator onPress()
+    {
+        while (true)
+        {
+            Creater.Instance.player.onClick = true;
+            yield return new WaitForFixedUpdate();
+        }
+    }
 
     public override void OnDrag(PointerEventData eventData)
     {
+#if UNITY_EDITOR
         if (!Creater.Instance.player.KeyBoardControll)
             Creater.Instance.player.onClick = true;
+#endif
 
         Vector2 direction = eventData.position - joystickPosition;
         inputVector = (direction.magnitude > background.sizeDelta.x / 2f) ? direction.normalized : direction / (background.sizeDelta.x / 2f);
@@ -61,16 +75,22 @@ public class FixedJoystick : Joystick
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        if (!Creater.Instance.player.KeyBoardControll)
-            Creater.Instance.player.onClick = true;
+#if UNITY_EDITOR
         Creater.Instance.player.KeyBoardControll = false;
+#endif
+
+        coroutine = StartCoroutine(onPress());
         OnDrag(eventData);
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        if (!Creater.Instance.player.KeyBoardControll)
-            Creater.Instance.player.onClick = false;
+#if UNITY_EDITOR
+        //if (!Creater.Instance.player.KeyBoardControll)
+#endif
+
+        StopCoroutine(coroutine);
+        Creater.Instance.player.onClick = false;
         handle.anchoredPosition = inputVector = Vector2.zero;
     }
 }

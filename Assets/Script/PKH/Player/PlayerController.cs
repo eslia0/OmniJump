@@ -113,6 +113,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        #if UNITY_EDITOR
         //timer = Time.time;
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
@@ -132,6 +133,7 @@ public class PlayerController : MonoBehaviour
         {
             onClick = false;
         }
+        #endif
 
         velocity.x = moveSpeed * ((moveRight) ? 1 : -1);
         velocity.y += gravity * Time.deltaTime * ((revertGravity)?-1:1);
