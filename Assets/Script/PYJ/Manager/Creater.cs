@@ -28,10 +28,10 @@ public class Creater : GameVariables
         private set { testing = value; }
     }
     
-    private bool isPuased;
-    public bool IsPuased {
-        get { return isPuased; }
-        private set { isPuased = value; }
+    private bool isPaused;
+    public bool IsPaused {
+        get { return isPaused; }
+        private set { isPaused = value; }
     }
 
     // 생성될 수 있는 플랫폼의 리스트
@@ -190,7 +190,7 @@ public class Creater : GameVariables
     {
         if (SceneManagement.Instance.currentScene == "EndlessScene")
         {
-            if(level == 4 || level == 9 || level == 15|| level == 25)
+            if (level == 4 || level == 9 || level == 15|| level == 25)
             {
                 nowPlatform = Instantiate(platforms[(level - 1) * 3]);
             }
@@ -199,6 +199,8 @@ public class Creater : GameVariables
                 int num = Random.Range(0, 3);
 
                 nowPlatform = Instantiate(platforms[(level - 1) * 3 + num]);
+
+                Debug.Log((level - 1) * 3 + num);
             }
 
             scoreText.SetText(score);
@@ -227,11 +229,13 @@ public class Creater : GameVariables
         else if (nextLevel == 1 && level < maxPlatform)
         {
             level++;
-            SceneManagement.Instance.selectedStage++;
         }
+
+        Debug.Log(level);
 
         if (SceneManagement.Instance.currentScene == "StageScene")
         {
+            SceneManagement.Instance.selectedStage++;
             SceneManager.LoadScene("StageScene");
         }
         else if (SceneManagement.Instance.currentScene == "EndlessScene")
@@ -273,6 +277,6 @@ public class Creater : GameVariables
 
     public void Pause()
     {
-        isPuased = !isPuased;
+        isPaused = !isPaused;
     }
 }

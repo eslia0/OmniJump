@@ -113,9 +113,14 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        #if UNITY_EDITOR
-        //timer = Time.time;
-        if (Input.GetAxisRaw("Horizontal") != 0)
+        if (Creater.Instance.IsPaused)
+        {
+            return;
+        }
+
+#if UNITY_EDITOR
+            //timer = Time.time;
+            if (Input.GetAxisRaw("Horizontal") != 0)
         {
             int i = ((Input.GetAxisRaw("Horizontal") == 1) ? 0 : 2);
             faceDirection = i % 4;
@@ -211,8 +216,11 @@ public class PlayerController : MonoBehaviour
         float check = 0.0f;
         while (check < time)
         {
-            check += Time.deltaTime;
-            transform.position = exit.position;
+            if (!Creater.Instance.IsPaused)
+            {
+                check += Time.deltaTime;
+                transform.position = exit.position;
+            }
             yield return null;
         }
 

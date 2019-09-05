@@ -42,9 +42,9 @@ public class FixedJoystick : Joystick
         Vector2 direction = eventData.position - joystickPosition;
         inputVector = (direction.magnitude > background.sizeDelta.x / 2f) ? direction.normalized : direction / (background.sizeDelta.x / 2f);
         ClampJoystick();
-        handle.anchoredPosition = (inputVector * background.sizeDelta.x / 2f) * handleLimit;
+        Vector2 pos = (inputVector * background.sizeDelta.x / 2f) * handleLimit;
 
-        float angle = ((Mathf.Atan2(handle.anchoredPosition.x, handle.anchoredPosition.y) * Mathf.Rad2Deg) + 315) % 360;
+        float angle = ((Mathf.Atan2(pos.x, pos.y) * Mathf.Rad2Deg) + 315) % 360;
 
         if (angle < 90) // 우
         {
@@ -89,6 +89,5 @@ public class FixedJoystick : Joystick
         StopCoroutine(coroutine);
         image.sprite = AOArrow2;
         Creater.Instance.player.onClick = false;
-        handle.anchoredPosition = inputVector = Vector2.zero;
     }
 }

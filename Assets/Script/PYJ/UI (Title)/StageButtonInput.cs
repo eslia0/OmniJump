@@ -22,6 +22,9 @@ public class StageButtonInput : MonoBehaviour
         buttons[2].onClick.RemoveAllListeners();
         buttons[2].onClick.AddListener(delegate () { ToTitle(); });
 
+        buttons[3].onClick.RemoveAllListeners();
+        buttons[3].onClick.AddListener(delegate () { Pause(); });
+
         resultPanel.SetActive(false);
     }
 
@@ -57,5 +60,10 @@ public class StageButtonInput : MonoBehaviour
         Creater.Instance.Disable();
 
         SceneManagement.Instance.LoadScene("TitleScene");
+    }
+
+    private void Pause()
+    {
+        Creater.Instance.Pause();
     }
 }

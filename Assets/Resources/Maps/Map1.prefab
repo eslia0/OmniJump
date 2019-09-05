@@ -2179,7 +2179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -2258,7 +2258,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -2367,7 +2367,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -2446,7 +2446,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -2525,7 +2525,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -2604,7 +2604,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -2683,7 +2683,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -2762,7 +2762,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -2841,7 +2841,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -2920,7 +2920,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -3189,11 +3189,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3249,6 +3244,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed57edcf2dcde804384409fd08df5bd8, type: 3}
 --- !u!4 &365660857649908966 stripped
@@ -3264,11 +3264,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3324,6 +3319,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed57edcf2dcde804384409fd08df5bd8, type: 3}
 --- !u!4 &437191932176686257 stripped
@@ -3339,11 +3339,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3398,6 +3393,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed57edcf2dcde804384409fd08df5bd8, type: 3}
@@ -3664,11 +3664,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3724,6 +3719,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (5)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed57edcf2dcde804384409fd08df5bd8, type: 3}
 --- !u!4 &3010888271558096008 stripped
@@ -3739,11 +3739,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5928235059129481161}
     m_Modifications:
-    - target: {fileID: 3980917855205011922, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
-        type: 3}
-      propertyPath: m_Name
-      value: ExitEffect
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3798,6 +3793,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
+        type: 3}
+      propertyPath: m_Name
+      value: ExitEffect
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f62028f1456a1146b9dfe893cbb5ec4, type: 3}
@@ -3974,11 +3974,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4034,6 +4029,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed57edcf2dcde804384409fd08df5bd8, type: 3}
 --- !u!4 &6817619738938013925 stripped
@@ -4049,11 +4049,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4108,6 +4103,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed57edcf2dcde804384409fd08df5bd8, type: 3}
@@ -4459,11 +4459,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4519,6 +4514,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (4)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed57edcf2dcde804384409fd08df5bd8, type: 3}
 --- !u!4 &6963828981414265868 stripped
@@ -4534,11 +4534,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4594,6 +4589,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed57edcf2dcde804384409fd08df5bd8, type: 3}
 --- !u!4 &7109697171039477806 stripped
@@ -4609,11 +4609,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4668,6 +4663,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed57edcf2dcde804384409fd08df5bd8, type: 3}

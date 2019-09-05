@@ -142,6 +142,16 @@ public class TitleManager : MonoBehaviour
         {
             ToStageLevel(61);
         });
+
+        Debug.Log(SceneManagement.Instance.ClearStage);
+
+        for (int i = 1; i < 8; i++)
+        {
+            if ((i - 1) * 10 > SceneManagement.Instance.ClearStage + 1)
+            {
+                levelButtons[i].enabled = false;
+            }
+        }
     }
 
     // 스테이지 이동
@@ -170,7 +180,7 @@ public class TitleManager : MonoBehaviour
         button = level.GetChild(0).GetComponent<Button>();
         button.onClick.RemoveAllListeners();
 
-        // Prev 버튼 설정
+        // Back 버튼 설정
         if (selected % 3 == 1)
         {
             button.onClick.AddListener(delegate () {
@@ -209,7 +219,7 @@ public class TitleManager : MonoBehaviour
             ToStageLevel(selectedLevel + 3);
         });
 
-        if (length - 1 > SceneManagement.Instance.ClearStage + 1)
+        if (selectedLevel + 3 > SceneManagement.Instance.ClearStage + 1)
         {
             button.enabled = false;
         }

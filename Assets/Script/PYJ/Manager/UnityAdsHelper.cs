@@ -55,8 +55,6 @@ public class UnityAdsHelper
     {
         if (Advertisement.IsReady(rewarded_video_id))
         {
-            Debug.Log(DateTime.Now.TimeOfDay - lastTime);
-            Debug.Log(lastTime);
             if (DateTime.Now.TimeOfDay - lastTime > new TimeSpan(0, 15, 0))
             {
                 var options = new ShowOptions { resultCallback = HandleShowResult };

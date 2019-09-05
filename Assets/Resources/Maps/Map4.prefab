@@ -1471,7 +1471,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -11058,9 +11058,6 @@ MonoBehaviour:
   portalLight:
   - {fileID: 170}
   - {fileID: 168}
-  exitportalLight:
-  - {fileID: 171}
-  - {fileID: 172}
 --- !u!1 &17
 GameObject:
   m_ObjectHideFlags: 0
@@ -39251,7 +39248,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -39330,7 +39327,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -39409,7 +39406,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -44253,7 +44250,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -44332,7 +44329,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -44411,7 +44408,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -44520,7 +44517,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -44599,7 +44596,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -44678,7 +44675,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -44757,7 +44754,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -44836,7 +44833,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -44915,7 +44912,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7404f86c3f68e5409d8427b07d059ae, type: 3}
   m_Color: {r: 0.019607844, g: 0.03529412, b: 0.078431375, a: 1}
   m_FlipX: 0
@@ -45159,6 +45156,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 75}
     m_Modifications:
+    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile Manager (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 3382605485791182294, guid: 067d6c0b0693cd9438eb6ed658d0e198,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45214,11 +45216,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile Manager (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d6c0b0693cd9438eb6ed658d0e198, type: 3}
 --- !u!4 &3801087273949039381 stripped
@@ -45234,6 +45231,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 77}
     m_Modifications:
+    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
+        type: 3}
+      propertyPath: m_Name
+      value: CirclePad
+      objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613939, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45288,11 +45290,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
-        type: 3}
-      propertyPath: m_Name
-      value: CirclePad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1546fdefaa98df4ba784984433fbc49, type: 3}
@@ -45554,6 +45551,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6767494135631798783}
     m_Modifications:
+    - target: {fileID: 7159084712481982591, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile
+      objectReference: {fileID: 0}
     - target: {fileID: 7159084712481982576, guid: 2b86a835a11db2a4f9453c2f086002e0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45618,11 +45620,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159084712481982591, guid: 2b86a835a11db2a4f9453c2f086002e0,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile
       objectReference: {fileID: 0}
     - target: {fileID: 7159084712481982590, guid: 2b86a835a11db2a4f9453c2f086002e0,
         type: 3}
@@ -45868,6 +45865,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 75}
     m_Modifications:
+    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile Manager
+      objectReference: {fileID: 0}
     - target: {fileID: 3382605485791182294, guid: 067d6c0b0693cd9438eb6ed658d0e198,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45922,11 +45924,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 759124583955645478, guid: 067d6c0b0693cd9438eb6ed658d0e198,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067d6c0b0693cd9438eb6ed658d0e198, type: 3}
@@ -46168,6 +46165,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3801087273949039381}
     m_Modifications:
+    - target: {fileID: 7159084712481982591, guid: 2b86a835a11db2a4f9453c2f086002e0,
+        type: 3}
+      propertyPath: m_Name
+      value: Missile (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 7159084712481982576, guid: 2b86a835a11db2a4f9453c2f086002e0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -46232,11 +46234,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159084712481982591, guid: 2b86a835a11db2a4f9453c2f086002e0,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7159084712481982590, guid: 2b86a835a11db2a4f9453c2f086002e0,
         type: 3}
