@@ -4,6 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class Creater : GameVariables
 {
+    [System.Serializable] public class PlayerInfo
+    {
+        public Sprite body;
+        public Sprite face;
+        public Sprite effect;
+    }
+    public PlayerInfo playerinfo;
+
     private static Creater instance;
     public static Creater Instance {
         get {
