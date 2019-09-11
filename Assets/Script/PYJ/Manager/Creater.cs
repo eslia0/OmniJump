@@ -4,14 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class Creater : GameVariables
 {
-    [System.Serializable] public class PlayerInfo
-    {
-        public Sprite body;
-        public Sprite face;
-        public Sprite effect;
-    }
-    public PlayerInfo playerinfo;
-
     private static Creater instance;
     public static Creater Instance {
         get {
@@ -19,7 +11,9 @@ public class Creater : GameVariables
             {
                 instance = FindObjectOfType<Creater>();
 
-                //if (instance == null) {
+                //// PKH
+                //if (instance == null)
+                //{
                 //    GameObject creater = new GameObject("Creater");
                 //    instance = creater.AddComponent<Creater>();
                 //}
@@ -96,6 +90,7 @@ public class Creater : GameVariables
     }
 
     private int maxPlatform;
+
 
     private void Awake()
     {
@@ -287,4 +282,5 @@ public class Creater : GameVariables
     {
         isPaused = !isPaused;
     }
+
 }

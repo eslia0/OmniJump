@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
@@ -15,6 +16,10 @@ public class PlayerController : MonoBehaviour
 
     [Header("프리팹")]
     [SerializeField] private Transform body;
+    [SerializeField] private Transform face;
+    [SerializeField] private TrailRenderer tail;
+    [SerializeField] private ParticleSystem hitEffect;
+    [SerializeField] private SceneManagement.EffectInfo effectInfo;
     [SerializeField] private GameObject deathParticle;
     [SerializeField] private Transform returnPoint;
     
@@ -30,7 +35,6 @@ public class PlayerController : MonoBehaviour
             face.localRotation = Quaternion.Euler(0, 0, currentFace * 90);
         }
     }
-    [SerializeField] private Transform face;
     private int currentFace;
     private Controller controller;
 
@@ -78,6 +82,7 @@ public class PlayerController : MonoBehaviour
     private Animator ani;
 
 
+
     private void Awake()
     {
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeOfJumpApex, 2); // timeOfJumpApex^2 (d = Vi * t + 1/2 * a * t^2)
@@ -97,8 +102,23 @@ public class PlayerController : MonoBehaviour
         velocity = Vector2.zero;
         faceDirection = 0;
         rotationZ = 0;
+
+        try
+        {
+            body.GetComponent<SpriteRenderer>().sprite = SceneManagement.Instance.GetPlayerBody();
+            SceneManagement.EffectInfo effect = SceneManagement.Instance.GetPlayerEffect();
+
+            face.GetComponent<SpriteRenderer>().sprite = effect.face; // 충돌 지점 스프라이트 변경
+            tail.startColor = effect.tailColor; // 꼬리 색상 변경
+            tail.endColor = effect.tailColor - new Color(0, 0, 0, 1);
+            hitEffect = effect.hitEffect; // 충돌 이펙트 변경
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("플레이어 초기화 실패");
+        }
     }
-    
+
     private void Start()
     {
         ani.enabled = false;

@@ -1242,6 +1242,29 @@ MonoBehaviour:
   platforms: []
   nowPlatform: {fileID: 0}
   score: 0
+  playerSkinArray:
+  - {fileID: 21300000, guid: b170f094df41d4a40a4ab12994228ede, type: 3}
+  - {fileID: 21300000, guid: 5bd81720a18923e48b1830ab6a634526, type: 3}
+  - {fileID: 21300000, guid: 1cecf279853134d4abb8517ffbedb0bf, type: 3}
+  - {fileID: 21300000, guid: 019eff07d4cb2984bbeda455b1e5a7ff, type: 3}
+  - {fileID: 21300000, guid: 0243f1975d116a943b9bb74affbac682, type: 3}
+  effectSkinArray:
+  - face: {fileID: 21300010, guid: e75ab38bb3b5d494892081378bf74583, type: 3}
+    hitEffect: {fileID: 6347501936721737369, guid: 510daa2542e068d4ea4416a995f4f53d,
+      type: 3}
+    tailColor: {r: 1, g: 1, b: 1, a: 1}
+  - face: {fileID: 21300010, guid: e75ab38bb3b5d494892081378bf74583, type: 3}
+    hitEffect: {fileID: 6347501936721737369, guid: 510daa2542e068d4ea4416a995f4f53d,
+      type: 3}
+    tailColor: {r: 1, g: 0, b: 0, a: 1}
+  - face: {fileID: 21300010, guid: e75ab38bb3b5d494892081378bf74583, type: 3}
+    hitEffect: {fileID: 6347501936721737369, guid: 510daa2542e068d4ea4416a995f4f53d,
+      type: 3}
+    tailColor: {r: 1, g: 0.99296916, b: 0, a: 1}
+  - face: {fileID: 21300010, guid: e75ab38bb3b5d494892081378bf74583, type: 3}
+    hitEffect: {fileID: 6347501936721737369, guid: 510daa2542e068d4ea4416a995f4f53d,
+      type: 3}
+    tailColor: {r: 0.10670447, g: 1, b: 0, a: 1}
 --- !u!4 &1338151670
 Transform:
   m_ObjectHideFlags: 0

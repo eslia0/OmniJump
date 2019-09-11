@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -45,6 +46,34 @@ public class SceneManagement : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         LoadData();
+
+        try
+        {
+
+        }
+        catch (Exception e)
+        {
+
+        }
+        if(PlayerPrefs.GetInt("BodySkin") == -1)
+        {
+
+        }
+
+        if(playerSkinArray.Length == 0)
+        {
+            playerSkinArray = Resources.LoadAll<Sprite>("Skin/Player/");
+        }
+
+        if (!PlayerPrefs.HasKey("BodySkin"))
+        {
+            PlayerPrefs.SetInt("BodySkin", 0);
+        }
+
+        if (!PlayerPrefs.HasKey("EffectSkin"))
+        {
+            PlayerPrefs.SetInt("EffectSkin", 0);
+        }
     }
 
     public void LoadData()
@@ -83,5 +112,36 @@ public class SceneManagement : MonoBehaviour
         currentScene = name;
 
         SceneManager.LoadScene(name);
+    }
+
+
+    [Space(10)][Header("--------------------------------------")][Space(10)]
+
+    [SerializeField] private Sprite[] playerSkinArray;
+    [SerializeField] private EffectInfo[] effectSkinArray;
+    [System.Serializable] public class EffectInfo
+    {
+        public Sprite face;
+        public ParticleSystem hitEffect;
+        public Color tailColor;
+    }
+
+    // 플레이어가 선택한 body와 effect 반환
+    public Sprite GetPlayerBody()
+    {
+        return playerSkinArray[PlayerPrefs.GetInt("BodySkin")];
+    }
+    public EffectInfo GetPlayerEffect()
+    {
+        return effectSkinArray[PlayerPrefs.GetInt("EffectSkin")];
+    }
+    // 플레이어가 선택한 body와 effect 저장
+    public void SetPlayerBody(int body)
+    {
+        PlayerPrefs.SetInt("BodySkin", body);
+    }
+    public void SetPlayerEffect(int effect)
+    {
+        PlayerPrefs.SetInt("EffectSkin", effect);
     }
 }
