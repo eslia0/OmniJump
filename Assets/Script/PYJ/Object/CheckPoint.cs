@@ -7,16 +7,17 @@ public class CheckPoint : MonoBehaviour
     bool isChecked;
     PlayerController m_player;
     [SerializeField] InteractiveObject interactObject;
+    [Header ("정지/이동")]
     [SerializeField] bool checkType;
 
     Transform returnPoint;
 
-    void Awake()
+    void Start()
     {
         m_player = Creater.Instance.player;
         returnPoint = transform.GetChild(0);
 
-        if(interactObject)
+        if (interactObject)
         {
             StartCoroutine(SetPoint(interactObject, checkType));
         }
@@ -81,8 +82,7 @@ public class CheckPoint : MonoBehaviour
             {
                 yield return null;
             }
-
-
+            
             while (interactObject.actionCount != 0)
             {
                 yield return null;

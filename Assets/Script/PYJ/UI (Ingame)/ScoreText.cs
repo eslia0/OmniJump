@@ -18,10 +18,10 @@ public class ScoreText : MonoBehaviour
 
     public void SetText (int score)
     {
-        if (score == 0)
+        if (score == 0 || m_score == 0)
         {
+            m_score = score;
             m_text.text = m_score.ToString();
-            m_score = 0;
         }
         else
         {

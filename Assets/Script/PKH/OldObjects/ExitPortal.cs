@@ -53,20 +53,13 @@ public class ExitPortal : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        if (SceneManagement.Instance.currentScene == "StageScene")
-        {
-            // 클리어 했을 때 데이터를 수정
-            if (SceneManagement.Instance.selectedStage >= SceneManagement.Instance.ClearStage)
-            {
-                SceneManagement.Instance.WriteData();
-            }
-
-            CameraFollow.mainCam.GetComponentInChildren<StageButtonInput>().SetResultPanel();
-            CameraFollow.mainCam.GetComponent<CameraFollow>().follow = false;
-        }
-        else if (SceneManagement.Instance.currentScene == "EndlessScene")
+        if (SceneManagement.Instance.currentScene == "EndlessScene")
         {
             Creater.Instance.NextStage(1);
+        }
+        else if(SceneManagement.Instance.currentScene == "TutorialScene")
+        {
+            SceneManagement.Instance.LoadScene("EndlessScene");
         }
     }
 

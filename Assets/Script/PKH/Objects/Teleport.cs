@@ -6,6 +6,7 @@ public class Teleport : InteractiveObject
 {
     [SerializeField] private bool moveRight;                 // 플레이어와 상호작용시 플레이어 방향 변경 여부
     [SerializeField] private Transform teleportExit;            // 텔레포터 출구 위치
+    [SerializeField] private float waitSecond = 0.8f;
 
     [Header("회전이 필요한 파티클")]
     [SerializeField] private ParticleSystem[] portalLight;
@@ -27,7 +28,7 @@ public class Teleport : InteractiveObject
         Creater.Instance.player.velocity = Vector3.zero;
         Creater.Instance.player.moveRight = moveRight; // 텔로포터 사용 후 플레이어 방향 설정
 
-        Creater.Instance.player.StartCoroutine(Creater.Instance.player.HoldPlayer(teleportExit, 0.8f)); // 텔레포터 딜레이
+        Creater.Instance.player.StartCoroutine(Creater.Instance.player.HoldPlayer(teleportExit, waitSecond)); // 텔레포터 딜레이
 
         Creater.Instance.AddScore(20);
 
