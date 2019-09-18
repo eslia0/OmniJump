@@ -86,29 +86,32 @@ public class MissileManager : MonoBehaviour
                 break;
             }
 
-            if (num < missiles.Length)
+            if (!Creater.Instance.IsPaused)
             {
-                if (delay < missiles[num].lunchDelay)
+                if (num < missiles.Length)
                 {
-                    delay += Time.deltaTime;
+                    if (delay < missiles[num].lunchDelay)
+                    {
+                        delay += Time.deltaTime;
+                    }
+                    else
+                    {
+                        missileList.Add(missiles[num].Lunch());
+                        num++;
+                        delay = 0;
+                    }
                 }
-                else
+
+                for (int i = missileList.Count - 1; i > -1; i--)
                 {
-                    missileList.Add(missiles[num].Lunch());
-                    num++;
-                    delay = 0;
-                }
-            }
-            
-            for(int i = missileList.Count-1; i > -1; i--)
-            {
-                if (missileList[i] != null)
-                {
-                    missileList[i].Updating();
-                }
-                else
-                {
-                    missileList.RemoveAt(i);
+                    if (missileList[i] != null)
+                    {
+                        missileList[i].Updating();
+                    }
+                    else
+                    {
+                        missileList.RemoveAt(i);
+                    }
                 }
             }
 

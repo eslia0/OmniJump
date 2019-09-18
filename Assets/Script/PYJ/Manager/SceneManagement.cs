@@ -30,8 +30,7 @@ public class SceneManagement : MonoBehaviour
     public string currentScene;
     public string prevScene;
 
-    private int clearStage;
-    public int ClearStage { get => clearStage; private set => clearStage = value; }
+    public bool[] clearStage;
 
     void Awake()
     {
@@ -44,6 +43,7 @@ public class SceneManagement : MonoBehaviour
 
         adsHelper = UnityAdsHelper.Instance;
 
+        clearStage = new bool[60];
         DontDestroyOnLoad(gameObject);
         LoadData();
 
@@ -72,8 +72,13 @@ public class SceneManagement : MonoBehaviour
 
         if (File.Exists(path))
         {
-            string data = File.ReadAllText(path);
-            clearStage = int.Parse(data);
+            string[] data = File.ReadAllLines(path);
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                int num = int.Parse(data[i]);
+                clearStage[num] = true;
+            }
         }
         else
         {
@@ -85,15 +90,18 @@ public class SceneManagement : MonoBehaviour
     public void WriteData()
     {
         string path = Application.persistentDataPath + "/data0.txt";
-        clearStage = selectedStage;
+        string num = "";
+
+        for (int i = 0; i < clearStage.Length; i++)
+        {
+            if (clearStage[i])
+            {
+                num += i.ToString() + "\n";
+            }
+        }
 
         File.Open(path, FileMode.OpenOrCreate).Dispose();
-        File.WriteAllText(path, clearStage.ToString());
-    }
-
-    public void SelectStage(int stageNum)
-    {
-        selectedStage = stageNum;
+        File.WriteAllText(path, num);
     }
 
     public void LoadScene(string name)

@@ -45234,12 +45234,12 @@ PrefabInstance:
     - target: {fileID: 1195023051707613939, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.8
+      value: 23.52
       objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613939, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.32
+      value: 3.68
       objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613939, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
@@ -45404,12 +45404,12 @@ PrefabInstance:
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.36
+      value: 24.96
       objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.52
+      value: 4.16
       objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
@@ -45460,6 +45460,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: JumpPad (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788857, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: actionCount
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed57edcf2dcde804384409fd08df5bd8, type: 3}
@@ -46074,6 +46079,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: JumpPad (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788857, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: actionCount
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed57edcf2dcde804384409fd08df5bd8, type: 3}

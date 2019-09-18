@@ -200,9 +200,9 @@ public class PlayerController : MonoBehaviour
         controller.enabled = false;
         enabled = false;
 
-        if (SceneManagement.Instance.currentScene == "StageScene")
+        if (SceneManagement.Instance.currentScene == "PracticeScene")
         {
-            CameraFollow.mainCam.transform.GetComponentInChildren<StageButtonInput>().SetResultPanel();
+            CameraFollow.mainCam.transform.GetComponentInChildren<PracticeButtonInput>().SetResultPanel();
         }
         else if(SceneManagement.Instance.currentScene == "EndlessScene")
         {
