@@ -60,19 +60,9 @@ public class SceneManagement : MonoBehaviour
 
         }
 
-        if(playerSkinArray.Length == 0)
-        {
-            playerSkinArray = Resources.LoadAll<Sprite>("Skin/Player/");
-        }
-
         if (!PlayerPrefs.HasKey("BodySkin"))
         {
             PlayerPrefs.SetInt("BodySkin", 0);
-        }
-
-        if (!PlayerPrefs.HasKey("EffectSkin"))
-        {
-            PlayerPrefs.SetInt("EffectSkin", 0);
         }
     }
 
@@ -117,31 +107,34 @@ public class SceneManagement : MonoBehaviour
 
     [Space(10)][Header("--------------------------------------")][Space(10)]
 
-    [SerializeField] private Sprite[] playerSkinArray;
-    [SerializeField] private EffectInfo[] effectSkinArray;
-    [System.Serializable] public class EffectInfo
+    [SerializeField] private SkinInfo[] playerSkinArray;
+    [System.Serializable] public class SkinInfo
     {
+        private bool Lock;
+        public void IsLock(string password, bool isLock)
+        {
+            isLock = Lock;
+        }
+        public bool getLock()
+        {
+            return Lock;
+        }
+
+        public Sprite playerSkinArray;
         public Sprite face;
         public ParticleSystem hitEffect;
+        public ParticleSystem tailParticle;
         public Color tailColor;
     }
 
     // 플레이어가 선택한 body와 effect 반환
-    public Sprite GetPlayerBody()
+    public SkinInfo GetSkin()
     {
         return playerSkinArray[PlayerPrefs.GetInt("BodySkin")];
     }
-    public EffectInfo GetPlayerEffect()
-    {
-        return effectSkinArray[PlayerPrefs.GetInt("EffectSkin")];
-    }
     // 플레이어가 선택한 body와 effect 저장
-    public void SetPlayerBody(int body)
+    public void SetSkin(int body)
     {
         PlayerPrefs.SetInt("BodySkin", body);
-    }
-    public void SetPlayerEffect(int effect)
-    {
-        PlayerPrefs.SetInt("EffectSkin", effect);
     }
 }

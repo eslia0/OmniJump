@@ -9,12 +9,12 @@ public class SkinButtonScript : MonoBehaviour
 
     private void Start()
     {
-        playerBody.sprite = SceneManagement.Instance.GetPlayerBody();
+        SceneManagement.SkinInfo skin = SceneManagement.Instance.GetSkin();
     }
 
     // Start is called before the first frame update
     void OnEnable()
     {
-        playerBody.sprite = SceneManagement.Instance.GetPlayerBody();
+        //playerBody.sprite = SceneManagement.Instance.GetPlayerBody();
     }
 }
