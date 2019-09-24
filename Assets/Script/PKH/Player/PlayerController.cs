@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform face;
     [SerializeField] private GameObject deathParticle;
     [SerializeField] private Transform returnPoint;
-    
+
     // 방향 설정
     [Header("액션변수"), Space(10)]
     public Direction interactionDirection;
@@ -57,8 +57,7 @@ public class PlayerController : MonoBehaviour
 
     // 회전
     [SerializeField] private int zAxis = 0;
-    public int rotationZ 
-    {
+    public int rotationZ {
         get { return (zAxis % 4); }
         set {
             zAxis += value;
@@ -76,9 +75,8 @@ public class PlayerController : MonoBehaviour
     private int increaseAmount = 0;
 
     private bool isDead = false;
+    public Transform reviveSpot;
     private Animator ani;
-
-
 
     private void Awake()
     {
@@ -121,8 +119,8 @@ public class PlayerController : MonoBehaviour
         }
 
 #if UNITY_EDITOR
-            //timer = Time.time;
-            if (Input.GetAxisRaw("Horizontal") != 0)
+        //timer = Time.time;
+        if (Input.GetAxisRaw("Horizontal") != 0)
         {
             int i = ((Input.GetAxisRaw("Horizontal") == 1) ? 0 : 2);
             faceDirection = i % 4;
@@ -140,10 +138,10 @@ public class PlayerController : MonoBehaviour
         {
             onClick = false;
         }
-        #endif
+#endif
 
         velocity.x = moveSpeed * ((moveRight) ? 1 : -1);
-        velocity.y += gravity * Time.deltaTime * ((revertGravity)?-1:1);
+        velocity.y += gravity * Time.deltaTime * ((revertGravity) ? -1 : 1);
 
         movementController?.Invoke();
         controller.Move(velocity * Time.deltaTime);
@@ -152,7 +150,7 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = 0;
         }
-        
+
         if (isTargetJump && controller.collisioninfo.below)
         {
             isTargetJump = false;
@@ -166,7 +164,8 @@ public class PlayerController : MonoBehaviour
         {
             currentAngle += increaseAmount;
             body.localRotation = Quaternion.Euler(0, 0, currentAngle);
-        } else
+        }
+        else
         {
             body.localRotation = Quaternion.Euler(0, 0, targetAngle);
             movementController -= RotationZ;
@@ -193,20 +192,34 @@ public class PlayerController : MonoBehaviour
     {
         Destroy(Instantiate(deathParticle, transform.position, Quaternion.identity), 1.5f);
 
-        isDead = true;
-        CameraFollow.mainCam.GetComponent<CameraFollow>().follow = false;
-        GetComponent<BoxCollider2D>().enabled = false;
-        body.gameObject.SetActive(false);
-        controller.enabled = false;
-        enabled = false;
+        if (reviveSpot)
+        {
+            moveRight = true;
+            revertGravity = false;
 
-        if (SceneManagement.Instance.currentScene == "PracticeScene")
-        {
-            CameraFollow.mainCam.transform.GetComponentInChildren<PracticeButtonInput>().SetResultPanel();
+            currentAngle = 0;
+            zAxis = 0;
+            rotationZ = 0;
+
+            StartCoroutine(HoldPlayer(reviveSpot, 1.5f));
         }
-        else if(SceneManagement.Instance.currentScene == "EndlessScene")
+        else
         {
-            CameraFollow.mainCam.transform.GetComponentInChildren<ButtonInput>().SetResultPanel();
+            isDead = true;
+            CameraFollow.mainCam.GetComponent<CameraFollow>().follow = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+            body.gameObject.SetActive(false);
+            controller.enabled = false;
+            enabled = false;
+
+            if (SceneManagement.Instance.currentScene == "PracticeScene")
+            {
+                CameraFollow.mainCam.transform.GetComponentInChildren<PracticeButtonInput>().SetResultPanel();
+            }
+            else if (SceneManagement.Instance.currentScene == "EndlessScene")
+            {
+                CameraFollow.mainCam.transform.GetComponentInChildren<ButtonInput>().SetResultPanel();
+            }
         }
     }
 
@@ -214,6 +227,7 @@ public class PlayerController : MonoBehaviour
     {
         enabled = false; // 캐릭터 움직임 봉쇄
         body.gameObject.SetActive(false); // 캐릭터 스프라이트 제거
+        velocity = Vector3.zero;
 
         float check = 0.0f;
         while (check < time)

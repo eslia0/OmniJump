@@ -50,22 +50,23 @@ public class Creater : GameVariables
         }
     }
     private float scoreMultiply;
-
     private ScoreText scoreText;
-
     private int maxPlatform;
 
     private void Awake()
     {
-        instance = FindObjectOfType<Creater>();
-
-        if (instance != this)
+        if (SceneManagement.Instance.currentScene == "EndlessScene")
         {
-            Destroy(gameObject);
-            return;
-        }
+            instance = FindObjectOfType<Creater>();
 
-        DontDestroyOnLoad(gameObject);
+            if (instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     // Endless Scene 처음 로드되었을때 한 번 실행
@@ -77,6 +78,9 @@ public class Creater : GameVariables
 
             int num = Random.Range(0, 3);
             currentMap = (level - 1) * 3 + num;
+
+            SceneManagement.Instance.clearStage[currentMap] = true;
+            SceneManagement.Instance.WriteData();
             nowPlatform = Instantiate(platforms[currentMap]);
 
             scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();

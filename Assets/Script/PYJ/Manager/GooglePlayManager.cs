@@ -22,6 +22,11 @@ public class GooglePlayManager : MonoBehaviour
 #elif UNITY_IOS
         GameCenterPlatform.ShowDefaultAchievementCompletionBanner(true);
 #endif
+
+        GetComponent<Button>().onClick.RemoveAllListeners();
+        GetComponent<Button>().onClick.AddListener(delegate () {
+            SignIn();
+        });
     }
 
     public void SignIn()
@@ -33,6 +38,7 @@ public class GooglePlayManager : MonoBehaviour
                 logText.text = "로그인 성공";
                 // to do ...
                 // 로그인 성공 처리
+                ShowLeaderboardUI();
             }
             else
             {

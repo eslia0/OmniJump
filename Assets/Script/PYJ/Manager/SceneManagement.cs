@@ -80,11 +80,6 @@ public class SceneManagement : MonoBehaviour
                 clearStage[num] = true;
             }
         }
-        else
-        {
-            File.Open(path, FileMode.OpenOrCreate).Dispose();
-            File.WriteAllText(path, "0");
-        }
     }
 
     public void WriteData()
@@ -92,11 +87,13 @@ public class SceneManagement : MonoBehaviour
         string path = Application.persistentDataPath + "/data0.txt";
         string num = "";
 
+        Debug.Log("Write");
         for (int i = 0; i < clearStage.Length; i++)
         {
             if (clearStage[i])
             {
                 num += i.ToString() + "\n";
+                Debug.Log(i);
             }
         }
 

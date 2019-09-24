@@ -112057,6 +112057,7 @@ MonoBehaviour:
   destroyExplosion: 0
   moveRight: 1
   teleportExit: {fileID: 6689981837142275294}
+  waitSecond: 0.8
   portalLight:
   - {fileID: 6689981838362632774}
   - {fileID: 6689981838149570866}

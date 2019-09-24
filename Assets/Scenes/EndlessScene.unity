@@ -207,7 +207,7 @@ Transform:
   - {fileID: 1090587621}
   - {fileID: 2057373216}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &188525324
 GameObject:
@@ -462,7 +462,7 @@ Transform:
   - {fileID: 447172469}
   - {fileID: 1941781593}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &538096094
 GameObject:
@@ -559,7 +559,7 @@ Transform:
   - {fileID: 701173218}
   - {fileID: 188525325}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &701173217
 GameObject:
@@ -1151,7 +1151,7 @@ PrefabInstance:
     - target: {fileID: 5535358337785252760, guid: 6aaa76dff575c0d41944a18031ff6c0a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 5535358337785252760, guid: 6aaa76dff575c0d41944a18031ff6c0a,
         type: 3}
@@ -1181,7 +1181,7 @@ PrefabInstance:
     - target: {fileID: 5535358337785252760, guid: 6aaa76dff575c0d41944a18031ff6c0a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5535358337785252760, guid: 6aaa76dff575c0d41944a18031ff6c0a,
         type: 3}
@@ -1242,29 +1242,6 @@ MonoBehaviour:
   platforms: []
   nowPlatform: {fileID: 0}
   score: 0
-  playerSkinArray:
-  - {fileID: 21300000, guid: b170f094df41d4a40a4ab12994228ede, type: 3}
-  - {fileID: 21300000, guid: 5bd81720a18923e48b1830ab6a634526, type: 3}
-  - {fileID: 21300000, guid: 1cecf279853134d4abb8517ffbedb0bf, type: 3}
-  - {fileID: 21300000, guid: 019eff07d4cb2984bbeda455b1e5a7ff, type: 3}
-  - {fileID: 21300000, guid: 0243f1975d116a943b9bb74affbac682, type: 3}
-  effectSkinArray:
-  - face: {fileID: 21300010, guid: e75ab38bb3b5d494892081378bf74583, type: 3}
-    hitEffect: {fileID: 6347501936721737369, guid: 510daa2542e068d4ea4416a995f4f53d,
-      type: 3}
-    tailColor: {r: 1, g: 1, b: 1, a: 1}
-  - face: {fileID: 21300010, guid: e75ab38bb3b5d494892081378bf74583, type: 3}
-    hitEffect: {fileID: 6347501936721737369, guid: 510daa2542e068d4ea4416a995f4f53d,
-      type: 3}
-    tailColor: {r: 1, g: 0, b: 0, a: 1}
-  - face: {fileID: 21300010, guid: e75ab38bb3b5d494892081378bf74583, type: 3}
-    hitEffect: {fileID: 6347501936721737369, guid: 510daa2542e068d4ea4416a995f4f53d,
-      type: 3}
-    tailColor: {r: 1, g: 0.99296916, b: 0, a: 1}
-  - face: {fileID: 21300010, guid: e75ab38bb3b5d494892081378bf74583, type: 3}
-    hitEffect: {fileID: 6347501936721737369, guid: 510daa2542e068d4ea4416a995f4f53d,
-      type: 3}
-    tailColor: {r: 0.10670447, g: 1, b: 0, a: 1}
 --- !u!4 &1338151670
 Transform:
   m_ObjectHideFlags: 0
@@ -1277,7 +1254,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1455840352
 PrefabInstance:
@@ -2411,6 +2388,8 @@ MonoBehaviour:
   - {fileID: 1645466154}
   resultPanel: {fileID: 374601246872904606}
   resultScore: {fileID: 1251956421}
+  play: {fileID: 21300000, guid: e9e69b1edbf182c4ba60ffec64f12f25, type: 3}
+  pause: {fileID: 21300000, guid: d7fe3573be202a7408f8a9de8cd3d269, type: 3}
 --- !u!114 &5781825986680448536
 MonoBehaviour:
   m_ObjectHideFlags: 0

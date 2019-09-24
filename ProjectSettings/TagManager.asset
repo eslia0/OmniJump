@@ -10,6 +10,7 @@ TagManager:
   - Pad
   - Face
   - Platform
+  - Revive
   layers:
   - Default
   - TransparentFX

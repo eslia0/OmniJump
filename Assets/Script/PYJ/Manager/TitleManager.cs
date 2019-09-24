@@ -28,12 +28,12 @@ public class TitleManager : MonoBehaviour
     private GameObject practicePanel;
 
     [SerializeField] private Button[] buttons;
-    private Text selectedPercent;
     private Image[] levelImage;
     private int selectedLevel;      // 현제 선택된 레벨. 0 ~ 59
     private Text selectedLevelText;
 
     private ScrollRect mapScroll;
+    private Animation scrollAnim;
     [SerializeField] private RectTransform map;
     private Image[] maps;
     private Button[] levels;
@@ -45,11 +45,17 @@ public class TitleManager : MonoBehaviour
         InitTitle();
     }
 
+    private void Update()
+    {
+        selectedLevelText.text = "Lv. " + ((int)(map.anchoredPosition.x / 430 * -1 + 1.2f + selectedLevel)).ToString();
+    }
+
     public void InitTitle()
     {
         titlePanel = transform.GetChild(0).gameObject;
         practicePanel = transform.GetChild(1).gameObject;
-        mapScroll = practicePanel.transform.GetChild(4).GetComponent<ScrollRect>();
+        mapScroll = practicePanel.transform.GetChild(3).GetComponent<ScrollRect>();
+        scrollAnim = mapScroll.GetComponent<Animation>();
 
         buttons[0].onClick.RemoveAllListeners();
         buttons[0].onClick.AddListener(delegate () { StartEndless(); });
@@ -97,14 +103,13 @@ public class TitleManager : MonoBehaviour
     private void InitPractice()
     {
         selectedLevelText = practicePanel.transform.GetChild(0).Find("SelectedText").GetComponent<Text>();
-        selectedPercent = practicePanel.transform.GetChild(1).GetComponent<Text>();
 
-        Button backButton = practicePanel.transform.GetChild(2).GetComponent<Button>();
+        Button backButton = practicePanel.transform.GetChild(1).GetComponent<Button>();
         backButton.onClick.RemoveAllListeners();
         backButton.onClick.AddListener(delegate () { ToTitlePanel(); });
 
         // 하단의 10단위 레벨 버튼 초기화
-        Transform level = practicePanel.transform.GetChild(3);
+        Transform level = practicePanel.transform.GetChild(2);
         levels = new Button[6];
 
         levels[0] = level.GetChild(0).GetComponent<Button>();
@@ -119,12 +124,12 @@ public class TitleManager : MonoBehaviour
         levels[3].onClick.RemoveAllListeners();
         levels[4].onClick.RemoveAllListeners();
         levels[5].onClick.RemoveAllListeners();
-        levels[0].onClick.AddListener(delegate () { SetLevel(0); });
-        levels[1].onClick.AddListener(delegate () { SetLevel(10); });
-        levels[2].onClick.AddListener(delegate () { SetLevel(20); });
-        levels[3].onClick.AddListener(delegate () { SetLevel(30); });
-        levels[4].onClick.AddListener(delegate () { SetLevel(40); });
-        levels[5].onClick.AddListener(delegate () { SetLevel(50); });
+        levels[0].onClick.AddListener(delegate () { StartCoroutine(SetLevel(0)); });
+        levels[1].onClick.AddListener(delegate () { StartCoroutine(SetLevel(10)); });
+        levels[2].onClick.AddListener(delegate () { StartCoroutine(SetLevel(20)); });
+        levels[3].onClick.AddListener(delegate () { StartCoroutine(SetLevel(30)); });
+        levels[4].onClick.AddListener(delegate () { StartCoroutine(SetLevel(40)); });
+        levels[5].onClick.AddListener(delegate () { StartCoroutine(SetLevel(50)); });
 
         // 맵 이미지 초기화
         maps = new Image[10];
@@ -133,33 +138,17 @@ public class TitleManager : MonoBehaviour
         {
             maps[i] = map.GetChild(i).GetChild(0).GetComponent<Image>();
         }
+
+        SetScrollImages();
     }
 
-    private void SelectLevel(int move)
+    private void SelectLevel(int level)
     {
-        // 이전 레벨
-        if (move == -1 && selectedLevel % 10 != 0)
+        if (SceneManagement.Instance.clearStage[level])
         {
-            map.anchoredPosition += new Vector2(400, 0);
-            selectedLevel--;
+            SceneManagement.Instance.selectedStage = level + 1;
+            SceneManagement.Instance.LoadScene("PracticeScene");
         }
-        // 다음 레벨
-        else if (move == 1 && selectedLevel % 10 != 9)
-        {
-            map.anchoredPosition -= new Vector2(400, 0);
-            selectedLevel++;
-        }
-        // 레벨 시작
-        else if (move == 0)
-        {
-            if (SceneManagement.Instance.clearStage[selectedLevel])
-            {
-                SceneManagement.Instance.selectedStage = selectedLevel + 1;
-                SceneManagement.Instance.LoadScene("PracticeScene");
-            }
-        }
-
-        selectedLevelText.text = "Lv. " + (selectedLevel + 1).ToString();
     }
 
     // 리소스에서 맵 이미지를 로드
@@ -173,11 +162,27 @@ public class TitleManager : MonoBehaviour
     }
 
     // 현재 레벨에 따른 맵 이미지 설정
-    private void SetLevel(int level)
+    private IEnumerator SetLevel(int level)
     {
-        selectedLevel = level;
+        if (selectedLevel != level)
+        {
+            scrollAnim.Play("ScrollUp");
+            mapScroll.velocity = Vector2.zero;
+            yield return new WaitForSeconds(0.5f);
+            mapScroll.horizontalNormalizedPosition = 0;
 
-        mapScroll.horizontalNormalizedPosition = 0;
+            selectedLevel = level;
+            SetScrollImages();
+
+            selectedLevelText.text = "Lv. " + (selectedLevel + 1).ToString();
+            scrollAnim.Play("ScrollDown");
+        }
+    }
+
+    // 스크롤 되는 맵 이미지 초기화
+    private void SetScrollImages()
+    {
+        Button[] buttons = new Button[10];
 
         for (int i = 0; i < 10; i++)
         {
@@ -187,8 +192,20 @@ public class TitleManager : MonoBehaviour
                 maps[i].color = new Color(0.2f, 0.2f, 0.2f);
             else
                 maps[i].color = new Color(1, 1, 1);
+
+            buttons[i] = maps[i].GetComponent<Button>();
+            buttons[i].onClick.RemoveAllListeners();
         }
 
-        selectedLevelText.text = "Lv. " + (selectedLevel + 1).ToString();
+        buttons[0].onClick.AddListener(delegate () { SelectLevel(selectedLevel); });
+        buttons[1].onClick.AddListener(delegate () { SelectLevel(selectedLevel + 1); });
+        buttons[2].onClick.AddListener(delegate () { SelectLevel(selectedLevel + 2); });
+        buttons[3].onClick.AddListener(delegate () { SelectLevel(selectedLevel + 3); });
+        buttons[4].onClick.AddListener(delegate () { SelectLevel(selectedLevel + 4); });
+        buttons[5].onClick.AddListener(delegate () { SelectLevel(selectedLevel + 5); });
+        buttons[6].onClick.AddListener(delegate () { SelectLevel(selectedLevel + 6); });
+        buttons[7].onClick.AddListener(delegate () { SelectLevel(selectedLevel + 7); });
+        buttons[8].onClick.AddListener(delegate () { SelectLevel(selectedLevel + 8); });
+        buttons[9].onClick.AddListener(delegate () { SelectLevel(selectedLevel + 9); });
     }
 }

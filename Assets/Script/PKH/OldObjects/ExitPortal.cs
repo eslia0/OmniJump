@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ExitPortal : MonoBehaviour
 {
@@ -60,6 +61,10 @@ public class ExitPortal : MonoBehaviour
         else if(SceneManagement.Instance.currentScene == "TutorialScene")
         {
             SceneManagement.Instance.LoadScene("EndlessScene");
+        }
+        else if (SceneManagement.Instance.currentScene == "PracticeScene")
+        {
+            FindObjectOfType<PracticeButtonInput>().SetResultPanel();
         }
     }
 

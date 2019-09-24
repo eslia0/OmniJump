@@ -25,7 +25,6 @@ public class Teleport : InteractiveObject
         // 텔레포트 이동 파티클 생성
         Creater.Instance.GetPoofPrefab(transform);
 
-        Creater.Instance.player.velocity = Vector3.zero;
         Creater.Instance.player.moveRight = moveRight; // 텔로포터 사용 후 플레이어 방향 설정
 
         Creater.Instance.player.StartCoroutine(Creater.Instance.player.HoldPlayer(teleportExit, waitSecond)); // 텔레포터 딜레이
