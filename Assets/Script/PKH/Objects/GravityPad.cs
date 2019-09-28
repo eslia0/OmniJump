@@ -15,6 +15,7 @@ public class GravityPad : InteractiveObject
         // 중력패드 사용 직후 3의 속도를 추가한 만큼 y축 이동을 시킨다.
         Creater.Instance.player.velocity.y += (Creater.Instance.player.revertGravity) ? -3 : 3;
         Creater.Instance.player.revertGravity = !Creater.Instance.player.revertGravity;
+        Creater.Instance.player.skinManager.FlipEffect(Creater.Instance.player.revertGravity);
         Creater.Instance.AddScore(15);
         
         base.update();

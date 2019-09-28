@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -47,23 +48,11 @@ public class SceneManagement : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         LoadData();
 
-        try
-        {
-
-        }
-        catch (Exception e)
-        {
-
-        }
-        if(PlayerPrefs.GetInt("BodySkin") == -1)
-        {
-
-        }
-
         if (!PlayerPrefs.HasKey("BodySkin"))
         {
             PlayerPrefs.SetInt("BodySkin", 0);
         }
+        skinArray = XMLManager.S.LoadSkinXML();
     }
 
     public void LoadData()
@@ -109,37 +98,63 @@ public class SceneManagement : MonoBehaviour
         SceneManager.LoadScene(name);
     }
 
-
     [Space(10)][Header("--------------------------------------")][Space(10)]
 
-    [SerializeField] private SkinInfo[] playerSkinArray;
+    [SerializeField] private List<SkinInfo> skinArray = new List<SkinInfo>();
+    public List<SkinInfo> GetSkinArray() { return skinArray; }
     [System.Serializable] public class SkinInfo
     {
-        private bool Lock;
-        public void IsLock(string password, bool isLock)
-        {
-            isLock = Lock;
-        }
-        public bool getLock()
-        {
-            return Lock;
-        }
+        public string body;
+        public string face;
+        //public string hitEffect;
 
-        public Sprite playerSkinArray;
-        public Sprite face;
-        public ParticleSystem hitEffect;
-        public ParticleSystem tailParticle;
+        public SkinTailState tailState;
+        public string tailEffect;
         public Color tailColor;
     }
+    public enum SkinTailState
+    {
+        Effect,
+        Color
+    }
+
 
     // 플레이어가 선택한 body와 effect 반환
     public SkinInfo GetSkin()
     {
-        return playerSkinArray[PlayerPrefs.GetInt("BodySkin")];
+        //Debug.Log(PlayerPrefs.GetInt("BodySkin"));
+        return skinArray[PlayerPrefs.GetInt("BodySkin")];
     }
+
+    public Sprite GetBody()
+    {
+        return Resources.Load<Sprite>(skinArray[PlayerPrefs.GetInt("BodySkin")].body);
+    }
+    public Sprite GetFace()
+    {
+        return Resources.Load<Sprite>(skinArray[PlayerPrefs.GetInt("BodySkin")].face);
+    }
+
     // 플레이어가 선택한 body와 effect 저장
     public void SetSkin(int body)
     {
-        PlayerPrefs.SetInt("BodySkin", body);
+        PlayerPrefs.SetInt("BodySkin", (body < skinArray.Count) ? body : 0) ;
+    }
+
+    public GameObject SetTailEffect(string path, Color color)
+    {
+        GameObject game = Resources.Load<GameObject>(path);
+
+        // ColorOverTime 설정
+        ParticleSystem.ColorOverLifetimeModule cot = game.GetComponent<ParticleSystem>().colorOverLifetime;
+
+        Gradient gradient = new Gradient();
+        gradient.SetKeys(new GradientColorKey[] { // 시간에 따라 변화하도록 설정
+            new GradientColorKey(color, 0.0f), new GradientColorKey(Color.white, 1.0f) }, // 색상
+            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(1.0f, 0.75f), new GradientAlphaKey(0.0f, 1.0f) }); // 알파값
+
+        cot.color = gradient;
+
+        return game;
     }
 }

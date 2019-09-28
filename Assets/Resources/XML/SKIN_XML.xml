@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!--
+  <SKIN>
+    <BODY>몸통 번호</BODY>
+    <FACE>얼굴 번호</FACE>
+    <HIT_EFFECT>타격 이펙트 번호</HIT_EFFECT>
+    <CATEGORY> 꼬리 이팩트 or 꼬리 색상 변경 (tail / color)</CATEGORY>
+    <TAIL_EFFECT>0</TAIL_EFFECT>
+    <COLOR>1/1/1</COLOR>
+  </SKIN>
+  -->
+  
+  <SKIN>
+    <BODY>0</BODY>
+    <FACE>0</FACE>
+    <CATEGORY>color</CATEGORY>
+    <TAIL_EFFECT>0</TAIL_EFFECT>
+    <COLOR>1.0/1.0/1.0</COLOR>
+  </SKIN>
+
+  <SKIN>
+    <BODY>1</BODY>
+    <FACE>0</FACE>
+    <CATEGORY>tail</CATEGORY>
+    <TAIL_EFFECT>0</TAIL_EFFECT>
+    <COLOR>0.5/0.1/0.7</COLOR>
+  </SKIN>
+
+  <SKIN>
+    <BODY>2</BODY>
+    <FACE>0</FACE>
+    <CATEGORY>tail</CATEGORY>
+    <TAIL_EFFECT>0</TAIL_EFFECT>
+    <COLOR>0.2/0.4/0.4</COLOR>
+  </SKIN>
+
+  <SKIN>
+    <BODY>3</BODY>
+    <FACE>0</FACE>
+    <CATEGORY>tail</CATEGORY>
+    <TAIL_EFFECT>1</TAIL_EFFECT>
+    <COLOR>0.7/0.2/0.6</COLOR>
+  </SKIN>
+
+  <SKIN>
+    <BODY>4</BODY>
+    <FACE>0</FACE>
+    <CATEGORY>color</CATEGORY>
+    <TAIL_EFFECT>0</TAIL_EFFECT>
+    <COLOR>1.0/1.0/1.0</COLOR>
+  </SKIN>
+
+  <SKIN>
+    <BODY>5</BODY>
+    <FACE>0</FACE>
+    <CATEGORY>color</CATEGORY>
+    <TAIL_EFFECT>0</TAIL_EFFECT>
+    <COLOR>1.0/1.0/1.0</COLOR>
+  </SKIN>
+
+  <SKIN>
+    <BODY>6</BODY>
+    <FACE>0</FACE>
+    <CATEGORY>color</CATEGORY>
+    <TAIL_EFFECT>0</TAIL_EFFECT>
+    <COLOR>1.0/1.0/1.0</COLOR>
+  </SKIN>
+
+  <SKIN>
+    <BODY>7</BODY>
+    <FACE>0</FACE>
+    <CATEGORY>color</CATEGORY>
+    <TAIL_EFFECT>0</TAIL_EFFECT>
+    <COLOR>1.0/1.0/1.0</COLOR>
+  </SKIN>
+</dataroot>

@@ -75,11 +75,14 @@ public class PlayerController : MonoBehaviour
     private int increaseAmount = 0;
 
     private bool isDead = false;
-    public Transform reviveSpot;
     private Animator ani;
+    public PlayerSkinManager skinManager;
+    public Transform reviveSpot;
 
     private void Awake()
     {
+        skinManager = GetComponent<PlayerSkinManager>();
+
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeOfJumpApex, 2); // timeOfJumpApex^2 (d = Vi * t + 1/2 * a * t^2)
         jumpVelocity = Mathf.Abs(gravity) * timeOfJumpApex; // Vf = Vi + a * t
 
@@ -196,6 +199,7 @@ public class PlayerController : MonoBehaviour
         {
             moveRight = true;
             revertGravity = false;
+            skinManager.FlipEffect(false);
 
             currentAngle = 0;
             zAxis = 0;

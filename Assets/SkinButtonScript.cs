@@ -15,6 +15,6 @@ public class SkinButtonScript : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        //playerBody.sprite = SceneManagement.Instance.GetPlayerBody();
+        playerBody.sprite = SceneManagement.Instance.GetBody();
     }
 }
