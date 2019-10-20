@@ -86,6 +86,7 @@ public class Creater : GameVariables
             scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
             scoreText.SetText(score);
             SetScoreMultiply(1f);
+
         }
         else if (SceneManagement.Instance.currentScene == "PracticeScene")
         {
@@ -132,6 +133,8 @@ public class Creater : GameVariables
         {
             platforms[i] = Resources.Load<GameObject>("Maps/Map" + (i + 1).ToString());
         }
+
+        SoundManager.Instance.Play("Ready to go");
     }
 
     public override void Disable()
@@ -157,6 +160,8 @@ public class Creater : GameVariables
                 if (level == 4 || level == 9 || level == 15 || level == 35)
                 {
                     currentMap = (level - 1) * 3;
+
+                    SoundManager.Instance.Play("13");
                 }
                 else if (level > 15)
                 {
@@ -167,6 +172,21 @@ public class Creater : GameVariables
                     int num = Random.Range(0, 3);
                     currentMap = (level - 1) * 3 + num;
                 }
+
+                if (level == 5)
+                {
+                    SoundManager.Instance.Play("Step in");
+                }
+                else if (level == 10)
+                {
+                    SoundManager.Instance.Play("Dreaming");
+                }
+                else if (level == 16)
+                {
+                    SoundManager.Instance.Play("Before");
+                }
+
+                SetScoreMultiply(1 + level * 0.03f);
             }
 
             SceneManagement.Instance.clearStage[currentMap] = true;
@@ -174,7 +194,7 @@ public class Creater : GameVariables
 
             nowPlatform = Instantiate(platforms[currentMap]);
             isRetry = false;
-
+            
             scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
             scoreText.SetText(score);
 

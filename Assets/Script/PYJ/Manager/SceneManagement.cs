@@ -57,37 +57,60 @@ public class SceneManagement : MonoBehaviour
 
     public void LoadData()
     {
-        string path = Application.persistentDataPath + "/data0.txt";
+        string str = "";
+        str = PlayerPrefs.GetString("ClearStage");
 
-        if (File.Exists(path))
+        if (str != "")
         {
-            string[] data = File.ReadAllLines(path);
-
-            for (int i = 0; i < data.Length; i++)
+            string[] stages = str.Split('.');
+            for (int i = 0; i < stages.Length - 1; i++)
             {
-                int num = int.Parse(data[i]);
+                int num = int.Parse(stages[i]);
                 clearStage[num] = true;
             }
         }
+
+        //string path = Application.persistentDataPath + "/data0.txt";
+
+        //if (File.Exists(path))
+        //{
+        //    string[] data = File.ReadAllLines(path);
+
+        //    for (int i = 0; i < data.Length; i++)
+        //    {
+        //        int num = int.Parse(data[i]);
+        //        clearStage[num] = true;
+        //    }
+        //}
     }
 
     public void WriteData()
     {
-        string path = Application.persistentDataPath + "/data0.txt";
         string num = "";
 
-        Debug.Log("Write");
         for (int i = 0; i < clearStage.Length; i++)
         {
             if (clearStage[i])
             {
-                num += i.ToString() + "\n";
-                Debug.Log(i);
+                num += i.ToString() + ".";
             }
         }
+        
+        PlayerPrefs.SetString("ClearStage", num);
 
-        File.Open(path, FileMode.OpenOrCreate).Dispose();
-        File.WriteAllText(path, num);
+        //string path = Application.persistentDataPath + "/data0.txt";
+        //string num = "";
+        
+        //for (int i = 0; i < clearStage.Length; i++)
+        //{
+        //    if (clearStage[i])
+        //    {
+        //        num += i.ToString() + "\n";
+        //    }
+        //}
+
+        //File.Open(path, FileMode.OpenOrCreate).Dispose();
+        //File.WriteAllText(path, num);
     }
 
     public void LoadScene(string name)
@@ -96,6 +119,11 @@ public class SceneManagement : MonoBehaviour
         currentScene = name;
 
         SceneManager.LoadScene(name);
+
+        if (currentScene == "TitleManager")
+        {
+            SoundManager.Instance.Play("Title");
+        }
     }
 
     [Space(10)][Header("--------------------------------------")][Space(10)]

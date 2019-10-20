@@ -130,8 +130,7 @@ public class PlayerUIController : MonoBehaviour
         }
         else if (action[0].action == InteractionUI.UIInteraction.Teleport)
         {
-            transform.position = action[0].exit.transform.position;
-            moveSpeed = 3.0f;
+            StartCoroutine(HoldPlayer(action[0].exit.transform, 1.0f));
         }
         else if (action[0].action == InteractionUI.UIInteraction.Moving)
         {
@@ -230,8 +229,22 @@ public class PlayerUIController : MonoBehaviour
         action.Clear();
         for (int i = 0; i < actions.transform.childCount; i++)
         {
-            Debug.Log(actions.transform.GetChild(i));
             action.Add(actions.transform.GetChild(i).GetComponent<InteractionUI>());
         }
+    }
+
+    public IEnumerator HoldPlayer(Transform exit, float time)
+    {
+        moveSpeed = 0.0f;
+
+        float check = 0.0f;
+        while (check < time)
+        {
+            check += Time.deltaTime;
+            transform.position = exit.position;
+            yield return null;
+        }
+
+        moveSpeed = 3.0f;
     }
 }

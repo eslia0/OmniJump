@@ -36,7 +36,7 @@ public class Rotation : InteractiveObject
 
     protected override void update()
     {
-        Creater.Instance.AddScore(10);
+        Creater.Instance.AddScore(30);
         if (canJump)
         {
             if (nextTarget == null)

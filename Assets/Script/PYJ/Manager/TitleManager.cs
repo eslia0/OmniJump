@@ -43,6 +43,7 @@ public class TitleManager : MonoBehaviour
     private void Start()
     {
         InitTitle();
+        SoundManager.Instance.Play("Title");
     }
 
     private void Update()

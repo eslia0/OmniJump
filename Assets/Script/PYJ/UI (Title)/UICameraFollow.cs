@@ -9,9 +9,10 @@ public class UICameraFollow : MonoBehaviour
     public float smoothZoomIn = 5;
     public float smoothZoomOut = 5;
 
-    public Vector3 screenSize;
+    private Vector3 screenSize;
 
     public bool follow = true;
+    public bool yMove = true;
     private float SpacingX;
     private float SpacingY;
     private Vector2 velocity = new Vector2(0, 0);
@@ -49,10 +50,17 @@ public class UICameraFollow : MonoBehaviour
 
             xPos = Mathf.SmoothDamp(transform.position.x, xPos, ref velocity.x, smoothTimeX);
 
-            yPos = Mathf.Clamp(transform.position.y,
-                player.transform.position.y - SpacingY * 0.6f,
-                player.transform.position.y - SpacingY * 0.3f);
-            yPos = Mathf.SmoothDamp(transform.position.y, yPos, ref velocity.y, smoothTimeY);
+            if (yMove)
+            {
+                yPos = Mathf.Clamp(transform.position.y,
+                    player.transform.position.y - SpacingY * 0.6f,
+                    player.transform.position.y - SpacingY * 0.3f);
+                yPos = Mathf.SmoothDamp(transform.position.y, yPos, ref velocity.y, smoothTimeY);
+            }
+            else
+            {
+                yPos = transform.position.y;
+            }
 
             transform.position = new Vector3(xPos, yPos, -100);
         }

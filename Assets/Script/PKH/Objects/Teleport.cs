@@ -29,7 +29,7 @@ public class Teleport : InteractiveObject
 
         Creater.Instance.player.StartCoroutine(Creater.Instance.player.HoldPlayer(teleportExit, waitSecond)); // 텔레포터 딜레이
 
-        Creater.Instance.AddScore(20);
+        Creater.Instance.AddScore(15);
 
         base.update();
     }
