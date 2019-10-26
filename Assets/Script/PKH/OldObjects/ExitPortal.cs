@@ -15,7 +15,7 @@ public class ExitPortal : MonoBehaviour
     {
         follow = CameraFollow.mainCam.GetComponent<CameraFollow>();
         player = Creater.Instance.player.transform;
-        endPoint = Creater.Instance.NowPlatform.EndPoint.position;
+        endPoint = Creater.Instance.nowPlatform.EndPoint.position;
 
         if (endPoint == Vector3.zero || endPoint == null)
         {
@@ -38,11 +38,17 @@ public class ExitPortal : MonoBehaviour
 
             if (Vector3.Distance(endPoint, player.position) <= 0.32f)
             {
+                if (SceneManagement.Instance.currentScene == "EndlessScene")
+                {
+                    Creater.Instance.endUI.SwitchEnablePause();
+                }
+
+                Creater.Instance.isPaused = true;
                 yield return new WaitForSeconds(0.15f);
 
-                player.GetComponent<Animator>().enabled = true;
-
                 player.position = transform.position + Vector3.up * 0.64f * (Creater.Instance.player.revertGravity ? 1 : -1);
+
+                player.GetComponent<Animator>().enabled = true;
                 player.GetComponent<Animator>().SetBool("upsidedown", Creater.Instance.player.revertGravity);
                 player.GetComponent<Animator>().SetTrigger("Exit");
 
@@ -64,7 +70,7 @@ public class ExitPortal : MonoBehaviour
         }
         else if (SceneManagement.Instance.currentScene == "PracticeScene")
         {
-            FindObjectOfType<PracticeButtonInput>().SetResultPanel();
+            FindObjectOfType<PracticeUI>().SetResultPanel();
         }
     }
 

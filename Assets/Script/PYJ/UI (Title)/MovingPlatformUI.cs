@@ -32,33 +32,43 @@ public class MovingPlatformUI : MonoBehaviour
 
     public void Init()
     {
+        StopCoroutine(StartMoving());
         currentPercent = 0;
-        transform.position = globalWaypoints[0];
+        waypointIndex = 0;
+        transform.position = globalWaypoints[waypointIndex];
     }
     
     public Vector3 CalculatePlatformMovement()
     {
         Vector3 vec = globalWaypoints[waypointIndex + 1] - globalWaypoints[waypointIndex];
-        float distance = Vector3.Magnitude(vec) / speed;
-
-        currentPercent = Vector3.Magnitude(globalWaypoints[waypointIndex] - transform.position) / Vector3.Magnitude(vec);
+        
+        currentPercent += Time.deltaTime * speed / vec.magnitude;
+        Vector3 newPos = Vector3.Lerp(globalWaypoints[waypointIndex], globalWaypoints[waypointIndex + 1], currentPercent / 1);
         
         if (currentPercent >= 1.0f)
         {
-            transform.position = globalWaypoints[globalWaypoints.Length - 1];
-            return globalWaypoints[waypointIndex + 1] - transform.position;
-        }
+            currentPercent = 0;
+            waypointIndex++;
 
-        return vec / distance;
+            if (waypointIndex == globalWaypoints.Length - 1)
+            {
+                enabled = false;
+            }
+
+            return globalWaypoints[waypointIndex] - transform.position;
+        }
+        else
+        {
+            return newPos - transform.position;
+        }
     }
 
-    public IEnumerator StartMoving(PlayerUIController player)
+    public IEnumerator StartMoving()
     {
-        while (currentPercent < 1f)
+        while (enabled)
         {
-            Vector3 moveVector = CalculatePlatformMovement();
-            transform.Translate(moveVector * Time.deltaTime);
-
+            Vector3 pos = CalculatePlatformMovement();
+            transform.position += pos;
             yield return null;
         }
     }

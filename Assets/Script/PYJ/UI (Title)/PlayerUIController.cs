@@ -6,6 +6,8 @@ public class PlayerUIController : MonoBehaviour
 {
     private UIController controller;
 
+    [SerializeField] private Transform body;
+
     // 점프
     [Header("점프"), Space(10)]
     [SerializeField] private float timeOfJumpApex = 0.3f;
@@ -28,8 +30,10 @@ public class PlayerUIController : MonoBehaviour
     public bool isActing;
     private Animator ani;
 
-    public List<InteractionUI> action = new List<InteractionUI>();
-    public GameObject actions;
+    private GameObject[] UIMaps;
+    [HideInInspector] public GameObject selectedMap;
+    [SerializeField] private GameObject idleAction;
+    [SerializeField] private List<InteractionUI> action = new List<InteractionUI>();
 
     private void Awake()
     {
@@ -42,10 +46,8 @@ public class PlayerUIController : MonoBehaviour
         velocity = Vector2.zero;
         revertGravity = false;
         moveRight = true;
-    }
 
-    private void Start()
-    {
+        InitUIMap();
         InitActions();
     }
 
@@ -134,28 +136,26 @@ public class PlayerUIController : MonoBehaviour
         }
         else if (action[0].action == InteractionUI.UIInteraction.Moving)
         {
-            while (Vector3.Distance(transform.position, action[0].transform.position) >= 0.32f)
-            {
-                yield return null;
-            }
-
             MovingPlatformUI moving = action[0].GetComponent<MovingPlatformUI>();
             
             if (moving.movePassanger)
             {
                 moveSpeed = 0;
 
-                while (moving.currentPercent < 1f)
+                while (moving.enabled)
                 {
-                    Vector3 moveVector = moving.CalculatePlatformMovement();
-                    transform.Translate(moveVector * Time.deltaTime);
-                    moving.transform.Translate(moveVector * Time.deltaTime);
+                    Vector3 pos = moving.CalculatePlatformMovement();
+                    transform.position = moving.transform.position + pos;
+                    moving.transform.position += pos;
+
                     yield return null;
                 }
+
+                moveSpeed = 3f;
             }
             else
             {
-                StartCoroutine(moving.StartMoving(this));
+                StartCoroutine(moving.StartMoving());
             }
         }
 
@@ -224,18 +224,51 @@ public class PlayerUIController : MonoBehaviour
         }
     }
 
+    // UIMap을 초기화 후 선택
+    private void InitUIMap()
+    {
+        UIMaps = new GameObject[10];
+
+        for (int i = 0; i< 10; i++)
+        {
+            UIMaps[i] = Resources.Load<GameObject>("UIMaps/TitleMap" + (i+1).ToString());
+        }
+
+        int rand = Random.Range(0, UIMaps.Length);
+        selectedMap = Instantiate<GameObject>(UIMaps[rand], new Vector3(4.8f, -1.76f, 0f), Quaternion.identity);
+    }
+
     private void InitActions()
     {
         action.Clear();
-        for (int i = 0; i < actions.transform.childCount; i++)
+        Transform mapAction = selectedMap.transform.GetChild(1);
+        for (int i = 0; i < mapAction.childCount; i++)
         {
-            action.Add(actions.transform.GetChild(i).GetComponent<InteractionUI>());
+            InteractionUI add = mapAction.GetChild(i).GetComponent<InteractionUI>();
+            action.Add(add);
+            if (add.action == InteractionUI.UIInteraction.Moving)
+            {
+                add.GetComponent<MovingPlatformUI>().enabled = true;
+                add.GetComponent<MovingPlatformUI>().Init();
+            }
+            else if (add.action == InteractionUI.UIInteraction.Missile)
+            {
+                add.gameObject.SetActive(true);
+                add.GetComponent<MissileUI>().enabled = true;
+                add.GetComponent<MissileUI>().Init();
+            }
+        }
+
+        for (int i = 0; i < idleAction.transform.childCount; i++)
+        {
+            action.Add(idleAction.transform.GetChild(i).GetComponent<InteractionUI>());
         }
     }
 
     public IEnumerator HoldPlayer(Transform exit, float time)
     {
         moveSpeed = 0.0f;
+        body.gameObject.SetActive(false);
 
         float check = 0.0f;
         while (check < time)
@@ -246,5 +279,6 @@ public class PlayerUIController : MonoBehaviour
         }
 
         moveSpeed = 3.0f;
+        body.gameObject.SetActive(true);
     }
 }

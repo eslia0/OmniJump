@@ -105,7 +105,7 @@ public class Lift : RayCastController
 
     void Update()
     {
-        if (Creater.Instance.IsPaused)
+        if (Creater.Instance.isPaused)
         {
             return;
         }

@@ -16,30 +16,19 @@ public class Creater : GameVariables
         }
     }
 
-    private bool isPaused;
-    public bool IsPaused {
-        get { return isPaused; }
-        private set { isPaused = value; }
-    }
-    private bool isRetry;
+    public bool isPaused;
 
     // 생성될 수 있는 플랫폼의 리스트
     // 레벨마다 3개의 플랫폼이 있다.
     public GameObject[] platforms;
-
-    public GameObject nowPlatform;
-    public Platform NowPlatform {
-        get {
-            if (!nowPlatform)
-                nowPlatform = FindObjectOfType<Platform>().gameObject;
-
-            return nowPlatform.GetComponent<Platform>();
-        }
-    }
+    public Platform nowPlatform;
+    private int maxPlatform;
 
     // 현제 레벨
     private int level;
     private int currentMap;
+
+    // 점수와 점수배율 레벨이 오를수록 배율이 증가
     [SerializeField] private int score;
     public int Score {
         get {
@@ -50,8 +39,7 @@ public class Creater : GameVariables
         }
     }
     private float scoreMultiply;
-    private ScoreText scoreText;
-    private int maxPlatform;
+    public EndlessUI endUI;
 
     private void Awake()
     {
@@ -81,12 +69,12 @@ public class Creater : GameVariables
 
             SceneManagement.Instance.clearStage[currentMap] = true;
             SceneManagement.Instance.WriteData();
-            nowPlatform = Instantiate(platforms[currentMap]);
 
-            scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
-            scoreText.SetText(score);
+            nowPlatform = Instantiate(platforms[currentMap]).GetComponent<Platform>();
+            endUI = FindObjectOfType<EndlessUI>();
+
             SetScoreMultiply(1f);
-
+            StartCoroutine(ScoreUp());
         }
         else if (SceneManagement.Instance.currentScene == "PracticeScene")
         {
@@ -94,7 +82,10 @@ public class Creater : GameVariables
             SceneManager.sceneLoaded += StartStage;
             currentMap = SceneManagement.Instance.selectedStage;
 
-            nowPlatform = Instantiate(Resources.Load<GameObject>("Maps/Map" + currentMap.ToString()));
+            nowPlatform = Instantiate(Resources.Load<GameObject>("Maps/Map" + currentMap.ToString())).GetComponent<Platform>();
+
+            SetScoreMultiply(1f);
+            StartCoroutine(ScoreUp());
         }
         else
         {
@@ -105,10 +96,10 @@ public class Creater : GameVariables
         exitPortal.Init();
     }
 
-    // 테스트용 초기화
+    // 테스트용, 튜토리얼용 초기화
     public void TestInit()
     {
-        nowPlatform = FindObjectOfType<Platform>().gameObject;
+        nowPlatform = FindObjectOfType<Platform>().gameObject.GetComponent<Platform>();
         GameVariablesInit();
 
         // scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
@@ -149,54 +140,47 @@ public class Creater : GameVariables
     {
         if (SceneManagement.Instance.currentScene == "PracticeScene")
         {
-            nowPlatform = Instantiate(Resources.Load<GameObject>("Maps/Map" + currentMap.ToString()));
+            nowPlatform = Instantiate(Resources.Load<GameObject>("Maps/Map" + currentMap.ToString())).GetComponent<Platform>();
             return;
         }
         else if (SceneManagement.Instance.currentScene == "EndlessScene")
         {
-            // 재시작이면 이전 맵 그대로 실행
-            if (!isRetry)
+            if (level == 4 || level == 9 || level == 15 || level == 35)
             {
-                if (level == 4 || level == 9 || level == 15 || level == 35)
-                {
-                    currentMap = (level - 1) * 3;
-
-                    SoundManager.Instance.Play("13");
-                }
-                else if (level > 15)
-                {
-                    currentMap = 23 + level;
-                }
-                else
-                {
-                    int num = Random.Range(0, 3);
-                    currentMap = (level - 1) * 3 + num;
-                }
-
-                if (level == 5)
-                {
-                    SoundManager.Instance.Play("Step in");
-                }
-                else if (level == 10)
-                {
-                    SoundManager.Instance.Play("Dreaming");
-                }
-                else if (level == 16)
-                {
-                    SoundManager.Instance.Play("Before");
-                }
-
-                SetScoreMultiply(1 + level * 0.03f);
+                currentMap = (level - 1) * 3;
+                SoundManager.Instance.Play("13");
             }
+            else if (level > 15)
+            {
+                currentMap = 23 + level;
+            }
+            else
+            {
+                int num = Random.Range(0, 3);
+                currentMap = (level - 1) * 3 + num;
+            }
+
+            if (level == 5)
+            {
+                SoundManager.Instance.Play("Step in");
+            }
+            else if (level == 10)
+            {
+                SoundManager.Instance.Play("Dreaming");
+            }
+            else if (level == 16)
+            {
+                SoundManager.Instance.Play("Before");
+            }
+
+            SetScoreMultiply(1 + level * 0.03f);
 
             SceneManagement.Instance.clearStage[currentMap] = true;
             SceneManagement.Instance.WriteData();
+            isPaused = false;
 
-            nowPlatform = Instantiate(platforms[currentMap]);
-            isRetry = false;
-            
-            scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
-            scoreText.SetText(score);
+            nowPlatform = Instantiate(platforms[currentMap]).GetComponent<Platform>();
+            endUI = FindObjectOfType<EndlessUI>();
 
             ExitPortal exitPortal = Object.FindObjectOfType<ExitPortal>();
             exitPortal.Init();
@@ -210,11 +194,16 @@ public class Creater : GameVariables
         {
             score = 0;
             level = 1;
-            scoreText.SetText(score);
         }
         else if (nextLevel == 1 && level < maxPlatform)
         {
             level++;
+        }
+
+        // 플레이어가 죽었을 시에 다시 점수 증가
+        if(nextLevel == -1 || nextLevel == 0)
+        {
+            StartCoroutine(ScoreUp());
         }
 
         SceneManager.LoadScene("EndlessScene");
@@ -222,12 +211,7 @@ public class Creater : GameVariables
 
     public void AddScore(int score)
     {
-        if (scoreText)
-        {
-            this.score += (int)(score * scoreMultiply);
-
-            scoreText.SetText(this.score);
-        }
+        this.score += (int)(score * scoreMultiply);
     }
 
     public void SetScoreMultiply(float multiply)
@@ -235,13 +219,18 @@ public class Creater : GameVariables
         scoreMultiply = multiply;
     }
 
-    IEnumerator StartTimer()
+    IEnumerator ScoreUp()
     {
-        while (true)
+        yield return new WaitForSeconds(1f);
+
+        while (this)
         {
-            yield return new WaitForSeconds(1.0f);
-            score += 10;
-            scoreText.SetText(score);
+            if (!isPaused && !player.IsDead)
+            {
+                score += (int)(5 * scoreMultiply);
+            }
+
+            yield return new WaitForSeconds(1f);
         }
     }
 

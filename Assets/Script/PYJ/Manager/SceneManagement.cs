@@ -25,6 +25,7 @@ public class SceneManagement : MonoBehaviour
     }
 
     private UnityAdsHelper adsHelper;
+    private GooglePlayManager GPManager;
 
     [SerializeField] private bool isTesting;
     public int selectedStage;
@@ -32,6 +33,7 @@ public class SceneManagement : MonoBehaviour
     public string prevScene;
 
     public bool[] clearStage;
+    private int highScore;
 
     void Awake()
     {
@@ -41,8 +43,6 @@ public class SceneManagement : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        adsHelper = UnityAdsHelper.Instance;
 
         clearStage = new bool[60];
         DontDestroyOnLoad(gameObject);
@@ -100,7 +100,7 @@ public class SceneManagement : MonoBehaviour
 
         //string path = Application.persistentDataPath + "/data0.txt";
         //string num = "";
-        
+
         //for (int i = 0; i < clearStage.Length; i++)
         //{
         //    if (clearStage[i])
@@ -124,6 +124,10 @@ public class SceneManagement : MonoBehaviour
         {
             SoundManager.Instance.Play("Title");
         }
+        else if (currentScene == "TutorialScene")
+        {
+
+        }
     }
 
     [Space(10)][Header("--------------------------------------")][Space(10)]
@@ -145,8 +149,7 @@ public class SceneManagement : MonoBehaviour
         Effect,
         Color
     }
-
-
+    
     // 플레이어가 선택한 body와 effect 반환
     public SkinInfo GetSkin()
     {

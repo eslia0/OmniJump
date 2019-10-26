@@ -75,6 +75,10 @@ public class PlayerController : MonoBehaviour
     private int increaseAmount = 0;
 
     private bool isDead = false;
+    public bool IsDead {
+        get { return isDead; }
+        private set { isDead = value; }
+    }
     private Animator ani;
     public PlayerSkinManager skinManager;
     public Transform reviveSpot;
@@ -100,6 +104,7 @@ public class PlayerController : MonoBehaviour
         velocity = Vector2.zero;
         faceDirection = 0;
         rotationZ = 0;
+        isDead = false;
     }
 
     private void Start()
@@ -109,14 +114,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y >= Creater.Instance.NowPlatform.highPoint.position.y
-            || transform.position.y <= Creater.Instance.NowPlatform.lowPoint.position.y)
+        if (transform.position.y >= Creater.Instance.nowPlatform.highPoint.position.y
+            || transform.position.y <= Creater.Instance.nowPlatform.lowPoint.position.y)
         {
             Dead();
             return;
         }
 
-        if (Creater.Instance.IsPaused)
+        if (Creater.Instance.isPaused)
         {
             return;
         }
@@ -195,6 +200,7 @@ public class PlayerController : MonoBehaviour
     {
         Destroy(Instantiate(deathParticle, transform.position, Quaternion.identity), 1.5f);
 
+        // 튜토리얼 시 부활
         if (reviveSpot)
         {
             moveRight = true;
@@ -205,10 +211,13 @@ public class PlayerController : MonoBehaviour
             zAxis = 0;
             rotationZ = 0;
 
+            Creater.Instance.GetPoofPrefab(reviveSpot);
+
             StartCoroutine(HoldPlayer(reviveSpot, 1.5f));
         }
         else
         {
+            Creater.Instance.Pause();
             isDead = true;
             CameraFollow.mainCam.GetComponent<CameraFollow>().follow = false;
             GetComponent<BoxCollider2D>().enabled = false;
@@ -218,11 +227,11 @@ public class PlayerController : MonoBehaviour
 
             if (SceneManagement.Instance.currentScene == "PracticeScene")
             {
-                CameraFollow.mainCam.transform.GetComponentInChildren<PracticeButtonInput>().SetResultPanel();
+                FindObjectOfType<PracticeUI>().SetResultPanel();
             }
             else if (SceneManagement.Instance.currentScene == "EndlessScene")
             {
-                CameraFollow.mainCam.transform.GetComponentInChildren<ButtonInput>().SetResultPanel();
+                Creater.Instance.endUI.SetResultPanel();
             }
         }
     }
@@ -236,7 +245,7 @@ public class PlayerController : MonoBehaviour
         float check = 0.0f;
         while (check < time)
         {
-            if (!Creater.Instance.IsPaused)
+            if (!Creater.Instance.isPaused)
             {
                 check += Time.deltaTime;
                 transform.position = exit.position;

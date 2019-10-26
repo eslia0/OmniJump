@@ -103,7 +103,7 @@ namespace GooglePlayGames.Native
                 ConversionUtils.ConvertNativeVideoCaptureMode(captureState.CaptureMode()),
                 ConversionUtils.ConvertNativeVideoQualityLevel(captureState.QualityLevel()),
                 captureState.IsOverlayVisible(),
-                captureState.IsPaused());
+                captureState.isPaused());
         }
 
         public void IsCaptureAvailable(VideoCaptureMode captureMode, Action<ResponseStatus, bool> callback)
