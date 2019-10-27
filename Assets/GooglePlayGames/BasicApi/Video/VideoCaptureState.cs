@@ -88,7 +88,7 @@ namespace GooglePlayGames.BasicApi.Video
         /// <remarks>
         /// Will always be <code>false</code> if <code>IsCapturing</code> if <code>false</code>.
         /// </remarks>
-        public bool IsPaused
+        public bool isPaused
         {
             get
             {

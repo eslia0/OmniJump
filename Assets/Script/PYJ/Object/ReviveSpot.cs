@@ -11,7 +11,7 @@ public class ReviveSpot : MonoBehaviour
     public string text;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         m_player = Creater.Instance.player;
 

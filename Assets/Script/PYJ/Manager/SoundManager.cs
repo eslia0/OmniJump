@@ -24,6 +24,7 @@ public class SoundManager : MonoBehaviour
 
     private AudioSource audio;
     [SerializeField] private AudioClip[] clips;
+    public AudioClip currentClip;
 
     private void Awake()
     {
@@ -45,8 +46,11 @@ public class SoundManager : MonoBehaviour
 
         if (clip)
         {
-            audio.clip = clip;
-            audio.Play();
+            if (audio.clip != clip)
+            {
+                audio.clip = clip;
+                audio.Play();
+            }
         }
     }
 
@@ -59,5 +63,10 @@ public class SoundManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void SetLoop(bool value)
+    {
+        audio.loop = value;
     }
 }

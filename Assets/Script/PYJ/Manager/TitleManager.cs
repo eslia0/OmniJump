@@ -39,9 +39,11 @@ public class TitleManager : MonoBehaviour
     private Button[] levels;
     
     private Sprite[] mapImages;
+    private PlayerUIController player;
 
     private void Start()
     {
+        player = FindObjectOfType<PlayerUIController>();
         InitTitle();
         SoundManager.Instance.Play("Title");
     }
@@ -77,6 +79,7 @@ public class TitleManager : MonoBehaviour
     {
         titlePanel.SetActive(true);
         practicePanel.SetActive(false);
+        TogglePlayer();
     }
 
     // 프랙티스
@@ -86,6 +89,7 @@ public class TitleManager : MonoBehaviour
         practicePanel.SetActive(true);
 
         SetLevel(0);
+        TogglePlayer();
     }
     
     // 엔드리스 시작
@@ -208,5 +212,11 @@ public class TitleManager : MonoBehaviour
         buttons[7].onClick.AddListener(delegate () { SelectLevel(selectedLevel + 7); });
         buttons[8].onClick.AddListener(delegate () { SelectLevel(selectedLevel + 8); });
         buttons[9].onClick.AddListener(delegate () { SelectLevel(selectedLevel + 9); });
+    }
+
+    public void TogglePlayer()
+    {
+        player.gameObject.SetActive(!player.gameObject.activeSelf);
+        player.selectedMap.SetActive(!player.selectedMap.activeSelf);
     }
 }

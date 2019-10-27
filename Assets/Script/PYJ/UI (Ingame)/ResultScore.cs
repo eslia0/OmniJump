@@ -11,20 +11,22 @@ public class ResultScore : MonoBehaviour
         scoreText = GetComponent<Text>();
 
         int rScore = 0;
-        int amount = (score - rScore) / (int)(3 + Mathf.Log10(score)) / 10;
+        int amount = (score - rScore) / 10; // (int)(3 + Mathf.Log10(score)) / 10;
 
         while (rScore < score)
         {
             rScore += amount;
-
             scoreText.text = rScore.ToString();
-
-            // yield return new WaitForSeconds(0.1f);
             yield return null;
         }
 
         rScore = score;
-
         scoreText.text = rScore.ToString();
+
+        if (SceneManagement.Instance.currentScene == "EndlessScene" && PlayerPrefs.GetInt("HighScore") < score)
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+            GooglePlayManager.Instance.ReportScore(score);
+        }
     }
 }

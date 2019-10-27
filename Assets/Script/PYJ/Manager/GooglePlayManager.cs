@@ -7,10 +7,38 @@ using GooglePlayGames.BasicApi;
 
 public class GooglePlayManager : MonoBehaviour
 {
+    private static GooglePlayManager instance;
+    public static GooglePlayManager Instance {
+        get {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<GooglePlayManager>();
+                instance.Initialize();
+            }
+
+            return instance;
+        }
+    }
+
     public Text logText;
 
+    private void Start()
+    {
+        instance = FindObjectOfType<GooglePlayManager>();
+
+        if (instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+
+        Initialize();
+    }
+
     // Start is called before the first frame update
-    void Start()
+    void Initialize()
     {
 #if UNITY_ANDROID
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
@@ -22,11 +50,18 @@ public class GooglePlayManager : MonoBehaviour
 #elif UNITY_IOS
         GameCenterPlatform.ShowDefaultAchievementCompletionBanner(true);
 #endif
+    }
 
-        GetComponent<Button>().onClick.RemoveAllListeners();
-        GetComponent<Button>().onClick.AddListener(delegate () {
+    public void GooglePlayButton()
+    {
+        if (Social.localUser.state == UnityEngine.SocialPlatforms.UserState.Online)
+        {
+            ShowLeaderboardUI();
+        }
+        else
+        {
             SignIn();
-        });
+        }
     }
 
     public void SignIn()
@@ -35,14 +70,12 @@ public class GooglePlayManager : MonoBehaviour
         {
             if (success)
             {
-                logText.text = "로그인 성공";
                 // to do ...
                 // 로그인 성공 처리
                 ShowLeaderboardUI();
             }
             else
             {
-                logText.text = "로그인 실패";
                 // to do ...
                 // 로그인 실패 처리
             }
@@ -52,7 +85,6 @@ public class GooglePlayManager : MonoBehaviour
     public void SignOut()
     {
         PlayGamesPlatform.instance.SignOut();
-        logText.text = "로그아웃";
     }
 
     public void UnlockAchievement(int score)
@@ -96,20 +128,28 @@ public class GooglePlayManager : MonoBehaviour
     public void ReportScore(int score)
     {
 #if UNITY_ANDROID
-
-        PlayGamesPlatform.instance.ReportScore(score, "achivmentId", (bool success) =>
+        Social.localUser.Authenticate((bool success1) =>
         {
-            if (success)
+            if (success1)
             {
-                // Report 성공
-                // 그에 따른 처리
-            }
-            else
-            {
-                // Report 실패
-                // 그에 따른 처리
+                PlayGamesPlatform.instance.ReportScore(score, GPGSIds.leaderboard_score, (bool success) =>
+                {
+                    if (success)
+                    {
+                        // Report 성공
+                        // 그에 따른 처리
+                        logText.text = "report success";
+                    }
+                    else
+                    {
+                        // Report 실패
+                        // 그에 따른 처리
+                        logText.text = "report fail";
+                    }
+                });
             }
         });
+                
 
 #elif UNITY_IOS
  

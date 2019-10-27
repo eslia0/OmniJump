@@ -10,6 +10,8 @@ public class TutorialText : MonoBehaviour
     {
         m_text = transform.GetChild(0).GetComponent<Text>();
         m_animation = GetComponent<Animation>();
+
+        gameObject.SetActive(false);
     }
     
     public void SetText(string text)

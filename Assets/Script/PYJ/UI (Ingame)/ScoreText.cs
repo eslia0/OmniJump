@@ -9,41 +9,63 @@ public class ScoreText : MonoBehaviour
     public Text m_text;
     public Animation m_animation;
 
-    // Start is called before the first frame update
-    public void Init()
+    private void Awake()
     {
         m_text = GetComponent<Text>();
         m_animation = GetComponent<Animation>();
-    }
 
-    public void SetText (int score)
-    {
-        if (score == 0 || m_score == 0)
-        {
-            m_score = score;
-            m_text.text = m_score.ToString();
-        }
-        else
-        {
-            StartCoroutine(ScoreAnimation(score));
-        }
-    }
-
-    public IEnumerator ScoreAnimation(int score)
-    {
-        m_animation.Play("ScoreAnimation");
-
-        int amount = score - m_score;
-
-        while (m_score < score)
-        {
-            m_score += (int)(amount * 0.3f);
-            yield return new WaitForSeconds(0.1f);
-
-            m_text.text = m_score.ToString();
-        }
-
-        m_score = score;
+        m_score = Creater.Instance.Score;
         m_text.text = m_score.ToString();
+        StartCoroutine(ScoreAnimation());
+    }
+
+    public IEnumerator ScoreAnimation()
+    {
+        while (Creater.Instance)
+        {
+            if (m_score < Creater.Instance.Score)
+            {
+                int amount = Creater.Instance.Score - m_score;
+
+                if (amount >= 10)
+                {
+                    m_animation.Play("ScoreAnimation");
+                }
+                
+                if (amount * 0.3f >= 1)
+                {
+                    m_score += (int)(amount * 0.3f);
+                }
+                else
+                {
+                    m_score += amount;
+                }
+            }
+            else
+            {
+                m_score = Creater.Instance.Score;
+            }
+
+            if (m_score < 1000)
+            {
+                m_text.fontSize = 22;
+            }
+            else if (m_score < 10000)
+            {
+                m_text.fontSize = 26;
+            }
+            else if (m_score < 100000)
+            {
+                m_text.fontSize = 30;
+            }
+            else
+            {
+                m_text.fontSize = 32;
+            }
+
+            m_text.text = m_score.ToString();
+
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

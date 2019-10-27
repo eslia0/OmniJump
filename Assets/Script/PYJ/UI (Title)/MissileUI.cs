@@ -13,13 +13,14 @@ public class MissileUI : MonoBehaviour
     [SerializeField] private ParticleSystem arrow;
     private LineRenderer lr;
     private float lifeTime = 0;
+    private Vector2 oriPos;
 
     private void Awake()
     {
-        lr = GetComponent<LineRenderer>();
-        lr.SetPosition(1, new Vector3(0, distance, 0));
-
+        // lr = GetComponent<LineRenderer>();
+        // lr.SetPosition(1, new Vector3(0, distance, 0));
         angle = ((int)transform.localEulerAngles.z + 360) % 360;
+        oriPos = transform.position;
 
         arrow.startRotation = (360 - angle) * Mathf.Deg2Rad;
         switch (angle)
@@ -40,11 +41,27 @@ public class MissileUI : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        arrow.transform.parent = FindObjectOfType<PlayerUIController>().selectedMap.transform;
+        arrow.transform.localScale = Vector3.one;
+    }
+
+    public void Init()
+    {
+        // lr.enabled = true;
+        // lr.SetPosition(1, new Vector3(0, distance, 0));
+        
+        arrow.gameObject.SetActive(true);
+        lifeTime = 0f;
+        transform.position = oriPos;
+    }
+
     // Update is called once per frame
     public IEnumerator Lunch()
     {
-        lr.enabled = false;
-        arrow.gameObject.SetActive(false);
+        // lr.enabled = false;
+        // arrow.gameObject.SetActive(false);
         while (time > lifeTime)
         {
             lifeTime += Time.deltaTime;
@@ -53,7 +70,7 @@ public class MissileUI : MonoBehaviour
         }
 
         Destroy(Instantiate(Resources.Load<GameObject>("Effects/GlowExplosion 1"), transform.position, Quaternion.identity), 1.0f);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private void OnDrawGizmos()
@@ -67,7 +84,7 @@ public class MissileUI : MonoBehaviour
         if (collision.tag == "Player")
         {
             Destroy(Instantiate(Resources.Load<GameObject>("Effects/GlowExplosion 1"), transform.position, Quaternion.identity), 1.0f);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

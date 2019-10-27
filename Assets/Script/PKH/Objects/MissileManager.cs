@@ -86,7 +86,7 @@ public class MissileManager : MonoBehaviour
                 break;
             }
 
-            if (!Creater.Instance.IsPaused)
+            if (!Creater.Instance.isPaused)
             {
                 if (num < missiles.Length)
                 {

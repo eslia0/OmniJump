@@ -16,30 +16,19 @@ public class Creater : GameVariables
         }
     }
 
-    private bool isPaused;
-    public bool IsPaused {
-        get { return isPaused; }
-        private set { isPaused = value; }
-    }
-    private bool isRetry;
+    public bool isPaused;
 
     // 생성될 수 있는 플랫폼의 리스트
     // 레벨마다 3개의 플랫폼이 있다.
     public GameObject[] platforms;
-
-    public GameObject nowPlatform;
-    public Platform NowPlatform {
-        get {
-            if (!nowPlatform)
-                nowPlatform = FindObjectOfType<Platform>().gameObject;
-
-            return nowPlatform.GetComponent<Platform>();
-        }
-    }
+    public Platform nowPlatform;
+    private const int maxPlatform = 60;
 
     // 현제 레벨
     private int level;
     private int currentMap;
+
+    // 점수와 점수배율 레벨이 오를수록 배율이 증가
     [SerializeField] private int score;
     public int Score {
         get {
@@ -50,12 +39,11 @@ public class Creater : GameVariables
         }
     }
     private float scoreMultiply;
-    private ScoreText scoreText;
-    private int maxPlatform;
+    public EndlessUI endUI;
 
     private void Awake()
     {
-        if (SceneManagement.Instance.currentScene == "EndlessScene")
+        if (SceneManagement.Instance.currentScene == "EndlessScene" || SceneManagement.Instance.currentScene == "PracticeScene")
         {
             instance = FindObjectOfType<Creater>();
 
@@ -81,39 +69,35 @@ public class Creater : GameVariables
 
             SceneManagement.Instance.clearStage[currentMap] = true;
             SceneManagement.Instance.WriteData();
-            nowPlatform = Instantiate(platforms[currentMap]);
 
-            scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
-            scoreText.SetText(score);
+            nowPlatform = Instantiate(platforms[currentMap]).GetComponent<Platform>();
+            endUI = FindObjectOfType<EndlessUI>();
+
+            SoundManager.Instance.Play("Ready to go");
+
             SetScoreMultiply(1f);
-
+            StartCoroutine(ScoreUp());
         }
         else if (SceneManagement.Instance.currentScene == "PracticeScene")
         {
-            GameVariablesInit();
             SceneManager.sceneLoaded += StartStage;
             currentMap = SceneManagement.Instance.selectedStage;
 
-            nowPlatform = Instantiate(Resources.Load<GameObject>("Maps/Map" + currentMap.ToString()));
+            SelectBGM();
+            nowPlatform = Instantiate(Resources.Load<GameObject>("Maps/Map" + currentMap.ToString())).GetComponent<Platform>();
+
+            SetScoreMultiply(1f);
+            StartCoroutine(ScoreUp());
         }
-        else
+        else // 테스트맵, 튜토리얼
         {
-            TestInit();
+            nowPlatform = FindObjectOfType<Platform>().gameObject.GetComponent<Platform>();
+            SoundManager.Instance.Play("Smash it");
         }
 
+        GameVariablesInit();
         ExitPortal exitPortal = FindObjectOfType<ExitPortal>();
         exitPortal.Init();
-    }
-
-    // 테스트용 초기화
-    public void TestInit()
-    {
-        nowPlatform = FindObjectOfType<Platform>().gameObject;
-        GameVariablesInit();
-
-        // scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
-        // SetScoreMultiply(0f);
-        // StartCoroutine(StartTimer());
     }
 
     // Endless 초기화
@@ -121,20 +105,15 @@ public class Creater : GameVariables
     {
         score = 0;
         level = 1;
-        maxPlatform = 60;
 
         SceneManager.sceneLoaded += StartStage;
-        GameVariablesInit();
 
-        int length = 60;
-        platforms = new GameObject[length];
+        platforms = new GameObject[maxPlatform];
 
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < maxPlatform; i++)
         {
             platforms[i] = Resources.Load<GameObject>("Maps/Map" + (i + 1).ToString());
         }
-
-        SoundManager.Instance.Play("Ready to go");
     }
 
     public override void Disable()
@@ -149,58 +128,25 @@ public class Creater : GameVariables
     {
         if (SceneManagement.Instance.currentScene == "PracticeScene")
         {
-            nowPlatform = Instantiate(Resources.Load<GameObject>("Maps/Map" + currentMap.ToString()));
-            return;
+            score = 0;
+            nowPlatform = Instantiate(Resources.Load<GameObject>("Maps/Map" + currentMap.ToString())).GetComponent<Platform>();
         }
         else if (SceneManagement.Instance.currentScene == "EndlessScene")
         {
-            // 재시작이면 이전 맵 그대로 실행
-            if (!isRetry)
-            {
-                if (level == 4 || level == 9 || level == 15 || level == 35)
-                {
-                    currentMap = (level - 1) * 3;
+            SelectMap();
+            SelectBGM();
 
-                    SoundManager.Instance.Play("13");
-                }
-                else if (level > 15)
-                {
-                    currentMap = 23 + level;
-                }
-                else
-                {
-                    int num = Random.Range(0, 3);
-                    currentMap = (level - 1) * 3 + num;
-                }
-
-                if (level == 5)
-                {
-                    SoundManager.Instance.Play("Step in");
-                }
-                else if (level == 10)
-                {
-                    SoundManager.Instance.Play("Dreaming");
-                }
-                else if (level == 16)
-                {
-                    SoundManager.Instance.Play("Before");
-                }
-
-                SetScoreMultiply(1 + level * 0.03f);
-            }
-
+            nowPlatform = Instantiate(platforms[currentMap]).GetComponent<Platform>();
             SceneManagement.Instance.clearStage[currentMap] = true;
             SceneManagement.Instance.WriteData();
 
-            nowPlatform = Instantiate(platforms[currentMap]);
-            isRetry = false;
-            
-            scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
-            scoreText.SetText(score);
-
-            ExitPortal exitPortal = Object.FindObjectOfType<ExitPortal>();
-            exitPortal.Init();
+            SetScoreMultiply(1 + level * 0.03f);
+            endUI = FindObjectOfType<EndlessUI>();
         }
+
+        isPaused = false;
+        ExitPortal exitPortal = Object.FindObjectOfType<ExitPortal>();
+        exitPortal.Init();
     }
 
     // 스테이지 로딩
@@ -210,11 +156,16 @@ public class Creater : GameVariables
         {
             score = 0;
             level = 1;
-            scoreText.SetText(score);
         }
         else if (nextLevel == 1 && level < maxPlatform)
         {
             level++;
+        }
+
+        // 플레이어가 죽었을 시에 다시 점수 증가
+        if (nextLevel == -1 || nextLevel == 0)
+        {
+            StartCoroutine(ScoreUp());
         }
 
         SceneManager.LoadScene("EndlessScene");
@@ -222,12 +173,7 @@ public class Creater : GameVariables
 
     public void AddScore(int score)
     {
-        if (scoreText)
-        {
-            this.score += (int)(score * scoreMultiply);
-
-            scoreText.SetText(this.score);
-        }
+        this.score += (int)(score * scoreMultiply);
     }
 
     public void SetScoreMultiply(float multiply)
@@ -235,18 +181,89 @@ public class Creater : GameVariables
         scoreMultiply = multiply;
     }
 
-    IEnumerator StartTimer()
+    // 시간의 흐름에 따른 추가 점수
+    IEnumerator ScoreUp()
     {
-        while (true)
+        yield return new WaitForSeconds(1f);
+
+        while (this)
         {
-            yield return new WaitForSeconds(1.0f);
-            score += 10;
-            scoreText.SetText(score);
+            if (!isPaused && player.enabled && !player.IsDead)
+            {
+                score += (int)(5 * scoreMultiply);
+            }
+
+            yield return new WaitForSeconds(1f);
         }
     }
 
     public void Pause()
     {
         isPaused = !isPaused;
+    }
+
+    // 현재 맵에 따른 음악 재생
+    private void SelectBGM()
+    {
+        SoundManager.Instance.SetLoop(true);
+
+        if (currentMap == 9 || currentMap == 22 || currentMap == 38 || currentMap == 59)
+        {
+            SoundManager.Instance.Play("Highway");
+            SoundManager.Instance.SetLoop(false);
+        }
+        else if (currentMap < 9)
+        {
+            SoundManager.Instance.Play("Ready to go");
+        }
+        else if (currentMap < 22)
+        {
+            SoundManager.Instance.Play("Step in");
+        }
+        else if (currentMap < 38)
+        {
+            SoundManager.Instance.Play("Dreaming");
+        }
+        else if (currentMap < 59)
+        {
+            SoundManager.Instance.Play("Before");
+        }
+    }
+
+    // 현재 레벨에 따른 맵 선택
+    private void SelectMap()
+    {
+        int num = 0;
+        if (level < 4)
+        {
+            num = Random.Range(0, 3);
+            currentMap = (level - 1) * 3 + num;
+        }
+        else if (level == 4)
+        {
+            currentMap = 9;
+        }
+        else if (level < 9) // 10 ~ 21
+        {
+            num = Random.Range(-2, 1);
+            currentMap = (level - 1) * 3 + num;
+        }
+        else if (level == 9)
+        {
+            currentMap = 22;
+        }
+        else if (level < 15) // 23 ~ 37
+        {
+            num = Random.Range(-4, -1);
+            currentMap = (level - 1) * 3 + num;
+        }
+        else if (level == 15)
+        {
+            currentMap = 38;
+        }
+        else // 39 ~ 59
+        {
+            currentMap = 23 + level;
+        }
     }
 }

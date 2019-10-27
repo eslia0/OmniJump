@@ -55,7 +55,7 @@ namespace GooglePlayGames.Native.PInvoke
             return VideoCaptureState.VideoCaptureState_IsOverlayVisible(SelfPtr());
         }
 
-        internal bool IsPaused()
+        internal bool isPaused()
         {
             return VideoCaptureState.VideoCaptureState_IsPaused(SelfPtr());
         }

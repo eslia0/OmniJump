@@ -36,12 +36,7 @@ public class CameraFollow : MonoBehaviour
 	
 	void LateUpdate ()
     {
-        if (Input.GetKey(KeyCode.R))
-        {
-            SceneManagement.Instance.LoadScene("MapTest");
-        }
-        
-        if (follow)
+        if (follow && Creater.Instance)
         {
             float xPos = 0;
 
