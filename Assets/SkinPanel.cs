@@ -17,13 +17,14 @@ public class SkinPanel : MonoBehaviour
     [SerializeField] private Image tail;
     [SerializeField] private Transform tailEffect;
 
-    private IEnumerator effectRoutain;
+    [SerializeField] private float purchasMul = 1;
 
     private void Start()
     {
         for (int i = -2; i < SceneManagement.Instance.GetSkinArray().Count + 2; i++)
         {
             GameObject tmp;
+
             if (i < 0 || i > SceneManagement.Instance.GetSkinArray().Count -1)
             {
                 tmp = Instantiate(blank);
@@ -32,8 +33,13 @@ public class SkinPanel : MonoBehaviour
             {
                 int num = i;
                 tmp = Instantiate(skinObject);
-                tmp.GetComponent<Button>().onClick.AddListener(()=> { SetBodySkin(num);});
                 tmp.GetComponent<Image>().sprite = Resources.Load<Sprite>(SceneManagement.Instance.GetSkinArray()[num].body);
+
+                if (!SceneManagement.Instance.GetSkinArray()[num].LOCK)
+                {
+                    purchasMul *= 1.4f;
+                    tmp.GetComponent<Button>().onClick.AddListener(() => { SetBodySkin(num); });
+                }
             }
 
             tmp.transform.SetParent(content);
@@ -41,8 +47,7 @@ public class SkinPanel : MonoBehaviour
             tmp.transform.localPosition = Vector3.zero;
         }
 
-        effectRoutain = EffectTrigger();
-        StartCoroutine(effectRoutain);
+        StartCoroutine(EffectTrigger());
         SetPlayer();
     }
 
@@ -50,6 +55,7 @@ public class SkinPanel : MonoBehaviour
     private void SetPlayer()
     {
         SceneManagement.SkinInfo skin = SceneManagement.Instance.GetSkin();
+
         body.sprite = SceneManagement.Instance.GetBody();
         face.sprite = SceneManagement.Instance.GetFace();
 
@@ -96,14 +102,14 @@ public class SkinPanel : MonoBehaviour
         }
     }
 
-    public void StopRoutain()
-    {
-        StopCoroutine(effectRoutain);
-    }
-
     public void SetBodySkin(int skin)
     {
         SceneManagement.Instance.SetSkin(skin);
         SetPlayer();
+    }
+
+    public void PurchasSkin()
+    {
+        if(PlayerPrefs.GetInt() > purchasMul)
     }
 }

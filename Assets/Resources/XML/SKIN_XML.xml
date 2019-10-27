@@ -2,6 +2,8 @@
 <dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <!--
   <SKIN>
+    <LOCK>ISLOCK</LOCK>
+    <NAME>이름<NAME>
     <BODY>몸통 번호</BODY>
     <FACE>얼굴 번호</FACE>
     <HIT_EFFECT>타격 이펙트 번호</HIT_EFFECT>
@@ -11,7 +13,19 @@
   </SKIN>
   -->
   
+  <!--
+  TAIL INFO
+  0 : Fire
+  1 : Cloude
+  2 : Cloude (Cartoon)
+  3 : Spark
+  4 : Magic Spark
+  5 : 
+  -->
+  
   <SKIN>
+    <LOCK>IS_UNLOCK?!*%</LOCK>
+    <NAME>CUBE</NAME>
     <BODY>0</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -19,79 +33,99 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>WOODEN CHEST</NAME>
     <BODY>1</BODY>
     <FACE>0</FACE>
     <CATEGORY>tail</CATEGORY>
-    <TAIL_EFFECT>0</TAIL_EFFECT>
-    <COLOR>0.5/0.1/0.7</COLOR>
+    <TAIL_EFFECT>1</TAIL_EFFECT>
+    <COLOR>0.3/0.3/0.3</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>STEEL CUBE</NAME>
     <BODY>2</BODY>
     <FACE>0</FACE>
-    <CATEGORY>tail</CATEGORY>
-    <TAIL_EFFECT>0</TAIL_EFFECT>
-    <COLOR>0.2/0.4/0.4</COLOR>
+    <CATEGORY>color</CATEGORY>
+    <TAIL_EFFECT>3</TAIL_EFFECT>
+    <COLOR>0.5/0.5/0.5</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>PURPLE EMERALD</NAME>
     <BODY>3</BODY>
     <FACE>0</FACE>
-    <CATEGORY>tail</CATEGORY>
+    <CATEGORY>color</CATEGORY>
     <TAIL_EFFECT>1</TAIL_EFFECT>
-    <COLOR>0.7/0.2/0.6</COLOR>
+    <COLOR>0.501/0/0.501</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>MEAT BAG</NAME>
     <BODY>4</BODY>
     <FACE>0</FACE>
-    <CATEGORY>color</CATEGORY>
-    <TAIL_EFFECT>0</TAIL_EFFECT>
-    <COLOR>1.0/1.0/1.0</COLOR>
+    <CATEGORY>tail</CATEGORY>
+    <TAIL_EFFECT>2</TAIL_EFFECT>
+    <COLOR>0.94/0.1/0.1</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>BOX</NAME>
     <BODY>5</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
     <TAIL_EFFECT>0</TAIL_EFFECT>
-    <COLOR>1.0/1.0/1.0</COLOR>
+    <COLOR>.5/.5/.5</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>GRADATION</NAME>
     <BODY>6</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
     <TAIL_EFFECT>0</TAIL_EFFECT>
-    <COLOR>1.0/1.0/1.0</COLOR>
+    <COLOR>1.0/1.0/0.6</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>CHEESE</NAME>
     <BODY>7</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
     <TAIL_EFFECT>0</TAIL_EFFECT>
-    <COLOR>1.0/1.0/1.0</COLOR>
+    <COLOR>1.0/1.0/0.4</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>RED BLOCK</NAME>
     <BODY>8</BODY>
     <FACE>0</FACE>
-    <CATEGORY>color</CATEGORY>
-    <TAIL_EFFECT>0</TAIL_EFFECT>
-    <COLOR>1.0/1.0/1.0</COLOR>
+    <CATEGORY>tail</CATEGORY>
+    <TAIL_EFFECT>1</TAIL_EFFECT>
+    <COLOR>0.8/0.0/0.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>WAFFLE</NAME>
     <BODY>9</BODY>
     <FACE>1</FACE>
     <CATEGORY>color</CATEGORY>
     <TAIL_EFFECT>0</TAIL_EFFECT>
-    <COLOR>1.0/1.0/1.0</COLOR>
+    <COLOR>0.581/0.294/0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>STONE</NAME>
     <BODY>10</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -99,23 +133,29 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>BURGER</NAME>
     <BODY>11</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
     <TAIL_EFFECT>0</TAIL_EFFECT>
-    <COLOR>1.0/1.0/1.0</COLOR>
+    <COLOR>1.0/1.0/.25</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>PUG</NAME>
     <BODY>12</BODY>
     <FACE>0</FACE>
-    <CATEGORY>color</CATEGORY>
-    <TAIL_EFFECT>0</TAIL_EFFECT>
-    <COLOR>1.0/1.0/1.0</COLOR>
+    <CATEGORY>tail</CATEGORY>
+    <TAIL_EFFECT>3</TAIL_EFFECT>
+    <COLOR>0.2/0.2/0.2</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>MUSHROOM</NAME>
     <BODY>13</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -123,7 +163,9 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>PUPPY</NAME>
     <BODY>14</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -131,7 +173,9 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>SANSE</NAME>
     <BODY>15</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -139,7 +183,9 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>STEVE</NAME>
     <BODY>16</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -147,7 +193,9 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>WHITE BREAD</NAME>
     <BODY>17</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -155,7 +203,9 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>CHUCK</NAME>
     <BODY>18</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -163,7 +213,9 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>ERROR720</NAME>
     <BODY>19</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -171,7 +223,9 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>BROCK</NAME>
     <BODY>20</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -179,7 +233,9 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>SKELETON</NAME>
     <BODY>21</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -187,7 +243,9 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>CYCLOPS</NAME>
     <BODY>22</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -195,7 +253,9 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>WHITE</NAME>
     <BODY>23</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -203,7 +263,9 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>HAPPY</NAME>
     <BODY>24</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -211,7 +273,9 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>CHECK</NAME>
     <BODY>25</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -220,6 +284,8 @@
   </SKIN>
 
   <SKIN>
+    <LOCK>ISLOCK</LOCK>
+    <NAME>PATTERN</NAME>
     <BODY>26</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -227,7 +293,9 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>PUMPKIN</NAME>
     <BODY>27</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -235,15 +303,19 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>PIG</NAME>
     <BODY>28</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
     <TAIL_EFFECT>0</TAIL_EFFECT>
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
-
-  <SKIN>
+  
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
+    <NAME>SNOWMAN</NAME>
     <BODY>29</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -252,6 +324,7 @@
   </SKIN>
 
   <SKIN>
+    <LOCK>ISLOCK</LOCK>
     <BODY>30</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -259,7 +332,8 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
     <BODY>31</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -267,7 +341,8 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
     <BODY>32</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -275,7 +350,8 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
     <BODY>33</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -284,6 +360,7 @@
   </SKIN>
 
   <SKIN>
+    <LOCK>ISLOCK</LOCK>
     <BODY>34</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -292,6 +369,7 @@
   </SKIN>
 
   <SKIN>
+    <LOCK>ISLOCK</LOCK>
     <BODY>35</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -299,7 +377,8 @@
     <COLOR>1.0/1.0/1.0</COLOR>
   </SKIN>
 
-  <SKIN>
+  <SKIN> 
+    <LOCK>ISLOCK</LOCK>
     <BODY>36</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -308,6 +387,7 @@
   </SKIN>
 
   <SKIN>
+    <LOCK>ISLOCK</LOCK>
     <BODY>37</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -316,6 +396,7 @@
   </SKIN>
 
   <SKIN>
+    <LOCK>ISLOCK</LOCK>
     <BODY>38</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -324,6 +405,7 @@
   </SKIN>
 
   <SKIN>
+    <LOCK>ISLOCK</LOCK>
     <BODY>39</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>
@@ -332,6 +414,7 @@
   </SKIN>
 
   <SKIN>
+    <LOCK>ISLOCK</LOCK>
     <BODY>40</BODY>
     <FACE>0</FACE>
     <CATEGORY>color</CATEGORY>

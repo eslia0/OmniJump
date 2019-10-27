@@ -132,6 +132,7 @@ public class SceneManagement : MonoBehaviour
     public List<SkinInfo> GetSkinArray() { return skinArray; }
     [System.Serializable] public class SkinInfo
     {
+        public bool LOCK = true;
         public string body;
         public string face;
         //public string hitEffect;
@@ -150,7 +151,6 @@ public class SceneManagement : MonoBehaviour
     // 플레이어가 선택한 body와 effect 반환
     public SkinInfo GetSkin()
     {
-        //Debug.Log(PlayerPrefs.GetInt("BodySkin"));
         return skinArray[PlayerPrefs.GetInt("BodySkin")];
     }
 

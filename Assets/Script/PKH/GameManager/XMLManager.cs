@@ -3,8 +3,19 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 
-public class XMLManager : MonoBehaviour
+public sealed class XMLManager : MonoBehaviour
 {
+    public class SKIN_INFO
+    {
+        public string LOCK;
+        public string NAME;
+        public string BODY;
+        public string FACE;
+        public string CATEGORY;
+        public string TAIL_EFFECT;
+        public string COLOR;
+    }
+
     private static XMLManager instance = null;
     public static XMLManager S {
         get {
@@ -24,7 +35,6 @@ public class XMLManager : MonoBehaviour
         TextAsset txtAsset = (TextAsset)Resources.Load("XML/LanguageFile");
 
         XmlDocument xmlDoc = new XmlDocument();
-        //Debug.Log(txtAsset.text);
         xmlDoc.LoadXml(txtAsset.text);
 
         XmlNodeList node = xmlDoc.SelectNodes("dataroot/" + _fileName);
@@ -48,6 +58,14 @@ public class XMLManager : MonoBehaviour
         {
             SceneManagement.SkinInfo skin = new SceneManagement.SkinInfo();
 
+            if (node["LOCK"].InnerText != "IS_UNLOCK?!*%")
+            {
+                skin.body = "Skin/Body/999_Body";
+                skins.Add(skin);
+                continue;
+            }
+
+            skin.LOCK = false;
             skin.body = "Skin/Body/" + node["BODY"].InnerText + "_Body";
             skin.face = "Skin/Face/" + node["FACE"].InnerText + "_Face";
 
