@@ -217,7 +217,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Creater.Instance.Pause();
             isDead = true;
             CameraFollow.mainCam.GetComponent<CameraFollow>().follow = false;
             GetComponent<BoxCollider2D>().enabled = false;

@@ -40,9 +40,30 @@ public class ScoreText : MonoBehaviour
                 {
                     m_score += amount;
                 }
-
-                m_text.text = m_score.ToString();
             }
+            else
+            {
+                m_score = Creater.Instance.Score;
+            }
+
+            if (m_score < 1000)
+            {
+                m_text.fontSize = 22;
+            }
+            else if (m_score < 10000)
+            {
+                m_text.fontSize = 26;
+            }
+            else if (m_score < 100000)
+            {
+                m_text.fontSize = 30;
+            }
+            else
+            {
+                m_text.fontSize = 32;
+            }
+
+            m_text.text = m_score.ToString();
 
             yield return new WaitForSeconds(0.1f);
         }

@@ -46,20 +46,28 @@ public class PracticeUI : MonoBehaviour
     public void SetResultPanel()
     {
         resultPanel.gameObject.SetActive(true);
+        buttons[2].enabled = false;
+
         resultScore.StartCoroutine(resultScore.SetResultScore(Creater.Instance.Score));
     }
 
     private void Pause()
     {
-        Creater.Instance.Pause();
-        buttons[2].enabled = false;
-        pausePanel.gameObject.SetActive(true);
+        if (Creater.Instance.player.enabled)
+        {
+            Creater.Instance.Pause();
+            buttons[2].enabled = false;
+            pausePanel.gameObject.SetActive(true);
+        }
     }
 
     private void Resume()
     {
-        Creater.Instance.Pause();
-        buttons[2].enabled = true;
-        pausePanel.gameObject.SetActive(false);
+        if (Creater.Instance.player.enabled)
+        {
+            Creater.Instance.Pause();
+            buttons[2].enabled = true;
+            pausePanel.gameObject.SetActive(false);
+        }
     }
 }

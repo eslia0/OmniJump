@@ -37,13 +37,7 @@ public class ExitPortal : MonoBehaviour
             }
 
             if (Vector3.Distance(endPoint, player.position) <= 0.32f)
-            {
-                if (SceneManagement.Instance.currentScene == "EndlessScene")
-                {
-                    Creater.Instance.endUI.SwitchEnablePause();
-                }
-
-                Creater.Instance.isPaused = true;
+            {                
                 yield return new WaitForSeconds(0.15f);
 
                 player.position = transform.position + Vector3.up * 0.64f * (Creater.Instance.player.revertGravity ? 1 : -1);

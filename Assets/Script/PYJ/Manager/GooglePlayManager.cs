@@ -128,22 +128,28 @@ public class GooglePlayManager : MonoBehaviour
     public void ReportScore(int score)
     {
 #if UNITY_ANDROID
-
-        PlayGamesPlatform.instance.ReportScore(score, GPGSIds.leaderboard_score, (bool success) =>
+        Social.localUser.Authenticate((bool success1) =>
         {
-            if (success)
+            if (success1)
             {
-                // Report 성공
-                // 그에 따른 처리
-                logText.text = "report success";
-            }
-            else
-            {
-                // Report 실패
-                // 그에 따른 처리
-                logText.text = "report fail";
+                PlayGamesPlatform.instance.ReportScore(score, GPGSIds.leaderboard_score, (bool success) =>
+                {
+                    if (success)
+                    {
+                        // Report 성공
+                        // 그에 따른 처리
+                        logText.text = "report success";
+                    }
+                    else
+                    {
+                        // Report 실패
+                        // 그에 따른 처리
+                        logText.text = "report fail";
+                    }
+                });
             }
         });
+                
 
 #elif UNITY_IOS
  

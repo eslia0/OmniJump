@@ -66,20 +66,23 @@ public class EndlessUI : MonoBehaviour
 
     private void Pause()
     {
-        Creater.Instance.Pause();
-        SwitchEnablePause();
-        pausePanel.SetActive(true);
+        Debug.Log(Creater.Instance.player.enabled);
+
+        if (Creater.Instance.player.enabled)
+        {
+            Creater.Instance.Pause();
+            buttons[3].enabled = false;
+            pausePanel.SetActive(true);
+        }
     }
 
     private void Resume()
     {
-        Creater.Instance.Pause();
-        SwitchEnablePause();
-        pausePanel.SetActive(false);
-    }
-
-    public void SwitchEnablePause()
-    {
-        buttons[3].enabled = !buttons[3].enabled;
+        if (Creater.Instance.player.enabled)
+        {
+            Creater.Instance.Pause();
+            buttons[3].enabled = true;
+            pausePanel.SetActive(false);
+        }
     }
 }

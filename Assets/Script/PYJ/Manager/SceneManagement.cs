@@ -123,6 +123,7 @@ public class SceneManagement : MonoBehaviour
         if (currentScene == "TitleManager")
         {
             SoundManager.Instance.Play("Title");
+            SoundManager.Instance.SetLoop(true);
         }
         else if (currentScene == "TutorialScene")
         {
