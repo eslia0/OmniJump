@@ -7,14 +7,9 @@ public class SkinButtonScript : MonoBehaviour
 {
     [SerializeField] private Image playerBody;
 
-    private void Start()
-    {
-        SceneManagement.SkinInfo skin = SceneManagement.Instance.GetSkin();
-    }
 
-    // Start is called before the first frame update
     void OnEnable()
     {
-        playerBody.sprite = SceneManagement.Instance.GetBody();
+        playerBody.sprite = SkinMaster.Instance.Get_SkinInfo(PlayerPrefs.GetInt("BodySkin")).body;
     }
 }

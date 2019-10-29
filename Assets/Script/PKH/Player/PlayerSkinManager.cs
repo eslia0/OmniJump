@@ -16,29 +16,29 @@ public class PlayerSkinManager : MonoBehaviour
     [SerializeField] private Transform tailPivot;
 
     private GameObject tailParticle;
-    private SceneManagement.SkinInfo skin;
+    private SkinMaster.SkinInfo skin;
 
     private void Start()
     {
-        skin = SceneManagement.Instance.GetSkin();
+        skin = SkinMaster.Instance.Get_SkinInfo(PlayerPrefs.GetInt("BodySkin"));
 
-        if (skin.body != "")
-            body.sprite = SceneManagement.Instance.GetBody();
-        if (skin.face != "")
-            face.sprite = SceneManagement.Instance.GetFace();
+        if (skin.body != null)
+            body.sprite = skin.body;
+        if (skin.face != null)
+            face.sprite = skin.face;
 
         switch (skin.tailState)
         {
-            case SceneManagement.SkinTailState.Effect:
+            case "EFFECT":
                 tail.enabled = false;
 
-                tailParticle = Instantiate(SceneManagement.Instance.SetTailEffect(skin.tailEffect, skin.tailColor));
+                tailParticle = Instantiate(SkinMaster.Instance.SetTailEffect(skin.tailEffect, skin.tailColor));
                 tailParticle.transform.SetParent(tailEffect);
                 tailParticle.transform.localScale = Vector3.one;
                 tailParticle.transform.localPosition = Vector3.zero;
                 break;
 
-            case SceneManagement.SkinTailState.Color:
+            case "COLOR":
                 tail.enabled = true;
 
                 tail.startColor = skin.tailColor;
@@ -49,7 +49,7 @@ public class PlayerSkinManager : MonoBehaviour
 
     public void FlipEffect(bool isFlip)
     {
-        if(skin.tailState == SceneManagement.SkinTailState.Color)
+        if(skin.tailState == "COLOR")
         {
             return;
         }

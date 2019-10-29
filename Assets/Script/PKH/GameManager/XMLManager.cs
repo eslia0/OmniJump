@@ -5,81 +5,56 @@ using UnityEngine;
 
 public sealed class XMLManager : MonoBehaviour
 {
-    public class SKIN_INFO
+    private XmlDocument xmlDoc;
+    private XmlNodeList all_nodes;
+
+    public void LoadSkinXML(List<SkinMaster.SkinInfo> skins, List<int> lockArray, string KEY, string BODY_KEY, string FACE_KEY, string TAIL_KEY)
     {
-        public string LOCK;
-        public string NAME;
-        public string BODY;
-        public string FACE;
-        public string CATEGORY;
-        public string TAIL_EFFECT;
-        public string COLOR;
-    }
-
-    private static XMLManager instance = null;
-    public static XMLManager S {
-        get {
-            if(instance == null)
-            {
-                instance = new XMLManager();
-            }
-
-            return instance;
+        if(KEY != "IS_UNLOCK?!*%" || 
+            BODY_KEY != "_Body" ||
+            FACE_KEY != "_Face" ||
+            TAIL_KEY != "_Tail")
+        {
+            return;
         }
-    }
 
-    public string LoadToLanguageXML(string _fileName)
-    {
-        if (_fileName == "") return "";
-
-        TextAsset txtAsset = (TextAsset)Resources.Load("XML/LanguageFile");
-
-        XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(txtAsset.text);
-
-        XmlNodeList node = xmlDoc.SelectNodes("dataroot/" + _fileName);
-
-        //Debug.Log(node.Item(0).InnerText);
-        return node.Item(0).InnerText;
-    }
-
-    public List<SceneManagement.SkinInfo> LoadSkinXML()
-    {
-        List<SceneManagement.SkinInfo> skins = new List<SceneManagement.SkinInfo>();
         TextAsset txtAsset = (TextAsset)Resources.Load("XML/SKIN_XML");
 
-        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc = new XmlDocument();
         xmlDoc.LoadXml(txtAsset.text);
 
         // 전체 아이템 가져오기
-        XmlNodeList all_nodes = xmlDoc.SelectNodes("dataroot/SKIN");
+        all_nodes = xmlDoc.SelectNodes("dataroot/SKIN");
 
+        int num = 0;
         foreach (XmlNode node in all_nodes)
         {
-            SceneManagement.SkinInfo skin = new SceneManagement.SkinInfo();
+            SkinMaster.SkinInfo skin = new SkinMaster.SkinInfo();
 
-            if (node["LOCK"].InnerText != "IS_UNLOCK?!*%")
+            if(node["LOCK"].InnerText != KEY) // 잠겼을때
             {
-                skin.body = "Skin/Body/999_Body";
-                skins.Add(skin);
-                continue;
+                lockArray.Add(num);
+                skin.LOCK = true;
+            }
+            else
+            {
+                skin.LOCK = false;
             }
 
-            skin.LOCK = false;
-            skin.body = "Skin/Body/" + node["BODY"].InnerText + "_Body";
-            skin.face = "Skin/Face/" + node["FACE"].InnerText + "_Face";
+            skin.body = Resources.Load<Sprite>("Skin/Body/" + node["BODY"].InnerText + BODY_KEY);
+            skin.face = Resources.Load<Sprite>("Skin/Face/" + node["FACE"].InnerText + FACE_KEY);
 
-            //skin.hitEffect = (GameObject)Resources.Load("Skin/HitEffect/" + node["HIT_EFFECT"].InnerText);
+            num++;
 
             switch (node["CATEGORY"].InnerText)
             {
                 case "tail":
-                    skin.tailState = SceneManagement.SkinTailState.Effect;
-                    skin.tailEffect = "Skin/TailEffect/" + node["TAIL_EFFECT"].InnerText + "_Tail";
+                    skin.tailState = "EFFECT";
+                    skin.tailEffect = Resources.Load<GameObject>("Skin/TailEffect/" + node["TAIL_EFFECT"].InnerText + TAIL_KEY);
                     break;
 
                 case "color":
-                    skin.tailState = SceneManagement.SkinTailState.Color;
+                    skin.tailState = "COLOR";
                     break;
             }
 
@@ -90,7 +65,15 @@ public sealed class XMLManager : MonoBehaviour
 
             skins.Add(skin);
         }
+    }
 
-        return skins;
+    public void XMLWrite(string KEY, int POSITION)
+    {
+        if (KEY != "IS_UNLOCK?!*%")
+        {
+            return;
+        }
+
+        all_nodes[POSITION].SelectSingleNode("LOCK").InnerText = KEY;
     }
 }

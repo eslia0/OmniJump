@@ -17,15 +17,21 @@ public class SkinPanel : MonoBehaviour
     [SerializeField] private Image tail;
     [SerializeField] private Transform tailEffect;
 
-    [SerializeField] private float purchasMul = 1;
+    [Space(10)]
+
+    [SerializeField] private Text t_Coin;
+    [SerializeField] private Text t_Cost;
+    [SerializeField] private Button b_Purchas;
+
 
     private void Start()
     {
-        for (int i = -2; i < SceneManagement.Instance.GetSkinArray().Count + 2; i++)
+        int skinCount = 0;
+        for (int i = -2; i < SkinMaster.Instance.Get_SkinArrayLength() + 2; i++)
         {
             GameObject tmp;
 
-            if (i < 0 || i > SceneManagement.Instance.GetSkinArray().Count -1)
+            if (i < 0 || i > SkinMaster.Instance.Get_SkinArrayLength() - 1)
             {
                 tmp = Instantiate(blank);
             }
@@ -33,13 +39,14 @@ public class SkinPanel : MonoBehaviour
             {
                 int num = i;
                 tmp = Instantiate(skinObject);
-                tmp.GetComponent<Image>().sprite = Resources.Load<Sprite>(SceneManagement.Instance.GetSkinArray()[num].body);
 
-                if (!SceneManagement.Instance.GetSkinArray()[num].LOCK)
+                if (!SkinMaster.Instance.Get_SkinItemLOCK(num))
                 {
-                    purchasMul *= 1.4f;
-                    tmp.GetComponent<Button>().onClick.AddListener(() => { SetBodySkin(num); });
+                    skinCount++;
+                    SkinMaster.Instance.Mul_Purchas();
+                    tmp.GetComponent<Image>().sprite = SkinMaster.Instance.Get_SkinInfo(num).body;
                 }
+                tmp.GetComponent<Button>().onClick.AddListener(() => { SetBodySkin(num); });
             }
 
             tmp.transform.SetParent(content);
@@ -47,17 +54,33 @@ public class SkinPanel : MonoBehaviour
             tmp.transform.localPosition = Vector3.zero;
         }
 
+        if (skinCount == SkinMaster.Instance.Get_SkinArrayLength())
+        {
+            b_Purchas.gameObject.SetActive(false);
+        }
+        else
+        {
+            b_Purchas.onClick.AddListener(() => {
+                SkinMaster.Instance.UNLOCK();
+                t_Coin.text = SkinMaster.Instance.Get_Coin().ToString();
+                t_Cost.text = SkinMaster.Instance.Get_Purchas().ToString();
+            });
+        }
+
+        t_Coin.text = SkinMaster.Instance.Get_Coin().ToString();
+        t_Cost.text = SkinMaster.Instance.Get_Purchas().ToString();
+
         StartCoroutine(EffectTrigger());
         SetPlayer();
     }
-
+    
     // Player 이미지 세팅
     private void SetPlayer()
     {
-        SceneManagement.SkinInfo skin = SceneManagement.Instance.GetSkin();
+        SkinMaster.SkinInfo skin = SkinMaster.Instance.Get_SkinInfo(PlayerPrefs.GetInt("BodySkin"));
 
-        body.sprite = SceneManagement.Instance.GetBody();
-        face.sprite = SceneManagement.Instance.GetFace();
+        body.sprite = skin.body;
+        face.sprite = skin.face;
 
         if (tailEffect.childCount > 0)
         {
@@ -66,12 +89,12 @@ public class SkinPanel : MonoBehaviour
 
         switch (skin.tailState)
         {
-            case SceneManagement.SkinTailState.Effect:
+            case "EFFECT":
                 tail.enabled = false;
 
-                GameObject tailE = Instantiate(SceneManagement.Instance.SetTailEffect(skin.tailEffect, skin.tailColor));
+                GameObject tailE = Instantiate(SkinMaster.Instance.SetTailEffect(skin.tailEffect, skin.tailColor));
                 tailE.transform.SetParent(tailEffect);
-                tailE.transform.localScale = Vector3.one * 150;
+                tailE.transform.localScale = Vector3.one * 2;
                 tailE.transform.localPosition = Vector3.zero;
 
                 ParticleSystem particle = tailE.GetComponent<ParticleSystem>();
@@ -83,7 +106,7 @@ public class SkinPanel : MonoBehaviour
 
                 break;
 
-            case SceneManagement.SkinTailState.Color:
+            case "COLOR":
                 tail.enabled = true;
 
                 tail.color = skin.tailColor;
@@ -104,12 +127,7 @@ public class SkinPanel : MonoBehaviour
 
     public void SetBodySkin(int skin)
     {
-        SceneManagement.Instance.SetSkin(skin);
+        SkinMaster.Instance.SetSkin(skin);
         SetPlayer();
-    }
-
-    public void PurchasSkin()
-    {
-        if(PlayerPrefs.GetInt() > purchasMul)
     }
 }
