@@ -36,7 +36,7 @@ public class Rotation : InteractiveObject
 
     protected override void update()
     {
-        Creater.Instance.AddScore(30);
+        Creater.Instance.AddScore((int)(30 * (1 + SceneManagement.Instance.GetObjectScoreLevel(ObjectScore.Rotate) * 0.34f)));
         if (canJump)
         {
             if (nextTarget == null)

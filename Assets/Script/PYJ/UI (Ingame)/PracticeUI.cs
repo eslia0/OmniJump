@@ -33,14 +33,15 @@ public class PracticeUI : MonoBehaviour
 
     void Restart()
     {
-        SceneManagement.Instance.LoadScene("PracticeScene");
+        SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("PracticeScene"));
     }
 
     void ReturnTitle()
     {
+        Creater.Instance.player.enabled = false;
         Creater.Instance.Disable();
         SceneManager.sceneLoaded -= Creater.Instance.StartStage;
-        SceneManagement.Instance.LoadScene("TitleScene");
+        SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("TitleScene"));
     }
 
     public void SetResultPanel()

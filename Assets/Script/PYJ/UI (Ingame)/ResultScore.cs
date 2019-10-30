@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ResultScore : MonoBehaviour
 {
     [SerializeField] Text scoreText;
+    [SerializeField] Text leftTime;
 
     public IEnumerator SetResultScore(int score)
     {
@@ -28,5 +30,23 @@ public class ResultScore : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", score);
             GooglePlayManager.Instance.ReportScore(score);
         }
+    }
+
+    public IEnumerator SetLeftTime()
+    {
+        leftTime.gameObject.SetActive(true);
+
+        TimeSpan time = DateTime.Now.TimeOfDay - UnityAdsHelper.Instance.LastTime;
+
+        while (time <= new TimeSpan(0, 15, 0))
+        {
+            leftTime.text = time.ToString("mm:ss");
+
+            yield return new WaitForSeconds (1.0f);
+
+            time = DateTime.Now.TimeOfDay - UnityAdsHelper.Instance.LastTime;
+        }
+
+        leftTime.gameObject.SetActive(false);
     }
 }

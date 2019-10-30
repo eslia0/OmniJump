@@ -1,8 +1,20 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+public enum ObjectScore
+{
+    JumpPad = 0,
+    CirclePad = 1,
+    ReversePad = 2,
+    Missile = 3,
+    Gravity = 4,
+    Teleport = 5,
+    Lift = 6,
+    Rotate = 7,
+    Pause = 8,
+}
 
 public class SceneManagement : MonoBehaviour
 {
@@ -24,17 +36,16 @@ public class SceneManagement : MonoBehaviour
         }
     }
 
-    private UnityAdsHelper adsHelper;
-    private GooglePlayManager GPManager;
-
-    [SerializeField] private bool isTesting;
+    public Fade fade;
+    // Scene Manage 관련 Scene 정보
     public int selectedStage;
     public string currentScene;
     public string prevScene;
 
-    public bool[] clearStage;
+    private bool[] clearStage;
     private int highScore;
-
+    private int coin;
+    private int[] objectScoreLevels;
 
     void Awake()
     {
@@ -48,6 +59,11 @@ public class SceneManagement : MonoBehaviour
         clearStage = new bool[60];
         DontDestroyOnLoad(gameObject);
         LoadData();
+    }
+
+    void Start()
+    {
+        SceneManager.sceneLoaded += FadeIn;
     }
 
     public void LoadData()
@@ -65,18 +81,8 @@ public class SceneManagement : MonoBehaviour
             }
         }
 
-        //string path = Application.persistentDataPath + "/data0.txt";
-
-        //if (File.Exists(path))
-        //{
-        //    string[] data = File.ReadAllLines(path);
-
-        //    for (int i = 0; i < data.Length; i++)
-        //    {
-        //        int num = int.Parse(data[i]);
-        //        clearStage[num] = true;
-        //    }
-        //}
+        coin = PlayerPrefs.GetInt("Coin");
+        InitObjectScoreLevel();
     }
 
     public void WriteData()
@@ -90,39 +96,87 @@ public class SceneManagement : MonoBehaviour
                 num += i.ToString() + ".";
             }
         }
-        
+
         PlayerPrefs.SetString("ClearStage", num);
-
-        //string path = Application.persistentDataPath + "/data0.txt";
-        //string num = "";
-
-        //for (int i = 0; i < clearStage.Length; i++)
-        //{
-        //    if (clearStage[i])
-        //    {
-        //        num += i.ToString() + "\n";
-        //    }
-        //}
-
-        //File.Open(path, FileMode.OpenOrCreate).Dispose();
-        //File.WriteAllText(path, num);
     }
 
-    public void LoadScene(string name)
+    public IEnumerator LoadScene(string name)
     {
         prevScene = currentScene;
         currentScene = name;
 
+        fade.fadeCanvas.SetActive(true);
+        fade.StartCoroutine(fade.FadeOut());
+
+        while (!fade.ended)
+        {
+            yield return null;
+        }
+
         SceneManager.LoadScene(name);
+    }
 
-        if (currentScene == "TitleManager")
-        {
-            SoundManager.Instance.Play("Title");
-            SoundManager.Instance.SetLoop(true);
-        }
-        else if (currentScene == "TutorialScene")
-        {
+    public bool[] GetClearData()
+    {
+        return clearStage;
+    }
 
+    public void ClearStage(int stage)
+    {
+        clearStage[stage] = true;
+    }
+
+    private void InitObjectScoreLevel()
+    {
+        objectScoreLevels = new int[9];
+
+        for (int i = 0; i < 9; i++)
+        {
+            objectScoreLevels[i] = PlayerPrefs.GetInt("ObjectScoreLevel" + i.ToString());
         }
+    }
+
+    public bool UseCoin(int cost)   // 구매 가능할 시 True 반환. 불가능할 시 False 반환
+    {
+        if (coin < cost)
+        {
+            return false;
+        }
+        else
+        {
+            coin -= cost;
+            PlayerPrefs.SetInt("Coin", coin);
+            return true;
+        }
+    }
+
+    public void AddCoin(int amount)
+    {
+        if (amount < 200)
+        {
+            coin += amount;
+
+            PlayerPrefs.SetInt("Coin", coin);
+        }
+    }
+
+    public void PurchaseObjectScoreLevel(ObjectScore objectName, int cost)
+    {
+        if (UseCoin(cost))
+        {
+            objectScoreLevels[(int)objectName]++;
+            PlayerPrefs.SetInt("ObjectScoreLevel" + (int)objectName, objectScoreLevels[(int)objectName]);
+        }
+    }
+
+    public float GetObjectScoreLevel(ObjectScore objectName)
+    {
+        return objectScoreLevels[(int)objectName];
+    }
+
+    public void FadeIn(Scene scene, LoadSceneMode mode)
+    {
+        fade.fadeCanvas.SetActive(true);
+        fade.StartCoroutine(fade.FadeIn());
     }
 }

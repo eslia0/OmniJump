@@ -13,7 +13,7 @@ public class ReverseDirection : InteractiveObject
 
     protected override void update()
     {
-        Creater.Instance.AddScore(15);
+        Creater.Instance.AddScore((int)(15 * (1 + SceneManagement.Instance.GetObjectScoreLevel(ObjectScore.ReversePad) * 0.34f)));
         Creater.Instance.player.moveRight = moveRight;
 
         base.update();

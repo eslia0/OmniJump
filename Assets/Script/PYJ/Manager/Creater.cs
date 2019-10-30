@@ -67,7 +67,7 @@ public class Creater : GameVariables
             int num = Random.Range(0, 3);
             currentMap = (level - 1) * 3 + num;
 
-            SceneManagement.Instance.clearStage[currentMap] = true;
+            SceneManagement.Instance.ClearStage(currentMap);
             SceneManagement.Instance.WriteData();
 
             nowPlatform = Instantiate(platforms[currentMap]).GetComponent<Platform>();
@@ -137,7 +137,7 @@ public class Creater : GameVariables
             SelectBGM();
 
             nowPlatform = Instantiate(platforms[currentMap]).GetComponent<Platform>();
-            SceneManagement.Instance.clearStage[currentMap] = true;
+            SceneManagement.Instance.ClearStage(currentMap);
             SceneManagement.Instance.WriteData();
 
             SetScoreMultiply(1 + level * 0.03f);
@@ -162,13 +162,7 @@ public class Creater : GameVariables
             level++;
         }
 
-        // 플레이어가 죽었을 시에 다시 점수 증가
-        if (nextLevel == -1 || nextLevel == 0)
-        {
-            StartCoroutine(ScoreUp());
-        }
-
-        SceneManager.LoadScene("EndlessScene");
+        SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("EndlessScene"));
     }
 
     public void AddScore(int score)

@@ -53,7 +53,7 @@ public abstract class InteractiveObject : MonoBehaviour
 
     public void SetParticle(bool set)
     {
-        if(particles.Length > 0)
+        if (particles.Length > 0)
         {
             if (set)
             {

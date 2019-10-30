@@ -60,7 +60,7 @@ public class ExitPortal : MonoBehaviour
         }
         else if(SceneManagement.Instance.currentScene == "TutorialScene")
         {
-            SceneManagement.Instance.LoadScene("EndlessScene");
+            SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("EndlessScene"));
         }
         else if (SceneManagement.Instance.currentScene == "PracticeScene")
         {

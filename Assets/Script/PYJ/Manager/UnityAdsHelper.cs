@@ -4,7 +4,7 @@ using UnityEngine.Advertisements;
 using GoogleMobileAds.Api;
 using System;
 
-public class UnityAdsHelper
+public class UnityAdsHelper : MonoBehaviour
 {
     private static UnityAdsHelper instance;
     public static UnityAdsHelper Instance {
@@ -12,7 +12,6 @@ public class UnityAdsHelper
             if (instance == null)
             {
                 instance = new UnityAdsHelper();
-                instance.Initialize();
             }
 
             return instance;
@@ -28,6 +27,22 @@ public class UnityAdsHelper
 
     private BannerView bannerView;
     private TimeSpan lastTime;
+    public TimeSpan LastTime {
+        get { return lastTime; }
+        private set { lastTime = value; }
+    }
+
+    private void Awake()
+    {
+        instance = FindObjectOfType<UnityAdsHelper>();
+
+        if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        instance.Initialize();
+    }
 
     private void Initialize()
     {
@@ -49,6 +64,8 @@ public class UnityAdsHelper
 
         //        // Initialize the Google Mobile Ads SDK.
         //        MobileAds.Initialize(appId);
+
+        Debug.Log("UnityAds initialized");
     }
 
     public void ShowRewardedAd()
@@ -64,7 +81,7 @@ public class UnityAdsHelper
         }
         else
         {
-            if (Application.isPlaying)
+            if (Application.isPlaying && Creater.Instance)
                 Creater.Instance.NextStage(-1);
         }
     }
@@ -76,7 +93,7 @@ public class UnityAdsHelper
             case ShowResult.Finished:
                 {
                     Debug.Log("The ad was successfully shown.");
-                    if (Application.isPlaying)
+                    if (Application.isPlaying && Creater.Instance)
                     {
                         Creater.Instance.NextStage(0);
                     }
@@ -89,7 +106,7 @@ public class UnityAdsHelper
                 {
                     Debug.Log("The ad was skipped before reaching the end.");
 
-                    if (Application.isPlaying)
+                    if (Application.isPlaying && Creater.Instance)
                     {
                         Creater.Instance.NextStage(-1);
                     }
@@ -103,7 +120,7 @@ public class UnityAdsHelper
                 {
                     Debug.LogError("The ad failed to be shown.");
 
-                    if (Application.isPlaying)
+                    if (Application.isPlaying && Creater.Instance)
                     {
                         Creater.Instance.NextStage(-1);
                     }

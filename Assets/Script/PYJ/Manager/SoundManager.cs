@@ -38,6 +38,9 @@ public class SoundManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         audio = GetComponent<AudioSource>();
+
+        Play("Title");
+        SetLoop(true);
     }
 
     public void Play(string source)

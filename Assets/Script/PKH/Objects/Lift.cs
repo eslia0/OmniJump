@@ -105,6 +105,12 @@ public class Lift : RayCastController
 
     void Update()
     {
+        if (!Creater.Instance)
+        {
+            enabled = false;
+            return;
+        }
+
         if (Creater.Instance.isPaused)
         {
             return;
@@ -140,7 +146,7 @@ public class Lift : RayCastController
                 && Creater.Instance.player.onClick)
                 {
                     isActive = true;
-                    Creater.Instance.AddScore(15);
+                    Creater.Instance.AddScore((int)(15 * (1 + SceneManagement.Instance.GetObjectScoreLevel(ObjectScore.Lift) * 0.2f)));
                     Creater.Instance.GetTriggerBlowParticles(direction, trigger);
                     Destroy(trigger.gameObject);
                 }

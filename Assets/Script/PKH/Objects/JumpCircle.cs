@@ -46,7 +46,7 @@ public class JumpCircle : InteractiveObject
 
     protected override void update()
     {
-        Creater.Instance.AddScore(10);
+        Creater.Instance.AddScore((int)(10 * (1 + SceneManagement.Instance.GetObjectScoreLevel(ObjectScore.CirclePad) * 0.1f)));
         if (nextTarget == null)
         {
             Creater.Instance.player.SetJump(true);

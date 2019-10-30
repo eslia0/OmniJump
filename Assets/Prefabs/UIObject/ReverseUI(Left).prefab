@@ -9551,3 +9551,5 @@ MonoBehaviour:
   action: 5
   dir: 0
   usingEffect: {fileID: 0}
+  exit: {fileID: 0}
+  trigger: {fileID: 0}

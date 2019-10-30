@@ -29,7 +29,7 @@ public class MissileManager : MonoBehaviour
 
     IEnumerator DistanceUpdate()
     {
-        while (true)
+        while (Creater.Instance)
         {
             if (Vector2.Distance(Creater.Instance.player.transform.position, transform.position) < 0.16f)
             {
@@ -52,7 +52,7 @@ public class MissileManager : MonoBehaviour
 
     IEnumerator PositionUpdate()
     {
-        while (true)
+        while (Creater.Instance)
         {
             if (Creater.Instance.player.transform.position.x > transform.position.x)
             {
@@ -79,7 +79,7 @@ public class MissileManager : MonoBehaviour
 
         int num = 0;
         float delay = 0;
-        while (true)
+        while (Creater.Instance)
         {
             if (num >= missiles.Length && missileList.Count < 1)
             {
