@@ -6,18 +6,20 @@ public class TitleUI : MonoBehaviour
 {
     private GameObject titlePanel;
     private GameObject practicePanel;
-
     [SerializeField] private Button[] buttons;
+    [SerializeField] private Text coin;
+
+    // 프랙티스 패널
     private Image[] levelImage;
     private int selectedLevel;      // 현제 선택된 레벨. 0 ~ 59
     private Text selectedLevelText;
-
     private ScrollRect mapScroll;
     private Animation scrollAnim;
     [SerializeField] private RectTransform map;
     private Image[] maps;
     private Button[] levels;
     
+    // Title 대기 배경
     private Sprite[] mapImages;
     private PlayerUIController player;
 
@@ -48,6 +50,7 @@ public class TitleUI : MonoBehaviour
 
         LoadMapImage();
         InitPractice();
+        SetCoinText();
 
         titlePanel.SetActive(true);
         practicePanel.SetActive(false);
@@ -199,5 +202,10 @@ public class TitleUI : MonoBehaviour
     {
         player.gameObject.SetActive(!player.gameObject.activeSelf);
         player.selectedMap.SetActive(!player.selectedMap.activeSelf);
+    }
+
+    public void SetCoinText()
+    {
+        coin.text = SceneManagement.Instance.coin.ToString();
     }
 }

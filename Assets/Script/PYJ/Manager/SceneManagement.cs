@@ -3,19 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum ObjectScore
-{
-    JumpPad = 0,
-    CirclePad = 1,
-    ReversePad = 2,
-    Missile = 3,
-    Gravity = 4,
-    Teleport = 5,
-    Lift = 6,
-    Rotate = 7,
-    Pause = 8,
-}
-
 public class SceneManagement : MonoBehaviour
 {
     private static SceneManagement instance;
@@ -44,8 +31,8 @@ public class SceneManagement : MonoBehaviour
 
     private bool[] clearStage;
     private int highScore;
-    private int coin;
-    private int[] objectScoreLevels;
+    public int coin { get; private set; }
+    private ObjectData[] objectData;
 
     void Awake()
     {
@@ -128,11 +115,14 @@ public class SceneManagement : MonoBehaviour
 
     private void InitObjectScoreLevel()
     {
-        objectScoreLevels = new int[9];
+        objectData = new ObjectData[9];
 
         for (int i = 0; i < 9; i++)
         {
-            objectScoreLevels[i] = PlayerPrefs.GetInt("ObjectScoreLevel" + i.ToString());
+            objectData[i] = new ObjectData();
+            objectData[i].SetObjectType((ObjectType)i);
+            objectData[i].SetLevel(PlayerPrefs.GetInt("ObjecLevel" + i.ToString()));
+            objectData[i].InitObjectData();
         }
     }
 
@@ -160,18 +150,20 @@ public class SceneManagement : MonoBehaviour
         }
     }
 
-    public void PurchaseObjectScoreLevel(ObjectScore objectName, int cost)
+    public void PurchaseObjectScoreLevel(int type)
     {
-        if (UseCoin(cost))
+        if (UseCoin(objectData[type].cost))
         {
-            objectScoreLevels[(int)objectName]++;
-            PlayerPrefs.SetInt("ObjectScoreLevel" + (int)objectName, objectScoreLevels[(int)objectName]);
+            objectData[type].SetLevel(objectData[type].level + 1);
+            PlayerPrefs.SetInt("ObjectScoreLevel" + type, objectData[type].level);
+
+            objectData[type].InitObjectData();
         }
     }
 
-    public float GetObjectScoreLevel(ObjectScore objectName)
+    public ObjectData GetObjectData(ObjectType type)
     {
-        return objectScoreLevels[(int)objectName];
+        return objectData[(int)type];
     }
 
     public void FadeIn(Scene scene, LoadSceneMode mode)

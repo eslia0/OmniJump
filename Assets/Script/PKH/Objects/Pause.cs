@@ -60,7 +60,7 @@ public class Pause : InteractiveObject
 
             Creater.Instance.player.moveSpeed = 0; // 플레이어 속도 제거
             Creater.Instance.player.velocity = Vector2.zero; // 플레이어 속력 제거
-            Creater.Instance.AddScore((int)(15 * (1 + SceneManagement.Instance.GetObjectScoreLevel(ObjectScore.Pause) * 0.2f)));
+            Creater.Instance.AddScore((int)(15 * (1 + SceneManagement.Instance.GetObjectData(ObjectType.Pause).level * 0.2f)));
         } else
         {
             Creater.Instance.player.moveSpeed = speed; // 플레이어 속도 재정의
