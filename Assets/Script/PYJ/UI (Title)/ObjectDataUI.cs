@@ -48,25 +48,69 @@ public class ObjectDataUI : MonoBehaviour
         upgradeButton[7].onClick.RemoveAllListeners();
         upgradeButton[8].onClick.RemoveAllListeners();
 
-        upgradeButton[0].onClick.AddListener(delegate () { SceneManagement.Instance.PurchaseObjectScoreLevel(0); });
-        upgradeButton[1].onClick.AddListener(delegate () { SceneManagement.Instance.PurchaseObjectScoreLevel(1); });
-        upgradeButton[2].onClick.AddListener(delegate () { SceneManagement.Instance.PurchaseObjectScoreLevel(2); });
-        upgradeButton[3].onClick.AddListener(delegate () { SceneManagement.Instance.PurchaseObjectScoreLevel(3); });
-        upgradeButton[4].onClick.AddListener(delegate () { SceneManagement.Instance.PurchaseObjectScoreLevel(4); });
-        upgradeButton[5].onClick.AddListener(delegate () { SceneManagement.Instance.PurchaseObjectScoreLevel(5); });
-        upgradeButton[6].onClick.AddListener(delegate () { SceneManagement.Instance.PurchaseObjectScoreLevel(6); });
-        upgradeButton[7].onClick.AddListener(delegate () { SceneManagement.Instance.PurchaseObjectScoreLevel(7); });
-        upgradeButton[8].onClick.AddListener(delegate () { SceneManagement.Instance.PurchaseObjectScoreLevel(8); });
-
-        upgradeButton[0].onClick.AddListener(delegate () { SetObjectDataUI(0); });
-        upgradeButton[1].onClick.AddListener(delegate () { SetObjectDataUI(1); });
-        upgradeButton[2].onClick.AddListener(delegate () { SetObjectDataUI(2); });
-        upgradeButton[3].onClick.AddListener(delegate () { SetObjectDataUI(3); });
-        upgradeButton[4].onClick.AddListener(delegate () { SetObjectDataUI(4); });
-        upgradeButton[5].onClick.AddListener(delegate () { SetObjectDataUI(5); });
-        upgradeButton[6].onClick.AddListener(delegate () { SetObjectDataUI(6); });
-        upgradeButton[7].onClick.AddListener(delegate () { SetObjectDataUI(7); });
-        upgradeButton[8].onClick.AddListener(delegate () { SetObjectDataUI(8); });
+        upgradeButton[0].onClick.AddListener(delegate () {
+            if (SceneManagement.Instance.PurchaseObjectScoreLevel(0))
+            {
+                StartAnim(0);
+                SetObjectDataUI(0);
+            }
+        });
+        upgradeButton[1].onClick.AddListener(delegate () {
+            if (SceneManagement.Instance.PurchaseObjectScoreLevel(1))
+            {
+                StartAnim(1);
+                SetObjectDataUI(1);
+            }
+        });
+        upgradeButton[2].onClick.AddListener(delegate () {
+            if (SceneManagement.Instance.PurchaseObjectScoreLevel(2))
+            {
+                StartAnim(2);
+                SetObjectDataUI(2);
+            }
+        });
+        upgradeButton[3].onClick.AddListener(delegate () {
+            if (SceneManagement.Instance.PurchaseObjectScoreLevel(3))
+            {
+                StartAnim(3);
+                SetObjectDataUI(3);
+            }
+        });
+        upgradeButton[4].onClick.AddListener(delegate () {
+            if (SceneManagement.Instance.PurchaseObjectScoreLevel(4))
+            {
+                StartAnim(4);
+                SetObjectDataUI(4);
+            }
+        });
+        upgradeButton[5].onClick.AddListener(delegate () {
+            if (SceneManagement.Instance.PurchaseObjectScoreLevel(5))
+            {
+                StartAnim(5);
+                SetObjectDataUI(5);
+            }
+        });
+        upgradeButton[6].onClick.AddListener(delegate () {
+            if (SceneManagement.Instance.PurchaseObjectScoreLevel(6))
+            {
+                StartAnim(6);
+                SetObjectDataUI(6);
+            }
+        });
+        upgradeButton[7].onClick.AddListener(delegate () {
+            if (SceneManagement.Instance.PurchaseObjectScoreLevel(7))
+            {
+                StartAnim(7);
+                SetObjectDataUI(7);
+            }
+        });
+        upgradeButton[8].onClick.AddListener(delegate () {
+            if (SceneManagement.Instance.PurchaseObjectScoreLevel(8))
+            {
+                StartAnim(8);
+                SetObjectDataUI(8);
+            }
+        });
     }
 
     public void SetAllObjectData()
@@ -83,7 +127,7 @@ public class ObjectDataUI : MonoBehaviour
 
         if (data.maxLevel == data.level)
         {
-            levelText[type].text = data.level.ToString();
+            levelText[type].text = "Lv " + data.level.ToString();
             currentScoreText[type].text = data.currentScore.ToString();
             nextScoreText[type].text = data.currentScore.ToString();
             costText[type].text = "Max";
@@ -91,10 +135,18 @@ public class ObjectDataUI : MonoBehaviour
         }
         else
         {
-            levelText[type].text = data.level.ToString();
+            levelText[type].text = "Lv " + data.level.ToString();
             currentScoreText[type].text = data.currentScore.ToString();
             nextScoreText[type].text = data.nextScore.ToString();
             costText[type].text = data.cost.ToString();
         }
+    }
+
+    public void StartAnim(int type)
+    {
+        levelText[type].GetComponent<Animation>().Play();
+        currentScoreText[type].GetComponent<Animation>().Play();
+        nextScoreText[type].GetComponent<Animation>().Play();
+        costText[type].GetComponent<Animation>().Play();
     }
 }

@@ -11,7 +11,7 @@ public class UnityAdsHelper : MonoBehaviour
         get {
             if (instance == null)
             {
-                instance = new UnityAdsHelper();
+                instance = FindObjectOfType<UnityAdsHelper>();
             }
 
             return instance;
@@ -46,7 +46,7 @@ public class UnityAdsHelper : MonoBehaviour
 
     private void Initialize()
     {
-        lastTime = DateTime.Now.TimeOfDay - new TimeSpan(0, 15, 0);
+        // lastTime = DateTime.Now.TimeOfDay - new TimeSpan(0, 15, 0);
 
 #if UNITY_ANDROID
         Advertisement.Initialize(android_game_id);
@@ -64,15 +64,13 @@ public class UnityAdsHelper : MonoBehaviour
 
         //        // Initialize the Google Mobile Ads SDK.
         //        MobileAds.Initialize(appId);
-
-        Debug.Log("UnityAds initialized");
     }
 
     public void ShowRewardedAd()
     {
         if (Advertisement.IsReady(rewarded_video_id))
         {
-            if (DateTime.Now.TimeOfDay - lastTime > new TimeSpan(0, 15, 0))
+            // if (DateTime.Now.TimeOfDay - lastTime > new TimeSpan(0, 15, 0))
             {
                 var options = new ShowOptions { resultCallback = HandleShowResult };
 

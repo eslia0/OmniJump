@@ -66,59 +66,73 @@ public class ObjectData
         {
             case ObjectType.JumpPad:
                 currentScore = 10 + (level * 1);
-                nextScore = 10 + (level * 1);
-                cost = 30 + (10 * level);
+                nextScore = 10 + ((level + 1) * 1);
+                cost = 10 + CalculateCost(level, 10);
                 break;
 
             case ObjectType.CirclePad:
-                currentScore = 20 + (level * 1);
-                nextScore = 20 + ((level +1) * 1);
-                cost = 30 + (10 * level);
+                currentScore = 10 + (level * 1);
+                nextScore = 10 + ((level + 1) * 1);
+                cost = 10 + CalculateCost(level, 10);
                 break;
 
             case ObjectType.ReversePad:
-                currentScore = 30 + (level);
-                nextScore = 30 + ((level + 1) * 2);
-                cost = 30 + (15 * level);
+                currentScore = 15 + (level);
+                nextScore = 15 + ((level + 1) * 2);
+                cost = 10 + CalculateCost(level, 20);
                 break;
 
             case ObjectType.Missile:
-                currentScore = 40 + (level);
-                nextScore = 40 + ((level + 1) * 2);
-                cost = 30 + (15 * level);
+                currentScore = 10 + (level);
+                nextScore = 10 + ((level + 1) * 2);
+                cost = 15 + CalculateCost(level, 20);
                 break;
 
             case ObjectType.Gravity:
-                currentScore = 50 + (level);
-                nextScore = 50 + ((level + 1) * 2);
-                cost = 30 + (20 * level);
+                currentScore = 15 + (level);
+                nextScore = 15 + ((level + 1) * 3);
+                cost = 15 + CalculateCost(level, 20);
                 break;
 
             case ObjectType.Teleport:
-                currentScore = 60 + (level * 3);
-                nextScore = 60 + ((level + 1) * 3);
-                cost = 30 + (20 * level);
+                currentScore = 15 + (level * 2);
+                nextScore = 15 + ((level + 1) * 2);
+                cost = 15 + CalculateCost(level, 15);
                 break;
 
             case ObjectType.Lift:
-                currentScore = 70 + (level * 3);
-                nextScore = 70 + ((level + 1) * 3);
-                cost = 30 + (20 * level);
+                currentScore = 15 + (level * 3);
+                nextScore = 15 + ((level + 1) * 3);
+                cost = 20 + CalculateCost(level, 25);
                 break;
 
             case ObjectType.Rotate:
-                currentScore = 80 + (level * 5);
-                nextScore = 80 + ((level + 1) * 5);
-                cost = 30 + (30 * level);
+                currentScore = 30 + (level * 15);
+                nextScore = 30 + ((level + 1) * 15);
+                cost = 30 + CalculateCost(level, 30);
                 break;
 
             case ObjectType.Pause:
-                currentScore = 90 + (level * 3);
-                nextScore = 90 + ((level + 1) * 3);
-                cost = 30 + (30 * level);
+                currentScore = 15 + (level * 5);
+                nextScore = 15 + ((level + 1) * 5);
+                cost = 20 + CalculateCost(level, 20);
                 break;
         }
 
         maxLevel = 5;
+    }
+
+    public int CalculateCost(int level, int cost)
+    {
+        if (level == 0)
+            return 0;
+
+        if (level == 1)
+        {
+            return cost;
+        }
+        else {
+            return CalculateCost(level - 1, cost) + cost * level;
+        }
     }
 }

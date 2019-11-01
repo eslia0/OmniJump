@@ -133,7 +133,7 @@ public class TitleUI : MonoBehaviour
 
     private void SelectLevel(int level)
     {
-        if (SceneManagement.Instance.GetClearData()[level])
+        // if (SceneManagement.Instance.GetClearData()[level])
         {
             SceneManagement.Instance.selectedStage = level + 1;
             SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("PracticeScene"));

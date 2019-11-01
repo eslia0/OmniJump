@@ -98,7 +98,7 @@ public class Missile : MonoBehaviour
                 collision.GetComponent<PlayerController>().Dead();
             }
 
-            Creater.Instance.AddScore((int)(15 * (1 + SceneManagement.Instance.GetObjectData(ObjectType.Missile).level * 0.1f)));
+            Creater.Instance.AddScore(SceneManagement.Instance.GetObjectData(ObjectType.Missile).currentScore);
             Creater.Instance.GetMissilePopPrefab(transform);
 
             Destroy(gameObject);

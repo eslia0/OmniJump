@@ -146,7 +146,7 @@ public class Lift : RayCastController
                 && Creater.Instance.player.onClick)
                 {
                     isActive = true;
-                    Creater.Instance.AddScore((int)(15 * (1 + SceneManagement.Instance.GetObjectData(ObjectType.Lift).level * 0.2f)));
+                    Creater.Instance.AddScore(SceneManagement.Instance.GetObjectData(ObjectType.Lift).currentScore);
                     Creater.Instance.GetTriggerBlowParticles(direction, trigger);
                     Destroy(trigger.gameObject);
                 }

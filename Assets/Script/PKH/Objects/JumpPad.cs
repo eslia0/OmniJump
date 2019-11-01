@@ -30,7 +30,7 @@ public class JumpPad : InteractiveObject
     protected override void update()
     {
         playerIsOn = false;
-        Creater.Instance.AddScore((int)(10 * (1 + SceneManagement.Instance.GetObjectData(ObjectType.JumpPad).level * 0.1f)));
+        Creater.Instance.AddScore(SceneManagement.Instance.GetObjectData(ObjectType.JumpPad).currentScore);
         Creater.Instance.player.onClick = false;
 
         if (nextTarget == null)

@@ -121,12 +121,12 @@ public class SceneManagement : MonoBehaviour
         {
             objectData[i] = new ObjectData();
             objectData[i].SetObjectType((ObjectType)i);
-            objectData[i].SetLevel(PlayerPrefs.GetInt("ObjecLevel" + i.ToString()));
+            objectData[i].SetLevel(PlayerPrefs.GetInt("ObjectLevel" + i.ToString()));
             objectData[i].InitObjectData();
         }
     }
 
-    public bool UseCoin(int cost)   // 구매 가능할 시 True 반환. 불가능할 시 False 반환
+    public bool UseCoin(int cost) // 구매 가능할 시 True 반환. 불가능할 시 False 반환
     {
         if (coin < cost)
         {
@@ -150,15 +150,18 @@ public class SceneManagement : MonoBehaviour
         }
     }
 
-    public void PurchaseObjectScoreLevel(int type)
+    public bool PurchaseObjectScoreLevel(int type)
     {
         if (UseCoin(objectData[type].cost))
         {
             objectData[type].SetLevel(objectData[type].level + 1);
-            PlayerPrefs.SetInt("ObjectScoreLevel" + type, objectData[type].level);
+            PlayerPrefs.SetInt("ObjectLevel" + type.ToString(), objectData[type].level);
 
             objectData[type].InitObjectData();
+            return true;
         }
+
+        return false;
     }
 
     public ObjectData GetObjectData(ObjectType type)

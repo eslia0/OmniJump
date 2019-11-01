@@ -16,7 +16,7 @@ public class GravityPad : InteractiveObject
         Creater.Instance.player.velocity.y += (Creater.Instance.player.revertGravity) ? -3 : 3;
         Creater.Instance.player.revertGravity = !Creater.Instance.player.revertGravity;
         Creater.Instance.player.skinManager.FlipEffect(Creater.Instance.player.revertGravity);
-        Creater.Instance.AddScore((int)(15 * (1 + SceneManagement.Instance.GetObjectData(ObjectType.Gravity).level * 0.2f)));
+        Creater.Instance.AddScore(SceneManagement.Instance.GetObjectData(ObjectType.Gravity).currentScore);
         
         base.update();
     }

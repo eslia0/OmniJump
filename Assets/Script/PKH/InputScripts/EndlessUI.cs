@@ -12,11 +12,9 @@ public class EndlessUI : MonoBehaviour
 
     private ScoreText scoreText;
     private Text highScore;
-
-    // [SerializeField] Sprite[] sprites;
-    // [SerializeField] Image image;
-
+    
     [SerializeField] Text resultScoreText;
+    [SerializeField] Text resultCoinText;
     [SerializeField] Text leftTime;
 
     private void Start()
@@ -25,7 +23,7 @@ public class EndlessUI : MonoBehaviour
         buttons[0].onClick.AddListener(delegate () { Creater.Instance.NextStage(-1); });
 
         buttons[1].onClick.RemoveAllListeners();
-        buttons[1].onClick.AddListener(delegate () { UnityAdsHelper.Instance.ShowRewardedAd(); });
+        buttons[1].onClick.AddListener(delegate () {UnityAdsHelper.Instance.ShowRewardedAd(); });
 
         buttons[2].onClick.RemoveAllListeners();
         buttons[2].onClick.AddListener(delegate () { ToTitle(); });
@@ -54,9 +52,9 @@ public class EndlessUI : MonoBehaviour
     {
         resultPanel.SetActive(true);
         buttons[3].enabled = false;
+        resultCoinText.text = SceneManagement.Instance.coin.ToString();
 
         StartCoroutine(SetResultScore(Creater.Instance.Score));
-        StartCoroutine(SetLeftTime());
     }
 
     private void ToTitle()
@@ -103,6 +101,7 @@ public class EndlessUI : MonoBehaviour
         rScore = score;
         resultScoreText.text = rScore.ToString();
 
+        StartCoroutine(SetResultCoin(rScore));
         if (SceneManagement.Instance.currentScene == "EndlessScene" && PlayerPrefs.GetInt("HighScore") < score)
         {
             PlayerPrefs.SetInt("HighScore", score);
@@ -110,24 +109,35 @@ public class EndlessUI : MonoBehaviour
         }
     }
 
-    public IEnumerator SetLeftTime()
+    public IEnumerator SetResultCoin(int score)
     {
-        leftTime.gameObject.SetActive(true);
-        buttons[1].interactable = false;
+        int coin = SceneManagement.Instance.coin;
+        int rCoin = coin + CalculateCoin(score);
+        Debug.Log(rCoin);
+        int amount = rCoin - coin;
 
-        TimeSpan time = DateTime.Now.TimeOfDay - UnityAdsHelper.Instance.LastTime;
-
-        while (time <= new TimeSpan(0, 15, 0))
+        while (coin < rCoin)
         {
-            time = new TimeSpan(0, 15, 0) - time;
-            leftTime.text = string.Format("{0:D2}:{1:D2}", time.Minutes, time.Seconds);
-
-            yield return new WaitForSeconds(1.0f);
-
-            time = DateTime.Now.TimeOfDay - UnityAdsHelper.Instance.LastTime;
+            coin += amount / 10;
+            resultCoinText.text = coin.ToString();
+            yield return null;
         }
 
-        leftTime.gameObject.SetActive(false);
-        buttons[1].interactable = true;
+        coin = rCoin;
+        resultCoinText.text = coin.ToString();
+
+        SceneManagement.Instance.AddCoin(amount);
+    }
+
+    private int CalculateCoin(int score)
+    {
+        if (score <= 300)
+        {
+            return 0;
+        }
+        else
+        {
+            return CalculateCoin(score / 2) + (int)((Mathf.Log(score, 2) - Mathf.Log(300, 2)) * 5);
+        }
     }
 }
