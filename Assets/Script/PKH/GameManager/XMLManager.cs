@@ -7,10 +7,25 @@ public sealed class XMLManager : MonoBehaviour
 {
     private XmlDocument xmlDoc;
     private XmlNodeList all_nodes;
-
-    public void LoadSkinXML(List<SkinMaster.SkinInfo> skins, List<int> lockArray, string KEY, string BODY_KEY, string FACE_KEY, string TAIL_KEY)
+    public int GetNodeCount()
     {
-        if(KEY != "IS_UNLOCK?!*%" || 
+        if (xmlDoc == null)
+        {
+            TextAsset txtAsset = (TextAsset)Resources.Load("XML/SKIN_XML");
+
+            xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(txtAsset.text);
+
+            // 전체 아이템 가져오기
+            all_nodes = xmlDoc.SelectNodes("dataroot/SKIN");
+        }
+
+        return all_nodes.Count;
+    }
+
+    public void LoadSkinXML(List<SkinMaster.SkinInfo> skins, List<bool> Access, List<int> lockArray, string KEY, string BODY_KEY, string FACE_KEY, string TAIL_KEY)
+    {
+        if (KEY != "IS_UNLOCK?!*%" ||
             BODY_KEY != "_Body" ||
             FACE_KEY != "_Face" ||
             TAIL_KEY != "_Tail")
@@ -18,20 +33,19 @@ public sealed class XMLManager : MonoBehaviour
             return;
         }
 
-        TextAsset txtAsset = (TextAsset)Resources.Load("XML/SKIN_XML");
-
-        xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(txtAsset.text);
-
-        // 전체 아이템 가져오기
-        all_nodes = xmlDoc.SelectNodes("dataroot/SKIN");
+        if (xmlDoc == null)
+        {
+            GetNodeCount();
+        }
 
         int num = 0;
+        int i = 0;
+
         foreach (XmlNode node in all_nodes)
         {
             SkinMaster.SkinInfo skin = new SkinMaster.SkinInfo();
 
-            if(node["LOCK"].InnerText != KEY) // 잠겼을때
+            if (!Access[i]) // 잠겼을때
             {
                 lockArray.Add(num);
                 skin.LOCK = true;
@@ -45,6 +59,7 @@ public sealed class XMLManager : MonoBehaviour
             skin.face = Resources.Load<Sprite>("Skin/Face/" + node["FACE"].InnerText + FACE_KEY);
 
             num++;
+            i++;
 
             switch (node["CATEGORY"].InnerText)
             {
@@ -65,15 +80,5 @@ public sealed class XMLManager : MonoBehaviour
 
             skins.Add(skin);
         }
-    }
-
-    public void XMLWrite(string KEY, int POSITION)
-    {
-        if (KEY != "IS_UNLOCK?!*%")
-        {
-            return;
-        }
-
-        all_nodes[POSITION].SelectSingleNode("LOCK").InnerText = KEY;
     }
 }

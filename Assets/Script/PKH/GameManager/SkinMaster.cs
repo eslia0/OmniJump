@@ -10,6 +10,50 @@ public sealed class SkinMaster : MonoBehaviour
     private const string BODY_KEY = "_Body";
     private const string FACE_KEY = "_Face";
     private const string TAIL_KEY = "_Tail";
+    [SerializeField] private List<bool> accessList = new List<bool>();
+    private void Init_ACCESSINFO()
+    {
+        if (accessList.Count > 0)
+        {
+            accessList.Clear();
+        }
+
+        if (!PlayerPrefs.HasKey("SKINMASTER"))
+        {
+            string skinAccess = "T";
+            accessList.Add(true);
+
+            for (int i = 1; i < xml.GetNodeCount(); i++)
+            {
+                skinAccess += "/F";
+                accessList.Add(false);
+            }
+            PlayerPrefs.SetString("SKINMASTER", skinAccess);
+
+            return;
+        }
+        else
+        {
+            string[] ac = PlayerPrefs.GetString("SKINMASTER").Split('/');
+
+            for (int i = 0; i < xml.GetNodeCount(); i++)
+            {
+                accessList.Add((ac[i] == "T") ? true : false);
+            }
+        }
+    }
+    private void SetACCESS()
+    {
+        string s = "";
+        for(int i = 0; i< accessList.Count; i++)
+        {
+            s += (accessList[i]) ? "T" : "F";
+            if (i != accessList.Count - 1)
+                s += "/";
+        }
+
+        PlayerPrefs.SetString("SKINMASTER", s);
+    }
 
     private static SkinMaster instance;
     public static SkinMaster Instance {
@@ -33,7 +77,7 @@ public sealed class SkinMaster : MonoBehaviour
     [SerializeField] private static float purchasMul = 68;
     public void Mul_Purchas()
     {
-        purchasMul *= 1.48f;
+        purchasMul *= 1.2f;
     }
     public int Get_Purchas()
     {
@@ -55,15 +99,18 @@ public sealed class SkinMaster : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
+        Init_ACCESSINFO();
+
         if (!PlayerPrefs.HasKey("BodySkin"))
         {
             PlayerPrefs.SetInt("BodySkin", 0);
         }
 
-        //COIN = PlayerPrefs.GetInt(COIN_KEY);
+        COIN = PlayerPrefs.GetInt("Coin");
 
-        xml.LoadSkinXML(skinArray, lockArray, KEY, BODY_KEY, FACE_KEY, TAIL_KEY);
+        xml.LoadSkinXML(skinArray , accessList, lockArray, KEY, BODY_KEY, FACE_KEY, TAIL_KEY);
     }
+
 
     private XMLManager xml = new XMLManager();
     [System.Serializable] public class SkinInfo
@@ -106,19 +153,15 @@ public sealed class SkinMaster : MonoBehaviour
     }
 
 
-    public void UNLOCK()
+    public bool UNLOCK()
     {
-        int coin = Get_Coin();
-        //int coin = 1000;
-        Debug.Log("COIN : " + Get_Coin() + ", Purchas : " + Get_Purchas());
-        if (Get_Purchas() > Get_Coin())
+        if (!SceneManagement.Instance.UseCoin(Get_Purchas()))
         {
             Debug.Log("*********NOT ENOUGH MONEY*********");
             // 구매불가 메시지 표시
-            return;
+            return false;
         }
 
-        PlayerPrefs.SetInt(COIN_KEY, coin - (int)purchasMul);
         instance.Mul_Purchas();
 
         int position = new System.Random().Next(0, lockArray.Count - 1);
@@ -126,7 +169,11 @@ public sealed class SkinMaster : MonoBehaviour
 
         lockArray.RemoveAt(position);
         skinArray[selection].LOCK = false;
-        xml.XMLWrite(KEY, selection);
+        accessList[selection] = true;
+
+        SetACCESS();
+
+        return true;
     }
 
     // 플레이어가 선택한 body와 effect 저장
