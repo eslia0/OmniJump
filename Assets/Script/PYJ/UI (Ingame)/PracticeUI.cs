@@ -49,7 +49,7 @@ public class PracticeUI : MonoBehaviour
         resultPanel.gameObject.SetActive(true);
         buttons[2].enabled = false;
 
-        resultScore.StartCoroutine(resultScore.SetResultScore(Creater.Instance.Score));
+        resultScore.StartCoroutine(resultScore.SetResultScore(Creater.Instance.score));
     }
 
     private void Pause()

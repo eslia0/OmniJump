@@ -228,9 +228,13 @@ public class PlayerController : MonoBehaviour
             {
                 FindObjectOfType<PracticeUI>().SetResultPanel();
             }
-            else if (SceneManagement.Instance.currentScene == "EndlessScene")
-            {
-                Creater.Instance.endUI.SetResultPanel();
+            else if (SceneManagement.Instance.currentScene == "EndlessScene") {
+                if (!Creater.Instance.isRewarded && (Creater.Instance.score >= SceneManagement.Instance.highScore * 0.5f || Creater.Instance.score >= 3000)) {
+                    FindObjectOfType<EndlessUI>().SetAdPanel();
+                }
+                else {
+                    FindObjectOfType<EndlessUI>().SetResultPanel();
+                }
             }
         }
     }

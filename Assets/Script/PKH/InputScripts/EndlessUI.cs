@@ -8,53 +8,59 @@ public class EndlessUI : MonoBehaviour
 {
     [SerializeField] private Button[] buttons;
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject adPanel;
     [SerializeField] private GameObject resultPanel;
 
     private ScoreText scoreText;
     private Text highScore;
+    private bool doubleCoin;
+    [SerializeField] private GameObject doubleEffect;
     
     [SerializeField] Text resultScoreText;
     [SerializeField] Text resultCoinText;
-    [SerializeField] Text leftTime;
 
-    private void Start()
-    {
+    private void Start() {
         buttons[0].onClick.RemoveAllListeners();
-        buttons[0].onClick.AddListener(delegate () { Creater.Instance.NextStage(-1); });
+        buttons[0].onClick.AddListener(delegate () { Pause(); });
 
         buttons[1].onClick.RemoveAllListeners();
-        buttons[1].onClick.AddListener(delegate () {UnityAdsHelper.Instance.ShowRewardedAd(); });
+        buttons[1].onClick.AddListener(delegate () { Resume(); });
 
         buttons[2].onClick.RemoveAllListeners();
-        buttons[2].onClick.AddListener(delegate () { ToTitle(); });
+        buttons[2].onClick.AddListener(delegate () { Creater.Instance.NextStage(-1); });
 
         buttons[3].onClick.RemoveAllListeners();
-        buttons[3].onClick.AddListener(delegate () { Pause(); });
+        buttons[3].onClick.AddListener(delegate () { ToTitle(); });
 
         buttons[4].onClick.RemoveAllListeners();
-        buttons[4].onClick.AddListener(delegate () { Resume(); });
+        buttons[4].onClick.AddListener(delegate () { SelectReward("Revive"); });
 
         buttons[5].onClick.RemoveAllListeners();
-        buttons[5].onClick.AddListener(delegate () { Creater.Instance.NextStage(-1); });
+        buttons[5].onClick.AddListener(delegate () { SelectReward("Coin"); });
 
         buttons[6].onClick.RemoveAllListeners();
-        buttons[6].onClick.AddListener(delegate () { ToTitle(); });
+        buttons[6].onClick.AddListener(delegate () { SkipAd(); });
+
+        buttons[7].onClick.RemoveAllListeners();
+        buttons[7].onClick.AddListener(delegate () { ToTitle(); });
+
+        buttons[8].onClick.RemoveAllListeners();
+        buttons[8].onClick.AddListener(delegate () { Creater.Instance.NextStage(-1); });
 
         highScore = transform.GetChild(1).GetComponent<Text>();
         scoreText = transform.GetChild(2).GetComponent<ScoreText>();
         highScore.text = PlayerPrefs.GetInt("HighScore").ToString();
 
+        doubleCoin = false;
         pausePanel.SetActive(false);
+        adPanel.SetActive(false);
         resultPanel.SetActive(false);
     }
 
-    public void SetResultPanel()
-    {
+    public void SetResultPanel() {
         resultPanel.SetActive(true);
-        buttons[3].enabled = false;
-        resultCoinText.text = SceneManagement.Instance.coin.ToString();
-
-        StartCoroutine(SetResultScore(Creater.Instance.Score));
+        Creater.Instance.isRewarded = false;
+        StartCoroutine(SetResultScore(Creater.Instance.score));
     }
 
     private void ToTitle()
@@ -86,22 +92,45 @@ public class EndlessUI : MonoBehaviour
         }
     }
 
+    public void SetAdPanel() {
+        buttons[3].enabled = false;
+        adPanel.SetActive(true);
+    }
+
+    private void SelectReward(string reward) {
+        adPanel.SetActive(false);
+
+        Creater.Instance.adReward = reward;
+        Creater.Instance.isRewarded = true;
+
+        if (reward == "Coin")
+            doubleCoin = true;
+
+        UnityAdsHelper.Instance.ShowRewardedAd();
+    }
+
+    private void SkipAd() {
+        adPanel.SetActive(false);
+        SetResultPanel();
+    }
+
     public IEnumerator SetResultScore(int score)
     {
         int rScore = 0;
-        int amount = (score - rScore) / 10; // (int)(3 + Mathf.Log10(score)) / 10;
+        int amount = (score - rScore) / 10;
 
         while (rScore < score)
         {
             rScore += amount;
             resultScoreText.text = rScore.ToString();
-            yield return null;
+            yield return new WaitForSeconds(0.1f);
         }
 
         rScore = score;
         resultScoreText.text = rScore.ToString();
 
         StartCoroutine(SetResultCoin(rScore));
+
         if (SceneManagement.Instance.currentScene == "EndlessScene" && PlayerPrefs.GetInt("HighScore") < score)
         {
             PlayerPrefs.SetInt("HighScore", score);
@@ -111,19 +140,31 @@ public class EndlessUI : MonoBehaviour
 
     public IEnumerator SetResultCoin(int score)
     {
-        int coin = SceneManagement.Instance.coin;
-        int rCoin = coin + CalculateCoin(score);
-        Debug.Log(rCoin);
+        int coin = 0;
+        int rCoin = CalculateCoin(score);
+
         int amount = rCoin - coin;
 
-        while (coin < rCoin)
-        {
-            coin += amount / 10;
-            resultCoinText.text = coin.ToString();
-            yield return null;
+        if (rCoin >= 10) {
+            while (coin < rCoin) {
+                coin += amount / 10;
+                resultCoinText.text = coin.ToString();
+                yield return new WaitForSeconds(0.1f);
+            }
         }
 
         coin = rCoin;
+        resultCoinText.text = coin.ToString();
+
+        yield return new WaitForSeconds(0.2f);
+
+        if (doubleCoin) {
+            coin *= 2;
+            doubleCoin = false;
+            doubleEffect.SetActive(true);
+        }
+
+        yield return null;
         resultCoinText.text = coin.ToString();
 
         SceneManagement.Instance.AddCoin(amount);
@@ -133,7 +174,7 @@ public class EndlessUI : MonoBehaviour
     {
         if (score <= 300)
         {
-            return 0;
+            return 1;
         }
         else
         {

@@ -30,7 +30,7 @@ public class SceneManagement : MonoBehaviour
     public string prevScene;
 
     private bool[] clearStage;
-    private int highScore;
+    public int highScore { get; private set; }
     public int coin { get; private set; }
     private ObjectData[] objectData;
 
@@ -69,6 +69,7 @@ public class SceneManagement : MonoBehaviour
         }
 
         coin = PlayerPrefs.GetInt("Coin");
+        highScore = PlayerPrefs.GetInt("HighScore");
         InitObjectScoreLevel();
     }
 
