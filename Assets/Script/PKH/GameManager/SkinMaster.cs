@@ -77,7 +77,7 @@ public sealed class SkinMaster : MonoBehaviour
     [SerializeField] private static float purchasMul = 68;
     public void Mul_Purchas()
     {
-        purchasMul *= 1.2f;
+        purchasMul += 100f;
     }
     public int Get_Purchas()
     {
@@ -88,8 +88,22 @@ public sealed class SkinMaster : MonoBehaviour
         return COIN;
     }
 
+    [SerializeField] private int SELECTION;
+    public int GetSelection()
+    {
+        return SELECTION;
+    }
+    [SerializeField] private Sprite sprite999;
+    public Sprite Get999()
+    {
+        return sprite999;
+    }
+
+
+
     void Awake()
     {
+        PlayerPrefs.DeleteAll();
         instance = FindObjectOfType<SkinMaster>();
 
         if (instance != this)
@@ -167,6 +181,7 @@ public sealed class SkinMaster : MonoBehaviour
         int position = new System.Random().Next(0, lockArray.Count - 1);
         int selection = lockArray[position];
 
+        SELECTION = selection;
         lockArray.RemoveAt(position);
         skinArray[selection].LOCK = false;
         accessList[selection] = true;

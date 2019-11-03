@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
+
 
 public class SkinPanel : MonoBehaviour
 {
@@ -21,14 +24,29 @@ public class SkinPanel : MonoBehaviour
 
     [SerializeField] private Text t_Coin;
     [SerializeField] private Text t_Cost;
+    [SerializeField] private Text t_SkinCount;
     [SerializeField] private Button b_Purchas;
+
+    [Space(10)]
+
+    [SerializeField] private PlayableDirector director;
+    [SerializeField] private BoxCanvasBodyScript box_Body;
+
 
     private bool routain = false;
     private int skinCount = 0;
 
 
+    private void OnEnable()
+    {
+        t_Coin.text = SkinMaster.Instance.Get_Coin().ToString();
+        t_Cost.text = SkinMaster.Instance.Get_Purchas().ToString();
+        t_SkinCount.text = SkinMaster.Instance.Get_Purchas().ToString();
+    }
+
     private void Start()
     {
+        //PlayerPrefs.DeleteAll();
         SetPanel();
 
         b_Purchas.onClick.AddListener(() => {
@@ -36,6 +54,7 @@ public class SkinPanel : MonoBehaviour
             {
                 t_Coin.text = SkinMaster.Instance.Get_Coin().ToString();
                 t_Cost.text = SkinMaster.Instance.Get_Purchas().ToString();
+                t_SkinCount.text = SkinMaster.Instance.Get_Purchas().ToString();
 
                 if (skinCount == SkinMaster.Instance.Get_SkinArrayLength())
                 {
@@ -43,6 +62,8 @@ public class SkinPanel : MonoBehaviour
                 }
 
                 SetPanel();
+                director.time = 0;
+                director.Play();
             }
         });
 
@@ -69,24 +90,27 @@ public class SkinPanel : MonoBehaviour
             if (i < 0 || i > skinLength - 1)
             {
                 tmp = Instantiate(blank);
+
+                tmp.transform.SetParent(content);
+                tmp.transform.localScale = Vector3.one;
+                tmp.transform.localPosition = Vector3.zero;
             }
             else
             {
                 int num = i;
-                tmp = Instantiate(skinObject);
-
                 if (!SkinMaster.Instance.Get_SkinItemLOCK(num))
                 {
-                    skinCount++;
-                    SkinMaster.Instance.Mul_Purchas();
-                    tmp.GetComponent<Image>().sprite = SkinMaster.Instance.Get_SkinInfo(num).body;
-                }
-                tmp.GetComponent<Button>().onClick.AddListener(() => { SetBodySkin(num); });
-            }
+                    tmp = Instantiate(skinObject);
 
-            tmp.transform.SetParent(content);
-            tmp.transform.localScale = Vector3.one;
-            tmp.transform.localPosition = Vector3.zero;
+                    skinCount++;
+                    tmp.GetComponent<Image>().sprite = SkinMaster.Instance.Get_SkinInfo(num).body;
+                    tmp.GetComponent<Button>().onClick.AddListener(() => { SetBodySkin(num); });
+
+                    tmp.transform.SetParent(content);
+                    tmp.transform.localScale = Vector3.one;
+                    tmp.transform.localPosition = Vector3.zero;
+                }
+            }
         }
         
         if (skinCount == SkinMaster.Instance.Get_SkinArrayLength())
@@ -96,8 +120,9 @@ public class SkinPanel : MonoBehaviour
 
         t_Coin.text = SceneManagement.Instance.coin.ToString();
         t_Cost.text = SkinMaster.Instance.Get_Purchas().ToString();
+        t_SkinCount.text = skinCount + "/" + SkinMaster.Instance.Get_SkinArrayLength().ToString();
     }
-    
+
     // Player 이미지 세팅
     private void SetPlayer()
     {
@@ -118,15 +143,48 @@ public class SkinPanel : MonoBehaviour
 
                 GameObject tailE = Instantiate(SkinMaster.Instance.SetTailEffect(skin.tailEffect, skin.tailColor));
                 tailE.transform.SetParent(tailEffect);
-                tailE.transform.localScale = Vector3.one * 2;
+                tailE.transform.localScale = Vector3.one;
                 tailE.transform.localPosition = Vector3.zero;
 
                 ParticleSystem particle = tailE.GetComponent<ParticleSystem>();
-                particle.startSpeed = -3f;
                 ParticleSystem.EmissionModule emission = particle.emission;
-                emission.rateOverTime = 5;
                 ParticleSystem.ShapeModule shape = particle.shape;
-                shape.arc = 0;
+
+                switch (skin.tailEffect.name)
+                {
+                    case "0_Tail":
+
+                        particle.startSpeed = -250f;
+                        particle.startSize = 100;
+                        emission.rateOverTime = 5;
+                        shape.arc = 0;
+
+                        break;
+                    case "1_Tail":
+
+                        particle.startSpeed = -250f;
+                        particle.startSize = 100;
+                        emission.rateOverTime = 5;
+                        shape.arc = 0;
+
+                        break;
+                    case "2_Tail":
+
+                        particle.startSpeed = -250f;
+                        particle.startSize = 100;
+                        emission.rateOverTime = 5;
+                        shape.arc = 0;
+
+                        break;
+                    case "3_Tail":
+
+                        particle.startSpeed = -250f;
+                        particle.startSize = 100;
+                        emission.rateOverTime = 5;
+                        shape.arc = 0;
+
+                        break;
+                }
 
                 break;
 
