@@ -77,7 +77,7 @@ public sealed class SkinMaster : MonoBehaviour
     [SerializeField] private static float purchasMul = 68;
     public void Mul_Purchas()
     {
-        purchasMul += 100f;
+        purchasMul += 24f;
     }
     public int Get_Purchas()
     {

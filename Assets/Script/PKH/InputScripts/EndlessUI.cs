@@ -172,7 +172,7 @@ public class EndlessUI : MonoBehaviour
         yield return null;
         resultCoinText.text = coin.ToString();
 
-        SceneManagement.Instance.AddCoin(amount);
+        SceneManagement.Instance.AddCoin(coin);
     }
 
     private int CalculateCoin(int score)

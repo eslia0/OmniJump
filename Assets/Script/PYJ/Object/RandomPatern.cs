@@ -29,7 +29,9 @@ public class RandomPatern : MonoBehaviour
     {
         yield return new WaitForSeconds(10.0f);
 
-        while (pads.Count > 0)
+        float check = 0f;
+
+        while (pads.Count > 0 && Creater.Instance)
         {
             transform.position = bossObject.transform.position;
 
@@ -37,8 +39,16 @@ public class RandomPatern : MonoBehaviour
             GameObject pad = pads[index];
             pad.SetActive(true);
 
-            yield return new WaitForSeconds(delay);
+            while (check <= delay && Creater.Instance)
+            {
+                if (!Creater.Instance.isPaused)
+                {
+                    check += Time.deltaTime;
+                }
+                yield return null;
+            }
 
+            check = 0;
             pads.Remove(pad);
             pad.transform.SetParent(null);
             Destroy(pad, 2.0f);

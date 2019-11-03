@@ -33,7 +33,7 @@ public class GravityPad : InteractiveObject
     private void OnTriggerStay2D(Collider2D collision)
     {
         // 플레이어 태그, 플레이어와 필요 방향, 플레이어의 접촉 여부, 사용 가능 횟수 확인
-        if (collision.tag == "Player" && FaceCompare() &&
+        if (Creater.Instance && collision.tag == "Player" && FaceCompare() &&
             Creater.Instance.player.onClick && playerIsOn && actionCount > 0)
         {
             update();
