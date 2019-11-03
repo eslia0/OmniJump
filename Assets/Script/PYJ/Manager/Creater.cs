@@ -17,6 +17,7 @@ public class Creater : GameVariables
     }
 
     public bool isPaused;
+    public bool isRewarded;
 
     // 생성될 수 있는 플랫폼의 리스트
     // 레벨마다 3개의 플랫폼이 있다.
@@ -29,17 +30,9 @@ public class Creater : GameVariables
     private int currentMap;
 
     // 점수와 점수배율 레벨이 오를수록 배율이 증가
-    [SerializeField] private int score;
-    public int Score {
-        get {
-            return score;
-        }
-        private set {
-            score = value;
-        }
-    }
+    [SerializeField] public int score { get; private set; }
     private float scoreMultiply;
-    public EndlessUI endUI;
+    public string adReward;
 
     private void Awake()
     {
@@ -71,9 +64,9 @@ public class Creater : GameVariables
             SceneManagement.Instance.WriteData();
 
             nowPlatform = Instantiate(platforms[currentMap]).GetComponent<Platform>();
-            endUI = FindObjectOfType<EndlessUI>();
 
             SoundManager.Instance.Play("Ready to go");
+            isRewarded = false;
 
             SetScoreMultiply(1f);
             StartCoroutine(ScoreUp());
@@ -141,9 +134,8 @@ public class Creater : GameVariables
             SceneManagement.Instance.WriteData();
 
             SetScoreMultiply(1 + level * 0.03f);
-            endUI = FindObjectOfType<EndlessUI>();
         }
-
+        
         isPaused = false;
         ExitPortal exitPortal = Object.FindObjectOfType<ExitPortal>();
         exitPortal.Init();

@@ -14,7 +14,7 @@ public class ScoreText : MonoBehaviour
         m_text = GetComponent<Text>();
         m_animation = GetComponent<Animation>();
 
-        m_score = Creater.Instance.Score;
+        m_score = Creater.Instance.score;
         m_text.text = m_score.ToString();
         StartCoroutine(ScoreAnimation());
     }
@@ -23,9 +23,9 @@ public class ScoreText : MonoBehaviour
     {
         while (Creater.Instance)
         {
-            if (m_score < Creater.Instance.Score)
+            if (m_score < Creater.Instance.score)
             {
-                int amount = Creater.Instance.Score - m_score;
+                int amount = Creater.Instance.score - m_score;
 
                 if (amount >= 10)
                 {
@@ -43,7 +43,7 @@ public class ScoreText : MonoBehaviour
             }
             else
             {
-                m_score = Creater.Instance.Score;
+                m_score = Creater.Instance.score;
             }
 
             if (m_score < 1000)
