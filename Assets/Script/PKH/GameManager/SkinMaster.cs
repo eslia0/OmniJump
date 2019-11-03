@@ -103,7 +103,6 @@ public sealed class SkinMaster : MonoBehaviour
 
     void Awake()
     {
-        PlayerPrefs.DeleteAll();
         instance = FindObjectOfType<SkinMaster>();
 
         if (instance != this)

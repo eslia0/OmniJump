@@ -29,7 +29,7 @@ public class ScoreText : MonoBehaviour
 
                 if (amount >= 10)
                 {
-                    m_animation.Play("ScoreAnimation");
+                    m_animation.Play();
                 }
                 
                 if (amount * 0.3f >= 1)

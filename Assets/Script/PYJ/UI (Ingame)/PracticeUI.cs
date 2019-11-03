@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +9,7 @@ public class PracticeUI : MonoBehaviour
     Transform pausePanel;
     Transform resultPanel;
     
-    [SerializeField] private ResultScore resultScore;
+    [SerializeField] private Text resultScoreText;
 
     void Start()
     {
@@ -49,7 +50,7 @@ public class PracticeUI : MonoBehaviour
         resultPanel.gameObject.SetActive(true);
         buttons[2].enabled = false;
 
-        resultScore.StartCoroutine(resultScore.SetResultScore(Creater.Instance.score));
+        StartCoroutine(SetResultScore(Creater.Instance.score));
     }
 
     private void Pause()
@@ -70,5 +71,19 @@ public class PracticeUI : MonoBehaviour
             buttons[2].enabled = true;
             pausePanel.gameObject.SetActive(false);
         }
+    }
+
+    public IEnumerator SetResultScore(int score) {
+        int rScore = 0;
+        int amount = (score - rScore) / 10;
+
+        while (rScore < score) {
+            rScore += amount;
+            resultScoreText.text = rScore.ToString();
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        rScore = score;
+        resultScoreText.text = rScore.ToString();
     }
 }

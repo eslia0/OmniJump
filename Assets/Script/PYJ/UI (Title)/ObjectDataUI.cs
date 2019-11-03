@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ObjectDataUI : MonoBehaviour
 {
     [SerializeField] private Transform content;
+    [SerializeField] private Text objectCoin;
     Transform[] objectUI;
     
     Text[] levelText;
@@ -53,6 +54,7 @@ public class ObjectDataUI : MonoBehaviour
             {
                 StartAnim(0);
                 SetObjectDataUI(0);
+                SetObjectCoin();
             }
         });
         upgradeButton[1].onClick.AddListener(delegate () {
@@ -60,6 +62,7 @@ public class ObjectDataUI : MonoBehaviour
             {
                 StartAnim(1);
                 SetObjectDataUI(1);
+                SetObjectCoin();
             }
         });
         upgradeButton[2].onClick.AddListener(delegate () {
@@ -67,6 +70,7 @@ public class ObjectDataUI : MonoBehaviour
             {
                 StartAnim(2);
                 SetObjectDataUI(2);
+                SetObjectCoin();
             }
         });
         upgradeButton[3].onClick.AddListener(delegate () {
@@ -74,6 +78,7 @@ public class ObjectDataUI : MonoBehaviour
             {
                 StartAnim(3);
                 SetObjectDataUI(3);
+                SetObjectCoin();
             }
         });
         upgradeButton[4].onClick.AddListener(delegate () {
@@ -81,6 +86,7 @@ public class ObjectDataUI : MonoBehaviour
             {
                 StartAnim(4);
                 SetObjectDataUI(4);
+                SetObjectCoin();
             }
         });
         upgradeButton[5].onClick.AddListener(delegate () {
@@ -88,6 +94,7 @@ public class ObjectDataUI : MonoBehaviour
             {
                 StartAnim(5);
                 SetObjectDataUI(5);
+                SetObjectCoin();
             }
         });
         upgradeButton[6].onClick.AddListener(delegate () {
@@ -95,6 +102,7 @@ public class ObjectDataUI : MonoBehaviour
             {
                 StartAnim(6);
                 SetObjectDataUI(6);
+                SetObjectCoin();
             }
         });
         upgradeButton[7].onClick.AddListener(delegate () {
@@ -102,6 +110,7 @@ public class ObjectDataUI : MonoBehaviour
             {
                 StartAnim(7);
                 SetObjectDataUI(7);
+                SetObjectCoin();
             }
         });
         upgradeButton[8].onClick.AddListener(delegate () {
@@ -109,6 +118,7 @@ public class ObjectDataUI : MonoBehaviour
             {
                 StartAnim(8);
                 SetObjectDataUI(8);
+                SetObjectCoin();
             }
         });
     }
@@ -119,6 +129,10 @@ public class ObjectDataUI : MonoBehaviour
         {
             SetObjectDataUI(i);
         }
+    }
+
+    public void SetObjectCoin() {
+        objectCoin.text = SceneManagement.Instance.coin.ToString();
     }
 
     public void SetObjectDataUI(int type)

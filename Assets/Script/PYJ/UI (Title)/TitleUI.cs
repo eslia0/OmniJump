@@ -7,7 +7,6 @@ public class TitleUI : MonoBehaviour
     private GameObject titlePanel;
     private GameObject practicePanel;
     [SerializeField] private Button[] buttons;
-    [SerializeField] private Text coin;
 
     // 프랙티스 패널
     private Image[] levelImage;
@@ -22,6 +21,8 @@ public class TitleUI : MonoBehaviour
     // Title 대기 배경
     private Sprite[] mapImages;
     private PlayerUIController player;
+    [SerializeField]
+     private Camera mainCam;
 
     private void Start()
     {
@@ -50,7 +51,9 @@ public class TitleUI : MonoBehaviour
 
         LoadMapImage();
         InitPractice();
-        SetCoinText();
+
+        SoundManager.Instance.Play("Title");
+        SoundManager.Instance.SetLoop(true);
 
         titlePanel.SetActive(true);
         practicePanel.SetActive(false);
@@ -61,7 +64,7 @@ public class TitleUI : MonoBehaviour
     {
         titlePanel.SetActive(true);
         practicePanel.SetActive(false);
-        TogglePlayer();
+        ToggleBackGround(true);
     }
 
     // 프랙티스
@@ -71,7 +74,7 @@ public class TitleUI : MonoBehaviour
         practicePanel.SetActive(true);
 
         SetLevel(0);
-        TogglePlayer();
+        ToggleBackGround(false);
     }
     
     // 엔드리스 시작
@@ -131,11 +134,12 @@ public class TitleUI : MonoBehaviour
         SetScrollImages();
     }
 
+    // 프랙티스 씬 시작
     private void SelectLevel(int level)
     {
-        // if (SceneManagement.Instance.GetClearData()[level])
+        if (SceneManagement.Instance.GetClearData()[level])
         {
-            SceneManagement.Instance.selectedStage = level + 1;
+            SceneManagement.Instance.selectedStage = level;
             SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("PracticeScene"));
         }
     }
@@ -198,14 +202,13 @@ public class TitleUI : MonoBehaviour
         buttons[9].onClick.AddListener(delegate () { SelectLevel(selectedLevel + 9); });
     }
 
-    public void TogglePlayer()
+    public void ToggleBackGround(bool value)
     {
-        player.gameObject.SetActive(!player.gameObject.activeSelf);
-        player.selectedMap.SetActive(!player.selectedMap.activeSelf);
-    }
-
-    public void SetCoinText()
-    {
-        coin.text = SceneManagement.Instance.coin.ToString();
+        if (value) {
+            mainCam.transform.position = new Vector3(5.6f, 2f, -100f);
+        }
+        else {
+            mainCam.transform.position = new Vector3(17.6f, 2f, -100f);
+        }
     }
 }

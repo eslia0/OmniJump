@@ -60,6 +60,9 @@ public class EndlessUI : MonoBehaviour
     public void SetResultPanel() {
         resultPanel.SetActive(true);
         Creater.Instance.isRewarded = false;
+
+        UnityAdsHelper.Instance.RequestBanner();
+
         StartCoroutine(SetResultScore(Creater.Instance.score));
     }
 
@@ -69,6 +72,8 @@ public class EndlessUI : MonoBehaviour
         Creater.Instance.Disable();
         SceneManager.sceneLoaded -= Creater.Instance.StartStage;
 
+        UnityAdsHelper.Instance.HideBanner();
+
         SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("TitleScene"));
     }
 
@@ -77,7 +82,7 @@ public class EndlessUI : MonoBehaviour
         if (Creater.Instance.player.enabled)
         {
             Creater.Instance.Pause();
-            buttons[3].enabled = false;
+            buttons[0].enabled = false;
             pausePanel.SetActive(true);
         }
     }
@@ -87,13 +92,13 @@ public class EndlessUI : MonoBehaviour
         if (Creater.Instance.player.enabled)
         {
             Creater.Instance.Pause();
-            buttons[3].enabled = true;
+            buttons[0].enabled = true;
             pausePanel.SetActive(false);
         }
     }
 
     public void SetAdPanel() {
-        buttons[3].enabled = false;
+        buttons[0].enabled = false;
         adPanel.SetActive(true);
     }
 

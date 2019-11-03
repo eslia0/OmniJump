@@ -46,24 +46,23 @@ public class UnityAdsHelper : MonoBehaviour
 
     private void Initialize()
     {
-        // lastTime = DateTime.Now.TimeOfDay - new TimeSpan(0, 15, 0);
-
 #if UNITY_ANDROID
         Advertisement.Initialize(android_game_id);
 #elif UNITY_IOS
         Advertisement.Initialize(ios_game_id);
 #endif
 
-        //#if UNITY_ANDROID
-        //        string appId = "ca-app-pub-4092634290096513~6395512416";
-        //#elif UNITY_IPHONE
-        //            string appId = "ca-app-pub-3940256099942544~1458002511";
-        //#else
-        //        string appId = "unexpected_platform";
-        //#endif
+#if UNITY_ANDROID
+        string appId = "ca-app-pub-4092634290096513~6395512416";
+#elif UNITY_IPHONE
+                    string appId = "ca-app-pub-3940256099942544~1458002511";
+#else
+                string appId = "unexpected_platform";
+#endif
 
-        //        // Initialize the Google Mobile Ads SDK.
-        //        MobileAds.Initialize(appId);
+        // Initialize the Google Mobile Ads SDK.
+        MobileAds.Initialize(appId);
+        InitBannerView();
     }
 
     public void ShowRewardedAd()
@@ -118,8 +117,7 @@ public class UnityAdsHelper : MonoBehaviour
         }
     }
 
-    private void RequestBanner()
-    {
+    public void InitBannerView() {
 #if UNITY_ANDROID
         // 기존 Id, 아래는 test용 샘플 Id
         // string adUnitId = "ca-app-pub-4092634290096513/4027782645";
@@ -143,6 +141,10 @@ public class UnityAdsHelper : MonoBehaviour
         bannerView.OnAdClosed += HandleOnAdClosed;
         // Called when the ad click caused the user to leave the application.
         bannerView.OnAdLeavingApplication += HandleOnAdLeavingApplication;
+    }
+
+    public void RequestBanner()
+    {
 
         // AdSize adSize = new AdSize(250, 250);
         // BannerView bannerView = new BannerView(adUnitId, adSize, AdPosition.Bottom);
@@ -155,6 +157,10 @@ public class UnityAdsHelper : MonoBehaviour
 
         // Load the banner with the request.
         bannerView.LoadAd(request);
+    }
+
+    public void HideBanner() {
+        bannerView.Hide();
     }
     
     public void HandleOnAdLoaded(object sender, EventArgs args)

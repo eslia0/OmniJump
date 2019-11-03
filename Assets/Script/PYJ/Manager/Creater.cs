@@ -77,7 +77,7 @@ public class Creater : GameVariables
             currentMap = SceneManagement.Instance.selectedStage;
 
             SelectBGM();
-            nowPlatform = Instantiate(Resources.Load<GameObject>("Maps/Map" + currentMap.ToString())).GetComponent<Platform>();
+            nowPlatform = Instantiate(Resources.Load<GameObject>("Maps/Map" + (currentMap + 1).ToString())).GetComponent<Platform>();
 
             SetScoreMultiply(1f);
             StartCoroutine(ScoreUp());
@@ -122,7 +122,7 @@ public class Creater : GameVariables
         if (SceneManagement.Instance.currentScene == "PracticeScene")
         {
             score = 0;
-            nowPlatform = Instantiate(Resources.Load<GameObject>("Maps/Map" + currentMap.ToString())).GetComponent<Platform>();
+            nowPlatform = Instantiate(Resources.Load<GameObject>("Maps/Map" + (currentMap + 1).ToString())).GetComponent<Platform>();
         }
         else if (SceneManagement.Instance.currentScene == "EndlessScene")
         {
@@ -142,8 +142,9 @@ public class Creater : GameVariables
     }
 
     // 스테이지 로딩
-    public void NextStage(int nextLevel)
-    {
+    public void NextStage(int nextLevel) {
+        UnityAdsHelper.Instance.HideBanner();
+
         if (nextLevel == -1)
         {
             score = 0;
@@ -192,7 +193,7 @@ public class Creater : GameVariables
     private void SelectBGM()
     {
         SoundManager.Instance.SetLoop(true);
-
+        
         if (currentMap == 9 || currentMap == 22 || currentMap == 38 || currentMap == 59)
         {
             SoundManager.Instance.Play("Highway");
