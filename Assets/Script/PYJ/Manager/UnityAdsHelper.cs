@@ -39,6 +39,7 @@ public class UnityAdsHelper : MonoBehaviour
         if (instance != this)
         {
             Destroy(gameObject);
+            return;
         }
 
         instance.Initialize();

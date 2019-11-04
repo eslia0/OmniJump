@@ -108,6 +108,7 @@ public sealed class SkinMaster : MonoBehaviour
         if (instance != this)
         {
             Destroy(gameObject);
+            return;
         }
 
         DontDestroyOnLoad(gameObject);

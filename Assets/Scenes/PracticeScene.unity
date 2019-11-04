@@ -2760,6 +2760,7 @@ MonoBehaviour:
   - {fileID: 143058052}
   - {fileID: 28577956}
   - {fileID: 292186593}
+  stage: {fileID: 403652131}
   resultScoreText: {fileID: 1459841234}
 --- !u!4 &7612297841605490295
 Transform:

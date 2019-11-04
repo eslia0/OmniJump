@@ -41,6 +41,7 @@ public class SceneManagement : MonoBehaviour
         if (instance != this)
         {
             Destroy(gameObject);
+            return;
         }
 
         clearStage = new bool[60];

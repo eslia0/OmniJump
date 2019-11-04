@@ -8,7 +8,8 @@ public class PracticeUI : MonoBehaviour
     [SerializeField] Button[] buttons;
     Transform pausePanel;
     Transform resultPanel;
-    
+
+    [SerializeField] private Text stage;
     [SerializeField] private Text resultScoreText;
 
     void Start()
@@ -25,6 +26,8 @@ public class PracticeUI : MonoBehaviour
         buttons[4].onClick.AddListener(delegate () { Restart(); });
         buttons[5].onClick.RemoveAllListeners();
         buttons[5].onClick.AddListener(delegate () { ReturnTitle(); });
+
+        stage.text = "Stage " + (SceneManagement.Instance.selectedStage+1).ToString();
 
         pausePanel = transform.GetChild(3);
         resultPanel = transform.GetChild(4);
