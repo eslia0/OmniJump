@@ -9,6 +9,8 @@ using UnityEngine.Timeline;
 
 public class SkinPanel : MonoBehaviour
 {
+    private const string PURCHAS_RESET = "RESET FOR ONCE!*@&#^&*(";
+
     [SerializeField] private Transform content;
     [SerializeField] private GameObject blank;
     [SerializeField] private GameObject skinObject;
@@ -83,6 +85,8 @@ public class SkinPanel : MonoBehaviour
 
         skinCount = 0;
         int skinLength = SkinMaster.Instance.Get_SkinArrayLength();
+        SkinMaster.Instance.Purchas_Reset(PURCHAS_RESET);
+
         for (int i = -2; i < skinLength + 2; i++)
         {
             GameObject tmp;
@@ -103,6 +107,7 @@ public class SkinPanel : MonoBehaviour
                     tmp = Instantiate(skinObject);
 
                     skinCount++;
+                    SkinMaster.Instance.Mul_Purchas();
                     tmp.GetComponent<Image>().sprite = SkinMaster.Instance.Get_SkinInfo(num).body;
                     tmp.GetComponent<Button>().onClick.AddListener(() => { SetBodySkin(num); });
 
@@ -153,21 +158,7 @@ public class SkinPanel : MonoBehaviour
                 switch (skin.tailEffect.name)
                 {
                     case "0_Tail":
-
-                        particle.startSpeed = -250f;
-                        particle.startSize = 100;
-                        emission.rateOverTime = 5;
-                        shape.arc = 0;
-
-                        break;
                     case "1_Tail":
-
-                        particle.startSpeed = -250f;
-                        particle.startSize = 100;
-                        emission.rateOverTime = 5;
-                        shape.arc = 0;
-
-                        break;
                     case "2_Tail":
 
                         particle.startSpeed = -250f;
@@ -178,8 +169,8 @@ public class SkinPanel : MonoBehaviour
                         break;
                     case "3_Tail":
 
-                        particle.startSpeed = -250f;
-                        particle.startSize = 100;
+                        particle.startSpeed = -25f;
+                        particle.startSize = .1f;
                         emission.rateOverTime = 5;
                         shape.arc = 0;
 

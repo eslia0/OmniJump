@@ -74,7 +74,14 @@ public sealed class SkinMaster : MonoBehaviour
     }
 
     [SerializeField] private static int COIN = 100;
-    [SerializeField] private static float purchasMul = 68;
+    [SerializeField] private static float purchasMul = 100;
+    public void Purchas_Reset(string key)
+    {
+        if(key == "RESET FOR ONCE!*@&#^&*(")
+        {
+            purchasMul = 100;
+        }
+    }
     public void Mul_Purchas()
     {
         purchasMul += 24f;

@@ -43,6 +43,10 @@ public class Lift : RayCastController
     private float percentBetweenWaypoints; // 두 점 사이의 간격 퍼센트 (0~1)
 
     private Vector3 velocity;
+    public float GetYVelocity()
+    {
+        return velocity.y;
+    }
 
 
     private void OnEnable()

@@ -42,7 +42,7 @@ public class PlayerSkinManager : MonoBehaviour
                 tail.enabled = true;
 
                 tail.startColor = skin.tailColor;
-                tail.endColor = skin.tailColor * new Color(1, 1, 1, 0.7f);
+                tail.endColor = skin.tailColor * new Color(1, 1, 1, 0.1f);
                 break;
         }
     }

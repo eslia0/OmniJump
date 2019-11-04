@@ -28,6 +28,9 @@ public class Controller : RayCastController { // Extends RayCastController scrip
     
     public CollisionInfo collisioninfo;
 
+    private bool collide = false;
+    private bool lift = false;
+
 
     public override void Start()
     {
@@ -40,16 +43,19 @@ public class Controller : RayCastController { // Extends RayCastController scrip
         UpdateRaycastOrigins();
         collisioninfo.Reset();
         collisioninfo.velocityOld = velocity;
-        
+
+
+        collide = false;
+        lift = false;
         if (velocity.x != 0)
         {
-            HorizontalCollision(ref velocity);
+            collide = HorizontalCollision(ref velocity);
         }
         else
         {
             // 리프트 이용 중 정지 상태에서 x축 확인 길이
             Vector3 tmp = new Vector3(0.0001f, 0, 0) * (Creater.Instance.player.moveRight ? 1 : -1);
-            HorizontalCollision(ref tmp);
+            collide = HorizontalCollision(ref tmp);
         }
 
         if (velocity.y != 0)
@@ -65,7 +71,7 @@ public class Controller : RayCastController { // Extends RayCastController scrip
         }
     }
     
-    public void HorizontalCollision(ref Vector3 velocity)
+    public bool HorizontalCollision(ref Vector3 velocity)
     {
         //Mathf.Sign : 
         //if velocity.x equals to positive or 0, return 1 to directionX(Right)
@@ -80,15 +86,27 @@ public class Controller : RayCastController { // Extends RayCastController scrip
             rayOrigin += Vector2.up * (horiaontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, grounds);
 
-            Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.blue);
+            if(i == 0)
+            {
+                RaycastHit2D liftHit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, grounds);
+
+                if (liftHit)
+                {
+                    lift = true;
+                }
+            }
+
+            //Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.blue);
 
             if (hit)
             {
                 Debug.Log("Horizontal Collision Death");
-                Creater.Instance.player.Dead();
-                break;
+                //Creater.Instance.player.Dead();
+                return true;
             }
         }
+
+        return false;
     }
 
     void VerticalCollision(ref Vector3 velocity) // get reference to prevent value error
@@ -102,7 +120,21 @@ public class Controller : RayCastController { // Extends RayCastController scrip
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);//Vector (1,0) * (0.035 * i + 10)
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, grounds);
 
-            Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+            //Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+
+            if (i == 0)
+            {
+                RaycastHit2D liftHit = Physics2D.Raycast(rayOrigin, Vector2.right * directionY, rayLength, grounds);
+
+                if (liftHit && lift)
+                {
+                    Creater.Instance.player.transform.Translate(0, liftHit.collider.GetComponent<Lift>().GetYVelocity(), 0);
+                }
+                else if(collide)
+                {
+                    Creater.Instance.player.Dead();
+                }
+            }
 
             if (hit)
             {

@@ -10879,7 +10879,7 @@ MonoBehaviour:
   t_SkinCount: {fileID: 1584676348}
   b_Purchas: {fileID: 1431203988}
   director: {fileID: 1164804344}
-  box_Body: {fileID: 0}
+  box_Body: {fileID: 1845867251}
 --- !u!114 &937208787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24834,7 +24834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
