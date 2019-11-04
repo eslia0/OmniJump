@@ -46,7 +46,7 @@ public class SoundManager : MonoBehaviour
 
         if (clip)
         {
-            if (audio.clip != clip)
+            if (audio.clip != clip || Creater.Instance.isRewarded)
             {
                 audio.clip = clip;
                 audio.Play();

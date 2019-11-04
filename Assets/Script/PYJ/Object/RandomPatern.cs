@@ -27,9 +27,15 @@ public class RandomPatern : MonoBehaviour
 
     IEnumerator EnableRandomPad()
     {
-        yield return new WaitForSeconds(10.0f);
-
         float check = 0f;
+
+        while (check <= delay + 5.0f && Creater.Instance) {
+            if (!Creater.Instance.isPaused) {
+                check += Time.deltaTime;
+            }
+            yield return null;
+        }
+        check = 0f;
 
         while (pads.Count > 0 && Creater.Instance)
         {

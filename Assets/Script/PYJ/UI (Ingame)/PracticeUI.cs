@@ -42,10 +42,13 @@ public class PracticeUI : MonoBehaviour
 
     void ReturnTitle()
     {
-        Creater.Instance.player.enabled = false;
-        Creater.Instance.Disable();
-        SceneManager.sceneLoaded -= Creater.Instance.StartStage;
-        SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("TitleScene"));
+        if (Creater.Instance)
+        {
+            Creater.Instance.player.enabled = false;
+            Creater.Instance.Disable();
+            SceneManager.sceneLoaded -= Creater.Instance.StartStage;
+            SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("TitleScene"));
+        }
     }
 
     public void SetResultPanel()

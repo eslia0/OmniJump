@@ -13,16 +13,19 @@ public class ObjectDataUI : MonoBehaviour
     Text[] currentScoreText;
     Text[] nextScoreText;
     Text[] costText;
+    GameObject[] coinImage;
     Button[] upgradeButton;
 
     private void Awake()
     {
-        objectUI = new Transform[content.childCount];
-        levelText = new Text[content.childCount];
-        currentScoreText = new Text[content.childCount];
-        nextScoreText = new Text[content.childCount];
-        costText = new Text[content.childCount];
-        upgradeButton = new Button[content.childCount];
+        int size = content.childCount;
+        objectUI = new Transform[size];
+        levelText = new Text[size];
+        currentScoreText = new Text[size];
+        nextScoreText = new Text[size];
+        costText = new Text[size];
+        upgradeButton = new Button[size];
+        coinImage = new GameObject[size];
 
         InitObjectDataUI();
     }
@@ -36,7 +39,8 @@ public class ObjectDataUI : MonoBehaviour
             currentScoreText[i] = objectUI[i].GetChild(1).GetComponent<Text>();
             nextScoreText[i] = objectUI[i].GetChild(2).GetComponent<Text>();
             costText[i] = objectUI[i].GetChild(3).GetComponent<Text>();
-            upgradeButton[i] = objectUI[i].GetChild(6).GetComponent<Button>();
+            coinImage[i] = objectUI[i].GetChild(4).gameObject;
+            upgradeButton[i] = objectUI[i].GetChild(7).GetComponent<Button>();
         }
 
         upgradeButton[0].onClick.RemoveAllListeners();
@@ -144,6 +148,7 @@ public class ObjectDataUI : MonoBehaviour
             levelText[type].text = "Lv " + data.level.ToString();
             currentScoreText[type].text = data.currentScore.ToString();
             nextScoreText[type].text = data.currentScore.ToString();
+            coinImage[type].SetActive(false);
             costText[type].text = "Max";
             upgradeButton[type].enabled = false;
         }

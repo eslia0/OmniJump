@@ -122,6 +122,7 @@ public class Creater : GameVariables
         if (SceneManagement.Instance.currentScene == "PracticeScene")
         {
             score = 0;
+            SelectBGM();
             nowPlatform = Instantiate(Resources.Load<GameObject>("Maps/Map" + (currentMap + 1).ToString())).GetComponent<Platform>();
         }
         else if (SceneManagement.Instance.currentScene == "EndlessScene")
@@ -197,7 +198,9 @@ public class Creater : GameVariables
         if (currentMap == 9 || currentMap == 22 || currentMap == 38 || currentMap == 59)
         {
             SoundManager.Instance.Play("Highway");
-            SoundManager.Instance.SetLoop(false);
+            if (SceneManagement.Instance.currentScene == "EndlessScene") {
+                SoundManager.Instance.SetLoop(false);
+            }
         }
         else if (currentMap < 9)
         {

@@ -52,6 +52,7 @@ public class SceneManagement : MonoBehaviour
     void Start()
     {
         SceneManager.sceneLoaded += FadeIn;
+        fade.gameObject.SetActive(false);
     }
 
     public void LoadData()
@@ -94,7 +95,8 @@ public class SceneManagement : MonoBehaviour
         prevScene = currentScene;
         currentScene = name;
 
-        fade.fadeCanvas.SetActive(true);
+        fade.gameObject.SetActive(true);
+
         fade.StartCoroutine(fade.FadeOut());
 
         while (!fade.ended)

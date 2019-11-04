@@ -21,7 +21,6 @@ public class Fade : MonoBehaviour
 
         fadeImages = GetComponentsInChildren<Image>();
         DontDestroyOnLoad(transform.parent.gameObject);
-        fadeCanvas.SetActive(false);
     }
 
     public IEnumerator FadeOut()

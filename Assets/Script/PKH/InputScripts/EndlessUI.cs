@@ -68,13 +68,16 @@ public class EndlessUI : MonoBehaviour
 
     private void ToTitle()
     {
-        Creater.Instance.player.enabled = false;
-        Creater.Instance.Disable();
-        SceneManager.sceneLoaded -= Creater.Instance.StartStage;
+        if (Creater.Instance)
+        {
+            Creater.Instance.player.enabled = false;
+            Creater.Instance.Disable();
+            SceneManager.sceneLoaded -= Creater.Instance.StartStage;
 
-        UnityAdsHelper.Instance.HideBanner();
+            UnityAdsHelper.Instance.HideBanner();
 
-        SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("TitleScene"));
+            SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("TitleScene"));
+        }
     }
 
     private void Pause()
