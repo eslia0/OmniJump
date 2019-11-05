@@ -1328,11 +1328,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 874111965}
     m_Modifications:
-    - target: {fileID: 2851808994908672251, guid: 46eee6e69f6c7ae4d868fa2fb5b2e9b4,
-        type: 3}
-      propertyPath: m_Name
-      value: TeleportUI(Enterince)
-      objectReference: {fileID: 0}
     - target: {fileID: 2851808994908672244, guid: 46eee6e69f6c7ae4d868fa2fb5b2e9b4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1397,6 +1392,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851808994908672251, guid: 46eee6e69f6c7ae4d868fa2fb5b2e9b4,
+        type: 3}
+      propertyPath: m_Name
+      value: TeleportUI(Enterince)
       objectReference: {fileID: 0}
     - target: {fileID: 3908155310274465147, guid: 46eee6e69f6c7ae4d868fa2fb5b2e9b4,
         type: 3}
@@ -27057,7 +27057,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 120.66669, y: 186}
+  m_AnchoredPosition: {x: 120.66675, y: 186}
   m_SizeDelta: {x: 250, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1973864663
