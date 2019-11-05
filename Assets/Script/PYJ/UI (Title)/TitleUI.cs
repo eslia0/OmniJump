@@ -137,7 +137,7 @@ public class TitleUI : MonoBehaviour
     // 프랙티스 씬 시작
     private void SelectLevel(int level)
     {
-        if (SceneManagement.Instance.GetClearData()[level])
+        //if (SceneManagement.Instance.GetClearData()[level])
         {
             SceneManagement.Instance.selectedStage = level;
             SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("PracticeScene"));

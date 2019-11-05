@@ -17,18 +17,22 @@ public class FixedJoystick : Joystick
     public Sprite[] AOArrow2Press = new Sprite[4]; // 0(상), 1(우), 2(하), 3(좌)
     private int selectedFace = 1;
 
+    private int pressCount = 0;
+
     void Start()
     {
         image = GetComponent<Image>();
         joystickPosition = RectTransformUtility.WorldToScreenPoint(cam, background.position);
     }
-    
-    IEnumerator onPress()
-    {
-        while (true)
-        {
-            Creater.Instance.player.onClick = true;
-            yield return new WaitForFixedUpdate();
+
+    void Update() {
+        if (Creater.Instance) {
+            if (pressCount > 0) {
+                Creater.Instance.player.onClick = true;
+            }
+            else {
+                Creater.Instance.player.onClick = false;
+            }
         }
     }
 
@@ -75,8 +79,8 @@ public class FixedJoystick : Joystick
 #if UNITY_EDITOR
         Creater.Instance.player.KeyBoardControll = false;
 #endif
-
-        coroutine = StartCoroutine(onPress());
+        pressCount++;
+        //coroutine = StartCoroutine(onPress());
         OnDrag(eventData);
     }
 
@@ -86,7 +90,8 @@ public class FixedJoystick : Joystick
         //if (!Creater.Instance.player.KeyBoardControll)
 #endif
 
-        StopCoroutine(coroutine);
+        pressCount--;
+        //StopCoroutine(coroutine);
         image.sprite = AOArrow2;
         Creater.Instance.player.onClick = false;
     }

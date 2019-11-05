@@ -86,7 +86,7 @@ public class Controller : RayCastController { // Extends RayCastController scrip
             rayOrigin += Vector2.up * (horiaontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, grounds);
 
-            if(i == 0)
+            if (i == 0)
             {
                 RaycastHit2D liftHit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, grounds);
 
@@ -126,7 +126,7 @@ public class Controller : RayCastController { // Extends RayCastController scrip
             {
                 RaycastHit2D liftHit = Physics2D.Raycast(rayOrigin, Vector2.right * directionY, rayLength, grounds);
 
-                if (liftHit && lift)
+                if (liftHit && lift && liftHit.collider.GetComponent<Lift>())
                 {
                     Creater.Instance.player.transform.Translate(0, liftHit.collider.GetComponent<Lift>().GetYVelocity(), 0);
                 }
