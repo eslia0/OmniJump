@@ -118050,12 +118050,10 @@ MonoBehaviour:
   destroyExplosion: 1
   moveRight: 1
   teleportExit: {fileID: 4454791366298706584}
+  waitSecond: 0.8
   portalLight:
   - {fileID: 4307349346036248930}
   - {fileID: 4536528130284463581}
-  exitportalLight:
-  - {fileID: 7870036569137601896}
-  - {fileID: 4519347615935277923}
 --- !u!1 &5866735968013432470
 GameObject:
   m_ObjectHideFlags: 0
@@ -133291,12 +133289,10 @@ MonoBehaviour:
   destroyExplosion: 1
   moveRight: 1
   teleportExit: {fileID: 586213289030487017}
+  waitSecond: 0.8
   portalLight:
   - {fileID: 8643175348495443160}
   - {fileID: 5543774195892664399}
-  exitportalLight:
-  - {fileID: 586213287522731358}
-  - {fileID: 586213287776814913}
 --- !u!1 &7800005777369536662
 GameObject:
   m_ObjectHideFlags: 0
@@ -157424,11 +157420,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 586213288174534539}
     m_Modifications:
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_Name
-      value: CircleEffect4
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -157489,6 +157480,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_Name
+      value: CircleEffect4
+      objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -157540,11 +157536,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -157600,6 +157591,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788857, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: actionCount
@@ -157620,11 +157616,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
-        type: 3}
-      propertyPath: m_Name
-      value: CirclePad (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613939, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -157680,6 +157671,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
+        type: 3}
+      propertyPath: m_Name
+      value: CirclePad (3)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1546fdefaa98df4ba784984433fbc49, type: 3}
 --- !u!4 &45120326396539431 stripped
@@ -157695,11 +157691,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -157755,6 +157746,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788857, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: actionCount
@@ -157775,11 +157771,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (7)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -157835,6 +157826,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (7)
+      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788857, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: actionCount
@@ -157855,11 +157851,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
-        type: 3}
-      propertyPath: m_Name
-      value: CirclePad
-      objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613939, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -157914,6 +157905,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
+        type: 3}
+      propertyPath: m_Name
+      value: CirclePad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1546fdefaa98df4ba784984433fbc49, type: 3}
@@ -158005,11 +158001,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -158065,6 +158056,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788857, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: actionCount
@@ -158085,11 +158081,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -158145,6 +158136,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788857, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: actionCount
@@ -158165,11 +158161,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5928235059129481161}
     m_Modifications:
-    - target: {fileID: 3980917855205011922, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
-        type: 3}
-      propertyPath: m_Name
-      value: ExitEffect
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -158225,10 +158216,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
+        type: 3}
+      propertyPath: m_Name
+      value: ExitEffect
+      objectReference: {fileID: 0}
     - target: {fileID: 5082072637584122040, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
         type: 3}
       propertyPath: distance
-      value: 0.16
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 5082072637584122040, guid: 1f62028f1456a1146b9dfe893cbb5ec4,
         type: 3}
@@ -158265,11 +158261,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
-        type: 3}
-      propertyPath: m_Name
-      value: CirclePad (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613939, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -158325,6 +158316,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
+        type: 3}
+      propertyPath: m_Name
+      value: CirclePad (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1546fdefaa98df4ba784984433fbc49, type: 3}
 --- !u!4 &2943624486422178413 stripped
@@ -158340,11 +158336,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8534145139798708606}
     m_Modifications:
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_Name
-      value: CircleEffect4
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -158404,6 +158395,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_Name
+      value: CircleEffect4
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
@@ -158541,11 +158537,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2421879814416434643}
     m_Modifications:
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_Name
-      value: CircleEffect4
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -158605,6 +158596,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_Name
+      value: CircleEffect4
       objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
@@ -158657,11 +158653,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8871075567311721340}
     m_Modifications:
-    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
-        type: 3}
-      propertyPath: m_Name
-      value: CircleEffect4
-      objectReference: {fileID: 0}
     - target: {fileID: 3980917855205303432, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -158722,6 +158713,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3980917855205011922, guid: 0d4d225234981ea41b7a47f10ddf57ef,
+        type: 3}
+      propertyPath: m_Name
+      value: CircleEffect4
+      objectReference: {fileID: 0}
     - target: {fileID: 3980917855191144708, guid: 0d4d225234981ea41b7a47f10ddf57ef,
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -158773,11 +158769,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -158833,6 +158824,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788857, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: actionCount
@@ -158853,11 +158849,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
-        type: 3}
-      propertyPath: m_Name
-      value: CirclePad (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613939, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -158913,6 +158904,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
+        type: 3}
+      propertyPath: m_Name
+      value: CirclePad (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1546fdefaa98df4ba784984433fbc49, type: 3}
 --- !u!4 &8756036392566478790 stripped
@@ -158928,11 +158924,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -158987,6 +158978,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788857, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
@@ -159083,11 +159079,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644}
     m_Modifications:
-    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad
-      objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788863, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -159142,6 +159133,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1832295938731788856, guid: ed57edcf2dcde804384409fd08df5bd8,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad
       objectReference: {fileID: 0}
     - target: {fileID: 1832295938731788857, guid: ed57edcf2dcde804384409fd08df5bd8,
         type: 3}

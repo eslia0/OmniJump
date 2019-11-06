@@ -7,8 +7,6 @@ using UnityEngine.Advertisements;
 [RequireComponent(typeof(Controller))]
 public class PlayerController : MonoBehaviour
 {
-    public float timer;
-
     public delegate void PlayerBehaviour();
     public PlayerBehaviour movementController;
 
@@ -42,7 +40,7 @@ public class PlayerController : MonoBehaviour
     // [SerializeField] private float maxGravity = 2f;
     [HideInInspector] public Jump jumpFun;
     [HideInInspector] public bool isTargetJump = false;
-    [HideInInspector] public bool revertGravity = false;
+    /*[HideInInspector]*/ public bool revertGravity = false;
     private float gravity;
     private float jumpVelocity;
 
@@ -127,7 +125,6 @@ public class PlayerController : MonoBehaviour
         }
 
 #if UNITY_EDITOR
-        //timer = Time.time;
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
             int i = ((Input.GetAxisRaw("Horizontal") == 1) ? 0 : 2);
@@ -135,8 +132,7 @@ public class PlayerController : MonoBehaviour
             onClick = true;
             KeyBoardControll = true;
         }
-        else if (Input.GetAxisRaw("Vertical") != 0)
-        {
+        else if (Input.GetAxisRaw("Vertical") != 0) {
             int i = ((Input.GetAxisRaw("Vertical") == 1) ? 1 : 3);
             faceDirection = i % 4;
             onClick = true;
@@ -159,7 +155,7 @@ public class PlayerController : MonoBehaviour
             velocity.y = 0;
         }
 
-        if (isTargetJump && controller.collisioninfo.below)
+        if (isTargetJump && (controller.collisioninfo.above || controller.collisioninfo.below))
         {
             isTargetJump = false;
             movementController -= jumpFun.JumpMove;

@@ -198,9 +198,6 @@ public class Creater : GameVariables
         if (currentMap == 9 || currentMap == 22 || currentMap == 38 || currentMap == 59)
         {
             SoundManager.Instance.Play("Highway");
-            if (SceneManagement.Instance.currentScene == "EndlessScene") {
-                SoundManager.Instance.SetLoop(false);
-            }
         }
         else if (currentMap < 9)
         {

@@ -80,7 +80,6 @@ public class FixedJoystick : Joystick
         Creater.Instance.player.KeyBoardControll = false;
 #endif
         pressCount++;
-        //coroutine = StartCoroutine(onPress());
         OnDrag(eventData);
     }
 
@@ -91,7 +90,6 @@ public class FixedJoystick : Joystick
 #endif
 
         pressCount--;
-        //StopCoroutine(coroutine);
         image.sprite = AOArrow2;
         Creater.Instance.player.onClick = false;
     }

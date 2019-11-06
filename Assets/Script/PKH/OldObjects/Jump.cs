@@ -22,6 +22,11 @@ public class Jump : MonoBehaviour
     {
         movePeriod = time;
 
+        if ((!Creater.Instance.player.revertGravity && height.y < transform.position.y) ||
+            (Creater.Instance.player.revertGravity && height.y > transform.position.y)) {
+            height.y = transform.position.y;
+        }
+
         float h1 = 0;
         float h2 = 0;
         // 각자의 높이
@@ -39,9 +44,17 @@ public class Jump : MonoBehaviour
         // x축 전체 이동 길이
         float dis = (target.x - transform.position.x); // 두 점의 거리
         moveSpeed = dis; // 이동 속도 = 거리
-
-        upSpeed = (((1.0f + Mathf.Sqrt(h2 / h1)) * 2.0f) * h1) * ((Creater.Instance.player.revertGravity) ? -1 : 1);
-        gravity = ((Mathf.Pow(upSpeed, 2) / -2.0f) / h1) * ((Creater.Instance.player.revertGravity) ? -1 : 1);
+        
+        if (Mathf.Abs(h1) <= 0.01f) {
+            h1 = h2;
+            upSpeed = (((1.0f + Mathf.Sqrt(h2 / h1)) * 2.0f) * h1) * ((Creater.Instance.player.revertGravity) ? -1 : 1);
+            gravity = ((Mathf.Pow(upSpeed, 2) / -8.0f) / h1) * ((Creater.Instance.player.revertGravity) ? -1 : 1);
+            upSpeed = 0;
+        }
+        else {
+            upSpeed = (((1.0f + Mathf.Sqrt(h2 / h1)) * 2.0f) * h1) * ((Creater.Instance.player.revertGravity) ? -1 : 1);
+            gravity = ((Mathf.Pow(upSpeed, 2) / -2.0f) / h1) * ((Creater.Instance.player.revertGravity) ? -1 : 1);
+        }
 
         startTime = 0.0f;
 
@@ -50,10 +63,6 @@ public class Jump : MonoBehaviour
 
     public void JumpMove()
     {
-        // Creater.Instance.player.velocity = Vector3.zero;
-
-        // transform.Translate(new Vector3(moveSpeed, upSpeed) * Time.deltaTime / movePeriod);
-
         Creater.Instance.player.velocity = new Vector3(moveSpeed, upSpeed) / movePeriod;
 
         upSpeed += gravity * Time.deltaTime / movePeriod;
