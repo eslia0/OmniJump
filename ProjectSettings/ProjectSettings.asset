@@ -238,7 +238,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/Lu/Documents/GitHub/OmniJump/user.keystore
+  AndroidKeystoreName: D:/GitHub/OmniJump/user.keystore
   AndroidKeyaliasName: 2p
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
@@ -256,7 +256,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 2a1f3cba20f3e11498474a705db12fde, type: 3}
+      m_Icon: {fileID: 2800000, guid: 31f7b04e957c13f4891e9d71eb41ae62, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
