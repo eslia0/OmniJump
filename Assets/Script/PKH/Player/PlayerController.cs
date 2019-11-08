@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
             velocity.y = 0;
         }
 
-        if (isTargetJump && (controller.collisioninfo.above || controller.collisioninfo.below))
+        if (isTargetJump && ((revertGravity && controller.collisioninfo.above) || (!revertGravity && controller.collisioninfo.below)))
         {
             isTargetJump = false;
             movementController -= jumpFun.JumpMove;

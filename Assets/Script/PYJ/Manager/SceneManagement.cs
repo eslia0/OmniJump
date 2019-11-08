@@ -47,6 +47,8 @@ public class SceneManagement : MonoBehaviour
         clearStage = new bool[60];
         DontDestroyOnLoad(gameObject);
         LoadData();
+
+        Application.targetFrameRate = 60;
     }
 
     void Start()

@@ -88,7 +88,7 @@ public class Controller : RayCastController { // Extends RayCastController scrip
 
             if (i == 0)
             {
-                RaycastHit2D liftHit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, grounds);
+                RaycastHit2D liftHit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, liftLayout);
 
                 if (liftHit)
                 {
@@ -124,7 +124,7 @@ public class Controller : RayCastController { // Extends RayCastController scrip
 
             if (i == 0)
             {
-                RaycastHit2D liftHit = Physics2D.Raycast(rayOrigin, Vector2.right * directionY, rayLength, grounds);
+                RaycastHit2D liftHit = Physics2D.Raycast(rayOrigin, Vector2.right * directionY, rayLength, liftLayout);
 
                 if (liftHit && lift && liftHit.collider.GetComponent<Lift>())
                 {

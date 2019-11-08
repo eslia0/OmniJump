@@ -32,7 +32,8 @@ public class MovingPlatformSpeedControl : MonoBehaviour
                 {
                     Destroy(checkBoxes[i].gameObject);
                     checkBoxes.Remove(checkBoxes[i]);
-                    for(int j = 0; j < scripts.Length; j++)
+                    Creater.Instance.AddScore(SceneManagement.Instance.GetObjectData(ObjectType.Lift).currentScore / 2);
+                    for (int j = 0; j < scripts.Length; j++)
                     {
                         scripts[j].percentBetweenWaypoints -= 0.16f;
                     }

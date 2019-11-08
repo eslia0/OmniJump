@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 836095992643160298}
   - component: {fileID: 5010086122971443345}
   m_Layer: 0
-  m_Name: SparkTrail
+  m_Name: 3_Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -811,7 +811,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6463283800235022018}
   - component: {fileID: 2648024475340596161}
   m_Layer: 0
-  m_Name: 7_Tail
+  m_Name: 2_Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2271156243150191946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.16, y: -0.149, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.70000106, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -846,7 +846,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 2
       minScalar: 0
       maxCurve:
         serializedVersion: 2
