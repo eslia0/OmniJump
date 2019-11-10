@@ -1238,7 +1238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914613651959674622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.92, y: 0.48, z: 0}
+  m_LocalPosition: {x: 32.96, y: 0.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2226976563545124970}
@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da47a2635fd1624f9c797cc34cdbf43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: You don't have to use all of the objects.
+  text: Don't use objects when it kill you.
 --- !u!1 &1314592841786120285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,7 +1595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da47a2635fd1624f9c797cc34cdbf43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: '''Rotate Pad'' rotates your direction!!!'
+  text: '''Rotate Pad'' rotates your direction!'
 --- !u!1 &1608589389249710711
 GameObject:
   m_ObjectHideFlags: 0
@@ -6483,7 +6483,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753187195154441679}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 85.119995, y: 0.48, z: 0}
+  m_LocalPosition: {x: 84.48, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2226976563545124970}
@@ -7134,7 +7134,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884133228025445207}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 68.799995, y: 0.16, z: 0}
+  m_LocalPosition: {x: 68.48, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2226976563545124970}
@@ -7257,7 +7257,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017782932732922959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 60.16, y: 0.16, z: 0}
+  m_LocalPosition: {x: 59.84, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2226976563545124970}
@@ -8393,7 +8393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2848485774661713738}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 81.439995, y: 0.48, z: 0}
+  m_LocalPosition: {x: 81.12, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2226976563545124970}
@@ -9010,7 +9010,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3647233412190361734}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.24, y: 0.16, z: 0}
+  m_LocalPosition: {x: 17.28, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2226976563545124970}
@@ -14244,7 +14244,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4093189664808944590}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 78.08, y: 0.48, z: 0}
+  m_LocalPosition: {x: 77.76, y: 0.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2226976563545124970}
@@ -15417,7 +15417,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4560260449131688754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.8, y: 1.76, z: 0}
+  m_LocalPosition: {x: 27.84, y: 1.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2226976563545124970}
@@ -15435,7 +15435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da47a2635fd1624f9c797cc34cdbf43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Hit 'Reverse Pad' with right/left direction.
+  text: Hit 'Reverse Pad' with right & left direction.
 --- !u!1 &4763722177471030573
 GameObject:
   m_ObjectHideFlags: 0
