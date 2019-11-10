@@ -14183,7 +14183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 0
   angle: 0
-  isChecked: 0
+  isLunched: 0
+  isDead: 0
   distance: 3
   time: 1
   lunchDelay: 0

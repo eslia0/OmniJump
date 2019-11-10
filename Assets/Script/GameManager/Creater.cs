@@ -18,6 +18,7 @@ public class Creater : GameVariables
 
     public bool isPaused;
     public bool isRewarded;
+    public bool pauseUse;
 
     // 생성될 수 있는 플랫폼의 리스트
     // 레벨마다 3개의 플랫폼이 있다.
@@ -143,7 +144,8 @@ public class Creater : GameVariables
     }
 
     // 스테이지 로딩
-    public void NextStage(int nextLevel) {
+    public void NextStage(int nextLevel)
+    {
         UnityAdsHelper.Instance.HideBanner();
 
         if (nextLevel == -1)
@@ -161,7 +163,10 @@ public class Creater : GameVariables
 
     public void AddScore(int score)
     {
-        this.score += (int)(score * scoreMultiply);
+        if (!player.IsDead)
+        {
+            this.score += (int)(score * scoreMultiply);
+        }
     }
 
     public void SetScoreMultiply(float multiply)
@@ -174,7 +179,7 @@ public class Creater : GameVariables
     {
         yield return new WaitForSeconds(1f);
 
-        while (this)
+        while (this && !pauseUse)
         {
             if (!isPaused && player.enabled && !player.IsDead)
             {

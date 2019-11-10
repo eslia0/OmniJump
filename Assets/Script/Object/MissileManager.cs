@@ -10,18 +10,34 @@ public class MissileManager : MonoBehaviour
         positionX,
     }
     public MissileState state;
+    public int actionCount = 1;
 
     [SerializeField] private Missile[] missiles;
     [SerializeField] private List<Missile> missileList = new List<Missile>();
 
-    void OnEnable()
+    void Awake()
     {
         missiles = transform.GetComponentsInChildren<Missile>();
-        
+    }
+
+    private void Start()
+    {
+        InitMissiles();
+    }
+
+    private void InitMissiles()
+    {
+        for (int i = 0; i < missiles.Length; i++)
+        {
+            missiles[i].gameObject.SetActive(true);
+            missiles[i].Init();
+        }
+
         if (state == MissileState.distance)
         {
             StartCoroutine(DistanceUpdate());
-        } else
+        }
+        else
         {
             StartCoroutine(PositionUpdate());
         }
@@ -79,32 +95,44 @@ public class MissileManager : MonoBehaviour
 
         int num = 0;
         float delay = 0;
+
         while (Creater.Instance)
         {
-            if (num >= missiles.Length && missileList.Count < 1)
-            {
-                break;
-            }
-
             if (!Creater.Instance.isPaused)
             {
-                if (num < missiles.Length)
+                // 미사일 발사 딜레이 체크
+                if (!missiles[num].isLunched && !missiles[num].isDead)
                 {
+                    // 시간 측정 및 발사
                     if (delay < missiles[num].lunchDelay)
                     {
                         delay += Time.deltaTime;
                     }
                     else
                     {
+                        delay = 0;
                         missileList.Add(missiles[num].Lunch());
                         num++;
-                        delay = 0;
+                    }
+                }
+                else
+                {
+                    num++;
+                }
+
+                if (num > missiles.Length - 1)
+                {
+                    num = 0;
+                    if (missileList.Count == 0)
+                    {
+                        break;
                     }
                 }
 
+                // Missile Position Updating
                 for (int i = missileList.Count - 1; i > -1; i--)
                 {
-                    if (missileList[i] != null)
+                    if (missileList[i].isLunched)
                     {
                         missileList[i].Updating();
                     }
@@ -117,8 +145,17 @@ public class MissileManager : MonoBehaviour
 
             yield return null;
         }
-        
-        Destroy(gameObject);
-        yield return null;
+
+        actionCount--;
+
+        if (actionCount == 0)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            yield return new WaitForSeconds(1.0f);
+            InitMissiles();
+        }
     }
 }

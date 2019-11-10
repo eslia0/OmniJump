@@ -92,6 +92,7 @@ public class Pause : InteractiveObject
             {
                 Creater.Instance.player.transform.position = targetPos;
                 playerRelease = true;
+                Creater.Instance.pauseUse = true;
             }
 
             if (playerRelease &&
@@ -101,6 +102,7 @@ public class Pause : InteractiveObject
             {
                 playerRelease = playerIsOn = false;
                 Creater.Instance.player.onClick = false;
+                Creater.Instance.pauseUse = false;
                 update();
             }
 

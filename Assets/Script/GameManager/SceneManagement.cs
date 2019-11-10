@@ -44,8 +44,6 @@ public class SceneManagement : MonoBehaviour
             return;
         }
 
-        PlayerPrefs.DeleteAll();
-
         clearStage = new bool[60];
         DontDestroyOnLoad(gameObject);
         LoadData();

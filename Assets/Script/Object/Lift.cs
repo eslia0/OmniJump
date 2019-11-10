@@ -225,7 +225,7 @@ public class Lift : RayCastController
 
                 if (disabledAfterMove)
                 {
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
                 }
             }
         }

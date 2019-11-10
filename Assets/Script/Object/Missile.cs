@@ -6,7 +6,9 @@ public class Missile : MonoBehaviour
 {
     [HideInInspector] public Direction direction;
     [HideInInspector] public int angle;
-    public bool isChecked = false;
+    private Vector3 oriPos;
+    public bool isLunched = false;
+    public bool isDead = false;
     public float distance;
     public float time;
     public float lunchDelay;
@@ -32,6 +34,7 @@ public class Missile : MonoBehaviour
 
         angle = ((int)transform.localEulerAngles.z + 360) % 360;
         arrow.startRotation = (360 - angle) * Mathf.Deg2Rad;
+        oriPos = transform.position;
         
         switch (angle)
         {
@@ -56,6 +59,7 @@ public class Missile : MonoBehaviour
         collider2D.enabled = body.enabled = true;
         path.SetActive(false);
         arrow.gameObject.SetActive(false);
+        isLunched = true;
 
         return this;
     }
@@ -71,7 +75,7 @@ public class Missile : MonoBehaviour
         else
         {
             Creater.Instance.GetMissilePopPrefab(transform);
-            Destroy(gameObject);
+            Dead();
         }
     }
 
@@ -101,7 +105,24 @@ public class Missile : MonoBehaviour
             Creater.Instance.AddScore(SceneManagement.Instance.GetObjectData(ObjectType.Missile).currentScore);
             Creater.Instance.GetMissilePopPrefab(transform);
 
-            Destroy(gameObject);
+            Dead();
         }
+    }
+
+    private void Dead()
+    {
+        collider2D.enabled = body.enabled = false;
+        isLunched = false;
+        isDead = true;
+        gameObject.SetActive(false);
+    }
+
+    public void Init()
+    {
+        isDead = false;
+        path.SetActive(true);
+        arrow.gameObject.SetActive(true);
+        transform.position = oriPos;
+        lifeTime = 0;
     }
 }

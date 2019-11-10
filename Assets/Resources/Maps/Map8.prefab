@@ -13870,12 +13870,12 @@ MonoBehaviour:
   globalWaypoints:
   - {x: 0, y: 0, z: 0}
   - {x: 3.2, y: 1.6, z: 0}
-  - {x: 6.4, y: 0, z: 0}
+  - {x: 5.76, y: 0, z: 0}
   moveOnce: 1
   cyclic: 0
   movePassinger: 1
   stopXSpeedOnMovePassinger: 0
-  disabledAfterMove: 1
+  disabledAfterMove: 0
   speed: 3.4
   WaitTime: 0
   EaseAmount: 0
@@ -19338,6 +19338,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
+        type: 3}
+      propertyPath: m_Name
+      value: CirclePad (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613944, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: particles.Array.data[0]
@@ -19363,11 +19368,6 @@ PrefabInstance:
       propertyPath: rotationParticle.Array.data[1]
       value: 
       objectReference: {fileID: 7106760673139568584}
-    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
-        type: 3}
-      propertyPath: m_Name
-      value: CirclePad (4)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1546fdefaa98df4ba784984433fbc49, type: 3}
 --- !u!198 &5339936883672032863 stripped
@@ -19456,6 +19456,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
+        type: 3}
+      propertyPath: m_Name
+      value: CirclePad (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613944, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: particles.Array.data[0]
@@ -19481,11 +19486,6 @@ PrefabInstance:
       propertyPath: rotationParticle.Array.data[1]
       value: 
       objectReference: {fileID: 7665291264331118495}
-    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
-        type: 3}
-      propertyPath: m_Name
-      value: CirclePad (3)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1546fdefaa98df4ba784984433fbc49, type: 3}
 --- !u!198 &4817612085505064456 stripped
@@ -19574,6 +19574,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
+        type: 3}
+      propertyPath: m_Name
+      value: CirclePad (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613944, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: particles.Array.data[0]
@@ -19599,11 +19604,6 @@ PrefabInstance:
       propertyPath: rotationParticle.Array.data[1]
       value: 
       objectReference: {fileID: 7909782858813894771}
-    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
-        type: 3}
-      propertyPath: m_Name
-      value: CirclePad (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1546fdefaa98df4ba784984433fbc49, type: 3}
 --- !u!198 &7011291364178315658 stripped
@@ -20119,6 +20119,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
+        type: 3}
+      propertyPath: m_Name
+      value: CirclePad (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613944, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: particles.Array.data[0]
@@ -20144,11 +20149,6 @@ PrefabInstance:
       propertyPath: rotationParticle.Array.data[1]
       value: 
       objectReference: {fileID: 6564522486640069765}
-    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
-        type: 3}
-      propertyPath: m_Name
-      value: CirclePad (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1546fdefaa98df4ba784984433fbc49, type: 3}
 --- !u!198 &6564522486640069765 stripped
@@ -20349,6 +20349,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
+        type: 3}
+      propertyPath: m_Name
+      value: CirclePad
+      objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613944, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: particles.Array.data[0]
@@ -20374,11 +20379,6 @@ PrefabInstance:
       propertyPath: rotationParticle.Array.data[1]
       value: 
       objectReference: {fileID: 2484371988466088596}
-    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
-        type: 3}
-      propertyPath: m_Name
-      value: CirclePad
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1546fdefaa98df4ba784984433fbc49, type: 3}
 --- !u!198 &3382888221997007725 stripped
@@ -20467,6 +20467,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
+        type: 3}
+      propertyPath: m_Name
+      value: CirclePad (6)
+      objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613944, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: particles.Array.data[0]
@@ -20492,11 +20497,6 @@ PrefabInstance:
       propertyPath: rotationParticle.Array.data[1]
       value: 
       objectReference: {fileID: 3255728534863151507}
-    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
-        type: 3}
-      propertyPath: m_Name
-      value: CirclePad (6)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1546fdefaa98df4ba784984433fbc49, type: 3}
 --- !u!198 &2424772892677945450 stripped
@@ -20585,6 +20585,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
+        type: 3}
+      propertyPath: m_Name
+      value: CirclePad (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613944, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: particles.Array.data[0]
@@ -20610,11 +20615,6 @@ PrefabInstance:
       propertyPath: rotationParticle.Array.data[1]
       value: 
       objectReference: {fileID: 3901359053593348813}
-    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
-        type: 3}
-      propertyPath: m_Name
-      value: CirclePad (2)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1546fdefaa98df4ba784984433fbc49, type: 3}
 --- !u!198 &4227829606698201908 stripped
@@ -21002,6 +21002,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
+        type: 3}
+      propertyPath: m_Name
+      value: CirclePad (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 1195023051707613944, guid: c1546fdefaa98df4ba784984433fbc49,
         type: 3}
       propertyPath: particles.Array.data[0]
@@ -21027,11 +21032,6 @@ PrefabInstance:
       propertyPath: rotationParticle.Array.data[1]
       value: 
       objectReference: {fileID: 1555155753047427542}
-    - target: {fileID: 1195023051707613945, guid: c1546fdefaa98df4ba784984433fbc49,
-        type: 3}
-      propertyPath: m_Name
-      value: CirclePad (5)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1546fdefaa98df4ba784984433fbc49, type: 3}
 --- !u!198 &1809646785896099887 stripped

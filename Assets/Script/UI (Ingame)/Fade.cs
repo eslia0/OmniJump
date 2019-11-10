@@ -8,6 +8,7 @@ public class Fade : MonoBehaviour
     private Image[] fadeImages;
     public bool ended;
     public GameObject fadeCanvas;
+    [SerializeField] private GameObject clickProofImage;
 
     void Awake()
     {
@@ -19,12 +20,15 @@ public class Fade : MonoBehaviour
             return;
         }
 
+        clickProofImage.SetActive(false);
+
         fadeImages = GetComponentsInChildren<Image>();
         DontDestroyOnLoad(transform.parent.gameObject);
     }
 
     public IEnumerator FadeOut()
     {
+        clickProofImage.SetActive(true);
         ended = false;
 
         for (int i = 0; i < fadeImages.Length; i++)
@@ -52,13 +56,19 @@ public class Fade : MonoBehaviour
                     check[index] = true;
                     fadeImages[index].GetComponent<Animation>().Play("FadeOut");
                     count++;
-                    cycle++;
+
+                    if (count == fadeImages.Length)
+                    {
+                        break;
+                    }
                 }
+
+                cycle++;
                 index += 7;
             }
 
             cycle = 0;
-            
+
             yield return null;
         }
 
@@ -81,7 +91,7 @@ public class Fade : MonoBehaviour
             {
                 if (index > fadeImages.Length - 1)
                 {
-                    index -= fadeImages.Length - 1;
+                    index -= fadeImages.Length;
                 }
 
                 if (!check[index]) // 실행 되지 않은 사각형이면 실행
@@ -89,17 +99,22 @@ public class Fade : MonoBehaviour
                     check[index] = true;
                     fadeImages[index].GetComponent<Animation>().Play("FadeIn");
                     count++;
-                    cycle++;
+
+                    if (count == fadeImages.Length)
+                    {
+                        break;
+                    }
                 }
 
+                cycle++;
                 index += 7;
             }
 
             cycle = 0;
-
             yield return null;
         }
         
         ended = true;
+        clickProofImage.SetActive(false);
     }
 }
