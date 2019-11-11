@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -33,6 +33,8 @@ public class SceneManagement : MonoBehaviour
     public int highScore { get; private set; }
     public int coin { get; private set; }
     private ObjectData[] objectData;
+
+    public string adReward;
 
     void Awake()
     {
@@ -74,6 +76,7 @@ public class SceneManagement : MonoBehaviour
 
         coin = PlayerPrefs.GetInt("Coin");
         highScore = PlayerPrefs.GetInt("HighScore");
+
         InitObjectScoreLevel();
     }
 
@@ -148,7 +151,7 @@ public class SceneManagement : MonoBehaviour
 
     public void AddCoin(int amount)
     {
-        if (amount < 200)
+        if (amount < 300)
         {
             coin += amount;
 

@@ -31,22 +31,4 @@ public class ResultScore : MonoBehaviour
             GooglePlayManager.Instance.ReportScore(score);
         }
     }
-
-    public IEnumerator SetLeftTime()
-    {
-        leftTime.gameObject.SetActive(true);
-
-        TimeSpan time = DateTime.Now.TimeOfDay - UnityAdsHelper.Instance.LastTime;
-
-        while (time <= new TimeSpan(0, 15, 0))
-        {
-            leftTime.text = time.ToString("mm:ss");
-
-            yield return new WaitForSeconds (1.0f);
-
-            time = DateTime.Now.TimeOfDay - UnityAdsHelper.Instance.LastTime;
-        }
-
-        leftTime.gameObject.SetActive(false);
-    }
 }

@@ -33,7 +33,6 @@ public class Creater : GameVariables
     // 점수와 점수배율 레벨이 오를수록 배율이 증가
     [SerializeField] public int score { get; private set; }
     private float scoreMultiply;
-    public string adReward;
 
     private void Awake()
     {

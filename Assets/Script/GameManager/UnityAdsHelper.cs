@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Advertisements;
 using GoogleMobileAds.Api;
 using System;
@@ -24,13 +23,10 @@ public class UnityAdsHelper : MonoBehaviour
     private const string rewarded_video_id = "rewardedVideo";
 
     [SerializeField] private bool showAds = true;
+    public TimeSpan lastTime { get; private set; }
+    public TimeSpan adDelay { get; private set; }
 
     private BannerView bannerView;
-    private TimeSpan lastTime;
-    public TimeSpan LastTime {
-        get { return lastTime; }
-        private set { lastTime = value; }
-    }
 
     private void Awake()
     {
@@ -41,6 +37,8 @@ public class UnityAdsHelper : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        adDelay = new TimeSpan(0, 1, 0);
 
         instance.Initialize();
     }
@@ -64,6 +62,19 @@ public class UnityAdsHelper : MonoBehaviour
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(appId);
         InitBannerView();
+        
+        string adTime = PlayerPrefs.GetString("AdTime");
+
+        try
+        {
+            lastTime = TimeSpan.Parse(adTime);
+        }
+        catch (FormatException)
+        {
+            lastTime = DateTime.Now.TimeOfDay - adDelay;
+        }
+
+        Debug.Log("Ads Initialize");
     }
 
     public void ShowRewardedAd()
@@ -79,25 +90,34 @@ public class UnityAdsHelper : MonoBehaviour
     }
 
     public void HandleShowResult(ShowResult result) {
-        if (Application.isPlaying && Creater.Instance) {
+        if (Application.isPlaying) {
             switch (result) {
                 case ShowResult.Finished: {
                         Debug.Log("The ad was successfully shown.");
-                        if (Creater.Instance.adReward == "Revive") {
+                        if (SceneManagement.Instance.adReward == "Revive") {
                             Creater.Instance.NextStage(0);
                         }
-                        else if (Creater.Instance.adReward == "Coin") {
+                        else if (SceneManagement.Instance.adReward == "DoubleCoin") {
                             FindObjectOfType<EndlessUI>().SetResultPanel();
                         }
+                        else if (SceneManagement.Instance.adReward == "RandomCoin")
+                        {
+                            int coin = UnityEngine.Random.Range(1, 6) * 10;
+                            SceneManagement.Instance.AddCoin(coin);
 
-                        lastTime = DateTime.Now.TimeOfDay;
+                            lastTime = DateTime.Now.TimeOfDay;
+                            PlayerPrefs.SetString("AdTime", lastTime.ToString(@"hh\:mm\:ss"));
+                            FindObjectOfType<TitleUI>().AddCoin(coin);
+                        }
 
                         break;
                     }
                 case ShowResult.Skipped: {
                         Debug.Log("The ad was skipped before reaching the end.");
-
-                        FindObjectOfType<EndlessUI>().SetResultPanel();
+                        if (Creater.Instance)
+                        {
+                            FindObjectOfType<EndlessUI>().SetResultPanel();
+                        }
 
                         // to do ...
                         // 광고가 스킵되었을 때 처리
@@ -106,8 +126,10 @@ public class UnityAdsHelper : MonoBehaviour
                     }
                 case ShowResult.Failed: {
                         Debug.LogError("The ad failed to be shown.");
-
-                        FindObjectOfType<EndlessUI>().SetResultPanel();
+                        if (Creater.Instance)
+                        {
+                            FindObjectOfType<EndlessUI>().SetResultPanel();
+                        }
 
                         // to do ...
                         // 광고 시청에 실패했을 때 처리
@@ -194,4 +216,9 @@ public class UnityAdsHelper : MonoBehaviour
     //{
     //    bannerView.Destroy();
     //}
+
+    public bool DelayCheck()
+    {
+        return lastTime < DateTime.Now.TimeOfDay - adDelay;
+    }
 }

@@ -36,7 +36,7 @@ public class EndlessUI : MonoBehaviour
         buttons[4].onClick.AddListener(delegate () { SelectReward("Revive"); });
 
         buttons[5].onClick.RemoveAllListeners();
-        buttons[5].onClick.AddListener(delegate () { SelectReward("Coin"); });
+        buttons[5].onClick.AddListener(delegate () { SelectReward("DoubleCoin"); });
 
         buttons[6].onClick.RemoveAllListeners();
         buttons[6].onClick.AddListener(delegate () { SkipAd(); });
@@ -108,7 +108,7 @@ public class EndlessUI : MonoBehaviour
     private void SelectReward(string reward) {
         adPanel.SetActive(false);
 
-        Creater.Instance.adReward = reward;
+        SceneManagement.Instance.adReward = reward;
         Creater.Instance.isRewarded = true;
 
         if (reward == "Coin")

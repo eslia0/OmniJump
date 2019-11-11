@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class TitleUI : MonoBehaviour
 {
     private GameObject titlePanel;
     private GameObject practicePanel;
+    [SerializeField] private GameObject adsPanel;
     [SerializeField] private Button[] buttons;
 
     // 프랙티스 패널
@@ -21,8 +23,11 @@ public class TitleUI : MonoBehaviour
     // Title 대기 배경
     private Sprite[] mapImages;
     private PlayerUIController player;
-    [SerializeField]
-     private Camera mainCam;
+    [SerializeField] private Camera mainCam;
+
+    // Coin Ads 관련
+    [SerializeField] private Text leftTime;
+    [SerializeField] private Text addedCoin;
 
     private void Start()
     {
@@ -48,6 +53,25 @@ public class TitleUI : MonoBehaviour
         buttons[1].onClick.AddListener(delegate () { ToTitlePanel(); });
         buttons[2].onClick.RemoveAllListeners();
         buttons[2].onClick.AddListener(delegate () { ToPracticePanel(); });
+        buttons[3].onClick.RemoveAllListeners();
+        buttons[3].onClick.AddListener(delegate () { adsPanel.SetActive(true);
+            if (!UnityAdsHelper.Instance.DelayCheck())
+            {
+                StartCoroutine(SetLeftTime());
+            }
+            else
+            {
+                leftTime.gameObject.SetActive(false);
+            }
+        });
+        buttons[4].onClick.RemoveAllListeners();
+        buttons[4].onClick.AddListener(delegate () { adsPanel.SetActive(false); });
+        buttons[5].onClick.RemoveAllListeners();
+        buttons[5].onClick.AddListener(delegate () {
+            SceneManagement.Instance.adReward = "RandomCoin";
+            UnityAdsHelper.Instance.ShowRewardedAd();
+            adsPanel.SetActive(false);
+        });
 
         LoadMapImage();
         InitPractice();
@@ -57,6 +81,7 @@ public class TitleUI : MonoBehaviour
 
         titlePanel.SetActive(true);
         practicePanel.SetActive(false);
+        adsPanel.SetActive(false);
     }
 
     // 타이틀
@@ -137,7 +162,7 @@ public class TitleUI : MonoBehaviour
     // 프랙티스 씬 시작
     private void SelectLevel(int level)
     {
-        //if (SceneManagement.Instance.GetClearData()[level])
+        if (SceneManagement.Instance.GetClearData()[level])
         {
             SceneManagement.Instance.selectedStage = level;
             SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("PracticeScene"));
@@ -210,5 +235,31 @@ public class TitleUI : MonoBehaviour
         else {
             mainCam.transform.position = new Vector3(17.6f, 2f, -100f);
         }
+    }
+
+    public IEnumerator SetLeftTime()
+    {
+        leftTime.gameObject.SetActive(true);
+        buttons[5].interactable = false;
+
+        TimeSpan time = UnityAdsHelper.Instance.adDelay - DateTime.Now.TimeOfDay + UnityAdsHelper.Instance.lastTime;
+
+        while (time >= new TimeSpan(0, 0, 1) && adsPanel.activeSelf)
+        {
+            leftTime.text = time.ToString(@"mm\:ss");
+
+            yield return new WaitForSeconds(1.0f);
+
+            time = UnityAdsHelper.Instance.adDelay - DateTime.Now.TimeOfDay + UnityAdsHelper.Instance.lastTime;
+        }
+
+        leftTime.gameObject.SetActive(false);
+        buttons[5].interactable = true;
+    }
+
+    public void AddCoin(int coin)
+    {
+        addedCoin.text = "+" + coin.ToString();
+        addedCoin.GetComponent<Animation>().Play();
     }
 }
