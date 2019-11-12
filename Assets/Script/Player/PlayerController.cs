@@ -213,23 +213,29 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            isDead = true;
-            CameraFollow.mainCam.GetComponent<CameraFollow>().follow = false;
-            GetComponent<BoxCollider2D>().enabled = false;
-            body.gameObject.SetActive(false);
-            controller.enabled = false;
-            enabled = false;
-
-            if (SceneManagement.Instance.currentScene == "PracticeScene")
+            if (!isDead)
             {
-                FindObjectOfType<PracticeUI>().SetResultPanel();
-            }
-            else if (SceneManagement.Instance.currentScene == "EndlessScene") {
-                if (!Creater.Instance.isRewarded && (Creater.Instance.score >= SceneManagement.Instance.highScore * 0.5f || Creater.Instance.score >= 3000)) {
-                    FindObjectOfType<EndlessUI>().SetAdPanel();
+                isDead = true;
+                CameraFollow.mainCam.GetComponent<CameraFollow>().follow = false;
+                GetComponent<BoxCollider2D>().enabled = false;
+                body.gameObject.SetActive(false);
+                controller.enabled = false;
+                enabled = false;
+
+                if (SceneManagement.Instance.currentScene == "PracticeScene")
+                {
+                    FindObjectOfType<PracticeUI>().SetResultPanel();
                 }
-                else {
-                    FindObjectOfType<EndlessUI>().SetResultPanel();
+                else if (SceneManagement.Instance.currentScene == "EndlessScene")
+                {
+                    if (!Creater.Instance.isRewarded && (Creater.Instance.score >= SceneManagement.Instance.highScore * 0.5f || Creater.Instance.score >= 1500))
+                    {
+                        FindObjectOfType<EndlessUI>().SetAdPanel();
+                    }
+                    else
+                    {
+                        FindObjectOfType<EndlessUI>().SetResultPanel();
+                    }
                 }
             }
         }

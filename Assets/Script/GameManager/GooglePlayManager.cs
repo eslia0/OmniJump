@@ -8,8 +8,10 @@ using GooglePlayGames.BasicApi;
 public class GooglePlayManager : MonoBehaviour
 {
     private static GooglePlayManager instance;
-    public static GooglePlayManager Instance {
-        get {
+    public static GooglePlayManager Instance
+    {
+        get
+        {
             if (instance == null)
             {
                 instance = FindObjectOfType<GooglePlayManager>();
@@ -149,7 +151,7 @@ public class GooglePlayManager : MonoBehaviour
                 });
             }
         });
-                
+
 
 #elif UNITY_IOS
  

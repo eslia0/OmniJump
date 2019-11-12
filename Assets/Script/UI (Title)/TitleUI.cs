@@ -242,15 +242,15 @@ public class TitleUI : MonoBehaviour
         leftTime.gameObject.SetActive(true);
         buttons[5].interactable = false;
 
-        TimeSpan time = UnityAdsHelper.Instance.adDelay - DateTime.Now.TimeOfDay + UnityAdsHelper.Instance.lastTime;
+        TimeSpan time = UnityAdsHelper.Instance.adDelay - DateTime.Now.TimeOfDay + UnityAdsHelper.Instance.lastTime.TimeOfDay;
 
-        while (time >= new TimeSpan(0, 0, 1) && adsPanel.activeSelf)
+        while (time >= new TimeSpan(0, 0, 1))
         {
             leftTime.text = time.ToString(@"mm\:ss");
 
             yield return new WaitForSeconds(1.0f);
 
-            time = UnityAdsHelper.Instance.adDelay - DateTime.Now.TimeOfDay + UnityAdsHelper.Instance.lastTime;
+            time = UnityAdsHelper.Instance.adDelay - DateTime.Now.TimeOfDay + UnityAdsHelper.Instance.lastTime.TimeOfDay;
         }
 
         leftTime.gameObject.SetActive(false);

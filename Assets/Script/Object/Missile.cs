@@ -34,7 +34,6 @@ public class Missile : MonoBehaviour
 
         angle = ((int)transform.localEulerAngles.z + 360) % 360;
         arrow.startRotation = (360 - angle) * Mathf.Deg2Rad;
-        oriPos = transform.position;
         
         switch (angle)
         {
@@ -122,7 +121,7 @@ public class Missile : MonoBehaviour
         isDead = false;
         path.SetActive(true);
         arrow.gameObject.SetActive(true);
-        transform.position = oriPos;
+        oriPos = transform.position;
         lifeTime = 0;
     }
 }

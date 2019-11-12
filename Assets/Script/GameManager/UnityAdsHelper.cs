@@ -23,7 +23,7 @@ public class UnityAdsHelper : MonoBehaviour
     private const string rewarded_video_id = "rewardedVideo";
 
     [SerializeField] private bool showAds = true;
-    public TimeSpan lastTime { get; private set; }
+    public DateTime lastTime { get; private set; }
     public TimeSpan adDelay { get; private set; }
 
     private BannerView bannerView;
@@ -38,7 +38,7 @@ public class UnityAdsHelper : MonoBehaviour
             return;
         }
 
-        adDelay = new TimeSpan(0, 1, 0);
+        adDelay = new TimeSpan(0, 15, 0);
 
         instance.Initialize();
     }
@@ -67,11 +67,11 @@ public class UnityAdsHelper : MonoBehaviour
 
         try
         {
-            lastTime = TimeSpan.Parse(adTime);
+            lastTime = DateTime.Parse(adTime);
         }
         catch (FormatException)
         {
-            lastTime = DateTime.Now.TimeOfDay - adDelay;
+            lastTime = DateTime.Now - adDelay;
         }
 
         Debug.Log("Ads Initialize");
@@ -105,9 +105,10 @@ public class UnityAdsHelper : MonoBehaviour
                             int coin = UnityEngine.Random.Range(1, 6) * 10;
                             SceneManagement.Instance.AddCoin(coin);
 
-                            lastTime = DateTime.Now.TimeOfDay;
-                            PlayerPrefs.SetString("AdTime", lastTime.ToString(@"hh\:mm\:ss"));
+                            lastTime = DateTime.Now;
+                            PlayerPrefs.SetString("AdTime", lastTime.ToString());
                             FindObjectOfType<TitleUI>().AddCoin(coin);
+                            Debug.Log(PlayerPrefs.GetString("AdTime"));
                         }
 
                         break;
@@ -219,6 +220,6 @@ public class UnityAdsHelper : MonoBehaviour
 
     public bool DelayCheck()
     {
-        return lastTime < DateTime.Now.TimeOfDay - adDelay;
+        return lastTime < DateTime.Now - adDelay;
     }
 }

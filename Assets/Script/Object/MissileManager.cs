@@ -15,13 +15,9 @@ public class MissileManager : MonoBehaviour
     [SerializeField] private Missile[] missiles;
     [SerializeField] private List<Missile> missileList = new List<Missile>();
 
-    void Awake()
+    void OnEnable()
     {
         missiles = transform.GetComponentsInChildren<Missile>();
-    }
-
-    private void Start()
-    {
         InitMissiles();
     }
 
@@ -72,6 +68,7 @@ public class MissileManager : MonoBehaviour
         {
             if (Creater.Instance.player.transform.position.x > transform.position.x)
             {
+                Debug.Log("Position");
                 StartCoroutine(MissileUpdating());
                 break;
             }
