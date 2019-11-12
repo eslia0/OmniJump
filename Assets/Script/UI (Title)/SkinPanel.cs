@@ -41,14 +41,13 @@ public class SkinPanel : MonoBehaviour
 
     private void OnEnable()
     {
-        t_Coin.text = SkinMaster.Instance.Get_Coin().ToString();
+        t_Coin.text = SceneManagement.Instance.coin.ToString();
         t_Cost.text = SkinMaster.Instance.Get_Purchas().ToString();
         t_SkinCount.text = SkinMaster.Instance.Get_Purchas().ToString();
     }
 
     private void Start()
     {
-        //PlayerPrefs.DeleteAll();
         SetPanel();
 
         b_Purchas.onClick.AddListener(() => {
