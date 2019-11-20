@@ -12,6 +12,8 @@ public class PracticeUI : MonoBehaviour
     [SerializeField] private Text stage;
     [SerializeField] private Text resultScoreText;
 
+    CameraFollow cam;
+
     void Start()
     {
         buttons[0].onClick.RemoveAllListeners();
@@ -64,6 +66,7 @@ public class PracticeUI : MonoBehaviour
         if (Creater.Instance.player.enabled)
         {
             Creater.Instance.Pause();
+            cam.follow = false;
             buttons[2].enabled = false;
             pausePanel.gameObject.SetActive(true);
         }
@@ -74,6 +77,7 @@ public class PracticeUI : MonoBehaviour
         if (Creater.Instance.player.enabled)
         {
             Creater.Instance.Pause();
+            cam.follow = true;
             buttons[2].enabled = true;
             pausePanel.gameObject.SetActive(false);
         }

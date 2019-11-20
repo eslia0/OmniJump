@@ -6,24 +6,21 @@ public class TutorialText : MonoBehaviour
     public Text m_text;
     public Animation m_animation;
     
-    public void Start()
+    public void Awake()
     {
-        m_text = transform.GetChild(0).GetComponent<Text>();
-        m_animation = GetComponent<Animation>();
-
         gameObject.SetActive(false);
     }
     
     public void SetText(string text)
     {
         m_text.text = text;
-        // m_animation.Play("PanelIn");
+        // m_animation.Play("TutorialPanelIn");
 
         // Invoke("OutText", 3.0f);
     }
 
     public void OutText()
     {
-        m_animation.Play("PanelOut");
+        m_animation.Play("TutorialPanelOut");
     }
 }

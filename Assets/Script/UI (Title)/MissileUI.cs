@@ -43,7 +43,7 @@ public class MissileUI : MonoBehaviour
 
     private void Start()
     {
-        arrow.transform.parent = FindObjectOfType<PlayerUIController>().selectedMap.transform;
+        arrow.transform.parent = null;
         arrow.transform.localScale = Vector3.one;
     }
 
@@ -61,7 +61,8 @@ public class MissileUI : MonoBehaviour
     public IEnumerator Lunch()
     {
         // lr.enabled = false;
-        // arrow.gameObject.SetActive(false);
+        arrow.gameObject.SetActive(false);
+
         while (time > lifeTime)
         {
             lifeTime += Time.deltaTime;

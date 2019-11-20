@@ -22,6 +22,8 @@ public class GooglePlayManager : MonoBehaviour
         }
     }
 
+    PlayGamesPlatform playGamesInstance;
+
     public Text logText;
 
     private void Start()
@@ -38,10 +40,12 @@ public class GooglePlayManager : MonoBehaviour
 
         Initialize();
     }
-
+    
     // Start is called before the first frame update
     void Initialize()
     {
+        if(logText)
+            logText.text = "Initialize";
 #if UNITY_ANDROID
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
 
@@ -52,32 +56,34 @@ public class GooglePlayManager : MonoBehaviour
 #elif UNITY_IOS
         GameCenterPlatform.ShowDefaultAchievementCompletionBanner(true);
 #endif
+
+        SignIn();
     }
 
     public void GooglePlayButton()
     {
-        if (Social.localUser.state == UnityEngine.SocialPlatforms.UserState.Online)
-        {
-            ShowLeaderboardUI();
-        }
-        else
-        {
-            SignIn();
-        }
+        ShowLeaderboardUI();
     }
 
     public void SignIn()
     {
+        if (logText)
+            logText.text = "SignIn";
+
+        PlayGamesPlatform.Activate();
         Social.localUser.Authenticate((bool success) =>
         {
             if (success)
             {
                 // to do ...
                 // 로그인 성공 처리
-                ShowLeaderboardUI();
+                if (logText)
+                    logText.text = "success";
             }
             else
             {
+                if (logText)
+                    logText.text = "fail";
                 // to do ...
                 // 로그인 실패 처리
             }
@@ -129,28 +135,28 @@ public class GooglePlayManager : MonoBehaviour
 
     public void ReportScore(int score)
     {
+        if (logText)
+            logText.text = "Report Score";
+
 #if UNITY_ANDROID
-        Social.localUser.Authenticate((bool success1) =>
+        PlayGamesPlatform.instance.ReportScore(score, GPGSIds.leaderboard_score, (bool success) =>
         {
-            if (success1)
+            if (success)
             {
-                PlayGamesPlatform.instance.ReportScore(score, GPGSIds.leaderboard_score, (bool success) =>
-                {
-                    if (success)
-                    {
                         // Report 성공
                         // 그에 따른 처리
-                        logText.text = "report success";
-                    }
-                    else
-                    {
+                        if (logText)
+                    logText.text += " success";
+            }
+            else
+            {
                         // Report 실패
                         // 그에 따른 처리
-                        logText.text = "report fail";
-                    }
-                });
+                        if (logText)
+                    logText.text += " fail";
             }
         });
+            
 
 
 #elif UNITY_IOS
@@ -174,9 +180,12 @@ public class GooglePlayManager : MonoBehaviour
 
     public void ShowLeaderboardUI()
     {
+        if (logText)
+            logText.text = "ShowLeaderboardUI";
+
         // Sign In 이 되어있지 않은 상태라면
         // Sign In 후 리더보드 UI 표시 요청할 것
-        if (Social.localUser.authenticated == false)
+        if (Social.localUser.authenticated == true)
         {
             Social.localUser.Authenticate((bool success) =>
             {
@@ -185,21 +194,25 @@ public class GooglePlayManager : MonoBehaviour
                     // Sign In 성공
                     // 바로 리더보드 UI 표시 요청
                     Social.ShowLeaderboardUI();
+                    if (logText)
+                        logText.text += "success";
                     return;
                 }
                 else
                 {
                     // Sign In 실패 
                     // 그에 따른 처리
+                    if (logText)
+                        logText.text += "fail";
                     return;
                 }
             });
-        }
 
 #if UNITY_ANDROID
-        PlayGamesPlatform.instance.ShowLeaderboardUI();
+            PlayGamesPlatform.instance.ShowLeaderboardUI();
 #elif UNITY_IOS
         GameCenterPlatform.ShowLeaderboardUI("Leaderboard_ID", UnityEngine.SocialPlatforms.TimeScope.AllTime);
 #endif
+        }
     }
 }

@@ -6,7 +6,7 @@ public class PlayerUIController : MonoBehaviour
 {
     private UIController controller;
 
-    [SerializeField] private Transform body;
+    public Transform body;
 
     // 점프
     [Header("점프"), Space(10)]
@@ -27,28 +27,33 @@ public class PlayerUIController : MonoBehaviour
     private float startTime;
 
     private bool isJump;
+    public bool isTeleporting;
     public bool isActing;
     private Animator ani;
 
-    private GameObject[] UIMaps;
-    [HideInInspector] public GameObject selectedMap;
+    [HideInInspector] public Transform selectedMap;
+
     [SerializeField] private GameObject idleAction;
-    [SerializeField] private List<InteractionUI> action = new List<InteractionUI>();
+    public List<InteractionUI> action = new List<InteractionUI>();
 
     private void Awake()
     {
-        gravity = -(2 * jumpHeight) / Mathf.Pow(timeOfJumpApex, 2); // timeOfJumpApex^2 (d = Vi * t + 1/2 * a * t^2)
-        jumpVelocity = Mathf.Abs(gravity) * timeOfJumpApex; // Vf = Vi + a * t
-        
         controller = GetComponent<UIController>();
         ani = GetComponent<Animator>();
-        
+
+        Init();
+    }
+
+    private void Init()
+    {
+        gravity = -(2 * jumpHeight) / Mathf.Pow(timeOfJumpApex, 2); // timeOfJumpApex^2 (d = Vi * t + 1/2 * a * t^2)
+        jumpVelocity = Mathf.Abs(gravity) * timeOfJumpApex; // Vf = Vi + a * t
         velocity = Vector2.zero;
         revertGravity = false;
         moveRight = true;
+        moveSpeed = 3.0f;
 
-        InitUIMap();
-        InitActions();
+        body.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -60,6 +65,10 @@ public class PlayerUIController : MonoBehaviour
         {
             isActing = true;
             StartCoroutine(Action());
+        }
+        else if (!isActing && action.Count == 0)
+        {
+            moveSpeed = 0;
         }
 
         JumpMove();
@@ -93,6 +102,8 @@ public class PlayerUIController : MonoBehaviour
         if (action[0].action == InteractionUI.UIInteraction.Move)
         {
             moveSpeed = 3.0f;
+            JoyStickImageCtrl ctrl = action[0].transform.GetComponentInChildren<JoyStickImageCtrl>();
+            ctrl.SetJoyStickImage();
 
             if (moveRight)
             {
@@ -132,11 +143,20 @@ public class PlayerUIController : MonoBehaviour
         }
         else if (action[0].action == InteractionUI.UIInteraction.Teleport)
         {
+            isTeleporting = true;
+
             StartCoroutine(HoldPlayer(action[0].exit.transform, 1.0f));
         }
         else if (action[0].action == InteractionUI.UIInteraction.Moving)
         {
             MovingPlatformUI moving = action[0].GetComponent<MovingPlatformUI>();
+            if (moving.trigger)
+            {
+                moving.trigger.SetActive(false);
+                GameObject blow = Instantiate(Resources.Load<GameObject>("Effects/TriggerBlow"));
+                blow.transform.position = moving.trigger.transform.position;
+                Destroy(blow, 0.5f);
+            }
             
             if (moving.movePassanger)
             {
@@ -158,13 +178,39 @@ public class PlayerUIController : MonoBehaviour
                 StartCoroutine(moving.StartMoving());
             }
         }
+        else if (action[0].action == InteractionUI.UIInteraction.Pause)
+        {
+            Vector3 targetPos = action[0].transform.position + new Vector3(0, 0.16f * ((transform.eulerAngles.z == 180) ? -1 : 1), 0);
+            float time = 0;
+            float timeToReachTarget = 0.5f;
+            moveSpeed = 0f;
+
+            while (Vector2.Distance(targetPos, transform.position) > 0.01f)
+            {
+                time += Time.deltaTime / timeToReachTarget;
+                transform.position = Vector2.Lerp(transform.position, targetPos, time);
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(0.5f);
+
+            moveSpeed = 3f;
+
+            transform.position = targetPos;
+        }
+        else if (action[0].action == InteractionUI.UIInteraction.Rotate)
+        {
+            SetJump();
+        }
+        else if (action[0].action == InteractionUI.UIInteraction.Dead)
+        {
+            Destroy(Instantiate(Resources.Load<GameObject>("Effects/GlowExplosion 1"), transform.position, Quaternion.identity), 1.5f);
+            body.gameObject.SetActive(false);
+            gravity = 0;
+            velocity = Vector3.zero;
+        }
 
         action.RemoveAt(0);
-
-        if (action.Count == 0)
-        {
-            InitActions();
-        }
 
         isActing = false;
     }
@@ -224,29 +270,32 @@ public class PlayerUIController : MonoBehaviour
         }
     }
 
-    // UIMap을 초기화 후 선택
-    private void InitUIMap()
+    // UI Map 선택
+    public void SelectUIMap(Transform map)
     {
-        UIMaps = new GameObject[10];
-
-        for (int i = 0; i< 10; i++)
-        {
-            UIMaps[i] = Resources.Load<GameObject>("UIMaps/TitleMap" + (i+1).ToString());
-        }
-
-        int rand = Random.Range(0, UIMaps.Length);
-        selectedMap = Instantiate<GameObject>(UIMaps[rand], new Vector3(4.8f, -1.76f, 0f), Quaternion.identity);
+        selectedMap = map;
+        InitActions();
     }
 
-    private void InitActions()
+    // UI Map의 Action 초기화
+    public void InitActions()
     {
         action.Clear();
-        Transform mapAction = selectedMap.transform.GetChild(1);
-        for (int i = 0; i < mapAction.childCount; i++)
+
+        for (int i = 0; i < selectedMap.childCount; i++)
         {
-            InteractionUI add = mapAction.GetChild(i).GetComponent<InteractionUI>();
+            InteractionUI add = selectedMap.GetChild(i).GetComponent<InteractionUI>();
             action.Add(add);
-            if (add.action == InteractionUI.UIInteraction.Moving)
+
+            if (add.action == InteractionUI.UIInteraction.Move)
+            {
+                JoyStickImageCtrl[] ctrls = add.GetComponentsInChildren<JoyStickImageCtrl>();
+                for (int j = 0; j < ctrls.Length; j++)
+                {
+                    ctrls[j].enabled = true;
+                }
+            }
+            else if (add.action == InteractionUI.UIInteraction.Moving)
             {
                 add.GetComponent<MovingPlatformUI>().enabled = true;
                 add.GetComponent<MovingPlatformUI>().Init();
@@ -258,20 +307,28 @@ public class PlayerUIController : MonoBehaviour
                 add.GetComponent<MissileUI>().Init();
             }
         }
-
-        for (int i = 0; i < idleAction.transform.childCount; i++)
+        
+        if (idleAction)
         {
-            action.Add(idleAction.transform.GetChild(i).GetComponent<InteractionUI>());
+            for (int i = 0; i < idleAction.transform.childCount; i++)
+            {
+                action.Add(idleAction.transform.GetChild(i).GetComponent<InteractionUI>());
+            }
         }
+
+        Init();
     }
 
     public IEnumerator HoldPlayer(Transform exit, float time)
     {
         moveSpeed = 0.0f;
         body.gameObject.SetActive(false);
+        GameObject poof = Instantiate(Resources.Load<GameObject>("Effects/Poof 1"));
+        poof.transform.position = transform.position + Vector3.up * 0.3f;
+        Destroy(poof, 0.5f);
 
         float check = 0.0f;
-        while (check < time)
+        while (check < time && isTeleporting)
         {
             check += Time.deltaTime;
             transform.position = exit.position;
@@ -280,5 +337,13 @@ public class PlayerUIController : MonoBehaviour
 
         moveSpeed = 3.0f;
         body.gameObject.SetActive(true);
+
+        if (isTeleporting)
+        {
+            isTeleporting = false;
+            poof = Instantiate(Resources.Load<GameObject>("Effects/Poof 1"));
+            poof.transform.position = transform.position + Vector3.up * 0.3f;
+            Destroy(poof, 0.5f);
+        }
     }
 }

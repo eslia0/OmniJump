@@ -77,19 +77,19 @@ public class ObjectData
                 break;
 
             case ObjectType.ReversePad:
-                currentScore = 15 + (level);
+                currentScore = 15 + (level * 2);
                 nextScore = 15 + ((level + 1) * 2);
                 cost = 10 + CalculateCost(level, 20);
                 break;
 
             case ObjectType.Missile:
-                currentScore = 10 + (level);
+                currentScore = 10 + (level * 2);
                 nextScore = 10 + ((level + 1) * 2);
                 cost = 15 + CalculateCost(level, 20);
                 break;
 
             case ObjectType.Gravity:
-                currentScore = 15 + (level);
+                currentScore = 15 + (level * 3);
                 nextScore = 15 + ((level + 1) * 3);
                 cost = 15 + CalculateCost(level, 20);
                 break;

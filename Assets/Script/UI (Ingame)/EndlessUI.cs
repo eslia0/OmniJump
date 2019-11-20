@@ -19,7 +19,11 @@ public class EndlessUI : MonoBehaviour
     [SerializeField] Text resultScoreText;
     [SerializeField] Text resultCoinText;
 
+    CameraFollow cam;
+
     private void Start() {
+        cam = CameraFollow.mainCam.GetComponent<CameraFollow>();
+
         buttons[0].onClick.RemoveAllListeners();
         buttons[0].onClick.AddListener(delegate () { Pause(); });
 
@@ -85,6 +89,7 @@ public class EndlessUI : MonoBehaviour
         if (Creater.Instance.player.enabled)
         {
             Creater.Instance.Pause();
+            cam.follow = false;
             buttons[0].enabled = false;
             pausePanel.SetActive(true);
         }
@@ -95,6 +100,7 @@ public class EndlessUI : MonoBehaviour
         if (Creater.Instance.player.enabled)
         {
             Creater.Instance.Pause();
+            cam.follow = true;
             buttons[0].enabled = true;
             pausePanel.SetActive(false);
         }
@@ -142,7 +148,7 @@ public class EndlessUI : MonoBehaviour
         if (SceneManagement.Instance.currentScene == "EndlessScene" && PlayerPrefs.GetInt("HighScore") < score)
         {
             PlayerPrefs.SetInt("HighScore", score);
-            GooglePlayManager.Instance.ReportScore(score);
+            // GooglePlayManager.Instance.ReportScore(score);
         }
     }
 

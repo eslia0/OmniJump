@@ -4908,7 +4908,6 @@ MonoBehaviour:
   dir: 0
   usingEffect: {fileID: 0}
   exit: {fileID: 0}
-  trigger: {fileID: 0}
 --- !u!68 &7750009615816662106
 EdgeCollider2D:
   m_ObjectHideFlags: 0
