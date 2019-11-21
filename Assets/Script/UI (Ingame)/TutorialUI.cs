@@ -32,6 +32,11 @@ public class TutorialUI : MonoBehaviour
             PlayerSet();
         });
 
+        buttons[2].onClick.RemoveAllListeners();
+        buttons[2].onClick.AddListener(delegate () {
+            PlayerSet();
+        });
+
         player = FindObjectOfType<PlayerUIController>();
         InitTutorialUIMaps();
         PlayerSet();
@@ -56,9 +61,13 @@ public class TutorialUI : MonoBehaviour
 
     public void NextTutorial()
     {
-        if (tutorialIndex < 14)
+        if (tutorialIndex < 15)
         {
             tutorialIndex++;
+        }
+        else if (tutorialIndex == 15)
+        {
+            SceneManagement.Instance.StartCoroutine(SceneManagement.Instance.LoadScene("EndlessScene"));
         }
     }
 
@@ -69,7 +78,11 @@ public class TutorialUI : MonoBehaviour
 
         player.SelectUIMap(steps[tutorialIndex]);
 
-        if (tutorialIndex > 1)
+        if (tutorialIndex > 14)
+        {
+            mainCam.transform.position = new Vector3(-5.12f + (9.92f * 14), 0, -1f);
+        }
+        else if (tutorialIndex > 1)
         {
             mainCam.transform.position = new Vector3(-5.12f + (9.92f * tutorialIndex), 0, -1f);
         }
@@ -77,8 +90,6 @@ public class TutorialUI : MonoBehaviour
         {
             mainCam.transform.position = new Vector3(4.8f, 0, -1f);
         }
-
-        mainCam.orthographicSize = 6f;
 
         if (tutorialIndex == 0)
         {
@@ -88,7 +99,11 @@ public class TutorialUI : MonoBehaviour
         else
         {
             player.GetComponent<Animation>().Stop();
+            mainCam.GetComponent<Animation>().Stop();
         }
+        
+        mainCam.orthographicSize = 6f;
+        player.face.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
 
         player.isTeleporting = false;
         player.transform.position = player.action[0].transform.position;

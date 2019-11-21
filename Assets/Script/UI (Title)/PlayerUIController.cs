@@ -7,7 +7,8 @@ public class PlayerUIController : MonoBehaviour
     private UIController controller;
 
     public Transform body;
-
+    public Transform face;
+    
     // 점프
     [Header("점프"), Space(10)]
     [SerializeField] private float timeOfJumpApex = 0.3f;
@@ -19,7 +20,7 @@ public class PlayerUIController : MonoBehaviour
     // 이동
     [Header("이동"), Space(10)]
     public float moveSpeed = 3.0f;
-    [HideInInspector] public bool moveRight = true;
+    public bool moveRight = true;
     public Vector3 velocity;
 
     private float movePeriod = 1.0f;
@@ -27,6 +28,7 @@ public class PlayerUIController : MonoBehaviour
     private float startTime;
 
     private bool isJump;
+    public bool isMoving;
     public bool isTeleporting;
     public bool isActing;
     private Animator ani;
@@ -50,6 +52,7 @@ public class PlayerUIController : MonoBehaviour
         jumpVelocity = Mathf.Abs(gravity) * timeOfJumpApex; // Vf = Vi + a * t
         velocity = Vector2.zero;
         revertGravity = false;
+        isMoving = false;
         moveRight = true;
         moveSpeed = 3.0f;
 
@@ -84,19 +87,19 @@ public class PlayerUIController : MonoBehaviour
     {
         if (action[0].dir == Direction.right)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            face.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
         else if (action[0].dir == Direction.up)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+            face.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
         }
         else if (action[0].dir == Direction.left)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+            face.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
         }
         else if (action[0].dir == Direction.down)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 270));
+            face.rotation = Quaternion.Euler(new Vector3(0, 0, 270));
         }
         
         if (action[0].action == InteractionUI.UIInteraction.Move)
@@ -107,14 +110,14 @@ public class PlayerUIController : MonoBehaviour
 
             if (moveRight)
             {
-                while (transform.position.x < action[0].transform.position.x)
+                while (transform.position.x < action[0].transform.position.x && moveRight)
                 {
                     yield return null;
                 }
             }
             else
             {
-                while (transform.position.x > action[0].transform.position.x)
+                while (transform.position.x > action[0].transform.position.x && !moveRight)
                 {
                     yield return null;
                 }
@@ -161,8 +164,9 @@ public class PlayerUIController : MonoBehaviour
             if (moving.movePassanger)
             {
                 moveSpeed = 0;
+                isMoving = true;
 
-                while (moving.enabled)
+                while (moving.enabled && isMoving)
                 {
                     Vector3 pos = moving.CalculatePlatformMovement();
                     transform.position = moving.transform.position + pos;
@@ -195,11 +199,10 @@ public class PlayerUIController : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
 
             moveSpeed = 3f;
-
-            transform.position = targetPos;
         }
         else if (action[0].action == InteractionUI.UIInteraction.Rotate)
         {
+            body.rotation = Quaternion.Euler(action[0].rotation);
             SetJump();
         }
         else if (action[0].action == InteractionUI.UIInteraction.Dead)
@@ -280,6 +283,7 @@ public class PlayerUIController : MonoBehaviour
     // UI Map의 Action 초기화
     public void InitActions()
     {
+        Init();
         action.Clear();
 
         for (int i = 0; i < selectedMap.childCount; i++)
@@ -315,8 +319,6 @@ public class PlayerUIController : MonoBehaviour
                 action.Add(idleAction.transform.GetChild(i).GetComponent<InteractionUI>());
             }
         }
-
-        Init();
     }
 
     public IEnumerator HoldPlayer(Transform exit, float time)

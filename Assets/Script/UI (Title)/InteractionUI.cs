@@ -23,6 +23,7 @@ public class InteractionUI : MonoBehaviour
     public Direction dir;
     public GameObject usingEffect;
     public GameObject exit;
+    public Vector3 rotation;
 
     public void Lunch()
     {

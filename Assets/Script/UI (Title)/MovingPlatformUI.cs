@@ -14,7 +14,6 @@ public class MovingPlatformUI : MonoBehaviour
 
     public GameObject trigger;
 
-
     private void Awake()
     {
         if (transform.Find("Body"))
@@ -39,8 +38,7 @@ public class MovingPlatformUI : MonoBehaviour
         {
             trigger.SetActive(true);
         }
-
-        StopCoroutine(StartMoving());
+        
         currentPercent = 0;
         waypointIndex = 0;
         transform.position = globalWaypoints[waypointIndex];
