@@ -51,6 +51,8 @@ public class Missile : MonoBehaviour
                 direction = Direction.left;
                 break;
         }
+
+        oriPos = transform.position;
     }
     
     public Missile Lunch()
@@ -121,7 +123,7 @@ public class Missile : MonoBehaviour
         isDead = false;
         path.SetActive(true);
         arrow.gameObject.SetActive(true);
-        oriPos = transform.position;
         lifeTime = 0;
+        transform.position = oriPos;
     }
 }

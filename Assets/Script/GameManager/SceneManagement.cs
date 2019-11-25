@@ -56,6 +56,7 @@ public class SceneManagement : MonoBehaviour
     void Start()
     {
         SceneManager.sceneLoaded += FadeIn;
+        currentScene = "TitleScene";
         fade.gameObject.SetActive(false);
     }
 

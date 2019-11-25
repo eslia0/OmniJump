@@ -93,4 +93,13 @@ public class FixedJoystick : Joystick
         image.sprite = AOArrow2;
         Creater.Instance.player.onClick = false;
     }
+
+    public IEnumerator SetImage(Sprite sprite)
+    {
+        image.sprite = sprite;
+
+        yield return new WaitForSeconds(0.2f);
+
+        image.sprite = AOArrow2;
+    }
 }

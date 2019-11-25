@@ -15,13 +15,15 @@ public class InteractionUI : MonoBehaviour
         Teleport,
         Gravity,
         Moving,
+        Pause,
+        Dead,
     }
 
     public UIInteraction action;
     public Direction dir;
     public GameObject usingEffect;
     public GameObject exit;
-    public GameObject trigger;
+    public Vector3 rotation;
 
     public void Lunch()
     {

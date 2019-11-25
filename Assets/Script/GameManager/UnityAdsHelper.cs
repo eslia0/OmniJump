@@ -27,6 +27,8 @@ public class UnityAdsHelper : MonoBehaviour
     public TimeSpan adDelay { get; private set; }
 
     private BannerView bannerView;
+    AdRequest request;
+    public bool playTest;
 
     private void Awake()
     {
@@ -41,6 +43,11 @@ public class UnityAdsHelper : MonoBehaviour
         adDelay = new TimeSpan(0, 15, 0);
 
         instance.Initialize();
+
+        if (playTest)
+        {
+            RequestBanner();
+        }
     }
 
     private void Initialize()
@@ -144,8 +151,8 @@ public class UnityAdsHelper : MonoBehaviour
     public void InitBannerView() {
 #if UNITY_ANDROID
         // 기존 Id, 아래는 test용 샘플 Id
-        // string adUnitId = "ca-app-pub-4092634290096513/4027782645";
-        string adUnitId = "ca-app-pub-3940256099942544/6300978111";
+        string adUnitId = "ca-app-pub-4092634290096513/4027782645";
+        // string adUnitId = "ca-app-pub-3940256099942544/6300978111";
 #elif UNITY_IPHONE
             string adUnitId = "ca-app-pub-3940256099942544/2934735716";
 #else
@@ -169,15 +176,14 @@ public class UnityAdsHelper : MonoBehaviour
 
     public void RequestBanner()
     {
-
         // AdSize adSize = new AdSize(250, 250);
         // BannerView bannerView = new BannerView(adUnitId, adSize, AdPosition.Bottom);
 
         // Create a 320x50 banner ad at coordinate (0,50) on screen.
         // BannerView bannerView = new BannerView(adUnitId, AdSize.Banner, 0, 50);
-
+        
         // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
+        request = new AdRequest.Builder().Build();
 
         // Load the banner with the request.
         bannerView.LoadAd(request);

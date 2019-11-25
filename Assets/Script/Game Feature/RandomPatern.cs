@@ -57,7 +57,7 @@ public class RandomPatern : MonoBehaviour
             check = 0;
             pads.Remove(pad);
             pad.transform.SetParent(null);
-            Destroy(pad, 2.0f);
+            pad.SetActive(false);
         }
         
         bossObject.transform.Find("BossPad").GetComponent<Lift>().enabled = false;

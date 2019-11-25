@@ -9,6 +9,8 @@ public class TitleUI : MonoBehaviour
     private GameObject practicePanel;
     [SerializeField] private GameObject adsPanel;
     [SerializeField] private Button[] buttons;
+    
+    private GameObject[] UIMaps;
 
     // 프랙티스 패널
     private Image[] levelImage;
@@ -32,19 +34,25 @@ public class TitleUI : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<PlayerUIController>();
+        InitUIMap();
         InitTitle();
     }
 
     private void Update()
     {
         selectedLevelText.text = "Lv. " + ((int)(map.anchoredPosition.x / 430 * -1 + 1.2f + selectedLevel)).ToString();
+
+        if (!player.isActing && player.action.Count == 0)
+        {
+            player.InitActions();
+        }
     }
 
     public void InitTitle()
     {
         titlePanel = transform.GetChild(0).gameObject;
         practicePanel = transform.GetChild(1).gameObject;
-        mapScroll = practicePanel.transform.GetChild(3).GetComponent<ScrollRect>();
+        mapScroll = practicePanel.transform.GetChild(2).GetComponent<ScrollRect>();
         scrollAnim = mapScroll.GetComponent<Animation>();
 
         buttons[0].onClick.RemoveAllListeners();
@@ -72,6 +80,8 @@ public class TitleUI : MonoBehaviour
             UnityAdsHelper.Instance.ShowRewardedAd();
             adsPanel.SetActive(false);
         });
+        buttons[6].onClick.RemoveAllListeners();
+        buttons[6].onClick.AddListener(delegate () { GooglePlayManager.Instance.ShowLeaderboardUI(); });
 
         LoadMapImage();
         InitPractice();
@@ -117,16 +127,31 @@ public class TitleUI : MonoBehaviour
         }
     }
 
+    // 맵 이미지
+    public void InitUIMap()
+    {
+        UIMaps = new GameObject[10];
+
+        for (int i = 0; i < 10; i++)
+        {
+            UIMaps[i] = Resources.Load<GameObject>("UIMaps/TitleMap" + (i + 1).ToString());
+        }
+
+        int rand = UnityEngine.Random.Range(0, UIMaps.Length);
+        GameObject map = Instantiate(UIMaps[rand], new Vector3(4.8f, -1.76f, 0f), Quaternion.identity);
+        player.SelectUIMap(map.transform.GetChild(1));
+    }
+
     private void InitPractice()
     {
-        selectedLevelText = practicePanel.transform.GetChild(0).Find("SelectedText").GetComponent<Text>();
+        selectedLevelText = practicePanel.transform.GetChild(1).Find("SelectedText").GetComponent<Text>();
 
-        Button backButton = practicePanel.transform.GetChild(1).GetComponent<Button>();
+        Button backButton = practicePanel.transform.GetChild(0).GetComponent<Button>();
         backButton.onClick.RemoveAllListeners();
         backButton.onClick.AddListener(delegate () { ToTitlePanel(); });
 
         // 하단의 10단위 레벨 버튼 초기화
-        Transform level = practicePanel.transform.GetChild(2);
+        Transform level = practicePanel.transform.GetChild(3);
         levels = new Button[6];
 
         levels[0] = level.GetChild(0).GetComponent<Button>();

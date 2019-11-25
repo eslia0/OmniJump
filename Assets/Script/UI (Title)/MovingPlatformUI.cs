@@ -6,11 +6,13 @@ public class MovingPlatformUI : MonoBehaviour
 {
     public Vector3[] globalWaypoints;
     private int waypointIndex;
-    
+
     public bool movePassanger;
     public float speed;
     [HideInInspector] public Vector3 velocity;
     [HideInInspector] public float currentPercent;
+
+    public GameObject trigger;
 
     private void Awake()
     {
@@ -32,7 +34,11 @@ public class MovingPlatformUI : MonoBehaviour
 
     public void Init()
     {
-        StopCoroutine(StartMoving());
+        if (trigger)
+        {
+            trigger.SetActive(true);
+        }
+        
         currentPercent = 0;
         waypointIndex = 0;
         transform.position = globalWaypoints[waypointIndex];

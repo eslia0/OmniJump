@@ -382,12 +382,12 @@ PrefabInstance:
     - target: {fileID: 5535358337785252760, guid: 6aaa76dff575c0d41944a18031ff6c0a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.12
+      value: -8.489999
       objectReference: {fileID: 0}
     - target: {fileID: 5535358337785252760, guid: 6aaa76dff575c0d41944a18031ff6c0a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.76
+      value: 0.6300002
       objectReference: {fileID: 0}
     - target: {fileID: 5535358337785252760, guid: 6aaa76dff575c0d41944a18031ff6c0a,
         type: 3}
@@ -968,9 +968,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPaused: 0
   isRewarded: 0
+  pauseUse: 0
   platforms: []
   nowPlatform: {fileID: 0}
-  adReward: 
 --- !u!4 &993727121
 Transform:
   m_ObjectHideFlags: 0
@@ -1685,12 +1685,12 @@ PrefabInstance:
     - target: {fileID: 3119098801476151391, guid: 35140d2147207204da353c7535b7f0c9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.13
+      value: -8.48
       objectReference: {fileID: 0}
     - target: {fileID: 3119098801476151391, guid: 35140d2147207204da353c7535b7f0c9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7699997
+      value: 0.64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35140d2147207204da353c7535b7f0c9, type: 3}
@@ -1779,78 +1779,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057897920}
   m_CullTransparentMesh: 0
---- !u!1001 &2109245376
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 94, guid: de19f98a85d579e44a9295ec8de15d0e, type: 3}
-      propertyPath: m_Name
-      value: Map54
-      objectReference: {fileID: 0}
-    - target: {fileID: 624, guid: de19f98a85d579e44a9295ec8de15d0e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 624, guid: de19f98a85d579e44a9295ec8de15d0e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 624, guid: de19f98a85d579e44a9295ec8de15d0e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 624, guid: de19f98a85d579e44a9295ec8de15d0e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 624, guid: de19f98a85d579e44a9295ec8de15d0e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 624, guid: de19f98a85d579e44a9295ec8de15d0e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 624, guid: de19f98a85d579e44a9295ec8de15d0e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 624, guid: de19f98a85d579e44a9295ec8de15d0e, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 624, guid: de19f98a85d579e44a9295ec8de15d0e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 624, guid: de19f98a85d579e44a9295ec8de15d0e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 624, guid: de19f98a85d579e44a9295ec8de15d0e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5740757561014874944, guid: de19f98a85d579e44a9295ec8de15d0e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.84
-      objectReference: {fileID: 0}
-    - target: {fileID: 5740757561014874944, guid: de19f98a85d579e44a9295ec8de15d0e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 5028204846148555399, guid: de19f98a85d579e44a9295ec8de15d0e,
-        type: 3}
-      propertyPath: globalWaypoints.Array.data[1].x
-      value: -1.8
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: de19f98a85d579e44a9295ec8de15d0e, type: 3}
 --- !u!222 &21522758967130982
 CanvasRenderer:
   m_ObjectHideFlags: 0

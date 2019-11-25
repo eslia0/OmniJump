@@ -68,7 +68,6 @@ public class MissileManager : MonoBehaviour
         {
             if (Creater.Instance.player.transform.position.x > transform.position.x)
             {
-                Debug.Log("Position");
                 StartCoroutine(MissileUpdating());
                 break;
             }
