@@ -4891,6 +4891,7 @@ MonoBehaviour:
   distance: 3
   time: 0.7
   lunchDelay: 0
+  isLunched: 0
   arrow: {fileID: 3095852672838211914}
 --- !u!114 &7750009615816662084
 MonoBehaviour:

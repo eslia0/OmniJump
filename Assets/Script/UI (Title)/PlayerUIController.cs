@@ -56,7 +56,10 @@ public class PlayerUIController : MonoBehaviour
         moveRight = true;
         moveSpeed = 3.0f;
 
-        body.gameObject.SetActive(true);
+        if (!isTeleporting)
+        {
+            body.gameObject.SetActive(true);
+        }
     }
 
     private void Update()
@@ -134,7 +137,9 @@ public class PlayerUIController : MonoBehaviour
         }
         else if (action[0].action == InteractionUI.UIInteraction.Missile)
         {
-            action[0].Lunch();
+            MissileUI missile = action[0].GetComponent<MissileUI>();
+            missile.isLunched = true;
+            missile.StartCoroutine(missile.Lunch());
         }
         else if (action[0].action == InteractionUI.UIInteraction.Reverse)
         {
@@ -146,8 +151,6 @@ public class PlayerUIController : MonoBehaviour
         }
         else if (action[0].action == InteractionUI.UIInteraction.Teleport)
         {
-            isTeleporting = true;
-
             StartCoroutine(HoldPlayer(action[0].exit.transform, 1.0f));
         }
         else if (action[0].action == InteractionUI.UIInteraction.Moving)
@@ -321,15 +324,19 @@ public class PlayerUIController : MonoBehaviour
         }
     }
 
+    // Teleport에서 사용
     public IEnumerator HoldPlayer(Transform exit, float time)
     {
+        yield return null;
+
         moveSpeed = 0.0f;
         body.gameObject.SetActive(false);
         GameObject poof = Instantiate(Resources.Load<GameObject>("Effects/Poof 1"));
-        poof.transform.position = transform.position + Vector3.up * 0.3f;
+        poof.transform.position = exit.position + Vector3.up * 0.3f;
         Destroy(poof, 0.5f);
 
         float check = 0.0f;
+        isTeleporting = true;
         while (check < time && isTeleporting)
         {
             check += Time.deltaTime;

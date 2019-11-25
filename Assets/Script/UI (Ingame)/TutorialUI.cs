@@ -75,7 +75,7 @@ public class TutorialUI : MonoBehaviour
     {
         tutorialText.gameObject.SetActive(true);
         tutorialText.SetText(steps[tutorialIndex].GetComponent<TutorialTextContainer>().text);
-
+        
         player.SelectUIMap(steps[tutorialIndex]);
 
         if (tutorialIndex > 14)
@@ -106,7 +106,8 @@ public class TutorialUI : MonoBehaviour
         player.face.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
 
         player.isTeleporting = false;
+        player.body.gameObject.SetActive(false);
         player.transform.position = player.action[0].transform.position;
-        player.StartCoroutine(player.HoldPlayer(player.action[0].transform, 0.15f));
+        player.StartCoroutine(player.HoldPlayer(player.action[0].transform, 0.25f));
     }
 }

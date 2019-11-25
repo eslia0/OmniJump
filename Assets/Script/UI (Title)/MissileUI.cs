@@ -9,6 +9,7 @@ public class MissileUI : MonoBehaviour
     public float distance;
     public float time;
     public float lunchDelay;
+    public bool isLunched;
 
     [SerializeField] private ParticleSystem arrow;
     private LineRenderer lr;
@@ -54,6 +55,7 @@ public class MissileUI : MonoBehaviour
         
         arrow.gameObject.SetActive(true);
         lifeTime = 0f;
+        isLunched = false;
         transform.position = oriPos;
     }
 
@@ -63,15 +65,18 @@ public class MissileUI : MonoBehaviour
         // lr.enabled = false;
         arrow.gameObject.SetActive(false);
 
-        while (time > lifeTime)
+        while (time > lifeTime && isLunched)
         {
             lifeTime += Time.deltaTime;
             transform.position += transform.up * ((distance / time) * Time.deltaTime);
             yield return null;
         }
 
-        Destroy(Instantiate(Resources.Load<GameObject>("Effects/GlowExplosion 1"), transform.position, Quaternion.identity), 1.0f);
-        gameObject.SetActive(false);
+        if (isLunched)
+        {
+            Destroy(Instantiate(Resources.Load<GameObject>("Effects/GlowExplosion 1"), transform.position, Quaternion.identity), 1.0f);
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnDrawGizmos()

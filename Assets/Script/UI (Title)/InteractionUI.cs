@@ -24,9 +24,4 @@ public class InteractionUI : MonoBehaviour
     public GameObject usingEffect;
     public GameObject exit;
     public Vector3 rotation;
-
-    public void Lunch()
-    {
-        StartCoroutine(GetComponent<MissileUI>().Lunch());
-    }
 }
