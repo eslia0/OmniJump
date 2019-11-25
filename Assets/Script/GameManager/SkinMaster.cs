@@ -38,9 +38,18 @@ public sealed class SkinMaster : MonoBehaviour
 
             for (int i = 0; i < xml.GetNodeCount(); i++)
             {
-                accessList.Add((ac[i] == "T") ? true : false);
+                if(i > ac.Length - 1)
+                {
+                    accessList.Add(false);
+                }
+                else
+                {
+                    accessList.Add((ac[i] == "T") ? true : false);
+                }
             }
         }
+
+        SetACCESS();
     }
     private void SetACCESS()
     {
